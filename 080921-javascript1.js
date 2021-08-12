@@ -8,9 +8,12 @@ JavaScript Hoisting
 https://www.w3schools.com/js/js_hoisting.asp
 //var  a - variable already exist
 //undefined, it is not able to access to the value
+//hoisting, limited to the current scope, initialized
 console.log(a);    
 var a = 1;
 //system crash, ReferenceError, b is not exist
+//let and const do not initialize, they are not accessible before the line we declare them
+//this is called temporal dead zone
 console.log(b);  
 let b = 1;
 
