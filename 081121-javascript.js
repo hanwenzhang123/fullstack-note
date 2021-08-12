@@ -259,7 +259,7 @@ newObj.x = 9;
 console.log(newObj);  //{x:9)
 console.log(obj); //{x:1)   //original object not touched, different addresses in memory
 
-// value => non-primitive -> Object 
+// value => non-primitive -> Object Array
 //assigning everything in a different type but because the value type is different, it is an object
 //there is a reference pointer points to the object
 const obj = { x: { y: 1 } };  //add one more layer
