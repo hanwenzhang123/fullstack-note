@@ -97,7 +97,7 @@ console.log(q, z);  //2 1
 console.log(q, z);  //1 2 - reassign the value
 
 
-//Renaming
+//Re-naming
 const obj = { x: 1 };
 const { x: newVariable } = obj;   //just about the syntax, change the name x to newVariable
 // const newVariable = obj.x    //x as the key to get the value and stores in the variable
@@ -153,9 +153,31 @@ func(1, 2, 3, 4, 5, 6, 7);
 // }
 
 
+//Math in Array
+//javascript array does not have Math Method - it expects distinct variables
+Math.max(1, 2, 3)    // 3
+Math.min(1, 2, 3)    // 1
+const nums = [1, 2, 3]
+Math.min(nums)    // NaN
+Math.max(nums)    // NaN
+
+//apply()
+var nums = [1, 2, 3]
+Math.min.apply(Math, nums)    // 1
+Math.max.apply(Math, nums)    // 3
+Math.min.apply(null, nums)    // 1    //this assigns to null
+Math.max.apply(null, nums)    // 3
+
+//destructuring
+const nums = [1, 2, 3]
+Math.min(...nums)    // 1
+Math.max(...nums)    // 3
+
+
 //bind apply call
 //function prototype - for propertly set up function for "this"
-//assigning this keyword
+//assigning an object to the "this" keyword refers to the this object
+//the first arugument has to be the object itself, "this"
 function.prototype.bind/apply call
 func.bind()  //not call yet
 func.apply()/call()  //call it now
@@ -163,7 +185,7 @@ func.apply()/call()  //call it now
 
 //bind()
 //The bind() method creates a new function that, when called, has its this keyword set to the provided value.
-//does not call the function, but refer to it
+//bind gives you a function, but does not call the function, but refer to it that you can execute later
 const module = {
   x: 42,
   getX: function () {
@@ -171,19 +193,22 @@ const module = {
   }
 };
 
-console.log(module.getX());  //42 - module is the owner
+console.log(module.getX());  //42 - JS awares module is the owner
+//it directly calls the function, but what if we pass the function but not execute it? - using bind()
 
 const unboundGetx = module.getX;
-//console.log(unbounGetX()); //undefined - can not read property X, it is not defined - TypeError
+console.log(unbounGetX()); //undefined - can not read property X, it is not defined - TypeError
 //it is like pull getX outside of the object - unboundGetx is not aware your module
-- const getX = () => this.x - lost its original "this"
+//- const getX = () => this.x - lost its original "this", no aware of the owner module
 
-//bind() - take it out of the function and provide a proper "this"
 const boundGetX = unboundGetX.bind(module);
-//console.log(boundGetX());
+console.log(boundGetX()); //42
+//bind() - take it out of the function, not execute right away
+//bind will be used to provide a proper "this" reference to the function, and it returned to a new bound function
 
 
-//apply()/call() - same, just the different way to put in the parameter
+//apply()/call() 
+//- same, just the different way to put in the parameter
 Product.call(this, ,name, price); //call => c comma
 Product.apply(this, [name, price]); //apply => a array
 
@@ -197,7 +222,9 @@ function Product(name, price) {
 }
 
 function Food(name, price) {
-  Product.call(this, name, price);    //this is referring to Food object
+  Product.call(this, name, price); //"this" is referring to Food object
+  //call is for the function Product is called with "this" object with the input parameter 
+  //func.call(thisArg) - passing the valuee within the function will know this argument
 }
 
 const cheese = new Food("feta", 5);
