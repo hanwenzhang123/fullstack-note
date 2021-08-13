@@ -155,8 +155,10 @@ func(1, 2, 3, 4, 5, 6, 7);
 
 //bind apply call
 //function prototype - for propertly set up function for "this"
+//assigning this keyword
 function.prototype.bind/apply call
-func.bind()/    apply()/call()
+func.bind()  //not call yet
+func.apply()/call()  //call it now
 
 
 //bind()
@@ -172,7 +174,7 @@ const module = {
 console.log(module.getX());  //42 - module is the owner
 
 const unboundGetx = module.getX;
-//console.log(unbounGetX()); - can not read property X, it is not defined - TypeError
+//console.log(unbounGetX()); //undefined - can not read property X, it is not defined - TypeError
 //it is like pull getX outside of the object - unboundGetx is not aware your module
 - const getX = () => this.x - lost its original "this"
 
@@ -187,6 +189,7 @@ Product.apply(this, [name, price]); //apply => a array
 
 //call() - "this" function is called in specific within the function, calling/triggering the function
 // The call() method calls a function with a given this value and arguments provided individually.
+// directly triggers itself, call it right now, unlike bind, not yet to call
 // func.call(thisArg, arg1, arg2, ....)
 function Product(name, price) {
   this.name = name;
