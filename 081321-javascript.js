@@ -211,29 +211,29 @@ const myPro = new Promise((resolve, reject) => {    //you can change the name
 //etTimeout(callback, delay, [optionalParams])
 setTimeOut(()=>console.log(123), 2000);
     
-const myPro = new Promise((resolve, reject) => {  
-    setTimeOut(()=> {
-        resolve("GOT THE DATA!");
-    }, 2000);
+const myPro = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("GOT the data!");
+  }, 2000);
 })
-.then(res => console.log(`The Data is -> ${res}`));    //The Data is -> GOT THE DATA!
-.then(data => console.log(data))
+// only after the main thread is done
+  .then(res => console.log(`The Data is -> ${res}`))    //The Data is -> GOT THE DATA!
         
 
-setTimeOut(() => console.log("IMA setTimeout!"))    //macrotask
-console.log("Main Thread")! //main thread - print out first
+setTimeout(() => console.log("IMA setTimeout!"))    //macrotask
+console.log("Main Thread"); //main thread - print out first
     
 
 //main thread > micro > macro
-setTimeOut(() => console.log("IMA setTimeout!"))     //macrotask
-const myPro = new Promise((resolve, reject) => {    //microtask
-    resolve("GOT THE DATA!");
+setTimeout(() => console.log('IMA setTimeout!'));     //macrotask
+const myPro = new Promise((resolve, reject) => {     //microtask
+  resolve("IM DATA")
 })
 //only after the main thread
-.then(res => res + "from Michael");  
-.then(data => console.log(data))
+  .then( res => res + "from Michael" )
+  .then( data => console.log(data) )
 
-console.log("Main Thread")! 
+console.log("Main Thread"); // main thread
 
 
 //Event Loop
