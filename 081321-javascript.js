@@ -144,8 +144,8 @@ var obj = {
         }
     }
 };
-console.log(this)           //{} -> this is for the outer scope, inner ones are not valid but the whole global scope
-console.log(obj.prop.getName());    //{} -> because NodeJS
+console.log(this)           //Window, {} -> this is for the outer scope, inner ones are not valid but the whole global scope
+console.log(obj.prop.getName());    //Window, {} -> because NodeJS
 
 
 var obj = {
@@ -171,13 +171,12 @@ var obj = {
         }
     }
     //implicit
-    getNameL function() {
-        return this.name
-    }
+//     getName: function() {
+//         return this.name
+//     }
 };
 console.log(obj.prop.getName());    //C
 obj.getName = obj.prop.getName;
-console.log(getName()); //B
 
 
 //7. Promise(Event-loop, task scheduling)
