@@ -76,7 +76,6 @@ printT(list);
 
 
 //React Intro Demo
-
 https://reactjs.org/docs/hello-world.html
 https://reactjs.org/tutorial/tutorial.html
 https://codesandbox.io/s/new
@@ -131,8 +130,8 @@ class App extends React.Component { //extends the component
     console.log(this);    //this will properly refers to the App due to arrow function, no more binding issue, no needs to bind in the constructor now
   }
 
-  onChangeHandler = (e) => {
-    this.setState({ name: e.target.value }) // using the method setState and update the name key
+  onChangeHandler = (e) => {        // using the method setState and update the name key
+    this.setState({ name: e.target.value })     //when we type in e.target.value, it overrides the name
 
     // what does setState do?
     // 1. update my(component) local state Correctly
