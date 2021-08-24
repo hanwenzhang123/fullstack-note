@@ -115,8 +115,8 @@ import "./styles.css";
 class App extends React.Component { //extends the component
   constructor(props) {    //we need the constructor
     super(props); // we need the super() to enable the use of 'this' in the following part
-    this.state = {
-      name: ""
+    this.state = {      //state holds very important information about "this" in the object
+      name: ""      //empty here so we can update the value, or we can put the hard-coded value
     }
     // this.onClickFunc = this.onClickFunc.bind(this);   
     //bind creates a new function where this is properly referred. so now the onClickFunc below works
@@ -132,7 +132,7 @@ class App extends React.Component { //extends the component
   }
 
   onChangeHandler = (e) => {
-    this.setState({ name: e.target.value }) // CORRECT
+    this.setState({ name: e.target.value }) // using the method setState and update the name key
 
     // what does setState do?
     // 1. update my(component) local state Correctly
@@ -154,4 +154,4 @@ class App extends React.Component { //extends the component
 }
 
 export default App;
- 
+  
