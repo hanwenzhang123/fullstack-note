@@ -123,11 +123,11 @@ class App extends React.Component { //extends the component
   }
 
   // class method
-  // onClickFunc() {
+  // onClickFunc() {     //this function has its own this
   //   console.log(this);   //we should let know which 'this' should I point to (the provided value)
   // }  //returns undefined without the bind, print out App with the bind function
 
-  onClickFunc = () => {
+  onClickFunc = () => {   //arrow function does not have its own this, so this will survive in the whole class field
     console.log(this);    //this will properly refers to the App due to arrow function, no more binding issue, no needs to bind in the constructor now
   }
 
