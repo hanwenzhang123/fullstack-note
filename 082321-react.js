@@ -89,6 +89,7 @@ It lets you compose complex UIs from small and isolated pieces of code called â€
 React is a component based language.
 Components are like functions that return HTML elements via a render() function.
 Components are reusable, you can use the component across different pages
+We are building components that each only cares about one thing
 
 //What is JSX?
 JSX stands for JavaScript XML.
