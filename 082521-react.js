@@ -95,8 +95,8 @@ class App extends React.Component {
                   //setState() triggers render(), state changing is asynchronous in React
     }    //Never mutate this.state directly, as calling setState() afterwards may replace the mutation you made. Treat this.state as if it were immutable.
    //we would never do things like this.state.date = xxx, state is immutable, unchangeable, read only
-  }
-  handleClick = () => {      //setState, it does not mutate state directly but mutates copy
+  } //this is against the react convention and this will NOT trigger the rerender to update the UI simultaneously.
+  handleClick = () => {      //setState modify this.state with its built-in logic and triggers the re-render after the state updates. 
       this.setState({number: this.state.number + 1});
    }
   render() {
