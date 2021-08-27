@@ -265,17 +265,15 @@ class App extends React.Component {
 //setTimeout example
 handleClick = () => {
     const { number } = this.state;
-
-    setTimeout(() => {     //no good
-      this.setState({ number: number + 1 }); // 0: 0 + 1
-      this.setState({ number: number + 1 }); // 1: 0 + 1    //outdated value
+    setTimeout(() => {     //no good, synchronous
+      this.setState({ number: number + 1 }); // 0: 0 + 1    //always pass the copy, always the number, 0 + 1, closure case
+      this.setState({ number: number + 1 }); // 1: 0 + 1    //change back to 0 + 1, outdated value
     }, 0)
-    VS
-  //const { number } = this.state; 
-    
-    setTimeout(() => {
+    V.S.
+  //const { number } = this.state;   
+    setTimeout(() => {     //correct value
       this.setState({ number: this.state.number + 1 }); // 0: 0 + 1
-      this.setState({ number: this.state.number + 1 }); // 2: 1 + 1     //no closure updated value
+      this.setState({ number: this.state.number + 1 }); // 2: 1 + 1     //no closure, updated value
     }, 0)
   }
 }
