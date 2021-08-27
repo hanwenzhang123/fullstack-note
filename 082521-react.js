@@ -62,7 +62,7 @@ class App extends React.Component {
     }
   }
    componentDidMount() {         //after the initial render then componentDidMount
-      console.log("YEA I am alive")
+      console.log("YEA I am alive")    //we can do API fetching here, like .then() .setState({data}) etc. 
    }
    componentDidUpdate() {        //we need to change some state to trigger the re-render, you do NOT set this.setState() here
       console.log("Setting some value that is irrelevant to the page")  //does not influence what we see on the page
@@ -82,7 +82,7 @@ class App extends React.Component {
 }
 
 
-// state & props - mutable? => both immutable
+// state & props - mutable? => both immutable, read only
 // state is an object internally captured by class (in the constructor, this.state)
 // props down, parent talks to child
 // ?? whether child talks back to parent using props too? NO
@@ -91,121 +91,191 @@ class App extends React.Component {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    }
+    this.state = {         //here is the state, better not to change the old state directly
+                  //setState() triggers render(), state changing is asynchronous in React
+    }    //Never mutate this.state directly, as calling setState() afterwards may replace the mutation you made. Treat this.state as if it were immutable.
+   //we would never do things like this.state.date = xxx, state is immutable, unchangeable, read only
   }
+  handleClick = () => {      //setState, it does not mutate state directly but mutates copy
+      this.setState({number: this.state.number + 1});
+   }
   render() {
-     const dateProp = "wed";  //props, passing down
+    const dateProp = "wed";  //props, passing down
     return {
        <div className ="App">
-         <Title date={dateProp}/>     //passing a value to the child component <Title>
-         <button>CCC</button>  
+         <Title date={dateProp}/>     //passing a value dateProp to the child component <Title> (customized component)
+         <button onClick={this.handleClick}>CCC</button>  
        </div>
      )
   }
-}
-function Title(props) {       //props means whatever in <Title date={dateProp}/> 
-   return (
+}                              //only parent changes props, only the parent component perform modification over the props
+function Title(props) {      //props means whatever in <Title date={dateProp}/>, we treat props as read only, not changing, read only
+   return (                //child's purpose is to present whatever passing down from the parent, not to change it
      <div>
        <h1>Happy { props.date }</h1>      //dateProp is the value, but we need the name here which is date
      </div>
-     );
+   );
+ }
+
+//destructuring
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {  
+      number: 0
+    }
+  }
+   handleClick = () => {
+      const {number} = this.state;
+      this.setState({number: number + 1});
    }
-
-
-
-
-
-
-
+  render() {
+    const {number} = this.state;    //this.state.number
+    return {
+       <div className ="App">
+         <Title date={number}/>     //since destructuring, here we do {number} is good
+         <button onClick={this.handleClick}>CCC</button>  
+       </div>
+     )
+  }
+}   
+function Title(props) {
+   const {date} = props;      //propss.date
+   return (
+     <div>
+       <h1>Happy { date }</h1>  
+     </div>
+   );
+ }
+ 
+ 
 // React.PureComponent -> performance improvement
+// with PureComponent, it already contains the logics of shouldComponentUpdate 
+// to compare current props and previous props to make sure it cuts off unnecessary renders
 // class wrap with purecomppnent
 // function wrap with memo
+ 
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {  
+      number: 0
+    }
+  }
+   handleClick = () => {
+      const {number} = this.state;
+      this.setState({number: number + 1});
+   }
+  render() {
+    const {number} = this.state;
+    return {
+       <div className ="App">
+         <Title />         //<WrapperTitle />   -> functional component
+         <h3> {number} </h3>
+         <button onClick={this.handleClick}>CCC</button>  
+       </div>
+     )
+  }
+} 
+class Title extends React.PureComponent {    //extends React.PureComponent, always compare the previous props and current props to determine if render
+//   constructor(props) {
+//     super(props);
+//   }  
+//   shouldComponentUpdate() {...}     //PureComponent works like containing logics with shouldComponentUpdate
+  render() {  
+     console.log("Title rendering");    //only render once, considers shouldComponentUpdate
+     return (
+      <div>
+       <h1>Happy Today</h1>  
+     </div>
+    );
+  }
+}
+function Title() {
+  console.log("Title rendering");    //only render once, considers shouldComponentUpdate
+  return (
+     <div>
+       <h1>Happy Today</h1>  
+     </div>
+   );
+}
+const WrapperTitle = memo(Title);      //using memo for functional component, capitalize the first letter for customized component
+
 
 // HOC -> High Order Component
 // is not a component; it is a function (patttern);
-// const NewComponent = someHOCLogic(App);
+// take in the original component, and add some decoration and modification and props to make it a new component, add more contents
+// why HOC? use it for reusability
+// same pattern but only applies to the one when we need it, and simply removes it when we do not need it
 
-// connect(a, b)(OriginalComp) // use case example in React-Redux
+const NewComponent = someHOCLogic(App);
+connect(a, b)(OriginalComp) // use case example in React-Redux
+<NewComponent />
+   
+   
+//setState
+- a way to properly modify local state
+- triggers a re-render
+- when invole previous value, we should always use a callback function is properly being handled base on the current value
+//setState - Asynchronous
+//react will batch several setStates together into a single update for performing the state change due to performance
 
-// <NewComponent />
+function Title() {
+  console.log("Title rendering"); 
+  return (
+     <div>
+       <h1>Happy Today</h1>  
+     </div>
+   );
+}
+const WrapperTitle = memo(Title);  
 
-// function Title() {
-//   return (
-//     <div>
-//       <h1>Happy EveryDay</h1>
-//     </div>
-//   );
-// }
-// const WrapperTitle = memo(Title);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {  
+      number: 0
+    }
+  }
+   handleClick = () => {
+      const {number} = this.state;
+//       this.setState({number: number + 1});      //will only add once because setState is async
+//       this.setState({number: number + 1});      //React will batch several setState together to perform the state change
+//       this.setState({number: number + 1});      //use callback function to setState to make it correctly rendered instead of just assigning the new object
+       this.setState((prevState) => {     //passing in a callback function instead of setState directly
+         return { number: prevState.number + 1 };
+       })
+       this.setState((prevState) => {
+         return { number: prevState.number + 1 };
+       })
+   }
+  render() {
+    const {number} = this.state;
+    return {
+       <div className ="App">
+         <WrapperTitle /> 
+         <h3> {number} </h3>
+         <button onClick={this.handleClick}>Click</button>  
+       </div>
+     )
+  }
+}   
 
-// class App extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       number: 0
-//     }
-//   }
+ 
+//setTimeout example
+handleClick = () => {
+    const { number } = this.state;
 
-//   handleClick = () => {
-//     // const { number } = this.state;
-//     this.setState((prevState) => {
-//       return { number: prevState.number + 1 };
-//     })
-//     this.setState((prevState) => {
-//       return { number: prevState.number + 1 };
-//     })
-    // setTimeout(() => {
-    //   this.setState({ number: number + 1 }); // 0: 0 + 1
-    //   this.setState({ number: number + 1 }); // 1: 0 + 1
-    // }, 0)
-    // VS
-    // setTimeout(() => {
-    //   this.setState({ number: this.state.number + 1 }); // 0: 0 + 1
-    //   this.setState({ number: this.state.number + 1 }); // 2: 1 + 1
-    // }, 0)
+    setTimeout(() => {     //no good
+      this.setState({ number: number + 1 }); // 0: 0 + 1
+      this.setState({ number: number + 1 }); // 1: 0 + 1    //outdated value
+    }, 0)
+    VS
+  //const { number } = this.state; 
     
-    // react will batch several setStates together to perform the state change
-  // }
-
-//   render() {
-//     const { number } = this.state;
-    
-//     return (
-//       <div className="App">
-//         <WrapperTitle onClickFunc={this.handleClick} />
-//         <h3>{ number }</h3>
-//         <button onClick={this.handleClick}>Click</button>
-//       </div>
-//     )
-//   }
-// }
-
-// class Title extends PureComponent {
-//   // constructor(props) {
-//   //   super(props);
-//   // }
-
-//   render() {
-//     console.log("Title rendering..");
-//     return (
-//       <div>
-//         <h1>Happy Today {this.props.value}</h1>
-//       </div>
-//     );
-//   }
-// }
-
-// function Title() {
-//   console.log("Title rendering..");
-//   return (
-//     <div>
-//       <h1>Happy Today</h1>
-//     </div>
-//   );
-// }
-// const WrapperTitle = memo(Title);
-
-
-// export default App;
+    setTimeout(() => {
+      this.setState({ number: this.state.number + 1 }); // 0: 0 + 1
+      this.setState({ number: this.state.number + 1 }); // 2: 1 + 1     //no closure updated value
+    }, 0)
+  }
+}
