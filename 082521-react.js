@@ -152,6 +152,7 @@ function Title(props) {
 // React.PureComponent -> performance improvement
 // with PureComponent, it already contains the logics of shouldComponentUpdate 
 // to compare current props and previous props to make sure it cuts off unnecessary renders
+
 // class wrap with purecomppnent
 // function wrap with memo
  
@@ -168,9 +169,9 @@ class App extends React.Component {
    }
   render() {
     const {number} = this.state;
-    return {
+    return (
        <div className ="App">
-         <Title />         //<WrapperTitle />   -> functional component
+         <Title /> 
          <h3> {number} </h3>
          <button onClick={this.handleClick}>CCC</button>  
        </div>
@@ -183,7 +184,7 @@ class Title extends React.PureComponent {    //extends React.PureComponent, alwa
 //   }  
 //   shouldComponentUpdate() {...}     //PureComponent works like containing logics with shouldComponentUpdate
   render() {  
-     console.log("Title rendering");    //only render once, considers shouldComponentUpdate
+     console.log("Title rendering");    //this title will only render once, considers shouldComponentUpdate, we cut out unnecessary rendering
      return (
       <div>
        <h1>Happy Today</h1>  
@@ -191,6 +192,11 @@ class Title extends React.PureComponent {    //extends React.PureComponent, alwa
     );
   }
 }
+export default App;
+
+
+//using memo for functional component, capitalize the first letter for customized component
+
 function Title() {
   console.log("Title rendering");    //only render once, considers shouldComponentUpdate
   return (
@@ -199,7 +205,30 @@ function Title() {
      </div>
    );
 }
-const WrapperTitle = memo(Title);      //using memo for functional component, capitalize the first letter for customized component
+const WrapperTitle = memo(Title);      //using memo and change return to the <WrapperTitle /> 
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {  
+      number: 0
+    }
+  }
+   handleClick = () => {
+      const {number} = this.state;
+      this.setState({number: number + 1});
+   }
+  render() {
+    const {number} = this.state;
+    return (
+       <div className ="App">
+         <WrapperTitle /> 
+         <h3> {number} </h3>
+         <button onClick={this.handleClick}>CCC</button>  
+       </div>
+     )
+  }
+} 
 
 
 // HOC -> High Order Component
