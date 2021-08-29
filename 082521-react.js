@@ -233,13 +233,32 @@ class App extends React.Component {
 
 // HOC -> High Order Component
 // is not a component; it is a function (patttern);
+// a pattern where a function takes a component as an argument and returns a new component
 // take in the original component, and add some decoration and modification and props to make it a new component, add more contents
 // why HOC? use it for reusability
+// to share common functionality between components
 // same pattern but only applies to the one when we need it, and simply removes it when we do not need it
 
-const NewComponent = someHOCLogic(App);
 connect(a, b)(OriginalComp) // use case example in React-Redux
+const NewComponent = someHOCLogic(App);
 <NewComponent />
+   
+const NewComponent = higherOrderComponent(originalComponent)
+const EnhancedComponent = higherOrderComponent(originalComponent)
+const IronMan = withSuit(TonyStark)
+
+import React from "react";
+
+const UpdatedComponent = (OriginalComponent) => {
+  class NewComponent extends React.Component{
+    render() {
+      return <OriginalComponent name="inject props"/>
+    }
+  }
+  return NewComponent
+}
+
+export default UpdatedComponent;
    
    
 //setState
