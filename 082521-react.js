@@ -150,7 +150,7 @@ function Title(props) {
  
  
 // React.PureComponent -> performance improvement
-// with PureComponent, it already contains the logics of shouldComponentUpdate 
+// with PureComponent, it already contains the logics of shouldComponentUpdate  - compare the props
 // to compare current props and previous props to make sure it cuts off unnecessary renders
 
 // class wrap with purecomppnent
@@ -178,11 +178,11 @@ class App extends React.Component {
      )
   }
 } 
-class Title extends React.PureComponent {    //extends React.PureComponent, always compare the previous props and current props to determine if render
+class Title extends React.PureComponent {  //extends React.PureComponent, always compare the previous props and current props to determine if needs re-render
 //   constructor(props) {
 //     super(props);
 //   }  
-//   shouldComponentUpdate() {...}     //PureComponent works like containing logics with shouldComponentUpdate
+//   shouldComponentUpdate() {...}    //PureComponent works like containing logics with shouldComponentUpdate - compare the props to see if any changes
   render() {  
      console.log("Title rendering");    //this title will only render once, considers shouldComponentUpdate, we cut out unnecessary rendering
      return (
@@ -222,7 +222,7 @@ class App extends React.Component {
     const {number} = this.state;
     return (
        <div className ="App">
-         <WrapperTitle /> 
+         <WrapperTitle />     //here we use <WrapperTitle /> 
          <h3> {number} </h3>
          <button onClick={this.handleClick}>CCC</button>  
        </div>
