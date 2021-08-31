@@ -25,7 +25,7 @@ function App() {
 export default App;
 
 
-//
+//...prevState - modify selected key-value in the object
 function App() {
   const [{ count1, count2 }, setCount] = useState({ count1: 1, count2: 2 });
 
@@ -91,17 +91,17 @@ function App() {
 
   useEffect(() => {
     console.log("useEffect called!");
-  }, [countObj]);
+  }, [countObj]);   //for the dependency array, the hook will provide a shallow comparison of your previous value and current one
   //both rendering and useEffect called will be printed out in the console when we click the botton
 
   return (
     <>
       {console.log("Rendering")}
-      <button
+      <button 
         onClick={() =>
           setCount((prevState) => {
-            return {
-              ...prevState    //complete different object
+            return {      //returning an object of previous state
+              ...prevState    //complete different object, a shallow copy
             };
           })
         }
@@ -115,7 +115,7 @@ function App() {
 }
 
 
-//class-based component
+//class-based component - same as below function component
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -124,15 +124,15 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount() {   //initial render
     console.log(`Current value -> ${this.state.count}`);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate() {    //when we update
     console.log(`Current value -> ${this.state.count}`);
   }
 
-  componentWillUnmount() {}
+//   componentWillUnmount() {}
 
   render() {
     return (
@@ -146,4 +146,197 @@ class App extends React.Component {
   }
 }
 
+/*
+Current value -> 0 
+Current value -> 1 
+Current value -> 2 
+Current value -> 3 
+Current value -> 4 
+Current value -> 5 
+*/
 
+
+//function component - same as above class-based component
+//more cleaner using useEffect()
+function App() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log(`Current Value -> ${count}`);   //state change here instead of we do componentDidUpdate() since it lives in a different life cycle
+  }, [count]);   //we looking at the count as dependency, React hooks enable usage based on what it is related, instead of lifecycle
+
+  return (
+    <>
+      <button onClick={() => setCount(count + 1)}>+</button>
+      <div>Count - {count}</div>
+    </>
+  );
+}
+
+export default App;
+
+/*
+Current value -> 0 
+Current value -> 1 
+Current value -> 2 
+Current value -> 3 
+Current value -> 4 
+Current value -> 5 
+*/
+
+
+//more dependency example
+const Hello = () => {
+  useEffect(() => {
+    console.log("Hello updating");
+  });   //here we pass no dependency, so every time we click, we print out both "Hello updating" and `Current Value -> ${count}`
+
+  return <div>Hello Monday</div>;
+};
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log(`Current Value -> ${count}`);
+  });
+
+  return (
+    <>
+      <button onClick={() => setCount(count + 1)}>+</button>
+      <div>Count - {count}</div>
+      <Hello />
+    </>
+  );
+}
+
+
+//prevent re-render (use memo to cut off re-render)
+import React, { useState, useEffect, memo } from "react";
+import "./styles.css";
+
+const Hello = () => {
+  useEffect(() => {
+    console.log("Hello updating");    //no props no state change, so it will only print out once when it initially rendered
+  });
+
+  return <div>Hello Monday</div>;
+};
+
+const MemoHello = memo(Hello);
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log(`Current Value -> ${count}`);
+  });
+
+  return (
+    <>
+      <button onClick={() => setCount(count + 1)}>+</button>
+      <div>Count - {count}</div>
+      <MemoHello />
+    </>
+  );
+}
+
+export default App;
+
+/*
+Hello updating 
+Current Value -> 0 
+Current Value -> 1 
+Current Value -> 2 
+Current Value -> 3 
+Current Value -> 4 
+Current Value -> 5 
+*/
+
+
+//return in useEffect() - unmounting, clean up previous render
+const Hello = () => {
+  useEffect(() => {
+    console.log("Hello updating");
+    //clean up logic in return, based on component unmount, clean up previous render
+    return () => {
+      console.log("unmounting!"); //unmounting print out when the component no longer in the life span
+    };
+  }, []);
+
+  return <div>Hello Monday</div>;
+};
+
+function App() {
+  const [count, setCount] = useState(0);
+  const [show, setShow] = useState(true);
+
+  useEffect(() => {
+    // console.log(`Current Value -> ${count}`);
+  }, []);
+
+  return (
+    <>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+          setShow(!show);
+        }}
+      >
+        +
+      </button>
+      <div>Count - {count}</div>
+      {show && <Hello />}
+    </>
+  );
+}
+
+/*
+Hello updating 
+unmounting! 
+Hello updating 
+unmounting! 
+Hello updating 
+unmounting! 
+Hello updating 
+unmounting! 
+*/
+
+
+//useEffect() example
+const initValue = () => {
+  console.log("Called"); //will only called once initially when just rendered
+  return false;
+};
+
+export default function App() {
+  const [time, setTime] = useState(0);
+  const [show, setShow] = useState(() => initValue());
+
+  function changeTime() {
+    setShow(!show); //this.setState - async - batch multiple
+    console.log(show); // show => false (delay because setSate is async)
+  }
+
+  useEffect(() => {
+    let intId; //initiate the intId variable here so we can access it due to the scope if we declare the variable below
+    if (show) {
+      intId = setInterval(() => {
+        //we can use var here if we do not initially declare the varibale
+        setTime((old) => old + 1);
+      }, 1000);
+    }
+    //clean-up the interval we have not finished at previous render before the next render
+    return () => {
+      clearInterval(intId);
+    };
+  }, [show]); //re-render based on the show value
+
+  return (
+    <div>
+      Time: {time}
+      <button onClick={() => changeTime()}>{show ? "Stop" : "Start"}</button>
+    </div>
+  );
+}
+ 
