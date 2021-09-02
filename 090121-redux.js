@@ -50,21 +50,135 @@ ReactRedux -> emit an action (dispatch an action) -> Reducer will calculate next
 */
 
 
-//index.js
-import React from "react";
+//index,js - where to setup Redux
 import ReactDOM from "react-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
+import reducer from "./reducer";
 
 import App from "./App";
 
-const store = createStore(); //create the store
+const store = createStore(reducer);   //create the store through createStore(), the store will be generated based on reducer
 
 const rootElement = document.getElementById("root");
-
-ReactDOM.render(
+ReactDOM.render(      //provider to inform the whole structure, for provider layer, everything inside would be props.children
   <Provider store={store}>
     <App />
   </Provider>,
   rootElement
 );
+
+
+//App.js
+import React from "react";
+// HOC - add the specific example
+import { connect } from "react-redux";      //the helper function
+import * as counterActions from "./action";
+// actions = { .... ..... ..... }
+
+class App extends React.Component {
+  render() {
+    // const { number } = this.state;
+    const { numberForApp, incHandler, decHandler } = this.props;
+
+    return (
+      <div className="App">
+        <h3>{numberForApp}</h3>
+        <button onClick={incHandler}>+</button>
+        <button onClick={decHandler}>-</button>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => ({
+  numberForApp: state.counterReducer
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  incHandler: () => dispatch({ type: "INCREMENT" }),
+  // action generator
+  decHandler: () => dispatch(counterActions.decAction())
+});
+
+// const ConnectedApp = connect(
+//   mapStateToProps, // on value
+//   mapDispatchToProps, // on handler/actions
+// )(App)
+
+const ReduxHOC = connect(
+  mapStateToProps, // on value
+  mapDispatchToProps // on handler/actions
+);
+const ConnectedApp = ReduxHOC(App);
+
+export { ConnectedApp as default, App };
+
+
+//action.js
+import React from "react";
+// HOC - add the specific example
+import { connect } from "react-redux";
+import * as counterActions from "./action";
+// actions = { .... ..... ..... }
+
+class App extends React.Component {
+  render() {
+    // const { number } = this.state;
+    const { numberForApp, incHandler, decHandler } = this.props;
+
+    return (
+      <div className="App">
+        <h3>{numberForApp}</h3>
+        <button onClick={incHandler}>+</button>
+        <button onClick={decHandler}>-</button>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => ({
+  numberForApp: state.counterReducer
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  incHandler: () => dispatch({ type: "INCREMENT" }),
+  // action generator
+  decHandler: () => dispatch(counterActions.decAction())
+});
+
+// const ConnectedApp = connect(
+//   mapStateToProps, // on value
+//   mapDispatchToProps, // on handler/actions
+// )(App)
+
+const ReduxHOC = connect(
+  mapStateToProps, // on value
+  mapDispatchToProps // on handler/actions
+);
+const ConnectedApp = ReduxHOC(App);
+
+export { ConnectedApp as default, App };
+
+
+//reducer.js
+import { combineReducers } from "redux";
+
+const INIT_STATE = 1;   //init value from the store
+
+const counterReducer = (state = INIT_STATE, action) => {    //state is the current state with a default init_state, action will be emit from the action.js file
+  switch (action.type) {      //judged by the action type
+    case "INCREMENT":       //different cases
+      return state + 1;
+    case "DECREMENT":
+      return state - 1;
+    default:            //always end with a default case
+      return state;    //just return itself
+  }
+};
+
+const rootReducer = combineReducers({
+  counterReducer
+});
+export default rootReducer;
+ 
