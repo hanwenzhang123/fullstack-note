@@ -115,7 +115,16 @@ const ConnectedApp = ReduxHOC(App);
 export { ConnectedApp as default, App };
 
 
-//action.js
+//action.js - defind an action
+// const incAction = () => {
+//   return {
+//     type: "INCREMENT"
+//   }
+// }
+// export {    //export the action we defined
+//   incAction
+// }
+
 import React from "react";
 // HOC - add the specific example
 import { connect } from "react-redux";
@@ -161,15 +170,15 @@ const ConnectedApp = ReduxHOC(App);
 export { ConnectedApp as default, App };
 
 
-//reducer.js
+//reducer.js - reply on the input and the local state at the moment
 import { combineReducers } from "redux";
 
-const INIT_STATE = 1;   //init value from the store
-
-const counterReducer = (state = INIT_STATE, action) => {    //state is the current state with a default init_state, action will be emit from the action.js file
-  switch (action.type) {      //judged by the action type
-    case "INCREMENT":       //different cases
-      return state + 1;
+const INIT_STATE = 1;   //we need an init value from the store
+                                            //action will be emit from the action.js file
+const counterReducer = (state = INIT_STATE, action) => {    //state is the current state with a default value 
+  switch (action.type) {      //judged by the different types of actions
+    case "INCREMENT":       //different cases, make sure matches in the action file
+      return state + 1;       //return the current local state does what
     case "DECREMENT":
       return state - 1;
     default:            //always end with a default case
@@ -177,7 +186,7 @@ const counterReducer = (state = INIT_STATE, action) => {    //state is the curre
   }
 };
 
-const rootReducer = combineReducers({
+const rootReducer = combineReducers({     //using combineReducers() imported from redux and pass the switch cases counterReducer to it. 
   counterReducer
 });
 export default rootReducer;
