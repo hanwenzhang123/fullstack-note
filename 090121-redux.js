@@ -133,6 +133,7 @@ export {    //export the actions we defined
   incAction,
   decAction 
 }
+//The action is going through to the reducer to analyze the action
 
 
 //reducer.js - reply on the input and the local state at the moment
