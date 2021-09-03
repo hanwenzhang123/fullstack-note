@@ -49,7 +49,6 @@ User Click Btn:
 ReactJS -> setState() -> local state update -> UI re-rendering -> Ta-la
 ReactRedux -> emit an action (dispatch an action) -> Reducer will calculate next state 
           -> Component subscribing to the store data re-rendering
-
 */
 
 
