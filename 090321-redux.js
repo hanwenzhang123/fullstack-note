@@ -1,31 +1,24 @@
 //Middleware -  integrate all the different software systems and make them work together
 //It provides common services and capabilities to applications outside of what's offered by the operating system
 
+//ALL PSEUDOCODE BELOW
 //Redux Middleware - apply something extra in the middle, like a middle layer
 //Redux Thunk
 
 //index.js
-import ReactDOM from "react-dom";
-import { createStore } from "redux";
-import { Provider } from "react-redux";
-import reducer from "./reducer";
+import {applyMiddleware} from "redux";
+import thunk from "redux-thunk";
 
-import App from "./App";
-
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunk));   //the middleware will expose to the whole flow, apply thunk middleware via applyMiddleware()
+//const store = createStore(reducer); //original without the middleware
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={store}>    //store goes through the whole project, including the middleware
     <App />
   </Provider>,
   rootElement
 );
-
-
-import {applyMiddleware} from "redux";
-import thunk from "redux-thunk";
-const store = createStore(reducer, applyMiddleware(thunk));   //explored to the whole flow
 
 
 //App.js
@@ -36,6 +29,10 @@ import * as counterActions from "./action";
 class App extends React.Component {
   render() {
     const { numberForApp, incHandler, decHandler } = this.props; 
+    
+    myFunc(){
+      if(this.props.someValue === 1) updateValue()
+    }
 
     return (
       <div className="App">
@@ -55,6 +52,7 @@ const mapDispatchToProps = (dispatch) => ({
   incHandler: () => dispatch({ type: "INCREMENT" }), 
   decHandler: () => dispatch(counterActions.decAction()) 
   request: () => dispatch({type:"REQUEST"});    //add this one new
+  updateValue: () => dispatch({})   //add this one new
 });
 
 const ConnectedApp = connect( 
@@ -76,7 +74,23 @@ const decAction = () => {
     type: "DECREMENT"
   }
 }
+const storeData = () => {   //add this one new
+  return {
+    tyoe: "SAVE",
+    payload: data
+  }
+}
 const requestDataFromServer = () => {   //add this one new
+  return (distpatch, getState) => {   //we return the action itself, will be delying, instead of object we return a function where 1st parameter is dispatch
+    //apply delay or condition based on state
+    fetch(LINK)
+      .then(data => {     //use what we get to trigger another action, between that, there is condition check and proper delay, in a designed order
+        dispatch(storeData())    //storeData is defined in reducer will take in action which we call payload, and pass down data as payload data
+    })
+    if(getState().someValue === 1){  //getState means getting the current state in the store we access to, what we get is the whole store object via getState()
+      dispatch(someAction())
+    }
+  }
 }
 export {
   incAction,
