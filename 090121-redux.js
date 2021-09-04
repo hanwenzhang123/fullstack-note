@@ -100,7 +100,7 @@ const mapStateToProps = (state) => ({   //build the parameter from connect(), we
 const mapDispatchToProps = (dispatch) => ({   //build the parameter from connect(), we take the disptach, we pass the function, we disptach the action
   // action generator, directly talking to the store, if you do not need a function, just delete it, no worries about props
   incHandler: () => dispatch({ type: "INCREMENT" }),    //dispatch(actions.incAction()) - containing our action type (a payload)
-  decHandler: () => dispatch(counterActions.decAction())    //call the action
+  decHandler: () => dispatch(counterActions.decAction())    //call the action, emit the action that we defined in the action.js
 });
 
 // ConnectedApp = connect()(App)
@@ -118,7 +118,7 @@ const ConnectedApp = ReduxHOC(App);   //here is to connect to our App, we do not
 export { ConnectedApp as default, App };  //export default ConnectedApp
 
 
-//action.js - define actions
+//action.js - define actions, action generator
 const incAction = () => {
   return {
     type: "INCREMENT"
