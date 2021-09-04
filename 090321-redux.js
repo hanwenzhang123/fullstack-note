@@ -30,7 +30,7 @@ class App extends React.Component {
   render() {
     const { numberForApp, incHandler, decHandler } = this.props; 
     
-    myFunc(){
+    myFunc(){     //if we handle condition here, it would make the App too big, not a good practcie. better to set within the action
       if(this.props.someValue === 1) updateValue()
     }
 
@@ -83,11 +83,12 @@ const storeData = () => {   //add this one new
 const requestDataFromServer = () => {   //add this one new
   return (distpatch, getState) => {   //we return the action itself, will be delying, instead of object we return a function where 1st parameter is dispatch
     //apply delay or condition based on state
-    fetch(LINK)
-      .then(data => {     //use what we get to trigger another action, between that, there is condition check and proper delay, in a designed order
-        dispatch(storeData())    //storeData is defined in reducer will take in action which we call payload, and pass down data as payload data
-    })
-    if(getState().someValue === 1){  //getState means getting the current state in the store we access to, what we get is the whole store object via getState()
+//     fetch(LINK)
+//       .then(data => {     //use what we get to trigger another action, between that, there is condition check and proper delay, in a designed order
+//         dispatch(storeData())    //storeData is defined in reducer will take in action which we call payload, and pass down data as payload data
+//     })
+    //we group the logic in the action here instead of in App.js
+    if (getState().someValue === 1){  //getState means getting the current state in the store we access to, what we get is the whole store object via getState()
       dispatch(someAction())
     }
   }
@@ -129,6 +130,43 @@ const rootReducer = combineReducers({
   counterReducer
 });
 export default rootReducer;
+
+
+//React re-selector 
+//React re-selector for improvement enhancement
+const getCurrentValue = (state) => state.counterReducer.currentNumber;    //when we use this, we no longer needs to destructuring the value out as below
+
+//Code Snippet from the App.js
+const mapStateToProps = (state) => ({ 
+//   numberForApp: state.counterReducer 
+  numberForApp: getCurrentValue(state)    //the logic more clear, straightforward, get the value from the state
+});
+
+//selector
+const getValueFromExpensiveCalc = (state) => {    //here we have to repeat the expensive calculation using selector
+  //expensive calculation -> calcedValueFromAbove
+  return calcedValueFromAbove
+}
+
+//re-selector
+import {createSelector} from "reselect";
+
+const getValueFromExpensiveCalc = (state) => {    //selector
+  //expensive calculation -> calcedValueFromAbove
+  return calcedValueFromAbove
+}
+
+const getExpensiveValueReselect = createSelector(   //put in whatever selector you defined, createSelector() remembers whatever value you pass in
+  [getValueFromExpensiveCalc],    //passing the original model selector in 
+  (value1) => {   //valueReturnFromFirstSelector
+    //some data massaging and reformatting...
+    return newValue1        //the value will be cached next time you call getExpensiveValueReselect(state) via mapStateToProps()
+  }
+)
+
+const mapStateToProps = (state) => ({ 
+  numberForApp: getExpensiveValueReselect(state)    //better performance, less expensive calculation
+});
 
 
 //Redux Reselector
