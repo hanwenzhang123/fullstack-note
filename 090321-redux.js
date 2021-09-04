@@ -41,6 +41,7 @@ A bundler for front-end dev
   3. Code Splitting
     Split your modules properly according to the dependency graph
   4. Lazy Loading
+    splitting your code at logical breakpoints, and then loading it once the user has done something that requires a new block of code. 
 - Minifier/iglifier minification - remove unnecessary code / rename to a more efficient version for machine
   const aaaaa=1;
   console.log (aaaaa);
