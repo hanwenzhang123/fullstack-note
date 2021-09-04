@@ -60,11 +60,11 @@ import reducer from "./reducer";
 
 import App from "./App";
 
-const store = createStore(reducer);   //create the store through createStore() which imported from redux, the store will be generated based on reducer
-
+const store = createStore(reducer);   //create the store through createStore() which imported from redux
+                                    //the store will be generated based on reducer that analyze behaviors and modify current local state
 const rootElement = document.getElementById("root");
 ReactDOM.render(      //provider to inform the whole structure, for provider layer, everything inside would be props.children
-  <Provider store={store}>    //provider is like passing down everything to the children
+  <Provider store={store}>    //provider is like passing down everything to the children, we pass our store down to every level via createStore(reducer)
     <App />         //store is like global state, available to all children, stroe is the values in your redux store are, like the data from the database
   </Provider>,    //initial render into our App
   rootElement
