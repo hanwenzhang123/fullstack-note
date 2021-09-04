@@ -28,7 +28,6 @@ How to you generally improve performance?
 //HTML
   -Empty HTML
   -Style on the top, script down/defer/async
-
 //Webpack - https://webpack.js.org/
 Webpack - bundle your styles
 A bundler for front-end dev
