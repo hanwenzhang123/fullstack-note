@@ -76,7 +76,7 @@ const decAction = () => {
 }
 const storeData = () => {   //add this one new
   return {
-    tyoe: "SAVE",
+    type: "SAVE",
     payload: data
   }
 }
