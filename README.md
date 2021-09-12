@@ -1,5 +1,5 @@
 ---
-title: SSI-training-note
+title: SSI-Training-Note
 ---
 
 ## Table of Contents
@@ -13,7 +13,7 @@ title: SSI-training-note
 
 ## HTML
 
-### What does a DOCTYPE do?
+#### What does a DOCTYPE do?
 
 
 [[↑] Back to top](#table-of-contents)
