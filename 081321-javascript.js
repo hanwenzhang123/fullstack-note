@@ -36,6 +36,8 @@ console.log(newFunc());  //2
 //"This" in JS
 //Functionality: lexical scoping with “this” keyword
 //the key word "this" behaves differently in arrow functions compared to a regular function.
+The “this” keyword refers to the object that the function is a property of. 
+The value of “this” keyword will always depend on the object that is invoking the function.
 
 //Lexical Scope
 //Lexical Scope allows inner functions to access the scope of their outer functions, but not the other way around
