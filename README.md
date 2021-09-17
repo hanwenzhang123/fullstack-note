@@ -7,6 +7,7 @@ title: SSI-Training-Note
 - [CSS](#css)
 - [JavaScript](#javascript)
 - [React](#react)
+- [Hooks](#hooks)
 - [Redux](#redux)
 - [Performance](#performance)
 - [Testing](#testing)
@@ -682,9 +683,55 @@ Three phases in order are:
 - Component-based framework -> Reusability
 - JSX (HTML + JS) - good for dev - efficient context switching is now avoid
 
+#### class component vs functional component
+- we use class component when the component has its own local state and lifecycle before React 16.8
+- now we can use react hooks to perform local state and lifecycle in functional component
+
+#### Lifecycle (3 phases) - mounting, updating, unmounting
+- mounting (constructor) - initialize stuffs in the state in the constructor that we have over the initial render, then we call componentDidmount
+- componentDidmount -> only after the initial render then componentDidMount, API fetching asych like .then() .setState({data}) etc. 
+- componentDidUpdate -> we need to change some state to trigger the re-render, config update, changing flag for next render
+- componentWillUnmount -> proper clean-up to prevent memory leak (remove eventListener, remove setTimeout)
+
+#### state & props
+- mutable? => both immutable, read only
+- state is an object internally captured by class (in the constructor, this.state)
+- props down, parent talks to child
+- ?? whether child talks back to parent using props too? NO
+- -> using callback 
+
 #### what does setState do?
-1. update my(component) local state Correctly
-2. setState then will trigger re-rendering!
+1. update my(component) local state Correctly (a way to properly modify local state)
+2. setState then will trigger re-rendering (triggers a re-render)
+3. when invole previous value, we should always use a callback function is properly being handled base on the current value
+
+```js
+//setState - Asynchronous
+//react will batch several setStates together into a single update for performing the state change due to performance
+//use callback function to setState to make it correctly rendered instead of just assigning the new object
+
+this.setState((prevState) => {     //passing in a callback function instead of setState directly
+	return { number: prevState.number + 1 };
+})
+```
+
+```js
+//setTimeout example
+handleClick = () => {
+    const { number } = this.state;
+    setTimeout(() => {     //no good, synchronous
+      this.setState({ number: number + 1 }); // 0: 0 + 1    //always pass the copy, always the number, 0 + 1, closure case
+      this.setState({ number: number + 1 }); // 1: 0 + 1    //change back to 0 + 1, outdated value
+    }, 0)
+    V.S.
+  //const { number } = this.state;   
+    setTimeout(() => {     //correct value
+      this.setState({ number: this.state.number + 1 }); // 0: 0 + 1
+      this.setState({ number: this.state.number + 1 }); // 2: 1 + 1     //no closure, updated value
+    }, 0)
+  }
+}
+```
 
 #### class component example
 ```js
@@ -729,23 +776,6 @@ class App extends React.Component { //extends the component
 export default App;
 ```
 
-#### class component vs functional component
-- we use class component when the component has its own local state and lifecycle before React 16.8
-- now we can use react hooks to perform local state and lifecycle in functional component
-
-#### Lifecycle (3 phases) - mounting, updating, unmounting
-- mounting (constructor) - initialize stuffs in the state in the constructor that we have over the initial render, then we call componentDidmount
-- componentDidmount -> only after the initial render then componentDidMount, API fetching asych like .then() .setState({data}) etc. 
-- componentDidUpdate -> we need to change some state to trigger the re-render, config update, changing flag for next render
-- componentWillUnmount -> proper clean-up to prevent memory leak (remove eventListener, remove setTimeout)
-
-#### state & props
-- mutable? => both immutable, read only
-- state is an object internally captured by class (in the constructor, this.state)
-- props down, parent talks to child
-- ?? whether child talks back to parent using props too? NO
-- -> using callback 
-
 #### destructuring in React component
 ```js
 class App extends React.Component {
@@ -780,11 +810,10 @@ function Title(props) {
 ```
 
 #### React.PureComponent vs memo -> performance improvement
-- class wrap with `PureComponent`
-- function wrap with `memo`
-- with PureComponent, it already contains the logics of shouldComponentUpdate  - compare the props
+- with PureComponent or memo, it already contains the logics of shouldComponentUpdate  - compare the props
 - to compare current props and previous props to make sure it cuts off unnecessary renders
 
+class wrap with `PureComponent`
 ```js
 class App extends React.Component {
   constructor(props) {
@@ -825,9 +854,8 @@ class Title extends React.PureComponent {  //extends React.PureComponent, always
 export default App;
 ```
 
+function wrap with `memo` for functional component, capitalize the first letter for customized component
 ```js
-//using memo for functional component, capitalize the first letter for customized component
-
 function Title() {
   console.log("Title rendering");    //only render once, considers shouldComponentUpdate
   return (
@@ -865,11 +893,37 @@ class App extends React.Component {
 #### HOC -> High Order Component
 - HOC is a pattern where a function takes a component as an argument and returns a new component
 - take in the original component, and add some decoration and modification and props to make it a new component, add more contents
+- example: connect in React-Redux `connect(a, b)(OriginalComp)`
 
 #### why HOC?
 - use it for reusability
 - to share common functionality between components
 - same pattern but only applies to the one when we need it, and simply removes it when we do not need it
+
+#### HOC Example
+```js
+import React from "react";
+const UpdatedComponent = (OriginalComponent) => {
+  class NewComponent extends React.Component{
+    render() {
+      return <OriginalComponent name="inject props"/>
+    }
+  }
+  return NewComponent
+}
+export default UpdatedComponent;
+
+import ContentContainer from "../HOC/ContentContainer";
+const HOCCounter = UpdatedComponent(Counter);
+export default HOCCounter;
+```
+#### Lists and Keys
+
+#### Lifting State Up
+
+[[↑] Back to top](#table-of-contents)
+
+## Hooks
 
 #### 
 #### 
@@ -879,8 +933,8 @@ class App extends React.Component {
 ## Redux
 
 #### 
-#### #### 
-#### #### 
+#### 
+#### 
 #### 
 #### 
 #### 
