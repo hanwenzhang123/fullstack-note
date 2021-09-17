@@ -918,27 +918,71 @@ const HOCCounter = UpdatedComponent(Counter);
 export default HOCCounter;
 ```
 #### Lists and Keys
+- key is unique item for iterating through sub-components, always add the key! 
+- we do not add key to individual component.
+- `{ this.state.numArr.map((num, index) => ( <Child key={index} num={num} /> ))}`
+
+#### React.Fragment 
+- Looks cleaner, avoid too many `<div>`
+- `<React.Fragment>...</React.Fragment>`
 
 #### Lifting State Up
+- sharing state is accomplished by moving it up to the closest common ancestor of the components that need it.
+- by lifting up the state we make the state of the parent component as a single source of truth and pass the data of the parent in its children.
+- For sub-components to talk to each other through parents
+
+#### Lifting State Up vs Composition vs Inheritance
+- Lifting State Up: enable children components to have better smooth communication among each other
+- Composition: {props.children} - built-in method, pass down as property children
+- Inheritance: not a good model to use in React
+
+#### SyntheticEvent 
+- because we run react in different environment, so we want consistency across multiple broswer like a wrapper
+- consistency -> wrapper(basicEvent)
 
 [[↑] Back to top](#table-of-contents)
 
 ## Hooks
 
-#### 
-#### 
+#### What is Hooks?
+
+#### useState()
+
+#### useEffect()
 
 [[↑] Back to top](#table-of-contents)
 
 ## Redux
 
-#### 
-#### 
-#### 
-#### 
-#### 
-#### 
+#### What is Redux?
+- a library for managing react
+component tree talks to each other through layers, local state pass down to props
+redux has a store, like a database 
+- Redux: state management, controlling in a single object no matter how deep you are, no needs for lifting state up
+- Redux creates a store, so sub-components can directly access values through store instead of relying parents(grandparents)
+- 
+#### Why we use Redux? Advantages?
 
+
+#### Three Principles of Redux
+1. Single source of truth - keep all data to the store
+2. State is read-only, immutable, persistent data structure
+3. Changes are made with pure function (reducer) -  change needs action
+
+#### 
+#### 
+#### How do you group different reducers?
+- combineReducers()
+
+#### Redux Flow
+- ReactJS -> setState() -> local state update -> UI re-rendering -> Ta-la
+- ReactRedux -> emit an action (dispatch an action) -> Reducer will calculate next state 
+          -> Component subscribing to the store data re-rendering
+#### 
+#### 
+#### 
+#### 
+#### 
 
 [[↑] Back to top](#table-of-contents)
 
