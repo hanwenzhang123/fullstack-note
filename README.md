@@ -655,6 +655,223 @@ Three phases in order are:
 
 ## React
 
+#### What is React?
+- React is a JavaScript library for building user interfaces, it is a frontend framework. 
+- It lets you compose complex UIs from small and independent pieces of code called “components”.
+
+#### What is Component?
+- React is a component based language.
+- Components are like functions that return HTML elements that tells what should be rendered on the screen (via a render() function).
+- Components are reusable, you can use the component across different pages.
+- We are building components that each only cares about one thing.
+
+#### What is JSX?
+- JSX stands for JavaScript XML, it allows us to write HTML in React, and it comes with the full power of JavaScript.
+- JSX makes it easier to write and add HTML in React, and easily create user interfaces for your web applications.
+
+#### What is Virtual DOM?
+- Updating the virtual DOM is comparatively faster than updating the actual DOM (Real DOM manipulation is very expensive)
+- When you try to update the DOM in React, The entire virtual DOM gets updated.
+- The virtual DOM gets compared to what it looked like before you updated it. React figures out which objects have changed.
+- The changed objects only get updated on the real DOM. Changes on the real DOM cause the screen to change.
+
+#### Pros of React
+- Easy to learn -> Strong communityt supporting
+- VirtualDOM - Real DOM manipulation is very expensive
+- diffing algorithms -> reconciliation (“virtual” representation of a UI is kept in memory and synced with the “real” DOM by a library such as ReactDOM)
+- Component-based framework -> Reusability
+- JSX (HTML + JS) - good for dev - efficient context switching is now avoid
+
+#### what does setState do?
+1. update my(component) local state Correctly
+2. setState then will trigger re-rendering!
+
+#### class component example
+```js
+import React from 'react';
+import "./styles.css";
+
+class App extends React.Component { //extends the component
+  constructor(props) {    //we need the constructor
+    super(props); // we need the super() to enable the use of 'this' in the following part
+    this.state = {      //state holds very important information about "this" in the object
+      name: ""      //empty here so we can update the value, or we can put the hard-coded value
+    }
+    // this.onClickFunc = this.onClickFunc.bind(this);   
+    //bind creates a new function where this is properly referred. so now the onClickFunc below works
+  }
+
+  // class method
+  // onClickFunc() {     //this function has its own this
+  //   console.log(this);   //we should let know which 'this' should I point to (the provided value)
+  // }  //returns undefined without the bind, print out App with the bind function
+
+  onClickFunc = () => {   //arrow function does not have its own this, so this will survive in the whole class field
+    console.log(this);    //this will properly refers to the App due to arrow function, no more binding issue, no needs to bind in the constructor now
+  }
+
+  onChangeHandler = (e) => {        // using the method setState and update the name key
+    this.setState({ name: e.target.value })     //when we type in e.target.value, it overrides the name
+
+  render() {
+    const name = this.state.name
+    console.log(name);
+    return (
+      <div>
+        <div>Hello My { name }</div>
+        <button onClick={this.onClickFunc}>CLICK ME!</button> 
+        <input onChange={this.onChangeHandler} />
+      </div>
+    )   //you will never pass a function of involking form, only the definition form the the function
+  }     //you also need "this" because class method belongs to the App class here; otherwise you look for scope outside of the class
+}
+
+export default App;
+```
+
+#### class component vs functional component
+- we use class component when the component has its own local state and lifecycle before React 16.8
+- now we can use react hooks to perform local state and lifecycle in functional component
+
+#### Lifecycle (3 phases) - mounting, updating, unmounting
+- mounting (constructor) - initialize stuffs in the state in the constructor that we have over the initial render, then we call componentDidmount
+- componentDidmount -> only after the initial render then componentDidMount, API fetching asych like .then() .setState({data}) etc. 
+- componentDidUpdate -> we need to change some state to trigger the re-render, config update, changing flag for next render
+- componentWillUnmount -> proper clean-up to prevent memory leak (remove eventListener, remove setTimeout)
+
+#### state & props
+- mutable? => both immutable, read only
+- state is an object internally captured by class (in the constructor, this.state)
+- props down, parent talks to child
+- ?? whether child talks back to parent using props too? NO
+- -> using callback 
+
+#### destructuring in React component
+```js
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {  
+      number: 0
+    }
+  }
+   handleClick = () => {
+      const {number} = this.state;
+      this.setState({number: number + 1});
+   }
+  render() {
+    const {number} = this.state;    //this.state.number
+    return {
+       <div className ="App">
+         <Title date={number}/>     //since destructuring, here we do {number} is good
+         <button onClick={this.handleClick}>CCC</button>  
+       </div>
+     )
+  }
+}   
+function Title(props) {
+   const {date} = props;      //propss.date
+   return (
+     <div>
+       <h1>Happy { date }</h1>  
+     </div>
+   );
+ }
+```
+
+#### React.PureComponent vs memo -> performance improvement
+- class wrap with `PureComponent`
+- function wrap with `memo`
+- with PureComponent, it already contains the logics of shouldComponentUpdate  - compare the props
+- to compare current props and previous props to make sure it cuts off unnecessary renders
+
+```js
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {  
+      number: 0
+    }
+  }
+   handleClick = () => {
+      const {number} = this.state;
+      this.setState({number: number + 1});
+   }
+  render() {
+    const {number} = this.state;
+    return (
+       <div className ="App">
+         <Title /> 
+         <h3> {number} </h3>
+         <button onClick={this.handleClick}>CCC</button>  
+       </div>
+     )
+  }
+} 
+class Title extends React.PureComponent {  //extends React.PureComponent, always compare the previous props and current props to determine if needs re-render
+//   constructor(props) {
+//     super(props);
+//   }  
+//   shouldComponentUpdate() {...}    //PureComponent works like containing logics with shouldComponentUpdate - compare the props to see if any changes
+  render() {  
+     console.log("Title rendering");    //this title will only render once, considers shouldComponentUpdate, we cut out unnecessary rendering
+     return (
+      <div>
+       <h1>Happy Today</h1>  
+     </div>
+    );
+  }
+}
+export default App;
+```
+
+```js
+//using memo for functional component, capitalize the first letter for customized component
+
+function Title() {
+  console.log("Title rendering");    //only render once, considers shouldComponentUpdate
+  return (
+     <div>
+       <h1>Happy Today</h1>  
+     </div>
+   );
+}
+const WrapperTitle = memo(Title);      //using memo and change return to the <WrapperTitle /> 
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {  
+      number: 0
+    }
+  }
+   handleClick = () => {
+      const {number} = this.state;
+      this.setState({number: number + 1});
+   }
+  render() {
+    const {number} = this.state;
+    return (
+       <div className ="App">
+         <WrapperTitle />     //here we use <WrapperTitle /> 
+         <h3> {number} </h3>
+         <button onClick={this.handleClick}>CCC</button>  
+       </div>
+     )
+  }
+} 
+```
+
+#### HOC -> High Order Component
+- HOC is a pattern where a function takes a component as an argument and returns a new component
+- take in the original component, and add some decoration and modification and props to make it a new component, add more contents
+
+#### why HOC?
+- use it for reusability
+- to share common functionality between components
+- same pattern but only applies to the one when we need it, and simply removes it when we do not need it
+
+#### 
 #### 
 
 [[↑] Back to top](#table-of-contents)
@@ -662,6 +879,12 @@ Three phases in order are:
 ## Redux
 
 #### 
+#### #### 
+#### #### 
+#### 
+#### 
+#### 
+
 
 [[↑] Back to top](#table-of-contents)
 
