@@ -392,6 +392,28 @@ Math.min(...nums)    // 1
 Math.max(...nums)    // 3
 ```
 
+#### Objects
+Accessing value from object
+```js
+const obj = { x:1 };
+console.log(obj.x);  //1
+console.log(obj["x"])  //1
+
+const obj = { "you what":1 }; //with space
+console.log(obj["you what"])  //1
+```
+- Object.entries(): Returns an array containing all of the key value pairs of a given object's own enumerable string properties.
+- Object.keys(): Returns an array containing the names of all of the given object's own enumerable string properties.
+- Object.values(): Returns an array containing the values that correspond to all of a given object's own enumerable string properties.
+- Object.prototype.hasOwnProperty(): returns a boolean indicating whether the object has the specified property as its own property.
+
+#### Different between for...in and for...of
+- for...in, use it over Object (key: value) - enumerable property 
+- for...of, ES6, use it over Array - iterable items
+
+#### How to empty an array in JavaScript?
+
+
 #### Deep Clone vs Shallow Clone
 Deep Clone - no more contact with previous reference, they are not related, any modification would not influence original copy
 
@@ -433,41 +455,117 @@ console.log(obj);  //{x: { y: 9 } - also change to 9, both get update
 
 #### bind vs apply vs call
 `bind()`
-The bind() method creates a new function that, when called, has its this keyword set to the provided value.
-take it out of the function, not execute right away
-//bind will be used to provide a proper "this" reference to the function, and it returned to a new bound functiontake it out of the function, not execute right away
-//bind will be used to provide a proper "this" reference to the function, and it returned to a new bound function
-bind gives you a function, but does not call the function, but refer to it that you can execute later
+- The bind() method creates a new function used to provide a proper "this" reference to the function
+- it returns a new bound function, does not call the function, but refer to it that you can execute later
 
 `apply()/call()`
-- same, just the different way to put in the parameter
-- call => comma; apply => array
+- same, just the different way to put in the parameter: call => comma; apply => array
 - directly triggers itself, call it right now, unlike bind, not yet to call
 
 #### "this" keyword
+- refers to the object that the function is a property of. 
+- the value will always depend on the object that is invoking the function.
 
-
-#### Objects
-//Accessing value from object
+the key word "this" behaves differently in arrow functions compared to a regular function.
+- "this" in function, this belongs to function
+- "this" in arrow function, "this" DOES NOT belong to arrFunc, it is outside of the arrFunc 
 ```js
-const obj = { x:1 };
-console.log(obj.x);  //1
-console.log(obj["x"])  //1
+//1. this IN method, this -> object owner
+const person = {
+    firstName: 'Viggo',
+    lastName: 'Mortensen',
+    fullName: function () {
+        return `${this.firstName} ${this.lastName}`     //just like ${person.firstName} ${person.lastName}, this -> object owner
+    },
+    
+//     fullName: () => {        //"this" has nothing to do with the scope where the function is created, it has to do with how the function is executed
+//         console.log(this);  // "this" refers to Window, if we do person.fullName() which means Window.fullName() - it will be undefined
+//         return `${this.firstName} ${this.lastName}`
+//     },       //when we are using arrow function, "this" will be jumping out to the original block which will be global scope
+    
+    shoutName: function () {
+        setTimeout(() => { 
+            //keyword 'this' in arrow functions refers to the value of 'this' when the function is created
+            console.log(this);       //"this" refers to the person Object
+            console.log(this.fullName())
+        }, 3000)
+        
+//     shoutName: function () {
+//         setTimeout(function () => {      //we have to use arrow function here instead
+//             console.log(this);       // "this" refers to Window object here
+//             console.log(this.fullName())     //this.fullName is not a function - it has to do with the execution context
+//         }, 3000)        
+    }
+}
+person.fullName()   //"this" refers to the left to the '.' here is the person
 
-const obj = { "you what":1 }; //with space
-console.log(obj["you what"])  //1
+//2. this IN function, this -> global on browser -> Window
+function a() {
+    console.log(this)   //Window, this -> global
+}
+a()     //Window
+console.log(this)      //Window
+
+//2.1 this IN function, strick mode, this -> undefined
+function a() {
+    "use strict"
+    console.log(this) 
+}
+a();   //undefined
+
+//3. this IN event, this -> HTML element that received the event
+<button onClick="this.style.display"="none">
+    click to remove me!
+</button>
 ```
 
-#### 
-#### 
-#### 
-#### 
-#### 
-#### Different between for...in and for...of
-- for...in, use it over Object (key: value) - enumerable property 
-- for...of, ES6, use it over Array - iterable items
+#### Closure 
+a function retured by another function that still has access to its outer scope variable
+```js
+function makeCounter(){
+    let count = 0;      //private variable for keeping data private and safe
+    			//value by the function will be saved as it will be needed by the inner function, not for garbage collection
+    return function(){
+        count++
+        return count;
+    };
+}
 
-#### How to empty an array in JavaScript?
+const counterFunc = makeCounter();
+console.log(counterFunc()); //1
+console.log(counterFunc()); //2
+console.log(counterFunc()); //3
+
+const newFunc = makeCounter();  //a new function, variabel value start over
+console.log(newFunc());  //1
+console.log(newFunc());  //2
+```
+
+#### Promise(Event-loop, task scheduling)
+- JS is a single-threaded language, use promise to handle async operation
+- new feature of ES6 -> avoid callback hell - a chained nested code
+
+- 3 phrases -> pending, fulfilled, rejected
+- chain .then() to do something, and/or .catch() to catch error
+- will return another promise so we can chain more then()
+- output order - only after the main thread is done
+
+- main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)
+
+#### event propagation
+- like a deeper ocean goes to the layer one by one travel through the DOM tree to arrive at its target and what happens to it afterward
+- Event.stopPropagation() - prevents further propagation of the current event in the capturing and bubbling phases. 
+
+Three phases in order are:
+1. the event capturing phase - top to the botton - click outter which will trigger the inner one. 
+2. the target phase - all the listeners registered on the event target will be invoked
+3. the event bubbling phase - buttom to the top -  click the inner one, the outter one will also be clicked
+
+#### event delegation
+- Allow you to avoid adding event listeners to specific nodes; instead, the event listener is added to one parent. 
+- That event listener analyzes bubbled events to find a match on child elements.
+- Instead of attaching the event listeners directly to the buttons, you delegate listening to the parent `<div id="buttons">`. 
+- When a button is clicked, the listener of the parent element catches the bubbling event (recall the event propagation).
 
 [[↑] Back to top](#table-of-contents)
 
