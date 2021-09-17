@@ -392,6 +392,27 @@ Math.min(...nums)    // 1
 Math.max(...nums)    // 3
 ```
 
+#### .map() vs .forEach()
+- `.forEach()`: returns undefined, does not modify the array, it just iterates over it (allow a callback function to mutate the current array).
+```js
+let arr = [1, 2, 3, 4, 5];
+arr.forEach((num, index) => {
+    return arr[index] = num * 2;
+});
+// arr = [2, 4, 6, 8, 10]
+```
+- `.map()`: returns a new array with the transformed elements, does not change the original array.
+```js
+let doubled = arr.map(num => {
+    return num * 2;
+});
+// doubled = [2, 4, 6, 8, 10]
+```
+
+#### Different between for...in and for...of
+- for...in, use it over Object (key: value) - enumerable property 
+- for...of, ES6, use it over Array - iterable items
+
 #### Objects
 Accessing value from object
 ```js
@@ -407,12 +428,75 @@ console.log(obj["you what"])  //1
 - Object.values(): Returns an array containing the values that correspond to all of a given object's own enumerable string properties.
 - Object.prototype.hasOwnProperty(): returns a boolean indicating whether the object has the specified property as its own property.
 
-#### Different between for...in and for...of
-- for...in, use it over Object (key: value) - enumerable property 
-- for...of, ES6, use it over Array - iterable items
+#### check if JavaScript Object is empty
+```js
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
+```
 
-#### How to empty an array in JavaScript?
+#### clear a JavaScript Object
+```js
+for (const prop of Object.getOwnPropertyNames(obj)) {
+  delete obj[prop];
+}
+```
+```js
+function emptyObject(obj) {
+  Object.keys(obj).forEach(k => delete obj[k])
+}
+```
 
+#### empty an array in JavaScript
+```js
+//1. Assign it to an empty array
+   var array1 = [1,2,3,4,5,6,7];  // Created array
+   var anotherArray = array1;     // Referenced array1 by another variable
+   array1 = [];                   // Empty the array
+   document.write(anotherArray);  // Output [1,2,3,4,5,6,7]
+
+//2. Set its length to 0
+   var array1 = [1,2,3,4,5,6,7]; // Created array
+   var anotherArray = array1; // Referenced array1 by another variable
+   array1.length = 0; // Empty the array by setting length to 0
+   console.log(anotherArray); // Output []
+   
+//3. Use Array.prototype.splice() - splice(start, deleteCount)
+   var array1 = [1,2,3,4,5,6,7]; // Created array
+   var anotherArray = array1; // Referenced array1 by another variable
+   array1.splice(0, array1.length); // Empty the array by setting length to 0
+   console.log(anotherArray); // Output []
+
+//4. Use Array.prototype.pop()
+while(a.length > 0) {
+    a.pop();
+}
+```
+
+#### check if it is an array
+`Array.isArray()` -  return boolean, check whether an object (or a variable) is an array or not. 
+
+#### check if it is an object
+`typeof yourVariable === 'object'`
+
+#### check if the type of an object at run time. 
+`object instanceof constructor` -  return boolean
+
+```js
+function Car(make, model, year) {
+  this.make = make;
+  this.model = model;
+  this.year = year;
+}
+const auto = new Car('Honda', 'Accord', 1998);
+
+console.log(auto instanceof Car);	// true
+console.log(auto instanceof Object);	// true
+```
 
 #### Deep Clone vs Shallow Clone
 Deep Clone - no more contact with previous reference, they are not related, any modification would not influence original copy
@@ -583,7 +667,20 @@ Three phases in order are:
 
 ## Performance
 
-#### 
+#### //loadsh
+debounce / throtte -> web performance improvement
+- debounce -> search bar (auto-complete)
+- throttle -> scrolling / resizing page
+
+debounce - setTimeout, like we post comments everytime triggers a hard delay, reset the timer to 100 again
+```js
+func fetchAPI ... const debouncedFunc = _.debounce(fetchAPI, 100) //shorter than a 100
+onUserInput => {
+  debouncedFunc()
+}
+```
+
+throtte - setInterval, like comments triggers 100 for the entire cycle `_.throttle(fetchAPI, 100)`;
 
 [[↑] Back to top](#table-of-contents)
 
