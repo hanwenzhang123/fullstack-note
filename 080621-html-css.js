@@ -100,15 +100,26 @@ cascading, waterfall style, order matters
 	- @media (min-height: 680px) {}
 	- change the styling once the size reaches a certain value
 - display
-	- block-level elements - full width
-	- inline elements - just for inline
+	- block-level elements - full width, force a line break
+	- inline elements - just for inline, you can set margin and padding left-right, but not top-bottom, no width and height
+	- Inline-block elements: allow elements to sit to left and right, top & bottom margins and padding, height and width
 	- https://stackoverflow.com/questions/9189810/css-display-inline-vs-inline-block
 - position
 	- static - default, follow the flow
-	- relative - almost same as static, but you can change the position relatively to the docs, can even overflow
-	- absolute - other elements render as this absolute element does not even exist
+	- relative - almost same as static, but you can change the position relatively to the docs (its normal position), can even overflow
+	- absolute - other elements render as this absolute element does not even exist, relative to the nearest positioned ancestor 
 	- fixed - fixed based on the doc and always stick to where it is
-	-  sticky - combination of relative and relative stick to the position based on the user's scroll position
+	- sticky - combination of relative and relative stick to the position based on the users scroll position
+- Difference Between Absolute and Relative
+	Relative is always in proportion to a whole. Absolute is the total of all existence.
+	Relative is dependent while absolute is independent.
+	position: absolute
+	This tells the browser that whatever is going to be positioned should be removed from the normal flow of the document 
+	and will be placed in an exact location on the page. 
+	the element is removed from the document and placed exactly where you tell it to go.
+	position: relative;
+	instead of basing the position of the element upon the browser view port, it starts from where the element would be if it were still in the normal flow.
+	You can use top or bottom, and left or right to move the element relative to where it would normally occur in the document.
 - combinators
 	- descendant selector (space) - all elements that are descendants of a specified element.
 	- child selector (>) - all elements that are the children of a specified element
