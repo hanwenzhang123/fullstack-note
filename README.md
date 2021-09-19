@@ -1328,9 +1328,11 @@ const mapStateToProps = (state) => ({
 //   numberForApp: state.counterReducer 
   numberForApp: getCurrentValue(state)    //the logic more clear, straightforward, get the value from the state
 });
+```
 
-//re-selector
-import {createSelector} from "reselect";
+re-selector
+```js
+import {createSelector} from "reselect";	//import createSelector
 
 const getValueFromExpensiveCalc = (state) => {    //selector, here we have to repeat the expensive calculation using selector
   //expensive calculation -> calcedValueFromAbove
@@ -1405,11 +1407,15 @@ Minifier/uglifier minification
 ```
 
 #### loadsh
-debounce / throtte -> web performance improvement
+Debounce and throttle are techniques to control how many times we allow a function to be executed over time.
 - debounce -> search bar (auto-complete)
 - throttle -> scrolling / resizing page
+- debounce / throtte -> web performance improvement
 
-debounce - setTimeout, like we post comments everytime triggers a hard delay, reset the timer to 100 again
+debounce 
+- setTimeout, like we post comments everytime triggers a hard delay, reset the timer to 100 again
+- “group” multiple sequential calls in a single one.
+
 ```js
 func fetchAPI ... const debouncedFunc = _.debounce(fetchAPI, 100) //shorter than a 100
 onUserInput => {
@@ -1417,7 +1423,9 @@ onUserInput => {
 }
 ```
 
-throtte - setInterval, like comments triggers 100 for the entire cycle `_.throttle(fetchAPI, 100)`;
+throtte 
+- setInterval, like comments triggers 100 for the entire cycle 
+- `_.throttle(fetchAPI, 100)`;
 
 [[↑] Back to top](#table-of-contents)
 
