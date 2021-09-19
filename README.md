@@ -142,7 +142,7 @@ title: SSI-Training-Note
 - `align-items: center` - center in the middle
 
 #### what is image sprite?
-- a collection of images put into a single image
+- a collection of images put into a single image -> (reduce requests)
 - a way to reduce the number of HTTP requests made for image resources, by combining images in a single file
 - A web page with many images can take a long time to load and generates multiple server requests, using image sprites will reduce the number of server requests
 
@@ -1060,7 +1060,7 @@ function App() {
 3. Changes are made with pure function (reducer) -  changes need actions
 
 #### Action
-- An object include the action type/payload - the content you gonna use to make the change
+- An object include the action type and/or payload - the content you gonna use to make the change
 - What you try to do? like number increase, decrease?
 - Emit an action to reducer (disptach the action)
 
@@ -1190,7 +1190,7 @@ export default rootReducer;
 #### why do we need redux middleware?
 - it provides a third-party extension point between dispatching an action, and the moment it reaches the reducer.
 - people use Redux middleware for implementing async action calls
-- if we do not use the middleware, we can only do actions when API server not involved
+- if we do not use the middleware, we can only do actions when API server is not involved
 - middleware allows you to call the action creators that return a function(thunk) which takes the store dispatch method as the argument
 - which is afterwards used to dispatch the synchronous action after the API or side effects has been finished.
 
@@ -1222,7 +1222,7 @@ ReactDOM.render(	//store goes through the whole project, including the middlewar
 
 #### How to apply middleware in Redux?
 action.js
-- the action is going through to the reducer to analyze the action
+- the action is going through to the reducer that analyzes the action
 - The thunk middleware allows us to write functions that get `dispatch` and `getState` as arguments.
 
 ```js
@@ -1246,19 +1246,19 @@ const textAction = (item) => {
 };
 
 const addAction = () => (dispatch, getState) => {
-  const inputText = getState().tdListReducer.text;
-  dispatch({
+  const inputText = getState().tdListReducer.text;	//getState() gets the current state in the whole store
+  dispatch({						//dispatch() actions
   type: "ADD",
   payload: inputText, 
     })
 };
 
 const requestDataFromServer = () => {  
-  return (distpatch, getState) => {   //we return the action itself, will be delying, instead of object we return a function where 1st parameter is dispatch
+  return (distpatch, getState) => {   //we return a function where the action itself which will be delying
     //apply delay or condition based on state
 //     fetch(LINK)
 //       .then(data => {     //use what we get to trigger another action, between that, there is condition check and proper delay, in a designed order
-//         dispatch(storeData())    //storeData is defined in reducer will take in action which we call payload, and pass down data as payload data
+//         dispatch(storeData())    //storeData is defined in reducer, will take in action which we call payload, and pass down data as payload data
 //     })
     //we group the logic in the action here instead of in App.js
     if (getState().someValue === 1){  //getState means getting the current state in the store we access to, what we get is the whole store object via getState()
@@ -1275,10 +1275,52 @@ const requestDataFromServer = () => {
 ## Performance
 
 #### How to you generally improve performance?
+React
+  -HOC
+  -memo/PureComponent (shouldComponentUpdate) - lifecycle
+  -reduce unnecessary re-rendering
+Redux
+  -Thunk
+  -Reselector
+JS
+  -Event Delegation (allows you to avoid adding event listeners to specific nodes)
+CSS
+  -Animation
+  -image-sprite (reduce requests)
+  -image compression
+HTML
+  -Empty HTML
+  -Style on the top, script down/defer/async
 
 #### Webpack
-- bundle your styles
-- A bundler for front-end dev
+- A bundler for front-end dev -> bundle your styles
+
+HMR(Hot Module Replacement)
+- Update the page directly without a fully page reload - more efficient dev environment and will not loss the current state
+
+Tree Shaking
+- Get rid of unnecessary code
+```js
+if (false) {console.log ("Never Reached")}    //dead code elimination
+const c = x + 1;
+return c;   //=> return x+1
+```
+
+Code Splitting
+- Split your modules properly according to the dependency graph
+
+Lazy Loading
+- splitting your code at logical breakpoints, and then loading it once the user has done something that requires a new block of code. 
+
+Minifier/uglifier minification 
+- remove unnecessary code 
+- rename to a more efficient version for machine
+```js
+  const aaaaa=1;
+  console.log (aaaaa);
+  // ===>
+  const a=1; console.log(a)
+```
 
 #### loadsh
 debounce / throtte -> web performance improvement
