@@ -1037,6 +1037,19 @@ function App() {
 }
 ```
 
+#### What is React Context?
+- Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+- With the help of context, we can get the value to the nested children directly. 
+- Without Redux and React Context, we have to do lifting state up.
+
+#### Is React Context working the same way as Redux?
+- You can have multiple contexts but only one store in Redux
+- If you use React Context, it may cause Data Contamination since the Consumer looks for the nearest Provider ancestry
+
+#### When will be great to use Context? When will be great to use Context?
+- Redux - Larger scale application
+- Context - Smaller scale application
+
 [[↑] Back to top](#table-of-contents)
 
 ## Redux
@@ -1279,22 +1292,24 @@ React
   -HOC
   -memo/PureComponent (shouldComponentUpdate) - lifecycle
   -reduce unnecessary re-rendering
+  
 Redux
   -Thunk
   -Reselector
+  
 JS
   -Event Delegation (allows you to avoid adding event listeners to specific nodes)
+  
 CSS
   -Animation
   -image-sprite (reduce requests)
   -image compression
+  
 HTML
   -Empty HTML
   -Style on the top, script down/defer/async
 
-#### Webpack
-- A bundler for front-end dev -> bundle your styles
-
+#### Webpack - A bundler for front-end dev -> bundle your styles
 HMR(Hot Module Replacement)
 - Update the page directly without a fully page reload - more efficient dev environment and will not loss the current state
 
@@ -1341,7 +1356,26 @@ throtte - setInterval, like comments triggers 100 for the entire cycle `_.thrott
 
 ## Testing
 
-#### 
+#### Have you done Unit Test?  
+Yes
+
+#### What do you use for Unit Test?
+Jest
+- JS helper functions (logic helper)
+- `x => x+1` -> pure function
+- test any side effect `x => x+1`
+	
+Enzyme: 
+- component test
+
+#### What is the coverage? 
+How complete your unit test cover all the code
+- 90% coverage (out of 100 lines, at least 90 lines are ran)
+
+#### Unit Test File Example
+- button.js
+- button.test.js
+- npm run test *.test.js
 
 [[↑] Back to top](#table-of-contents)
-
+ 
