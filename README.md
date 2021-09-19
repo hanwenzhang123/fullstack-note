@@ -1045,10 +1045,48 @@ function App() {
 #### Is React Context working the same way as Redux?
 - You can have multiple contexts but only one store in Redux
 - If you use React Context, it may cause Data Contamination since the Consumer looks for the nearest Provider ancestry
+- defaultValue <=> bubbling - always go up to look at the closest ancestry
+- In Context, GrandChild.js - Look for the Child value but not the Parent value
+- we could make mistake, or not able to get value we want, since the value passing down to GrandChild, the nearest ancestry is Child
 
 #### When will be great to use Context? When will be great to use Context?
 - Redux - Larger scale application
 - Context - Smaller scale application
+
+#### Context API Example - Provider and Consumer
+```js
+const MyContext = React.createContext();    //JSX - Capitalize
+class Component
+  state = {
+   value: 1 
+  }
+  contextObj = {    //better performance
+        data: this.state.value,
+        onActionHandle: () => {   //with a function to pass down
+         this.setState({value: 2})
+        }
+  }
+  render() {
+    return(
+      <MyContext.Provider value = {this.contextObj}>    //like store={store}, better to put the object out not inside nested
+        <Child>
+      </MyContext.Provider>
+      )
+  }
+//Child.js
+  return(
+      <MyContext.Consumer>    //function call to get the value that passed in through the provider
+        {({data, onActionHandle}) => {
+        return (
+          <div> 
+            {data} 
+            <button onClick = {onActionHandler}>Click</button>          
+          </div>
+        )
+      }}
+      </MyContext.Consumer>
+    )
+```
 
 [[↑] Back to top](#table-of-contents)
 
@@ -1282,6 +1320,35 @@ const requestDataFromServer = () => {
 ```
 
 #### React re-selector for improvement enhancement
+- when we use this, we no longer needs to destructuring the value out 
+- `const getCurrentValue = (state) => state.counterReducer.currentNumber` 
+
+```js
+const mapStateToProps = (state) => ({ 
+//   numberForApp: state.counterReducer 
+  numberForApp: getCurrentValue(state)    //the logic more clear, straightforward, get the value from the state
+});
+
+//re-selector
+import {createSelector} from "reselect";
+
+const getValueFromExpensiveCalc = (state) => {    //selector, here we have to repeat the expensive calculation using selector
+  //expensive calculation -> calcedValueFromAbove
+  return calcedValueFromAbove
+}
+
+const getExpensiveValueReselect = createSelector(   //put in whatever selector you defined, createSelector() remembers whatever value you pass in
+  [getValueFromExpensiveCalc],    //passing the original model selector in 
+  (value1) => {   //valueReturnFromFirstSelector
+    //some data massaging and reformatting...
+    return newValue1        //the value will be cached next time you call getExpensiveValueReselect(state) via mapStateToProps()
+  }
+)
+
+const mapStateToProps = (state) => ({ 
+  numberForApp: getExpensiveValueReselect(state)    //better performance, less expensive calculation
+});
+```
 
 [[↑] Back to top](#table-of-contents)
 
