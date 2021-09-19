@@ -9,6 +9,7 @@ title: SSI-Training-Note
 - [React](#react)
 - [Hooks](#hooks)
 - [Redux](#redux)
+- [Middleware](#middleware)
 - [Performance](#performance)
 - [Testing](#testing)
 
@@ -525,7 +526,7 @@ Shallow Clone - reuse previous reference, certain (sub-)values are still connect
 const obj = { x: 1 } };
 const newObje = {...obj}; //shallow copy
 newObj.x = 9;
-console.log(newObj);  //{x:9)
+console.log(newObj);  //{x:9)	
 console.log(obj); //{x:1)   //original object not touched, different addresses in memory
 
 // value => non-primitive -> Object Array
@@ -534,7 +535,7 @@ console.log(obj); //{x:1)   //original object not touched, different addresses i
 const obj = { x: { y: 1 } };  //add one more layer
 const newObj = {...obj}; //shallow copy - only restirct to the shallow level
 newObj.x.y = 9;
-console.log(newObj); //{x: { y: 9 } 
+console.log(newObj); //{x: { y: 9 } - only direct properties on the object point to different address, nested properties point to the same
 console.log(obj);  //{x: { y: 9 } - also change to 9, both get update
 ```
 
@@ -689,8 +690,8 @@ Three phases in order are:
 
 #### Lifecycle (3 phases) - mounting, updating, unmounting
 - mounting (constructor) - initialize stuffs in the state in the constructor that we have over the initial render, then we call componentDidmount
-- componentDidmount -> only after the initial render then componentDidMount, API fetching asych like .then() .setState({data}) etc. 
-- componentDidUpdate -> we need to change some state to trigger the re-render, config update, changing flag for next render
+- componentDidmount -> initial render, only after the initial render then componentDidMount, API fetching asych like .then() .setState({data}) etc 
+- componentDidUpdate -> when we update, we need to change some state to trigger the re-render, config update, changing flag for next render
 - componentWillUnmount -> proper clean-up to prevent memory leak (remove eventListener, remove setTimeout)
 
 #### state & props
@@ -895,7 +896,7 @@ class App extends React.Component {
 - take in the original component, and add some decoration and modification and props to make it a new component, add more contents
 - example: connect in React-Redux `connect(a, b)(OriginalComp)`
 
-#### why HOC?
+#### Why HOC?
 - use it for reusability
 - to share common functionality between components
 - same pattern but only applies to the one when we need it, and simply removes it when we do not need it
@@ -927,8 +928,8 @@ export default HOCCounter;
 - `<React.Fragment>...</React.Fragment>`
 
 #### Lifting State Up
-- sharing state is accomplished by moving it up to the closest common ancestor of the components that need it.
-- by lifting up the state we make the state of the parent component as a single source of truth and pass the data of the parent in its children.
+- sharing state is accomplished by moving the local state up to the closest common ancestor of the components that need it.
+- by lifting the state up, we make the state of the parent component as a single source of truth, and pass the data in the parent to its children.
 - For sub-components to talk to each other through parents
 
 #### Lifting State Up vs Composition vs Inheritance
@@ -945,50 +946,341 @@ export default HOCCounter;
 ## Hooks
 
 #### What is Hooks?
+- React features that help you to "hook into" react methodology
+- Hooks are functions that let you “hook into” React state and lifecycle features from function components. 
+- Hooks don't work inside classes — they let you use React without classes. 
+- You can also create your own Hooks to reuse stateful behavior between different components.
 
 #### useState()
+```js
+const computationInit = () => {
+  console.log("Computing init");
+  return 0;
+};
 
+function App() {
+  const [count, setCount] = useState(() => computationInit()); //callback function, only called at the initial time
+  const [name, setName] = useState(""); //another local state, initial state in ()
+
+  return (
+    <>
+      <button onClick={() => setCount(count + 1)}>+</button>
+      <div>Count Number {count}</div>
+      <button onClick={() => setName("Hello")}>show name</button>
+      <div>{name}</div>
+    </>
+  );
+}
+
+export default App;
+```
+```js
+//...prevState - modify selected key-value in the object
+function App() {
+  const [{ count1, count2 }, setCount] = useState({ count1: 1, count2: 2 });
+
+  return (
+    <>
+      <button
+        onClick={() =>
+          setCount((prevState) => {	//without ...prevState, it overwrites the object
+            return {
+              ...prevState,		//...prevState first - give all the key I have then make modification to the count1
+              count1: prevState.count1 + 1 //we only modify count1 without changing/overriding count2
+            };
+          })
+        }
+      >
+        +
+      </button>
+      <div>Count 1 - {count1}</div>
+      <div>Count 2 - {count2}</div>
+    </>
+  );
+}
+```
 #### useEffect()
+- componentDidMount() - called once component mounted (was evaluated and rendered) - `useEffect(...,[])`
+- componentDidUpdate() - called once component updated (was evaluated and rendered) - `useEffect(..., [someValue])`
+- componentWillUnmount() - called right before component is unmounted (removed from DOM) - `useEffect(() => {return () => {...}}, [])`
+
+```js
+function App() {
+  const [{ count1, count2 }, setCount] = useState({ count1: 1, count2: 2 });
+
+  useEffect(() => {
+    console.log("useEffect called!");
+  }, [count1, count2]);
+  //dependency array -> empty array <-> ComponentDidMount (no dependency, we call it after every render)
+  //if only count1 is the dependency, same count1 changes when we click the button, so rendering and useEffect called will the printed out.
+  //if only count2 is the dependency, same count2 never changes, we only have rendering printout in the console.
+
+  return (
+    <>
+      {console.log("Rendering")}
+      <button
+        onClick={() =>
+          setCount((prevState) => {
+            return {
+              ...prevState,
+              count1: prevState.count1 + 1
+            };
+          })
+        }
+      >
+        +
+      </button>
+      <div>Count 1 - {count1}</div>
+      <div>Count 2 - {count2}</div>
+    </>
+  );
+}
+```
 
 [[↑] Back to top](#table-of-contents)
 
 ## Redux
 
 #### What is Redux?
-- a library for managing react
-component tree talks to each other through layers, local state pass down to props
-redux has a store, like a database 
-- Redux: state management, controlling in a single object no matter how deep you are, no needs for lifting state up
-- Redux creates a store, so sub-components can directly access values through store instead of relying parents(grandparents)
-- 
+- redux is a library for state management, it controls in a single object - store; no matter how deep you are, no needs for lifting state up
+- react uses component tree talks to each other through layers, local state pass down to props
+- redux creates a store, like a database, so sub-components can directly access values through store instead of relying parents(grandparents)
+- subscribe to the store for retrieving information, dispatch actions if you need to change anything
+
 #### Why we use Redux? Advantages?
-
-
+- Redux - A Predictable State Container for JS Apps
+- Avoid complicated communication for large-scale application
+- Avoid excessive lifting state up in ReactJS
+- Excellent tool for time-traveling debugging
+- Better state management
+  
 #### Three Principles of Redux
 1. Single source of truth - keep all data to the store
-2. State is read-only, immutable, persistent data structure
-3. Changes are made with pure function (reducer) -  change needs action
+2. State is read-only - immutable, persistent data structure, the only way to change the state is to emit an action
+3. Changes are made with pure function (reducer) -  changes need actions
 
-#### 
-#### 
-#### How do you group different reducers?
-- combineReducers()
+#### Action
+- An object include the action type/payload - the content you gonna use to make the change
+- What you try to do? like number increase, decrease?
+- Emit an action to reducer (disptach the action)
+
+#### Reducer
+- Expecting all types of action as defined. 
+- Pure function is static, when we do not perform the render.
+- Pure function, A input -> A output a + b = c (same input with consistant output)
+- Reply on the input, and local state (state at the moment)
+- no side-effect, output will be predictable
 
 #### Redux Flow
-- ReactJS -> setState() -> local state update -> UI re-rendering -> Ta-la
-- ReactRedux -> emit an action (dispatch an action) -> Reducer will calculate next state 
+- ReactJS -> setState() -> local state update -> UI re-rendering -> Done
+- ReactRedux -> emit an action (dispatch an action) -> Reducer will calculate next state (analyze action)
           -> Component subscribing to the store data re-rendering
-#### 
-#### 
-#### 
-#### 
-#### 
+	  
+#### index,js - How to setup Redux? How do you create store?
+```js
+import ReactDOM from "react-dom";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import reducer from "./reducer";
+
+import App from "./App";
+
+const store = createStore(reducer);	//the store will be generated based on reducer that analyze behaviors and modify current local state
+
+ReactDOM.render(     //initial render into our App 
+  <Provider store={store}>   //provider to inform the whole structure, for provider layer, everything inside would be props.children
+    <App />         //store is like global state, available to all children, stroe is the values in your redux store, like the data from the database
+  </Provider>,     //provider is like passing down everything to the children, we pass our store down to every level via createStore(reducer)
+  document.getElementById("root")
+);
+```
+
+#### App.js - subscribe to the store (connect)
+`ConnectedApp = connect()(App)`
+```js
+import React from "react";
+import { connect } from "react-redux";      // HOC, connect is a function, the helper function
+import * as counterActions from "./action";   //import all kind of actions we have in the action file
+
+class App extends React.Component {
+  render() {
+    const { numberForApp, incHandler, decHandler } = this.props;    //get from the props, the state and dispatch we defined through connect()
+
+    return (
+      <div className="App">
+        <h3>{numberForApp}</h3>       		//display value from the store
+        <button onClick={incHandler}>+</button>     //using the function as click handler
+        <button onClick={decHandler}>-</button>     //using the function as click handler
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => ({   //build the parameter from connect(), take the state
+  numberForApp: state.counterReducer      //using the value from the store, counterReducer is the specific one from the reducer file
+});
+
+const mapDispatchToProps = (dispatch) => ({   //build the parameter from connect(), take the disptach, pass the function, disptach the action
+  incHandler: () => dispatch(counterActions.incAction()),   //dispatch(actions.incAction()) - containing our action type (a payload as needed)
+  decHandler: () => dispatch(counterActions.decAction())    //call the action, emit the action that we defined in the action.js
+});  // action generator, directly talking to the store, if you do not need a function, just delete it, no worries about props
+
+const ConnectedApp = connect(	//here we use the connection function, connect will create the HOC wrapper that takes the APP
+  mapStateToProps,		// on value - get the value from the store, make sure the component is hook up with the store (display)
+  mapDispatchToProps		// on handler/actions - the action we need (user interaction)
+)(App);				//here is to connect to our App, we do not connect directly
+
+export default ConnectedApp;
+```
+
+#### action.js - define actions -> an action generator
+The action is going through to the reducer to analyze the action
+```js
+const incAction = () => {
+  return {
+    type: "INCREMENT"
+  }
+}
+const decAction = () => { 
+  return {
+    type: "DECREMENT"
+  }
+}
+export {    //export the actions we defined
+  incAction,
+  decAction 
+}
+```
+
+#### reducer.js - reply on the input and the local state at the moment
+How do you group different reducers? combineReducers()
+
+```js
+import { combineReducers } from "redux";    //import combineReducers for the reducer file, group different reducers 
+
+const INIT_STATE = 1;   //init value from the store
+                                            
+const counterReducer = (state = INIT_STATE, action) => {   //action will be emit from the action.js file, state is the current state with a default value 
+  switch (action.type) {      //judged by the different types of actions
+    case "INCREMENT":       //different cases, make sure matches in the action file
+      return state + 1;       //return the current local state does what
+    case "DECREMENT":       //tell reducer, whenever you see this case, do something
+      return state - 1;       //what to do when we see the case
+    default:            //always end with a default case
+      return state;      //just return itself
+  }
+};
+
+const rootReducer = combineReducers({     //here pass the switch case counterReducer to it, you can pass as many as you need
+  counterReducer
+});
+
+export default rootReducer;
+```
+
+[[↑] Back to top](#table-of-contents)
+
+## Middleware
+
+#### What is middleware?
+- integrate all the different software systems and make them work together
+- it provides common services and capabilities to applications outside of what is offered by the operating system
+- code you can put between the framework receiving a request, and the framework generating a response. 
+
+#### why do we need redux middleware?
+- it provides a third-party extension point between dispatching an action, and the moment it reaches the reducer.
+- people use Redux middleware for implementing async action calls
+- if we do not use the middleware, we can only do actions when API server not involved
+- middleware allows you to call the action creators that return a function(thunk) which takes the store dispatch method as the argument
+- which is afterwards used to dispatch the synchronous action after the API or side effects has been finished.
+
+#### How to create middleware in Redux?
+- Using Redux Thunk for Redux Middleware 
+- apply something extra in the middle, like a middle layer
+
+```js
+import ReactDOM from "react-dom";
+import { createStore, applyMiddleware } from "redux";	//import applyMiddleware
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";	//import thunk
+
+import rootReducer from "./store/reducer";
+import App from "./App";
+
+const store = createStore(
+  rootReducer,
+  applyMiddleware(thunk)	//the middleware will expose to the whole flow, apply thunk middleware via applyMiddleware()
+);
+
+ReactDOM.render(	//store goes through the whole project, including the middleware
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
+```
+
+#### How to apply middleware in Redux?
+action.js
+- the action is going through to the reducer to analyze the action
+- The thunk middleware allows us to write functions that get `dispatch` and `getState` as arguments.
+
+```js
+let timer;
+export const timerUpdate = () => (dispatch, getState) => {
+    clearInterval(timer);
+    timer = setInterval(() => {
+        dispatch(incAction());
+    }, 1000);
+  }
+
+export const timerStopUpdate = () => (dispatch, getState) =>
+  clearInterval(timer);
+  
+//TO-DO LIST
+const textAction = (item) => {
+  return {
+    type: "TEXT",
+    payload: item,
+  };
+};
+
+const addAction = () => (dispatch, getState) => {
+  const inputText = getState().tdListReducer.text;
+  dispatch({
+  type: "ADD",
+  payload: inputText, 
+    })
+};
+
+const requestDataFromServer = () => {  
+  return (distpatch, getState) => {   //we return the action itself, will be delying, instead of object we return a function where 1st parameter is dispatch
+    //apply delay or condition based on state
+//     fetch(LINK)
+//       .then(data => {     //use what we get to trigger another action, between that, there is condition check and proper delay, in a designed order
+//         dispatch(storeData())    //storeData is defined in reducer will take in action which we call payload, and pass down data as payload data
+//     })
+    //we group the logic in the action here instead of in App.js
+    if (getState().someValue === 1){  //getState means getting the current state in the store we access to, what we get is the whole store object via getState()
+      dispatch(someAction())
+    }
+  }
+}
+```
+
+#### React re-selector for improvement enhancement
 
 [[↑] Back to top](#table-of-contents)
 
 ## Performance
 
-#### //loadsh
+#### How to you generally improve performance?
+
+#### Webpack
+- bundle your styles
+- A bundler for front-end dev
+
+#### loadsh
 debounce / throtte -> web performance improvement
 - debounce -> search bar (auto-complete)
 - throttle -> scrolling / resizing page
