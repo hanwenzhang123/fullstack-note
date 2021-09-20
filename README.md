@@ -1323,7 +1323,7 @@ const requestDataFromServer = () => {
 
 ## Performance
 
-#### How to you generally improve performance?
+#### How do you generally improve performance?
 React
   -HOC
   -memo/PureComponent (shouldComponentUpdate) - lifecycle
