@@ -1319,39 +1319,6 @@ const requestDataFromServer = () => {
 }
 ```
 
-#### React re-selector for improvement enhancement
-- when we use this, we no longer needs to destructuring the value out 
-- `const getCurrentValue = (state) => state.counterReducer.currentNumber` 
-
-```js
-const mapStateToProps = (state) => ({ 
-//   numberForApp: state.counterReducer 
-  numberForApp: getCurrentValue(state)    //the logic more clear, straightforward, get the value from the state
-});
-```
-
-re-selector
-```js
-import {createSelector} from "reselect";	//import createSelector
-
-const getValueFromExpensiveCalc = (state) => {    //selector, here we have to repeat the expensive calculation using selector
-  //expensive calculation -> calcedValueFromAbove
-  return calcedValueFromAbove
-}
-
-const getExpensiveValueReselect = createSelector(   //put in whatever selector you defined, createSelector() remembers whatever value you pass in
-  [getValueFromExpensiveCalc],    //passing the original model selector in 
-  (value1) => {   //valueReturnFromFirstSelector
-    //some data massaging and reformatting...
-    return newValue1        //the value will be cached next time you call getExpensiveValueReselect(state) via mapStateToProps()
-  }
-)
-
-const mapStateToProps = (state) => ({ 
-  numberForApp: getExpensiveValueReselect(state)    //better performance, less expensive calculation
-});
-```
-
 [[↑] Back to top](#table-of-contents)
 
 ## Performance
@@ -1364,7 +1331,7 @@ React
   
 Redux
   -Thunk
-  -Reselector
+  -Re-selector
   
 JS
   -Event Delegation (allows you to avoid adding event listeners to specific nodes)
@@ -1430,6 +1397,50 @@ throtte
 - like resizing page, you send requests to the UI with a timer interval, will be sent no matter how many requests within the time period
 - like comments triggers 100 for the entire cycle 
 - `_.throttle(fetchAPI, 100)`;
+
+#### React Redux - Selectors & Reselect for improvement enhancement
+
+selector
+- write more reusable code
+- encapsulate knowledge of where data lives and how to derive it
+```js
+export const usersSelector = (state) => state.users.users	//when we use this, we no longer needs to destructuring the value out 
+
+export const filteredUserSelector = (state) => {
+  return usersSelector(state).filter((user) => {
+    return user.includes(state.users.search);
+  });
+}
+
+const mapStateToProps = (state) => ({ 
+// users: state.users.users	//since we use selector, we do not need to type it every time we use it
+  users: usersSelector(state),   //the logic more clear, straightforward, get the value from the state
+  filteredUsers: filteredUserSelector(state),
+});
+```
+
+re-selector 
+- implements functions memorization pattern (caching)
+- create selectors that are memoized and only recompute when their inputs have changed.
+```js
+import {createSelector} from 'reselect';	//import the library
+
+export const usersSelector = (state) => state.users.users
+
+export const filteredUserSelector = createSelector(	//the functions are dependencies, order is important
+  state => state.users.users,
+  state => state.users.search,
+  (users, search) => {		//functions as arguments of the dependencies
+    return users.filter((user) => {
+      return user.includes(search);
+    });
+  }
+)
+
+const mapStateToProps = (state) => ({ 
+  filteredUsers: filteredUserSelector(state),
+});
+```
 
 [[↑] Back to top](#table-of-contents)
 
