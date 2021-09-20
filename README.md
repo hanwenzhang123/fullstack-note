@@ -1407,13 +1407,15 @@ Minifier/uglifier minification
 ```
 
 #### loadsh
-Debounce and throttle are techniques to control how many times we allow a function to be executed over time.
+Debounce and throttle are techniques to control how many times we allow a function to be executed over time 
 - debounce -> search bar (auto-complete)
 - throttle -> scrolling / resizing page
-- debounce / throtte -> web performance improvement
+- debounce / throtte -> web performance improvement -> control the number of times the function will be called
 
 debounce 
-- setTimeout, like we post comments everytime triggers a hard delay, reset the timer to 100 again
+- setTimeout
+- like a search bar, you enter text, once yoou finish, wait for the timer done, it will send the request only one time to UI after the time period
+- like we post comments everytime triggers a hard delay, then reset the timer to 100 again
 - “group” multiple sequential calls in a single one.
 
 ```js
@@ -1424,7 +1426,9 @@ onUserInput => {
 ```
 
 throtte 
-- setInterval, like comments triggers 100 for the entire cycle 
+- setInterval
+- like resizing page, you send requests to the UI with a timer interval, will be sent no matter how many requests within the time period
+- like comments triggers 100 for the entire cycle 
 - `_.throttle(fetchAPI, 100)`;
 
 [[↑] Back to top](#table-of-contents)
