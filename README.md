@@ -1420,7 +1420,7 @@ const mapStateToProps = (state) => ({
 ```
 
 re-selector 
-- implements functions memorization pattern (caching)
+- implements functions memorization pattern (caching), memorization comes with cost
 - create selectors that are memoized and only recompute when their inputs have changed.
 ```js
 import {createSelector} from 'reselect';	//import the library
