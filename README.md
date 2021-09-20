@@ -1275,6 +1275,8 @@ ReactDOM.render(	//store goes through the whole project, including the middlewar
 action.js
 - the action is going through to the reducer that analyzes the action
 - The thunk middleware allows us to write functions that get `dispatch` and `getState` as arguments.
+- dispatch() used to dispatch the synchronous action after the API or side effects has been finished.
+- getState() gets the current state in the whole store
 
 ```js
 let timer;
