@@ -923,6 +923,63 @@ export default HOCCounter;
 - we do not add key to individual component.
 - `{ this.state.numArr.map((num, index) => ( <Child key={index} num={num} /> ))}`
 
+#### controlled component vs uncontrolled component
+Controlled Component
+- takes its current value through props and parent component "controls" it by handling callbacks like onChange. 
+- every state mutation will have an associated handler function managing its own state and passing the new values as props to the controlled component. 
+- recommend using controlled components to implement forms
+- a component that renders form elements and controls them by keeping the form data in the component's state.
+- data is handled by a React component <-> the input's value is always driven by the React state
+- `<ControlledComp value={this.props.fromParent} onChange={this.props.handleChange} />`
+```js
+const { useState } from 'react';
+
+function Controlled () {
+  const [email, setEmail] = useState();
+
+  const handleInput = (e) => setEmail(e.target.value);
+
+  return <input type="text" value={email} onChange={handleInput} />;
+}
+```
+
+Uncontrolled Component
+- let the component itself manage the value, stores its own state internally
+- you query the DOM using a ref to find its current value when you need it. 
+- Refs provide a way to access DOM nodes or React elements created in the render method.
+- a bit more like traditional HTML, keeps the single source of truth in the DOM,
+- data is handled by the DOM itself.
+```js
+import React, { Component } from 'react';
+
+class App2 extends Component {
+    constructor(props){
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+        this.input = React.createRef();	//access the input DOM node and extract its value
+    }
+    
+    handleChange = (newText) => {
+        console.log(newText);
+    }
+    render() {
+        return (
+            <div className="App2">
+                <div className="container">
+                    <input type="text"
+                        placeholder="Your message here.."
+                        ref={this.input}
+                        onChange={(event) => this.handleChange(event.target.value)}
+                    />
+                </div>
+            </div>
+            
+        );
+    }
+}
+export default App2;
+```
+
 #### React.Fragment 
 - Looks cleaner, avoid too many `<div>`
 - `<React.Fragment>...</React.Fragment>`
@@ -1184,8 +1241,11 @@ const ConnectedApp = connect(	//here we use the connection function, connect wil
 export default ConnectedApp;
 ```
 
-#### action.js - define actions -> an action generator
-The action is going through to the reducer to analyze the action
+#### action.js 
+- define actions -> like an action generator
+- include action type and/or payload (the content used to make change and dispatch action)
+- the action is going through to the reducer which analyzes the action
+ 
 ```js
 const incAction = () => {
   return {
@@ -1203,8 +1263,12 @@ export {    //export the actions we defined
 }
 ```
 
-#### reducer.js - reply on the input and the local state at the moment
-How do you group different reducers? combineReducers()
+#### reducer.js 
+- reply on the input and the local state at the moment
+- analyze behavior and modify current local state
+
+How do you group different reducers? 
+- combineReducers()
 
 ```js
 import { combineReducers } from "redux";    //import combineReducers for the reducer file, group different reducers 
@@ -1227,6 +1291,40 @@ const rootReducer = combineReducers({     //here pass the switch case counterRed
 });
 
 export default rootReducer;
+```
+
+#### to-do list example
+using `.push()` to push a new item to the state is no good in redux, since push manipulates the existing array in the existing state.
+
+instead, we can using the spread operator `...` to get the copy of the array, and then return the manipulated one.
+
+```js
+const TODO_INIT_STATE = {
+  todo: ["Study Redux", "Do Homework"],
+  text: "",
+};
+
+const tdListReducer = (state = TODO_INIT_STATE, action) => {
+  switch (action.type) {
+    case "TEXT":
+      return { ...state, text: action.payload };
+    case "ADD":
+      return {...state, todo: [...state.todo, action.payload], text: ""}; 
+    case "DELETE":
+      return { ...state, todo: state.todo.filter((item, index) => index !== action.payload)}
+    case "SORT":
+      if (action.payload === "asc") {
+        const ascList = state.todo.sort((a, b) => a.localeCompare(b));
+        return { ...state, todo: [...ascList]};
+      } else if (action.payload === "desc") {
+        const descList = state.todo.sort((a, b) => b.localeCompare(a));
+        return { ...state, todo: [...descList]};
+      }
+      break;
+    default:
+      return state;
+  }
+};
 ```
 
 [[↑] Back to top](#table-of-contents)
