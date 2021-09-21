@@ -1,39 +1,36 @@
 Describe features or components developed before
 
-design pattern used in the daily work
+Design pattern used in the daily work
 https://www.uxpin.com/studio/blog/react-design-patterns/
-design patterns are repeatable solutions to commonly occurring problems in software development.
+Design patterns are repeatable solutions to commonly occurring problems in software development.
 Design patterns not only speed up the development process but also make the code easier to read and to maintain. 
 Some common examples of design patterns include the Singleton pattern and the Gang-of-Four pattern.
-In software development, design patterns are associated with two common roles.
-Offer a common platform to developers
-Singleton: This pattern postulates the use of a single object. Developers implementing this pattern can easily communicate to other developers that a particular program follows the singleton pattern and they will understand what this means. 
-Ensure best practices
-Design patterns have been created as a result of extensive research and testing. They not only allow developers to become easily accustomed to the development environment but also ensure that the best practices are being followed.
 
+In software development, design patterns are associated with two common roles.
+- Offer a common platform to developers
+Singleton: This pattern postulates the use of a single object. 
+Developers implementing this pattern can easily communicate to other developers that a particular program follows the singleton pattern and they will understand what this means. 
+- Ensure best practices
+Design patterns have been created as a result of extensive research and testing. 
+They not only allow developers to become easily accustomed to the development environment but also ensure that the best practices are being followed.
+This results in fewer errors and saves time during debugging and figuring out problems that could have been easily avoided if an appropriate design pattern had been implemented.
 
 Unidirectional Data Flow
-the pattern of applying one-way mutations on an immutable data state is called Unidirectional Data Flow.
-React does not support bi-directional binding to make sure you are following a clean data flow architecture. The major benefit of this approach is that data flows throughout your app in a single direction, giving you better control over it. 
+The pattern of applying one-way mutations on an immutable data state is called Unidirectional Data Flow.
+React does not support bi-directional binding to make sure you are following a clean data flow architecture. 
+The major benefit of this approach is that data flows throughout your app in a single direction, giving you better control over it. 
 In terms of React it means: state is passed to the view and to child components.
-
-This results in fewer errors and saves time during debugging and figuring out problems that could have been easily avoided if an appropriate design pattern had been implemented.
 
 JSX - Full power of javascript
 reusable react components - richer user interfaces for web apps
-
 These React components can be considered as a small system in itself. Each component has its own state, input as well as output. 
 The input of a component is taken in the form of props. The component may be considered as a black box. Each having its own state and lifecycle. Components are easy to compose.
 The final react app consists of a highly maintainable code.
 
-
-
 Component - stateful, stateless
 The state is simply the data that is imported into a component. 
 In stateless components, you can not reach this.state inside it.  such components always render the same thing or only what is passed to them via props. 
-
 For a hierarchy of components, the best practice is to let parent components keep as much state as possible and make stateless child components. Data can be passed down via props. 
-
 
 Conditional Rendering
 In the process of writing React components, the need often arises to render a certain JSX code based on the state. This is achieved through conditional rendering. 
