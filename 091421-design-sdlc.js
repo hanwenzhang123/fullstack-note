@@ -12,6 +12,11 @@ Ensure best practices
 Design patterns have been created as a result of extensive research and testing. They not only allow developers to become easily accustomed to the development environment but also ensure that the best practices are being followed.
 
 
+Unidirectional Data Flow
+the pattern of applying one-way mutations on an immutable data state is called Unidirectional Data Flow.
+React does not support bi-directional binding to make sure you are following a clean data flow architecture. The major benefit of this approach is that data flows throughout your app in a single direction, giving you better control over it. 
+In terms of React it means: state is passed to the view and to child components.
+
 This results in fewer errors and saves time during debugging and figuring out problems that could have been easily avoided if an appropriate design pattern had been implemented.
 
 JSX - Full power of javascript
