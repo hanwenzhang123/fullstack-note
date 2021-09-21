@@ -38,29 +38,31 @@ In the process of writing React components, the need often arises to render a ce
 Render Props
 sharing code between React components using a prop
 
-Controlled Components
-handling form state.
-
-The controlled component takes the state through props.  It can notify any changes by means of callbacks like onChange. 
+Controlled Components - handling form state.
+The controlled component takes the state through props. It can notify any changes by means of callbacks like onChange. 
 Parent components can control it by handling the callback and managing its own state; meanwhile, the new values are passed to the controlled component as props.
+
+Callbacks
+A callback function is a function passed into another function as an argument,
+is a great way to handle something after something else has been completed.
+
 React Hooks
 create your own hooks. This allows you to extract the component logic and create reusable functions.
 
+What is a design system? 
+A design system is a collection of reusable components, guided by clear standards, that can be assembled together to build any number of applications.
 
+Singleton pattern
+In software engineering, the singleton pattern is a software design pattern that restricts the instantiation of a class to one "single" instance. 
+This is useful when exactly one object is needed to coordinate actions across the system. 
+The term comes from the mathematical concept of a singleton.
 
-
-What is a design system? A design system is a collection of reusable components, guided by clear standards, that can be assembled together to build any number of applications.
-
-
-
-singleton pattern
-In software engineering, the singleton pattern is a software design pattern that restricts the instantiation of a class to one "single" instance. This is useful when exactly one object is needed to coordinate actions across the system. The term comes from the mathematical concept of a singleton.
-The Singleton is a design pattern used in object-oriented programming that ensures only a single instance of an object exists within a system at any given time. The singleton is useful for things like loggers, state managers, and other objects that need to be globally accessible across an application.
+The Singleton is a design pattern used in object-oriented programming that ensures only a single instance of an object exists within a system at any given time. 
+The singleton is useful for things like loggers, state managers, and other objects that need to be globally accessible across an application.
 
 In object-oriented programming, a singleton class is a class that can have only one object (an instance of the class) at a time.
 
-
-A Singleton is an object which can only be instantiated one time. Repeated calls to its constructor return the same instance and in this way one can ensure that they don't accidentally create, say, two Users in a single User application.
+A Singleton is an object which can only be instantiated one time. Repeated calls to its constructor return the same instance and in this way one can ensure that they do not accidentally create, say, two Users in a single User application.
 
 We start with a design pattern called a singleton. It is one of the most well-known patterns, and therefore it is a good starting point. In its core, it restricts a class to have just one instance and ensures that it is globally accessible
 
