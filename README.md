@@ -9,11 +9,15 @@ title: SSI-Training-Note
 - [ES6](#ES6)
 - [JS Methods](#JS-Methods)
 - [React](#react)
-- [Lifecycle](#Lifecycle)
+- [React-Example](#react-example)
+- [Lifecycle](#lifecycle)
 - [HOC](#HOC)
 - [Hooks](#hooks)
+- [Context](#context)
 - [Redux](#redux)
+- [Redux-Example](#redux-example)
 - [Middleware](#middleware)
+- [Re-selectors](#re-selectors)
 - [Performance](#performance)
 - [Testing](#testing)
 
@@ -738,7 +742,7 @@ Three phases in order are:
 
 [[↑] Back to top](#table-of-contents)
 
-### Example
+### React Example
 
 #### setState Example
 ```js
@@ -1126,6 +1130,8 @@ function App() {
 }
 ```
 
+[[↑] Back to top](#table-of-contents)
+
 ## Context 
 
 #### What is React Context?
@@ -1218,7 +1224,11 @@ class Component
 - ReactRedux -> emit an action (dispatch an action) -> Reducer will calculate next state (analyze action)
           -> Component subscribing to the store data re-rendering
 	  
-#### index,js - How to setup Redux? How do you create store?
+[[↑] Back to top](#table-of-contents)
+
+### Redux Example
+	  
+#### index.js - How to setup Redux? How do you create store?
 ```js
 import ReactDOM from "react-dom";
 import { createStore } from "redux";
@@ -1455,6 +1465,54 @@ const requestDataFromServer = () => {
 
 [[↑] Back to top](#table-of-contents)
 
+### Re-selectors
+
+#### Selectors & Reselect for improvement enhancement
+
+selector
+- write more reusable code
+- encapsulate knowledge of where data lives and how to derive it
+```js
+export const usersSelector = (state) => state.users.users	//when we use this, we no longer needs to destructuring the value out 
+
+export const filteredUserSelector = (state) => {
+  return usersSelector(state).filter((user) => {
+    return user.includes(state.users.search);
+  });
+}
+
+const mapStateToProps = (state) => ({ 
+// users: state.users.users	//since we use selector, we do not need to type it every time we use it
+  users: usersSelector(state),   //the logic more clear, straightforward, get the value from the state
+  filteredUsers: filteredUserSelector(state),
+});
+```
+
+re-selector 
+- implements functions memorization pattern (caching), memorization comes with cost
+- create selectors that are memoized and only recompute when their inputs have changed.
+```js
+import {createSelector} from 'reselect';	//import the library
+
+export const usersSelector = (state) => state.users.users
+
+export const filteredUserSelector = createSelector(	//the functions are dependencies, order is important
+  state => state.users.users,
+  state => state.users.search,
+  (users, search) => {		//functions as arguments of the dependencies
+    return users.filter((user) => {
+      return user.includes(search);
+    });
+  }
+)
+
+const mapStateToProps = (state) => ({ 
+  filteredUsers: filteredUserSelector(state),
+});
+```
+
+[[↑] Back to top](#table-of-contents)
+
 ## Performance
 
 #### How do you generally improve performance?
@@ -1531,52 +1589,6 @@ throtte
 - like resizing page, you send requests to the UI with a timer interval, will be sent no matter how many requests within the time period
 - like comments triggers 100 for the entire cycle 
 - `_.throttle(fetchAPI, 100)`;
-
-#### React Redux - Selectors & Reselect for improvement enhancement
-
-selector
-- write more reusable code
-- encapsulate knowledge of where data lives and how to derive it
-```js
-export const usersSelector = (state) => state.users.users	//when we use this, we no longer needs to destructuring the value out 
-
-export const filteredUserSelector = (state) => {
-  return usersSelector(state).filter((user) => {
-    return user.includes(state.users.search);
-  });
-}
-
-const mapStateToProps = (state) => ({ 
-// users: state.users.users	//since we use selector, we do not need to type it every time we use it
-  users: usersSelector(state),   //the logic more clear, straightforward, get the value from the state
-  filteredUsers: filteredUserSelector(state),
-});
-```
-
-re-selector 
-- implements functions memorization pattern (caching), memorization comes with cost
-- create selectors that are memoized and only recompute when their inputs have changed.
-```js
-import {createSelector} from 'reselect';	//import the library
-
-export const usersSelector = (state) => state.users.users
-
-export const filteredUserSelector = createSelector(	//the functions are dependencies, order is important
-  state => state.users.users,
-  state => state.users.search,
-  (users, search) => {		//functions as arguments of the dependencies
-    return users.filter((user) => {
-      return user.includes(search);
-    });
-  }
-)
-
-const mapStateToProps = (state) => ({ 
-  filteredUsers: filteredUserSelector(state),
-});
-```
-
-[[↑] Back to top](#table-of-contents)
 
 ## Testing
 
