@@ -9,6 +9,8 @@ title: SSI-Training-Note
 - [ES6](#ES6)
 - [JS Methods](#JS-Methods)
 - [React](#react)
+- [Lifecycle](#Lifecycle)
+- [HOC](#HOC)
 - [Hooks](#hooks)
 - [Redux](#redux)
 - [Middleware](#middleware)
@@ -706,6 +708,11 @@ Three phases in order are:
 - ?? whether child talks back to parent using props too? NO
 - -> using callback 
 
+#### what does setState do?
+1. update my(component) local state correctly (a way to properly modify local state)
+2. setState then will trigger re-rendering (triggers a re-render)
+3. when invole previous value, we should always use a callback function is properly being handled base on the current value
+
 #### React.Fragment 
 - Looks cleaner, avoid too many `<div>`
 - `<React.Fragment>...</React.Fragment>`
@@ -729,11 +736,11 @@ Three phases in order are:
 - because we run react in different environment, so we want consistency across multiple broswer like a wrapper
 - consistency -> wrapper(basicEvent)
 
-#### what does setState do?
-1. update my(component) local state Correctly (a way to properly modify local state)
-2. setState then will trigger re-rendering (triggers a re-render)
-3. when invole previous value, we should always use a callback function is properly being handled base on the current value
+[[↑] Back to top](#table-of-contents)
 
+### Example
+
+#### setState Example
 ```js
 //setState - Asynchronous
 //react will batch several setStates together into a single update for performing the state change due to performance
@@ -805,7 +812,7 @@ class App extends React.Component { //extends the component
 export default App;
 ```
 
-#### destructuring in React component
+#### Destructuring in React component
 ```js
 class App extends React.Component {
   constructor(props) {
@@ -1025,7 +1032,7 @@ export default App2;
 
 [[↑] Back to top](#table-of-contents)
 
-## Hooks
+### Hooks
 
 #### What is Hooks?
 - React features that help you to "hook into" react methodology
@@ -1118,6 +1125,8 @@ function App() {
   );
 }
 ```
+
+## Context 
 
 #### What is React Context?
 - Context provides a way to pass data through the component tree without having to pass props down manually at every level.
