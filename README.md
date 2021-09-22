@@ -6,6 +6,8 @@ title: SSI-Training-Note
 - [HTML](#html)
 - [CSS](#css)
 - [JavaScript](#javascript)
+- [ES6](#ES6)
+- [JS Methods](#JS-Methods)
 - [React](#react)
 - [Hooks](#hooks)
 - [Redux](#redux)
@@ -218,6 +220,10 @@ console.log(1 || 2 || 3) //1 - OR - looking for the first TRUCY value, otherwise
 console.log(1 && 2 && 3) //3 - AND - looking for the first FALSY value, if not any, return last element
 ```
 
+[[↑] Back to top](#table-of-contents)
+
+### ES6
+
 #### New Features of ES6
 1. let const vs var 
 2. arrow function
@@ -262,41 +268,6 @@ var obj = {
 	}
 };
 console.log(obj.getName())    //undefined
-```
-
-#### function declaration vs function expression in JS
-```js
-myF()
-function myF(){
-	console.log("My Function")    //it is okay to under the function declaration using keyword function
-}
-myF()
-const myF = function(){
-	console.log("My Function")  //ReferenceError, no good with function expression, can not access function initialization, myF() failed directly
-}
-myF()
-var myF = function(){
-	console.log("My Function")  //TypeError, no good, myF is not a function, var myF = undefined;
-	//when you try to execute myF(), it is good, it is there, but it triggers the function which is undefined, that it breaks the rule. 
-}
-```
-
-#### IIFE - immediate invoked function expression 
-runs as soon as it is defined, invoke immediately
-variables declared in the function expression will not be available outside the function
-
-contains two major parts: 
-1. function expression within the Grouping Operator () 
-2. immediately invoke the function ()
-
-```js
-(function() {
-  /* */
-})()
-
-(() => {
-  /* */
-})()
 ```
 
 #### default params
@@ -372,6 +343,122 @@ function func(a, b, ...rest) {
 func(1, 2, 3, 4, 5, 6, 7);
 ```
 
+#### bind vs apply vs call
+`bind()`
+- The bind() method creates a new function used to provide a proper "this" reference to the function
+- it returns a new bound function, does not call the function, but refer to it that you can execute later
+
+`apply()/call()`
+- same, just the different way to put in the parameter: call => comma; apply => array
+- directly triggers itself, call it right now, unlike bind, not yet to call
+
+#### "this" keyword
+- refers to the object that the function is a property of. 
+- the value will always depend on the object that is invoking the function.
+
+the key word "this" behaves differently in arrow functions compared to a regular function.
+- "this" in function, this belongs to function
+- "this" in arrow function, "this" DOES NOT belong to arrFunc, it is outside of the arrFunc 
+```js
+//1. this IN method, this -> object owner
+const person = {
+    firstName: 'Viggo',
+    lastName: 'Mortensen',
+    fullName: function () {
+        return `${this.firstName} ${this.lastName}`     //just like ${person.firstName} ${person.lastName}, this -> object owner
+    },
+    
+//     fullName: () => {        //"this" has nothing to do with the scope where the function is created, it has to do with how the function is executed
+//         console.log(this);  // "this" refers to Window, if we do person.fullName() which means Window.fullName() - it will be undefined
+//         return `${this.firstName} ${this.lastName}`
+//     },       //when we are using arrow function, "this" will be jumping out to the original block which will be global scope
+    
+    shoutName: function () {
+        setTimeout(() => { 
+            //keyword 'this' in arrow functions refers to the value of 'this' when the function is created
+            console.log(this);       //"this" refers to the person Object
+            console.log(this.fullName())
+        }, 3000)
+        
+//     shoutName: function () {
+//         setTimeout(function () => {      //we have to use arrow function here instead
+//             console.log(this);       // "this" refers to Window object here
+//             console.log(this.fullName())     //this.fullName is not a function - it has to do with the execution context
+//         }, 3000)        
+    }
+}
+person.fullName()   //"this" refers to the left to the '.' here is the person
+
+//2. this IN function, this -> global on browser -> Window
+function a() {
+    console.log(this)   //Window, this -> global
+}
+a()     //Window
+console.log(this)      //Window
+
+//2.1 this IN function, strick mode, this -> undefined
+function a() {
+    "use strict"
+    console.log(this) 
+}
+a();   //undefined
+
+//3. this IN event, this -> HTML element that received the event
+<button onClick="this.style.display"="none">
+    click to remove me!
+</button>
+```
+
+#### Promise(Event-loop, task scheduling)
+- JS is a single-threaded language, use promise to handle async operation
+- new feature of ES6 -> avoid callback hell - a chained nested code
+
+- 3 phrases -> pending, fulfilled, rejected
+- chain .then() to do something, and/or .catch() to catch error
+- will return another promise so we can chain more then()
+- output order - only after the main thread is done
+
+- main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)
+
+[[↑] Back to top](#table-of-contents)
+
+### JS Methods
+
+#### function declaration vs function expression in JS
+```js
+myF()
+function myF(){
+	console.log("My Function")    //it is okay to under the function declaration using keyword function
+}
+myF()
+const myF = function(){
+	console.log("My Function")  //ReferenceError, no good with function expression, can not access function initialization, myF() failed directly
+}
+myF()
+var myF = function(){
+	console.log("My Function")  //TypeError, no good, myF is not a function, var myF = undefined;
+	//when you try to execute myF(), it is good, it is there, but it triggers the function which is undefined, that it breaks the rule. 
+}
+```
+
+#### IIFE - immediate invoked function expression 
+runs as soon as it is defined, invoke immediately
+variables declared in the function expression will not be available outside the function
+
+contains two major parts: 
+1. function expression within the Grouping Operator () 
+2. immediately invoke the function ()
+
+```js
+(function() {
+  /* */
+})()
+
+(() => {
+  /* */
+})()
+```
+
 #### Math in Array
 javascript array does not have Math Method - it expects distinct variables
 ```js
@@ -410,6 +497,33 @@ let doubled = arr.map(num => {
 });
 // doubled = [2, 4, 6, 8, 10]
 ```
+
+#### Closure 
+- a function retured by another function that still has access to its outer scope variable
+- used to enable data privacy.
+```js
+function makeCounter(){
+    let count = 0;      //private variable for keeping data private and safe
+    			//value by the function will be saved as it will be needed by the inner function, not for garbage collection
+    return function(){
+        count++
+        return count;
+    };
+}
+
+const counterFunc = makeCounter();
+console.log(counterFunc()); //1
+console.log(counterFunc()); //2
+console.log(counterFunc()); //3
+
+const newFunc = makeCounter();  //a new function, variabel value start over
+console.log(newFunc());  //1
+console.log(newFunc());  //2
+```
+
+#### Callbacks
+- a function passed into another function as an argument to be executed later after another function has finished executing
+- it is a great way to handle something after something else has been completed.
 
 #### Different between for...in and for...of
 - for...in, use it over Object (key: value) - enumerable property 
@@ -539,105 +653,6 @@ console.log(newObj); //{x: { y: 9 } - only direct properties on the object point
 console.log(obj);  //{x: { y: 9 } - also change to 9, both get update
 ```
 
-#### bind vs apply vs call
-`bind()`
-- The bind() method creates a new function used to provide a proper "this" reference to the function
-- it returns a new bound function, does not call the function, but refer to it that you can execute later
-
-`apply()/call()`
-- same, just the different way to put in the parameter: call => comma; apply => array
-- directly triggers itself, call it right now, unlike bind, not yet to call
-
-#### "this" keyword
-- refers to the object that the function is a property of. 
-- the value will always depend on the object that is invoking the function.
-
-the key word "this" behaves differently in arrow functions compared to a regular function.
-- "this" in function, this belongs to function
-- "this" in arrow function, "this" DOES NOT belong to arrFunc, it is outside of the arrFunc 
-```js
-//1. this IN method, this -> object owner
-const person = {
-    firstName: 'Viggo',
-    lastName: 'Mortensen',
-    fullName: function () {
-        return `${this.firstName} ${this.lastName}`     //just like ${person.firstName} ${person.lastName}, this -> object owner
-    },
-    
-//     fullName: () => {        //"this" has nothing to do with the scope where the function is created, it has to do with how the function is executed
-//         console.log(this);  // "this" refers to Window, if we do person.fullName() which means Window.fullName() - it will be undefined
-//         return `${this.firstName} ${this.lastName}`
-//     },       //when we are using arrow function, "this" will be jumping out to the original block which will be global scope
-    
-    shoutName: function () {
-        setTimeout(() => { 
-            //keyword 'this' in arrow functions refers to the value of 'this' when the function is created
-            console.log(this);       //"this" refers to the person Object
-            console.log(this.fullName())
-        }, 3000)
-        
-//     shoutName: function () {
-//         setTimeout(function () => {      //we have to use arrow function here instead
-//             console.log(this);       // "this" refers to Window object here
-//             console.log(this.fullName())     //this.fullName is not a function - it has to do with the execution context
-//         }, 3000)        
-    }
-}
-person.fullName()   //"this" refers to the left to the '.' here is the person
-
-//2. this IN function, this -> global on browser -> Window
-function a() {
-    console.log(this)   //Window, this -> global
-}
-a()     //Window
-console.log(this)      //Window
-
-//2.1 this IN function, strick mode, this -> undefined
-function a() {
-    "use strict"
-    console.log(this) 
-}
-a();   //undefined
-
-//3. this IN event, this -> HTML element that received the event
-<button onClick="this.style.display"="none">
-    click to remove me!
-</button>
-```
-
-#### Closure 
-a function retured by another function that still has access to its outer scope variable
-```js
-function makeCounter(){
-    let count = 0;      //private variable for keeping data private and safe
-    			//value by the function will be saved as it will be needed by the inner function, not for garbage collection
-    return function(){
-        count++
-        return count;
-    };
-}
-
-const counterFunc = makeCounter();
-console.log(counterFunc()); //1
-console.log(counterFunc()); //2
-console.log(counterFunc()); //3
-
-const newFunc = makeCounter();  //a new function, variabel value start over
-console.log(newFunc());  //1
-console.log(newFunc());  //2
-```
-
-#### Promise(Event-loop, task scheduling)
-- JS is a single-threaded language, use promise to handle async operation
-- new feature of ES6 -> avoid callback hell - a chained nested code
-
-- 3 phrases -> pending, fulfilled, rejected
-- chain .then() to do something, and/or .catch() to catch error
-- will return another promise so we can chain more then()
-- output order - only after the main thread is done
-
-- main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)
-
 #### event propagation
 - like a deeper ocean goes to the layer one by one travel through the DOM tree to arrive at its target and what happens to it afterward
 - Event.stopPropagation() - prevents further propagation of the current event in the capturing and bubbling phases. 
@@ -684,22 +699,35 @@ Three phases in order are:
 - Component-based framework -> Reusability
 - JSX (HTML + JS) - good for dev - efficient context switching is now avoid
 
-#### class component vs functional component
-- we use class component when the component has its own local state and lifecycle before React 16.8
-- now we can use react hooks to perform local state and lifecycle in functional component
-
-#### Lifecycle (3 phases) - mounting, updating, unmounting
-- mounting (constructor) - initialize stuffs in the state in the constructor that we have over the initial render, then we call componentDidmount
-- componentDidmount -> initial render, only after the initial render then componentDidMount, API fetching asych like .then() .setState({data}) etc 
-- componentDidUpdate -> when we update, we need to change some state to trigger the re-render, config update, changing flag for next render
-- componentWillUnmount -> proper clean-up to prevent memory leak (remove eventListener, remove setTimeout)
-
 #### state & props
 - mutable? => both immutable, read only
 - state is an object internally captured by class (in the constructor, this.state)
 - props down, parent talks to child
 - ?? whether child talks back to parent using props too? NO
 - -> using callback 
+
+#### React.Fragment 
+- Looks cleaner, avoid too many `<div>`
+- `<React.Fragment>...</React.Fragment>`
+
+#### Lists and Keys
+- key is unique item for iterating through sub-components, always add the key! 
+- we do not add key to individual component.
+- `{ this.state.numArr.map((num, index) => ( <Child key={index} num={num} /> ))}`
+
+#### Lifting State Up
+- sharing state is accomplished by moving the local state up to the closest common ancestor of the components that need it.
+- by lifting the state up, we make the state of the parent component as a single source of truth, and pass the data in the parent to its children.
+- For sub-components to talk to each other through parents
+
+#### Lifting State Up vs Composition vs Inheritance
+- Lifting State Up: enable children components to have better smooth communication among each other
+- Composition: {props.children} - built-in method, pass down as property children
+- Inheritance: not a good model to use in React
+
+#### SyntheticEvent 
+- because we run react in different environment, so we want consistency across multiple broswer like a wrapper
+- consistency -> wrapper(basicEvent)
 
 #### what does setState do?
 1. update my(component) local state Correctly (a way to properly modify local state)
@@ -810,6 +838,21 @@ function Title(props) {
  }
 ```
 
+[[↑] Back to top](#table-of-contents)
+
+### Lifecycle
+
+#### class component vs functional component
+- we use class component when the component has its own local state and lifecycle before React 16.8
+- now we can use react hooks to perform local state and lifecycle in functional component
+
+#### Lifecycle (3 phases) - mounting, updating, unmounting
+- mounting (constructor) - initialize stuffs in the state in the constructor that we have over the initial render, then we call componentDidmount
+- componentDidmount -> initial render, only after the initial render then componentDidMount, API fetching asych like .then() .setState({data}) etc 
+- componentDidUpdate -> when we update, we need to change some state to trigger the re-render, config update, changing flag for next render
+- componentWillUnmount -> proper clean-up to prevent memory leak (remove eventListener, remove setTimeout)
+
+
 #### React.PureComponent vs memo -> performance improvement
 - with PureComponent or memo, it already contains the logics of shouldComponentUpdate  - compare the props
 - to compare current props and previous props to make sure it cuts off unnecessary renders
@@ -891,8 +934,12 @@ class App extends React.Component {
 } 
 ```
 
+[[↑] Back to top](#table-of-contents)
+
+## HOC
+
 #### HOC -> High Order Component
-- HOC is a pattern where a function takes a component as an argument and returns a new component
+- HOC is a pattern where a function takes a component as an argument and returns a new component under a certain reusing component logic pattern
 - take in the original component, and add some decoration and modification and props to make it a new component, add more contents
 - example: connect in React-Redux `connect(a, b)(OriginalComp)`
 
@@ -918,10 +965,6 @@ import ContentContainer from "../HOC/ContentContainer";
 const HOCCounter = UpdatedComponent(Counter);
 export default HOCCounter;
 ```
-#### Lists and Keys
-- key is unique item for iterating through sub-components, always add the key! 
-- we do not add key to individual component.
-- `{ this.state.numArr.map((num, index) => ( <Child key={index} num={num} /> ))}`
 
 #### controlled component vs uncontrolled component
 Controlled Component
@@ -979,24 +1022,6 @@ class App2 extends Component {
 }
 export default App2;
 ```
-
-#### React.Fragment 
-- Looks cleaner, avoid too many `<div>`
-- `<React.Fragment>...</React.Fragment>`
-
-#### Lifting State Up
-- sharing state is accomplished by moving the local state up to the closest common ancestor of the components that need it.
-- by lifting the state up, we make the state of the parent component as a single source of truth, and pass the data in the parent to its children.
-- For sub-components to talk to each other through parents
-
-#### Lifting State Up vs Composition vs Inheritance
-- Lifting State Up: enable children components to have better smooth communication among each other
-- Composition: {props.children} - built-in method, pass down as property children
-- Inheritance: not a good model to use in React
-
-#### SyntheticEvent 
-- because we run react in different environment, so we want consistency across multiple broswer like a wrapper
-- consistency -> wrapper(basicEvent)
 
 [[↑] Back to top](#table-of-contents)
 
