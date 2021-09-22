@@ -53,46 +53,37 @@ What is a design system?
 A design system is a collection of reusable components, guided by clear standards, that can be assembled together to build any number of applications.
 
 Singleton pattern
-In software engineering, the singleton pattern is a software design pattern that restricts the instantiation of a class to one "single" instance. 
-This is useful when exactly one object is needed to coordinate actions across the system. 
-The term comes from the mathematical concept of a singleton.
+The singleton pattern is a software design pattern that restricts the instantiation of a class to one "single" instance. 
+  it is used in object-oriented programming that ensures only a single instance of an object exists within a system at any given time (globally accessible).
+This is useful when exactly one object is needed to coordinate actions across the system, 
+  useful for things like loggers, state managers, and other objects that need to be globally accessible across an application.
 
-The Singleton is a design pattern used in object-oriented programming that ensures only a single instance of an object exists within a system at any given time. 
-The singleton is useful for things like loggers, state managers, and other objects that need to be globally accessible across an application.
-
-In object-oriented programming, a singleton class is a class that can have only one object (an instance of the class) at a time.
-
-A Singleton is an object which can only be instantiated one time. Repeated calls to its constructor return the same instance and in this way one can ensure that they do not accidentally create, say, two Users in a single User application.
-
-We start with a design pattern called a singleton. It is one of the most well-known patterns, and therefore it is a good starting point. In its core, it restricts a class to have just one instance and ensures that it is globally accessible
-
+A Singleton is an object which can only be instantiated one time. 
+Repeated calls to its constructor return the same instance and in this way one can ensure that they do not accidentally create, say, two Users in a single User application.
 By design, singletons create an instance of a class if it does not yet exist. Otherwise, they return the reference to an existing instance.
 
-https://dev.to/bricourse/making-your-app-really-sexy-with-a-react-singleton-hook-2f9n
-
-What is a singleton hook
-Singleton hooks very similar to React Context in terms of functionality. Each singleton hook has a body, you might think of it as of Context Provider body. Hook has a return value, it’s similar to the value provided by context. Using a singleton hook from a component is like consuming a context.
-Singleton hooks are lazy. The body is not executed until the hook is called by some component or other hook. Once loaded, the hook body remains loaded forever. If you want to eager-load some Singleton hooks, use them at the top-level component of your App.
-Singleton hooks do not require a provider or a special App structure. Under the hood, it uses useState/useRef/useEffect and some less-known react features for performance and portability.
-It’s possible to mix into single app Singleton hooks, React-Redux hooks api, React Context hooks and any custom
+What is a singleton hook?
+Singleton hooks very similar to React Context in terms of functionality. 
+Each singleton hook has a body, you might think of it as of Context Provider body. 
+Hook has a return value, it’s similar to the value provided by context. 
+Using a singleton hook from a component is like consuming a context.
+Singleton hooks are lazy. The body is not executed until the hook is called by some component or other hook. 
+Once loaded, the hook body remains loaded forever. 
+If you want to eager-load some Singleton hooks, use them at the top-level component of your App.
+Singleton hooks do not require a provider or a special App structure. 
+Under the hood, it uses useState/useRef/useEffect and some less-known react features for performance and portability.
+It is possible to mix into single app Singleton hooks, React-Redux hooks api, React Context hooks and any custom
 
 
 HOC in react, why do we need to use them?
-
 takes a component and returns a new component under a certain reusing component logic pattern
-
 const EnhancedComponent = higherOrderComponent(WrappedComponent);
-
-
 
 
 When do you need to use a class component, when do you use a functional component?
 
 
-JSX
-
 Team
-
 Software Engineering
 
 https://www.ntaskmanager.com/blog/scrum-meetings/
@@ -104,4 +95,5 @@ Sprint, feature, module
 
 
 Software development life cycle and daily work details
+
 Do you have any questions for me?
