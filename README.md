@@ -1210,15 +1210,18 @@ class Component
 3. Changes are made with pure function (reducer) -  changes need actions
 
 #### Action
-- An object include the action type and/or payload - the content you gonna use to make the change
+- define actions -> like an action generator
+- An object include the action type and/or payload => the content you gonna use to make the change and dispatch action
 - What you try to do? like number increase, decrease?
-- Emit an action to reducer (disptach the action)
+- disptach the action action to reducer 
+- the action is going through to the reducer which analyzes the action
 
 #### Reducer
 - Expecting all types of action as defined. 
-- Pure function is static, when we do not perform the render.
+- reply on the input and the local state at the moment 
+- => analyze behavior and modify current local state
 - Pure function, A input -> A output a + b = c (same input with consistant output)
-- Reply on the input, and local state (state at the moment)
+- Pure function is static, when we do not perform the render.
 - no side-effect, output will be predictable
 
 #### Redux Flow
