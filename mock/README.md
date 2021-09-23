@@ -12,5 +12,5 @@
 .join() - specify what you would like to join in between of each element in the arrary
 .concat() - return one array with all values as element
 .slice() - subtract a portion of the array, like a big sandwich cutting the portion, it creates a new array
-.splice() - `splice(start, deleteCount, item1)`, removing or replacing existing elements, it returns a new array with removed elements
+.splice(start, deleteCount, items) - removing or replacing existing elements, it returns a new array with removed elements
 ```
