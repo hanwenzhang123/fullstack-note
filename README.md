@@ -695,8 +695,12 @@ Three phases in order are:
 #### What is Virtual DOM?
 - Updating the virtual DOM is comparatively faster than updating the actual DOM (Real DOM manipulation is very expensive)
 - When you try to update the DOM in React, The entire virtual DOM gets updated.
-- The virtual DOM gets compared to what it looked like before you updated it. React figures out which objects have changed.
-- The changed objects only get updated on the real DOM. Changes on the real DOM cause the screen to change.
+
+#### How the Virtual DOM gets updated?
+- When you change something, the virtual DOM gets compared to the real DOM before any updates on the page. 
+- React will figure out which objects have changed.
+- Only the changed objects get updated on the real DOM. 
+- Changes on the real DOM cause the screen to change.
 
 #### Pros of React
 - Easy to learn -> Strong communityt supporting
