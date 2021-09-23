@@ -1595,6 +1595,8 @@ throtte
 - like comments triggers 100 for the entire cycle 
 - `_.throttle(fetchAPI, 100)`;
 
+[[↑] Back to top](#table-of-contents)
+
 ## Testing
 
 #### Have you done Unit Test?  
