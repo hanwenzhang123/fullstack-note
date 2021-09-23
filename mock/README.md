@@ -31,13 +31,13 @@ arr.length = 0 - empty the array
 - arr.splice(index, 0, item);
 
 ## Object
-Four ways to create an object:
+#### Four ways to create an object:
 - Object Literals
 - New operator or constructor
 - Object.create method
 - Class
 
 ## API
-What is the difference between GET and POST?
+#### What is the difference between GET and POST?
 - GET requests data from a specified resource
 - POST sends data to a server to create/update a resource
