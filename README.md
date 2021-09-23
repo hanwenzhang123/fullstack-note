@@ -1475,8 +1475,10 @@ const requestDataFromServer = () => {
 #### Selectors & Reselect for improvement enhancement
 
 selector
-- write more reusable code
-- encapsulate knowledge of where data lives and how to derive it
+- write more reusable code of where data lives and how to derive it
+- use selectors we no longer needs to destructuring the value out everytime we use it
+- => the logic is more clear, straightforward, get the value from the state
+
 ```js
 export const usersSelector = (state) => state.users.users	//when we use this, we no longer needs to destructuring the value out 
 
@@ -1494,8 +1496,8 @@ const mapStateToProps = (state) => ({
 ```
 
 re-selector 
-- implements functions memorization pattern (caching), memorization comes with cost
-- create selectors that are memoized and only recompute when their inputs have changed.
+- create selectors that are memorized and only recompute when their inputs have changed.
+
 ```js
 import {createSelector} from 'reselect';	//import the library
 
