@@ -81,9 +81,9 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 
 When do you need to use a class component, when do you use a functional component?
+class - local state, lifecycle
+functions - other than above, with the help of hooks, everything
 
-
-Team
 Software Engineering
 
 https://www.ntaskmanager.com/blog/scrum-meetings/
@@ -91,8 +91,9 @@ https://stackify.com/what-is-sdlc/
 
 Daily tasks, like daily standup, assign tickets to work on, reviews
 
-Sprint, feature, module
+Teamwork
 
+Sprint, feature, module
 
 Software development life cycle and daily work details
 
