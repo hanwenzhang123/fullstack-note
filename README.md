@@ -981,11 +981,11 @@ export default HOCCounter;
 
 #### controlled component vs uncontrolled component
 Controlled Component
-- takes its current value through props and parent component "controls" it by handling callbacks like onChange. 
-- every state mutation will have an associated handler function managing its own state and passing the new values as props to the controlled component. 
+- Data is handled by a React component <-> the input's value is always driven by the React state
+- state mutation has an associated handler function managing its own state, and passing the new values as props to the controlled component. 
+- takes its current value through props, and parent component "controls" it by handling callbacks like onChange. 
 - recommend using controlled components to implement forms
 - a component that renders form elements and controls them by keeping the form data in the component's state.
-- data is handled by a React component <-> the input's value is always driven by the React state
 - `<ControlledComp value={this.props.fromParent} onChange={this.props.handleChange} />`
 ```js
 const { useState } from 'react';
@@ -1000,11 +1000,11 @@ function Controlled () {
 ```
 
 Uncontrolled Component
-- let the component itself manage the value, stores its own state internally
+- Data is handled by the DOM itself.
+- a bit more like traditional HTML, keeps the single source of truth in the DOM,
 - you query the DOM using a ref to find its current value when you need it. 
 - Refs provide a way to access DOM nodes or React elements created in the render method.
-- a bit more like traditional HTML, keeps the single source of truth in the DOM,
-- data is handled by the DOM itself.
+
 ```js
 import React, { Component } from 'react';
 
