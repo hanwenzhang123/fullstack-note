@@ -717,9 +717,9 @@ Three phases in order are:
 - -> using callback 
 
 #### what does setState do?
-1. update my(component) local state correctly (a way to properly modify local state)
-2. setState then will trigger re-rendering (triggers a re-render)
-3. when invole previous value, we should always use a callback function is properly being handled base on the current value
+1. update local state correctly (a way to properly modify local state)
+2. setState will trigger re-rendering 
+3. when invole previous value, we should always use a callback function to properly handle it base on the current value
 
 #### React.Fragment 
 - Looks cleaner, avoid too many `<div>`
@@ -731,9 +731,9 @@ Three phases in order are:
 - `{ this.state.numArr.map((num, index) => ( <Child key={index} num={num} /> ))}`
 
 #### Lifting State Up
-- sharing state is accomplished by moving the local state up to the closest common ancestor of the components that need it.
-- by lifting the state up, we make the state of the parent component as a single source of truth, and pass the data in the parent to its children.
 - For sub-components to talk to each other through parents
+- sharing state is accomplished by moving the local state up to the closest common ancestor of the components that need it.
+- by lifting the state up, we make the state of the parent component as a single source of truth, and pass the data down to sub-components
 
 #### Lifting State Up vs Composition vs Inheritance
 - Lifting State Up: enable children components to have better smooth communication among each other
@@ -862,11 +862,10 @@ function Title(props) {
 - now we can use react hooks to perform local state and lifecycle in functional component
 
 #### Lifecycle (3 phases) - mounting, updating, unmounting
-- mounting (constructor) - initialize stuffs in the state in the constructor that we have over the initial render, then we call componentDidmount
-- componentDidmount -> initial render, only after the initial render then componentDidMount, API fetching asych like .then() .setState({data}) etc 
-- componentDidUpdate -> when we update, we need to change some state to trigger the re-render, config update, changing flag for next render
+- mounting (constructor) - initialize stuffs in the state in the constructor that we have over the initial render
+- componentDidmount (initial render) -> only after the initial render then we call componentDidMount, API fetching asych like .then() .setState({data}) etc 
+- componentDidUpdate (update) -> when we update, we need to change some state to trigger the re-render, config update, changing flag for next render
 - componentWillUnmount -> proper clean-up to prevent memory leak (remove eventListener, remove setTimeout)
-
 
 #### React.PureComponent vs memo -> performance improvement
 - with PureComponent or memo, it already contains the logics of shouldComponentUpdate  - compare the props
@@ -913,9 +912,9 @@ class Title extends React.PureComponent {  //extends React.PureComponent, always
 export default App;
 ```
 
-function wrap with `memo` for functional component, capitalize the first letter for customized component
+function wrap with `memo` for functional component
 ```js
-function Title() {
+function Title() {		//capitalize the first letter for customized component
   console.log("Title rendering");    //only render once, considers shouldComponentUpdate
   return (
      <div>
@@ -959,8 +958,7 @@ class App extends React.Component {
 - example: connect in React-Redux `connect(a, b)(OriginalComp)`
 
 #### Why HOC?
-- use it for reusability
-- to share common functionality between components
+- use it for reusability to share common functionality between components
 - same pattern but only applies to the one when we need it, and simply removes it when we do not need it
 
 #### HOC Example
