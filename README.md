@@ -83,6 +83,23 @@ title: SSI-Training-Note
 - `sessionStorage` - client side, use when you need to store somthing temporary, will only be accessible while the window is open, expires when tab closes
 - `localStorage` - store data on the client computer, save key/value pairs in web browser, store data with no expiration date, last until the user deletes it
 
+#### local storage
+- let now = new Date() || new Date().getTime();
+- let itemStr = localStorage.getItem('item');
+- let userData = JSON.parse(localStorage.getItem('storedData'))
+
+Handle expiration of storage on the browser
+- localStorage.setItem('storedData', JSON.stringify(data))
+- localStorage.setItem(key, JSON.stringify(item))
+
+setWithExpiry and getWithExpiry
+- setWithExpiry("myKey", inputSet.value, 5000)
+- const value = getWithExpiry("myKey")
+- valueDisplay.innerHTML = value
+
+Remove data from local storage
+- localStorage.removeItem("storedData")
+
 [[↑] Back to top](#table-of-contents)
 
 ## CSS
