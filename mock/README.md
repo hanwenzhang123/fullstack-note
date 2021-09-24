@@ -14,8 +14,6 @@ string.length - The length property returns the length of a string.
 ## Array 
 #### Array Methods
 ```js
-// Array.isArray (a method to check if a variable is an array)
-// Bracket Access - starts from 0 index
 .push() method - add something to the end of the array
 .pop() method - remove and return the most recently added items to the array
 .shift() method - 'pop' something from the beginning
@@ -43,14 +41,112 @@ arr.length = 0 - empty the array
 - unshift() method adds to beginning of the array
 - arr.splice(index, 0, item);
 
+#### check if it is an array
+`Array.isArray()` -  return boolean, check whether an object (or a variable) is an array or not. 
+
+#### empty an array in JavaScript
+```js
+//1. Assign it to an empty array
+   var array1 = [1,2,3,4,5,6,7];  // Created array
+   var anotherArray = array1;     // Referenced array1 by another variable
+   array1 = [];                   // Empty the array
+   document.write(anotherArray);  // Output [1,2,3,4,5,6,7]
+
+//2. Set its length to 0
+   var array1 = [1,2,3,4,5,6,7]; // Created array
+   var anotherArray = array1; // Referenced array1 by another variable
+   array1.length = 0; // Empty the array by setting length to 0
+   console.log(anotherArray); // Output []
+   
+//3. Use Array.prototype.splice() - splice(start, deleteCount)
+   var array1 = [1,2,3,4,5,6,7]; // Created array
+   var anotherArray = array1; // Referenced array1 by another variable
+   array1.splice(0, array1.length); // Empty the array by setting length to 0
+   console.log(anotherArray); // Output []
+
+//4. Use Array.prototype.pop()
+while(a.length > 0) {
+    a.pop();
+}
+```
+
 ## Object
-#### Four ways to create an object:
+#### 4 ways to create an object:
 - Object Literals
 - New operator or constructor
 - Object.create method
 - Class
 
+#### 3 ways to clone objects:
+- Spread Operator - `{ ...food }`
+- Object.assign - `Object.assign({}, food)`
+- JSON - `JSON.parse(JSON.stringify(food))`
+
+#### Different between for...in and for...of
+- for...in, use it over Object (key: value) - enumerable property 
+- for...of, ES6, use it over Array - iterable items
+
+#### Accessing value from object
+```js
+const obj = { x:1 };
+console.log(obj.x);  //1
+console.log(obj["x"])  //1
+
+const obj = { "you what":1 }; //with space
+console.log(obj["you what"])  //1
+```
+- Object.entries(): Returns an array containing all of the key value pairs of a given object's own enumerable string properties.
+- Object.keys(): Returns an array containing the names of all of the given object's own enumerable string properties.
+- Object.values(): Returns an array containing the values that correspond to all of a given object's own enumerable string properties.
+- Object.prototype.hasOwnProperty(): returns a boolean indicating whether the object has the specified property as its own property.
+
+#### check if JavaScript Object is empty
+```js
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
+```
+
+#### clear a JavaScript Object
+```js
+for (const prop of Object.getOwnPropertyNames(obj)) {
+  delete obj[prop];
+}
+```
+```js
+function emptyObject(obj) {
+  Object.keys(obj).forEach(k => delete obj[k])
+}
+```
+
+#### check if it is an object
+`typeof yourVariable === 'object'`
+
+#### check if the type of an object at run time. 
+`object instanceof constructor` -  return boolean
+
+```js
+function Car(make, model, year) {
+  this.make = make;
+  this.model = model;
+  this.year = year;
+}
+const auto = new Car('Honda', 'Accord', 1998);
+
+console.log(auto instanceof Car);	// true
+console.log(auto instanceof Object);	// true
+```
+
 ## API
 #### What is the difference between GET and POST?
 - GET requests data from a specified resource
 - POST sends data to a server to create/update a resource
+
+
+#### client-side rendering vs server-side rendering
+
+#### object oriented programming vs functional programming
