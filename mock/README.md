@@ -96,12 +96,12 @@ while(a.length > 0) {
 - Object.assign - `Object.assign({}, food)`
 - JSON - `JSON.parse(JSON.stringify(food))`
 
+#### Check if it is an object
+`typeof yourVariable === 'object'`
+
 #### Different between for...in and for...of
 - for...in, use it over Object (key: value) - enumerable property 
 - for...of, ES6, use it over Array - iterable items
-
-#### check if it is an object
-`typeof yourVariable === 'object'`
 
 #### Accessing value from object
 ```js
@@ -117,7 +117,7 @@ console.log(obj["you what"])  //1
 - Object.values(): Returns an array containing the values that correspond to all of a given object's own enumerable string properties.
 - Object.prototype.hasOwnProperty(): returns a boolean indicating whether the object has the specified property as its own property.
 
-#### check if JavaScript Object is empty
+#### Check if JavaScript Object is empty
 ```js
 function isEmpty(obj) {
     for(var key in obj) {
@@ -128,7 +128,7 @@ function isEmpty(obj) {
 }
 ```
 
-#### clear a JavaScript Object
+#### Clear a JavaScript Object
 ```js
 for (const prop of Object.getOwnPropertyNames(obj)) {
   delete obj[prop];
