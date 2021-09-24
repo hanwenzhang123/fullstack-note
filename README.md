@@ -78,6 +78,13 @@ title: SSI-Training-Note
 - `<script async>` - in parallel to HTML parsing and executed as soon as it is available (potentially before HTML parsing completes)
 - `<script defer>` - in parallel to HTML parsing and executed when the page has finished parsing, ensuring that the HTML is fully parsed before executing. There's not much difference in putting a normal `<script>` at the end of `<body>`.
 
+#### Web Workers
+- HTML5 new feature
+- we can off load some ccomputer heavy task to web work, they will execute in parallel
+- give developers a way of instructing the browser to process large tasks in the background
+- preventing the UI from freezing up
+- for web content to run scripts in an isolated thread in the browser (background threads)
+
 #### Difference between a cookie, sessionStorage and localStorage
 - `cookie` - primarily for server-side, stores data has to be sent back to server, expiration can be set from either server-side or client-side when manually set
 - `sessionStorage` - client side, use when you need to store somthing temporary, will only be accessible while the window is open, expires when tab closes
@@ -172,6 +179,12 @@ Remove data from local storage
 - `display:none` - does not occupy space or consume clicks, hide the whole element and remove that from layout, gone from the DOM tree, disappear from UI
 - `visibility:hidden` - occupies space, but does not consumes clicks, hides an element but take up the same space as before
 - `opacity:0` - occupies space and consumes clicks, create transparency or fade effect
+
+#### flexbox
+- `display: flex`
+- A flexible layout must have a parent element with the diplay property set to flex.
+- direct child elements if the flexible container automatically becomes flexible items. 
+- `flex-grow | flex-shrink | flex-basis`
 
 #### center both vertically and horizontally using flexbox
 - `display: flex`
@@ -1585,17 +1598,12 @@ throtte
 - like comments triggers 100 for the entire cycle 
 - `_.throttle(fetchAPI, 100)`;
 
-#### Web Workers
-- give developers a way of instructing the browser to process large tasks in the background
-- preventing the UI from freezing up
-- for web content to run scripts in an isolated thread in the browser (background threads)
-
 [[↑] Back to top](#table-of-contents)
 
 ## Testing
 
 #### Have you done Unit Test?  
-Yes
+Yes, doing unit testing to ensure correctness of any codebase. 
 
 #### What do you use for Unit Test?
 Jest
