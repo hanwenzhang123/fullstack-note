@@ -85,16 +85,19 @@ class - local state, lifecycle
 functions - other than above, with the help of hooks, everything
 
 Software Engineering
+Types of Scrum Meetings
+- Sprint Planning Meeting
+- Daily Scrum Meeting
+- Sprint Review Meeting
+- Sprint Retrospective Meeting
+- Backlog Refinement Meeting
 
-https://www.ntaskmanager.com/blog/scrum-meetings/
-https://stackify.com/what-is-sdlc/
 
 Daily tasks, like daily standup, assign tickets to work on, reviews
 
-Teamwork
-
-Sprint, feature, module
+Teamwork, Sprint, feature, module
 
 Software development life cycle and daily work details
 
 Do you have any questions for me?
+ 
