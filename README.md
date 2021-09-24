@@ -63,6 +63,11 @@ title: SSI-Training-Note
 </audio>
 ```
 
+#### SEO (Search engine optimization)
+- the process of improving the quality and quantity of website traffic to a website or a web page from search engines.
+- Publish Relevant, Authoritative Content. Update Your Content Regularly. 
+- Metadata. Improve Title Tags. Use alt tags.
+
 #### What is the `<meta>` tag in the head tag? Why do we need it?
 - `<meta>` - metadata about an HTML document, is data (information) about data. 
 - `<meta>` tags always go inside the `<head>` element, and are used to specify character set, page description, keywords, author, and viewport settings.
@@ -268,6 +273,10 @@ let b = 1;
 - does not have "arguments" which access to all the inputs parameters
 - use lexical scoping — 'this' refers to it's current surrounding scope and no further.
 
+Disadvantage of Arrow Function
+- can never be used as constructor functions
+- can never be invoked with the new keyword
+- a prototype property does not exist for an arrow function.
 
 ```js
 var obj = {
@@ -531,7 +540,6 @@ function makeCounter(){
 const counterFunc = makeCounter();
 console.log(counterFunc()); //1
 console.log(counterFunc()); //2
-console.log(counterFunc()); //3
 
 const newFunc = makeCounter();  //a new function, variabel value start over
 console.log(newFunc());  //1
@@ -541,95 +549,6 @@ console.log(newFunc());  //2
 #### Callbacks
 - a function passed into another function as an argument to be executed later after another function has finished executing
 - it is a great way to handle something after something else has been completed.
-
-#### Different between for...in and for...of
-- for...in, use it over Object (key: value) - enumerable property 
-- for...of, ES6, use it over Array - iterable items
-
-#### Objects
-Accessing value from object
-```js
-const obj = { x:1 };
-console.log(obj.x);  //1
-console.log(obj["x"])  //1
-
-const obj = { "you what":1 }; //with space
-console.log(obj["you what"])  //1
-```
-- Object.entries(): Returns an array containing all of the key value pairs of a given object's own enumerable string properties.
-- Object.keys(): Returns an array containing the names of all of the given object's own enumerable string properties.
-- Object.values(): Returns an array containing the values that correspond to all of a given object's own enumerable string properties.
-- Object.prototype.hasOwnProperty(): returns a boolean indicating whether the object has the specified property as its own property.
-
-#### check if JavaScript Object is empty
-```js
-function isEmpty(obj) {
-    for(var key in obj) {
-        if(obj.hasOwnProperty(key))
-            return false;
-    }
-    return true;
-}
-```
-
-#### clear a JavaScript Object
-```js
-for (const prop of Object.getOwnPropertyNames(obj)) {
-  delete obj[prop];
-}
-```
-```js
-function emptyObject(obj) {
-  Object.keys(obj).forEach(k => delete obj[k])
-}
-```
-
-#### empty an array in JavaScript
-```js
-//1. Assign it to an empty array
-   var array1 = [1,2,3,4,5,6,7];  // Created array
-   var anotherArray = array1;     // Referenced array1 by another variable
-   array1 = [];                   // Empty the array
-   document.write(anotherArray);  // Output [1,2,3,4,5,6,7]
-
-//2. Set its length to 0
-   var array1 = [1,2,3,4,5,6,7]; // Created array
-   var anotherArray = array1; // Referenced array1 by another variable
-   array1.length = 0; // Empty the array by setting length to 0
-   console.log(anotherArray); // Output []
-   
-//3. Use Array.prototype.splice() - splice(start, deleteCount)
-   var array1 = [1,2,3,4,5,6,7]; // Created array
-   var anotherArray = array1; // Referenced array1 by another variable
-   array1.splice(0, array1.length); // Empty the array by setting length to 0
-   console.log(anotherArray); // Output []
-
-//4. Use Array.prototype.pop()
-while(a.length > 0) {
-    a.pop();
-}
-```
-
-#### check if it is an array
-`Array.isArray()` -  return boolean, check whether an object (or a variable) is an array or not. 
-
-#### check if it is an object
-`typeof yourVariable === 'object'`
-
-#### check if the type of an object at run time. 
-`object instanceof constructor` -  return boolean
-
-```js
-function Car(make, model, year) {
-  this.make = make;
-  this.model = model;
-  this.year = year;
-}
-const auto = new Car('Honda', 'Accord', 1998);
-
-console.log(auto instanceof Car);	// true
-console.log(auto instanceof Object);	// true
-```
 
 #### Deep Clone vs Shallow Clone
 Deep Clone - no more contact with previous reference, they are not related, any modification would not influence original copy
@@ -862,6 +781,43 @@ function Title(props) {
      </div>
    );
  }
+```
+
+#### Parent-Child Example
+```js
+//Parent.js
+import React, {useState} from 'react';
+improt './Parent.css';
+improt Child from './components/Child';
+
+function Parent() {
+  const [word, setWord] = useState("Parent");
+  
+  return(
+    <div className = "parent">
+      <h1>{Word}</h1>
+      <Child 
+        changeWord={word => setWord(word)}/>    //set the parameter word to word
+    </div>
+    );
+}
+export default Parent;
+
+//Child.js
+import React from 'react';
+improt './Child.css';
+
+function Child(props) {
+  return(
+    <div className = "child">
+      <h1>Child</h1>
+      <button onClick={()=> props.changeWord("Hello World")}>      //onClick then we want something to happen
+        Click to Change the Word      //props.changeWord from parent
+      </button>
+    </div>
+    );
+}
+export default Child;
 ```
 
 [[↑] Back to top](#table-of-contents)
@@ -1573,9 +1529,13 @@ Code Splitting
 Lazy Loading
 - splitting your code at logical breakpoints, and then loading it once the user has done something that requires a new block of code. 
 
-Minifier/uglifier minification 
+
+####  Minification - Minifier/uglifier 
+- make your code prettier, make it more efficient during compiling phase
 - remove unnecessary code 
 - rename to a more efficient version for machine
+- save time onloading
+
 ```js
   const aaaaa=1;
   console.log (aaaaa);
@@ -1607,6 +1567,11 @@ throtte
 - like resizing page, you send requests to the UI with a timer interval, will be sent no matter how many requests within the time period
 - like comments triggers 100 for the entire cycle 
 - `_.throttle(fetchAPI, 100)`;
+
+#### Web Workers
+- give developers a way of instructing the browser to process large tasks in the background
+- preventing the UI from freezing up
+- for web content to run scripts in an isolated thread in the browser (background threads)
 
 [[↑] Back to top](#table-of-contents)
 
