@@ -33,9 +33,9 @@ class App extends React.Component {
       countryInfo: "",
       numberInput: "",
       areaCode: {
-        China: "+86",
-        USA: "+1",
-        Japan: "+81"
+        China: "+86 ",
+        USA: "+1 ",
+        Japan: "+81 "
       }
     };
   }
@@ -47,13 +47,16 @@ class App extends React.Component {
   changeDropDown = (event) => {
     const input = event.target.value;
     let sliceNumberInput = this.state.numberInput;
-    let sliceAreaCode= this.state.areaCode[input];
 
     this.setState({ countryInfo: input });
     
     if (this.state.numberInput[0] === "+") {
-      sliceNumberInput = sliceNumberInput.slice(3)
+      sliceNumberInput = sliceNumberInput.split(" ").pop();
     }
+      
+//     if (this.state.numberInput[0] === "+") {
+//       sliceNumberInput = sliceNumberInput.slice(3)
+//     }
 
     this.setState((prevState) => {
       return {
@@ -86,3 +89,4 @@ class App extends React.Component {
 }
 
 export default App;
+  
