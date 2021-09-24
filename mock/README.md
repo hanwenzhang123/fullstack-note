@@ -156,6 +156,8 @@ const auto = new Car('Honda', 'Accord', 1998);
 console.log(auto instanceof Car);	// true
 console.log(auto instanceof Object);	// true
 ```
+#### What is prototype in JS
+The prototype is an object that is associated with every functions and objects by default in JavaScript, where function's prototype property is accessible and modifiable and object's prototype property (aka attribute) is not visible. ... Every function includes prototype object by default.
 
 #### prototype chain
 - all the objects inherit the properties and methods from Object.prototype.
