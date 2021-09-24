@@ -1,13 +1,14 @@
+//Object Iteration
 obj = {
-  name: "helen",
-  city: "san jose",
+  name: "Helen",
+  city: "San Jose",
 };
 
 Obj.keys(obj)
 Obj.values(obj)
 Obj.entries(obj)
 
-
+//React Component Design
 ImageGallery -> left part
 ProductDetail -> right
     - ColorPicker
@@ -17,7 +18,7 @@ this.setState
 
 import react, { Component } from "react";
 
-
+//Counter - Increment + 1
 class Counter extends Component {
     constructor (props) {
         super(props);
