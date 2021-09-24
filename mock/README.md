@@ -1,4 +1,16 @@
+---
+title: SSI-Training-Note
+---
+
+## Table of Contents
+- [String](#String)
+- [Array](#Array)
+- [Object](#Object)
+- [Class](#Class)
+- [API](#API)
+
 ## String
+
 #### String Methods
 ```js
 .split() - splits a string into an array of substrings, and returns the new array - string.split(separator, limit)
@@ -11,7 +23,8 @@
 string.length - The length property returns the length of a string.
 ```
 
-## Array 
+## Array
+
 #### Array Methods
 ```js
 .push() method - add something to the end of the array
@@ -71,6 +84,7 @@ while(a.length > 0) {
 ```
 
 ## Object
+
 #### 4 ways to create an object:
 - Object Literals
 - New operator or constructor
@@ -85,6 +99,9 @@ while(a.length > 0) {
 #### Different between for...in and for...of
 - for...in, use it over Object (key: value) - enumerable property 
 - for...of, ES6, use it over Array - iterable items
+
+#### check if it is an object
+`typeof yourVariable === 'object'`
 
 #### Accessing value from object
 ```js
@@ -123,8 +140,7 @@ function emptyObject(obj) {
 }
 ```
 
-#### check if it is an object
-`typeof yourVariable === 'object'`
+## Class
 
 #### check if the type of an object at run time. 
 `object instanceof constructor` -  return boolean
@@ -141,7 +157,13 @@ console.log(auto instanceof Car);	// true
 console.log(auto instanceof Object);	// true
 ```
 
+#### prototype chain
+- all the objects inherit the properties and methods from Object.prototype.
+- Objects created using the new keyword inherit from a prototype called Object.prototype.
+- the new operator to create an instance based on the prototype. 
+
 ## API
+
 #### What is the difference between GET and POST?
 - GET requests data from a specified resource
 - POST sends data to a server to create/update a resource
