@@ -248,6 +248,7 @@ console.log(1 && 2 && 3) //3 - AND - looking for the first FALSY value, if not a
 8. class syntax
 
 #### Difference between var and let/const 
+Variable hoisting means the JavaScript engine moves the variable declarations to the top of the script. 
 - var - value hoisting, put things on the top, scope to the function
 - let/const - not accessible before the line we declare them, scope to the block
 ```js
