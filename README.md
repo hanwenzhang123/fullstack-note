@@ -45,6 +45,10 @@ title: SSI-Training-Note
 - `<div>` - anything can be putting within a div, it is a block element
 - `<span>` - like a div but only for inline container, which div is block level element
 
+#### canvas
+- `<canvas>` element is used to draw graphics on a web page.
+- only a container for graphics. use JavaScript to actually draw the graphics.
+
 #### Video and Audio Tag
 - the text between the tags only appears when audio is not working
 ```html
@@ -78,10 +82,13 @@ title: SSI-Training-Note
 
 ## CSS
 
-#### selector
-- id #
-- class .
-
+#### specificity
+- !important - overrides any other declarations
+- id selector `#`
+- class selector `.`
+- Type selectors `p`
+- Universal selector `*`
+ 
 #### Three ways to insert CSS
 - external CSS (better choice, a separate css file)
 - internal CSS (putting css directly in the html page)
@@ -258,6 +265,9 @@ let b = 1;
 - does not have its own "this" to be referred to the current object
 - does not need to bind functions
 - does not have "arguments" which access to all the inputs parameters
+- use lexical scoping — 'this' refers to it's current surrounding scope and no further.
+
+
 ```js
 var obj = {
 	name: "mic",
