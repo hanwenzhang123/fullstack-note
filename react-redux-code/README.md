@@ -11,7 +11,7 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/mock/README.md
 ## Table of Contents
 - [React Example](#react-example)
 - [PureComponent vs memo](#PureComponent-vs-memo)
-- [Context API](#Context-API)
+- [React Context](#React-Context)
 - [Redux Example](#redux-example)
 
 ## React Example
@@ -129,7 +129,7 @@ export default Child;
 
 ## PureComponent vs memo
 
-#### class wrap with `React.PureComponent` for class component
+#### Class wrap with `React.PureComponent` for class component
 ```js
 class App extends React.Component {
   constructor(props) {
@@ -170,7 +170,7 @@ class Title extends React.PureComponent {  //extends React.PureComponent, always
 export default App;
 ```
 
-#### function wrap with `memo` for functional component
+#### Function wrap with `memo` for functional component
 ```js
 function Title() {		//capitalize the first letter for customized component
   console.log("Title rendering");    //only render once, considers shouldComponentUpdate
@@ -208,7 +208,7 @@ class App extends React.Component {
 
 [[↑] Back to top](#table-of-contents)
 
-## Context API
+## React Context
 ```js
 const MyContext = React.createContext();    //JSX - Capitalize
 class Component
