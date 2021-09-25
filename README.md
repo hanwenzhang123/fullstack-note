@@ -1544,7 +1544,12 @@ HTML
   -Empty HTML
   -Style on the top, script down/defer/async
 
-#### Webpack - A bundler for front-end dev -> bundle your styles
+#### Webpack 
+- A module bundler for front-end dev applications -> bundle your styles
+- Webpack gives you control over how to treat different assets it encounters
+- Webpack recursively builds every module in your application, then packs all those modules into a small number of bundles.
+- Similar bundler: Gulp or Grunt task runners
+
 HMR(Hot Module Replacement)
 - Update the page directly without a fully page reload - more efficient dev environment and will not loss the current state
 
@@ -1560,7 +1565,7 @@ Code Splitting
 - Split your modules properly according to the dependency graph
 
 Lazy Loading
-- splitting your code at logical breakpoints, and then loading it once the user has done something that requires a new block of code. 
+- Split your code at logical breakpoints, and then loading it once the user has done something that requires a new block of code. 
 
 
 ####  Minification - Minifier/uglifier 
@@ -1616,6 +1621,11 @@ Jest
 	
 Enzyme: 
 - component test
+
+#### Jest - Snapshot Testing
+- useful tool whenever you want to make sure your UI does not change unexpectedly
+- A typical snapshot test case renders a UI component, takes a snapshot, then compares it to a reference snapshot file stored alongside the test.
+- The test will fail if the two snapshots do not match
 
 #### What is the coverage? 
 How complete your unit test cover all the code
