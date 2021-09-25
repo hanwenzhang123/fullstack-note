@@ -623,7 +623,7 @@ useCapture Possible values:
 - true: The event handler is executed in the capturing phase
 - false: Default. The event handler is executed in the bubbling phase
 
-#### event propagation
+#### Event Propagation
 - like a deeper ocean goes to the layer one by one travel through the DOM tree to arrive at its target and what happens to it afterward
 - Event.stopPropagation() - prevents further propagation of the current event in the capturing and bubbling phases. 
 
@@ -632,7 +632,7 @@ Three phases in order are:
 2. the target phase - all the listeners registered on the event target will be invoked
 3. the event bubbling phase - buttom to the top -  click the inner one, the outter one will also be clicked
 
-#### event delegation
+#### Event Delegation
 - Allow you to avoid adding event listeners to specific nodes; instead, the event listener is added to one parent. 
 - That event listener analyzes bubbled events to find a match on child elements.
 - Instead of attaching the event listeners directly to the buttons, you delegate listening to the parent `<div id="buttons">`. 
