@@ -747,39 +747,6 @@ class App extends React.Component { //extends the component
 export default App;
 ```
 
-#### Destructuring in React component
-```js
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {  
-      number: 0
-    }
-  }
-   handleClick = () => {
-      const {number} = this.state;
-      this.setState({number: number + 1});
-   }
-  render() {
-    const {number} = this.state;    //this.state.number
-    return {
-       <div className ="App">
-         <Title date={number}/>     //since destructuring, here we do {number} is good
-         <button onClick={this.handleClick}>CCC</button>  
-       </div>
-     )
-  }
-}   
-function Title(props) {
-   const {date} = props;      //propss.date
-   return (
-     <div>
-       <h1>Happy { date }</h1>  
-     </div>
-   );
- }
-```
-
 #### Parent-Child Example
 ```js
 //Parent.js
