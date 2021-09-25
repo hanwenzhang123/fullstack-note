@@ -278,7 +278,7 @@ console.log(1 && 2 && 3) //3 - AND - looking for the first FALSY value, if not a
 
 [[↑] Back to top](#table-of-contents)
 
-### ES6
+## ES6
 
 #### New Features of ES6
 1. let const vs var 
@@ -486,7 +486,7 @@ a();   //undefined
 
 [[↑] Back to top](#table-of-contents)
 
-### JS Methods
+## JS Methods
 
 #### Closure 
 - a function retured by another function that still has access to its outer scope variable
@@ -514,7 +514,16 @@ console.log(newFunc());  //2
 - a function passed into another function as an argument to be executed later after another function has finished executing
 - it is a great way to handle something after something else has been completed.
 
+#### Currying
+- transform a function of arguments n, to n functions of one or less arguments. 
+- we do not change the functionality of a function, we just change the way it is invoked. 
+- `const addNumber = (a) => (b) => (c) => a+b+c;`
+
 #### Function Declaration vs Function Expression in JS
+- Function declarations load before any code is executed 
+- Similar to the var statement, function declarations are hoisted to the top of other code. 
+- Function expressions load only when the interpreter reaches that line of code. 
+- Function expressions aren’t hoisted, which allows them to retain a copy of the local variables from the scope where they were defined.
 ```js
 myF()
 function myF(){
@@ -530,6 +539,11 @@ var myF = function(){
 	//when you try to execute myF(), it is good, it is there, but it triggers the function which is undefined, that it breaks the rule. 
 }
 ```
+
+Benefits of Function Expressions:
+- As closures
+- As arguments to other functions
+- As Immediately Invoked Function Expressions (IIFE)
 
 #### IIFE - immediate invoked function expression 
 runs as soon as it is defined, invoke immediately
@@ -588,7 +602,7 @@ console.log(newObj); //{x: { y: 9 } - only direct properties on the object point
 console.log(obj);  //{x: { y: 9 } - also change to 9, both get update
 ```
 
-### DOM Event
+## DOM Event
 
 #### JS mechanism (how to handle the sync and async code)
 The event loops behind the browser handles the sync and async JavaScript code, like when JS engine that built in the browser (for chrome is V8) runs JS code, because JS is a single threaded language, the code will be read line by line, and stores the memory in the heap, and push the function call to the call stack. If it is async function code, it will be then pushed to the web API instead to wait for the condition to be met while the call stack keeps running as first in last out and garbage collects the variables that are no longer in use. Once the async code in the web API is ready to run, it will then be pushed to the message queue. When there are no functions to run in the call stack, the Event Loop will take the first event from the Queue and will push it to the Call Stack to run.
@@ -665,7 +679,7 @@ Three phases in order are:
 - ?? whether child talks back to parent using props too? NO
 - -> using callback 
 
-#### what does setState do?
+#### What does setState do?
 1. update local state correctly (a way to properly modify local state)
 2. setState will trigger re-rendering 
 3. when invole previous value, we should always use a callback function to properly handle it base on the current value
@@ -693,7 +707,7 @@ Three phases in order are:
 - because we run react in different environment, so we want consistency across multiple broswer like a wrapper
 - consistency -> wrapper(basicEvent)
 
-#### controlled component vs uncontrolled component
+#### Controlled Component vs Uncontrolled Component
 Controlled Component
 - Data is handled by a React component <-> the input's value is always driven by the React state
 - state mutation has an associated handler function managing its own state, and passing the new values as props to the controlled component. 
@@ -779,7 +793,7 @@ handleClick = () => {
 }
 ```
 
-#### class component example
+#### Class Component Example
 ```js
 import React from 'react';
 import "./styles.css";
