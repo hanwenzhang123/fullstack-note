@@ -1027,6 +1027,11 @@ const ConnectedApp = connect(	//here we use the connection function, connect wil
 #### How do you group different reducers? 
 - `combineReducers({ , , , })`
 
+#### Using `.push()` vs `...` to manipulate the store
+- using `.push()` to push a new item to the state is no good in redux, since push manipulates the existing array in the existing state.
+- instead, we can using the spread operator `...` to get the copy of the array, and then return the manipulated one.
+- `return {...state, todo: [...state.todo, action.payload], text: ""}`
+
 #### Redux Flow
 - ReactJS -> setState() -> local state update -> UI re-rendering -> Done
 - ReactRedux -> emit an action (dispatch an action) -> Reducer will calculate next state (analyze action)
