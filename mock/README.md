@@ -278,6 +278,7 @@ user.sayHi();
 
 `JSON.parse()` to convert the string into a JavaScript object
 - `var obj = JSON.parse(jsonData);`
+
 `JSON.stringify()` to convert a JavaScript object into a JSON string
 - `const jsonData = JSON.stringify(obj);`
 
@@ -288,6 +289,8 @@ user.sayHi();
 - DELETE deletes the specified resource.
 
 #### Client-Side Rendering vs Server-Side Rendering
+- Client-side rendering manages the routing dynamically without refreshing the page every time a user requests a different route. Your browser downloads a minimal HTML page. It renders the JavaScript and fills the content into it. React uses client-side rendering.
+- Server-side rendering when a user makes a request to a webpage, the server prepares an HTML page by fetching user-specific data and sends it to the user’s machine over the internet. The browser then construes the content and displays the page.
 
 #### Object Oriented Programming vs Functional Programming
 
@@ -320,25 +323,25 @@ user.sayHi();
 
 #### How do you generally improve performance?
 React
-  -HOC
-  -memo/PureComponent (shouldComponentUpdate) - lifecycle
-  -reduce unnecessary re-rendering
+-HOC
+-memo/PureComponent (shouldComponentUpdate) - lifecycle
+-reduce unnecessary re-rendering
   
 Redux
-  -Thunk
-  -Re-selector
+-Thunk
+-Re-selector
   
 JS
-  -Event Delegation (allows you to avoid adding event listeners to specific nodes)
-  
+-Event Delegation (allows you to avoid adding event listeners to specific nodes)
+
 CSS
-  -Animation
-  -image-sprite (reduce requests)
-  -image compression
+-Animation
+-image-sprite (reduce requests)
+-image compression
   
 HTML
-  -Empty HTML
-  -Style on the top, script down/defer/async
+-Empty HTML
+-Style on the top, script down/defer/async
 
 #### Webpack 
 - A module bundler for front-end dev applications -> bundle your styles
