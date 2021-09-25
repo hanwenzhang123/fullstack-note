@@ -2,6 +2,9 @@
 title: SSI-Training-Note (Part2)
 ---
 
+## SSI-Training-Note (Part1)
+https://github.com/hanwenzhang123/SSI-training-note/blob/main/README.md
+
 ## Table of Contents
 - [String](#String)
 - [Array](#Array)
@@ -11,9 +14,6 @@ title: SSI-Training-Note (Part2)
 - [Miscellaneous](#miscellaneous)
 - [Performance](#performance)
 - [Testing](#testing)
-
-## SSI-Training-Note (Part1)
-https://github.com/hanwenzhang123/SSI-training-note/blob/main/README.md
 
 ## String
 
