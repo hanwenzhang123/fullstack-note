@@ -222,15 +222,17 @@ console.log(auto instanceof Object);	// true
 ```
 
 #### what is prototype
-- an object that is associated with every functions and objects by default 
-- the mechanism by which JavaScript objects inherit features from one another.
-- All JavaScript objects inherit properties and methods from a prototype.
-- Where function's prototype property is accessible and modifiable and object's prototype property (aka attribute) is not visible. 
-- Every function includes prototype object by default.
+- A reference to another object 
+- Every function includes prototype object by default, and all the objects inherit the properties and methods from `Object.prototype`
+- Objects created using the `new` keyword inherit from a prototype called `Object.prototype`.
+- whenever we create a function，JS engine adds a prototype property inside a function
+- Prototype property is an object, where we can attach methods and properties in a prototype object
+- which enables all the other objects to inherit these methods and properties.
 
 #### prototype chain
-- All the objects inherit the properties and methods from `Object.prototype`.
-- Objects created using the `new` keyword inherit from a prototype called `Object.prototype`.
+- If you try to call a property on an object, JavaScript will go to the prototype object and look for it, until it finds it. 
+- If it doesn’t find the specific property that you’re looking for, it’ll return undefined for you. 
+- Otherwise, it’ll return the specific property. 
 
 #### `new` keyword
 - The `new` operator to create an instance of the class based on the prototype. 
@@ -256,7 +258,28 @@ user.sayHi();
 
 ## API
 
-#### Do you know AJAX, JavaScript and JSON
+#### API
+- Application Programming Interface (API)
+- a connection that allows two applications to talk to each other
+- enabling applications to exchange data and functionality easily and securely
+- Your Server -> Request through API -> Someone Else's Server -> Response through API -> Your Server
+
+#### AJAX
+- Asynchronous JavaScript And XML, making request behind the scene
+- web applications can send and retrieve data from a server asynchronously without interfering with the display and behaviour of the existing page
+1. Read data from a web server - after a web page has loaded
+2. Update a web page without reloading the page
+3. Send data to a web server - in the background
+
+#### JSON
+- JavaScript Object Notation (JSON) - text-based format for representing structured data
+- commonly used for transmitting data in web applications, `{}` object, `[]` array, "key" "value" pairs, seperated by `,`
+- Client Browser -> Request GET -> Your Server -> Request through API (Path, Parameter) -> Someone Else's Server -> Response through API (DATA) -> Your Server -> Response POST -> Client Browser
+
+`JSON.parse()` to convert the string into a JavaScript object
+- `var obj = JSON.parse(jsonData);`
+`JSON.stringify()` to convert a JavaScript object into a JSON string
+- `const jsonData = JSON.stringify(obj);`
 
 #### GET, POST, PUT, DELETE
 - GET requests data from a specified resource
@@ -341,7 +364,7 @@ Lazy Loading
 - Split your code at logical breakpoints, and then loading it once the user has done something that requires a new block of code. 
 
 
-####  Minification - Minifier/uglifier 
+#### Minification - Minifier/uglifier 
 - make your code prettier, make it more efficient during compiling phase
 - remove unnecessary code 
 - rename to a more efficient version for machine
@@ -410,5 +433,4 @@ How complete your unit test cover all the code
 - npm run test *.test.js
 
 [[↑] Back to top](#table-of-contents)
- 
-
+  
