@@ -16,6 +16,7 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/mock/README.md
 - [React-Example](#react-example)
 - [Lifecycle](#lifecycle)
 - [HOC](#HOC)
+- [CC-](#HOC)
 - [Hooks](#hooks)
 - [Context](#context)
 - [Redux](#redux)
@@ -674,6 +675,59 @@ Three phases in order are:
 - because we run react in different environment, so we want consistency across multiple broswer like a wrapper
 - consistency -> wrapper(basicEvent)
 
+#### controlled component vs uncontrolled component
+Controlled Component
+- Data is handled by a React component <-> the input's value is always driven by the React state
+- state mutation has an associated handler function managing its own state, and passing the new values as props to the controlled component. 
+- takes its current value through props, and parent component "controls" it by handling callbacks like onChange. 
+- recommend using controlled components to implement forms
+- a component that renders form elements and controls them by keeping the form data in the component's state.
+- `<ControlledComp value={this.props.fromParent} onChange={this.props.handleChange} />`
+```js
+const { useState } from 'react';
+
+function Controlled () {
+  const [email, setEmail] = useState();
+  const handleInput = (e) => setEmail(e.target.value);
+  return <input type="text" value={email} onChange={handleInput} />;
+}
+```
+
+Uncontrolled Component
+- Data is handled by the DOM itself.
+- a bit more like traditional HTML, keeps the single source of truth in the DOM,
+- you query the DOM using a ref to find its current value when you need it. 
+- Refs provide a way to access DOM nodes or React elements created in the render method.
+
+```js
+import React, { Component } from 'react';
+
+export class App2 extends Component {
+    constructor(props){
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+        this.input = React.createRef();	//access the input DOM node and extract its value
+    }
+    handleChange = (newText) => {
+        console.log(newText);
+    }
+    render() {
+        return (
+            <div className="App2">
+                <div className="container">
+                    <input type="text"
+                        placeholder="Your message here.."
+                        ref={this.input}
+                        onChange={(event) => this.handleChange(event.target.value)}
+                    />
+                </div>
+            </div>
+            
+        );
+    }
+}
+```
+
 [[↑] Back to top](#table-of-contents)
 
 ### React Example
@@ -911,63 +965,6 @@ export default UpdatedComponent;
 import ContentContainer from "../HOC/ContentContainer";
 const HOCCounter = UpdatedComponent(Counter);
 export default HOCCounter;
-```
-
-#### controlled component vs uncontrolled component
-Controlled Component
-- Data is handled by a React component <-> the input's value is always driven by the React state
-- state mutation has an associated handler function managing its own state, and passing the new values as props to the controlled component. 
-- takes its current value through props, and parent component "controls" it by handling callbacks like onChange. 
-- recommend using controlled components to implement forms
-- a component that renders form elements and controls them by keeping the form data in the component's state.
-- `<ControlledComp value={this.props.fromParent} onChange={this.props.handleChange} />`
-```js
-const { useState } from 'react';
-
-function Controlled () {
-  const [email, setEmail] = useState();
-
-  const handleInput = (e) => setEmail(e.target.value);
-
-  return <input type="text" value={email} onChange={handleInput} />;
-}
-```
-
-Uncontrolled Component
-- Data is handled by the DOM itself.
-- a bit more like traditional HTML, keeps the single source of truth in the DOM,
-- you query the DOM using a ref to find its current value when you need it. 
-- Refs provide a way to access DOM nodes or React elements created in the render method.
-
-```js
-import React, { Component } from 'react';
-
-class App2 extends Component {
-    constructor(props){
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-        this.input = React.createRef();	//access the input DOM node and extract its value
-    }
-    
-    handleChange = (newText) => {
-        console.log(newText);
-    }
-    render() {
-        return (
-            <div className="App2">
-                <div className="container">
-                    <input type="text"
-                        placeholder="Your message here.."
-                        ref={this.input}
-                        onChange={(event) => this.handleChange(event.target.value)}
-                    />
-                </div>
-            </div>
-            
-        );
-    }
-}
-export default App2;
 ```
 
 [[↑] Back to top](#table-of-contents)
