@@ -101,27 +101,34 @@ Tester Team:
   QA: quality assurance 3
 UI/UX designer: creating mock up for front-end developers
 
-Weekly Meetings
-Agile/Scrum Meetings
-- Sprint Planning Meeting
+Sprint Planning Meeting
+  - 2 hours of sprint planning for every 1 week of sprint length
+  - develop realistic Sprint backlog and define the highest priority tasks
   - scrums will assign tickets to developers
   - JIRA ticket => we need to discuss how long a developer should take to finish
-  - we do not suggest using hours nowadays
   - story points: if you have a ticket which is more than 5 story points, most likely you are trying to separate it
   - for each sprint, you will get around 10 points
-- Daily Scrum Meeting
-- Sprint Review Meeting
-- Sprint Retrospective Meeting: 
+Sprint Retrospective Meeting: 
+  - held at the end of a particular project or sprint, 45 minutes for each week of sprint length.
   - scrum master is giving feedback to the whole team 
   - all team members give feedback on what we did good, bad, what to improve
-- Backlog Refinement Meeting
+  - reflect back on the work and what improvements are needed to be made. 
+Sprint Review Meeting
+  - At the end of each Sprint, demonstrates the functionality of the product and what has been achieved during a particular Sprint. 
+Backlog Refinement Meeting
+  - product backlog items need refinement for the next Sprint, to make the team understand them better for successful execution.
+  
 Sprint demo: each of the developer should make presentation
 Back Refinement: check backlog, move backlog tickets to active sprint/future sprint
 Business Meeting: communicate with clients
 
 Daily Meetings
-- Daily Stand-ups: What did you do yesterday? What will you do today? What (if anything) is blocking your progress?
-- Daily Tag-ups: Get updates for today and solve blockers
+- Daily Stand-ups / Daily Scrum Meeting: 
+  - What did you do yesterday? 
+  - What will you do today? 
+  - What (if anything) is blocking your progress?
+- Daily Tag-ups Meeting: 
+  - Get updates for today and solve blockers
   
 Sprint cycle
 - Sprints are developmental cycles that repeat until your project is complete. 
