@@ -693,10 +693,6 @@ this.setState((prevState) => {     //passing in a callback function instead of s
 })
 ```
 
-#### React.Fragment 
-- Looks cleaner, avoid too many `<div>`
-- `<React.Fragment>...</React.Fragment>`
-
 #### Lists and Keys
 - key is unique item for iterating through sub-components, always add the key! 
 - we do not add key to individual component.
@@ -711,6 +707,20 @@ this.setState((prevState) => {     //passing in a callback function instead of s
 - Lifting State Up: enable children components to have better smooth communication among each other
 - Composition: {props.children} - built-in method, pass down as property children
 - Inheritance: not a good model to use in React
+
+#### React.Fragment 
+- Looks cleaner, avoid too many `<div>`
+- `<React.Fragment>...</React.Fragment>`
+
+#### Styled Components
+- a package that helps you to build componnets which have certian styles attached to them 
+- use component-level styles in your applications (CSS-in-JS)
+- `npm install --save styled-components`
+```js
+import styled from "styled-components";
+const Button = styled.button`color: white;`	//using tagged template literal
+export default Button;
+```
 
 #### SyntheticEvent 
 - because we run react in different environment, so we want consistency across multiple broswer like a wrapper
