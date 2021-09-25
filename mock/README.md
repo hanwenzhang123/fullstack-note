@@ -8,6 +8,7 @@ title: SSI-Training-Note
 - [Object](#Object)
 - [Class](#Class)
 - [API](#API)
+- [Miscellaneous](#miscellaneous)
 
 ## String
 
@@ -86,11 +87,16 @@ while(a.length > 0) {
 ## Object
 
 #### Object Methods
+https://medium.com/youstart-labs/javascript-object-methods-every-developer-should-know-c68c132a658
 ```js
-- Object.entries(): Returns an array containing all of the key value pairs of a given object's own enumerable string properties.
-- Object.keys(): Returns an array containing the names of all of the given object's own enumerable string properties.
-- Object.values(): Returns an array containing the values that correspond to all of a given object's own enumerable string properties.
-- Object.prototype.hasOwnProperty(): returns a boolean indicating whether the object has the specified property as its own property.
+Object.keys() - Returns an array containing the names of all of the given object's own enumerable string properties.
+Object.values() - Returns an array containing the values that correspond to all of a given object's own enumerable string properties.
+Object.entries() - Returns an array containing all of the key value pairs of a given object's own enumerable string properties.
+Object.create() - creates a new object using an existing object as the prototype of the newly created object `let createObj = Object.create(obj)`
+Object.freeze() -  freezes the object for any further changes (key or values) `let frozenObject = Object.freeze(person)`
+Object.prototype.hasOwnProperty() - returns a boolean indicating whether the object has the specified property as its own property.
+Object.assign() - shallow copy - `Object.assign({}, obj)`
+JSON.parse() & JSON.stringify() - deep copy
 ```
 
 #### 4 ways to create an object:
@@ -161,7 +167,7 @@ const auto = new Car('Honda', 'Accord', 1998);
 console.log(auto instanceof Car);	// true
 console.log(auto instanceof Object);	// true
 ```
-#### What is prototype in JS
+#### what is prototype
 - an object that is associated with every functions and objects by default 
 - where function's prototype property is accessible and modifiable and object's prototype property (aka attribute) is not visible. 
 - Every function includes prototype object by default.
@@ -173,18 +179,36 @@ console.log(auto instanceof Object);	// true
 
 ## API
 
-#### What is the difference between GET and POST?
+#### Do you know AJAX, JavaScript and JSON
+
+#### GET, POST, PUT, DELETE
 - GET requests data from a specified resource
-- POST sends data to a server to create/update a resource
+- POST sends data to a server to create a resource - "create new"
+- PUT means "insert, replace if already exists" 
+- DELETE deletes the specified resource.
 
+#### Client-Side Rendering vs Server-Side Rendering
 
-#### client-side rendering vs server-side rendering
+#### Object Oriented Programming vs Functional Programming
 
-#### object oriented programming vs functional programming
+#### Object Oriented Programing vs Processing Programing
 
-## New Features
+#### Combining frontend code with backend code or SQL
+
+#### What is SQL Injection and how do you avoid it?
+
+## Miscellaneous
 
 #### React 18 New Features
 - Concurrency control with the Transition API,
 - Automatic Batching of function calls and events to improve in-app performance, and.
 - Much faster page loads for SSR with Suspense.
+
+#### how to share components with others or other teams
+
+#### if two projects/fields using same components in the same library, how to design and use it with other teams
+
+#### What's difference between element and components in React
+
+#### how to see the different kind of front-end frameworks, the advantage/limitation
+
