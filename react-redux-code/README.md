@@ -5,8 +5,8 @@ title: SSI-Training-Note (Part1)
 ## SSI-Training-Note (Part1)
 https://github.com/hanwenzhang123/SSI-training-note/blob/main/README.md
 
-## SSI-Training-Note (Part3)
-https://github.com/hanwenzhang123/SSI-training-note/blob/main/react-redux-code/README.md
+## SSI-Training-Note (Part2)
+https://github.com/hanwenzhang123/SSI-training-note/blob/main/mock/README.md
 
 ## Table of Contents
 - [React Example](#react-example)
