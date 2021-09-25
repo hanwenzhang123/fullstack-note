@@ -1,3 +1,16 @@
+Why hooks
+State props
+Sass experience
+Iterate Object keys
+=== vs ==
+Web worker
+Enclosure bar foo
+Counter+1 component
+Components separation
+Jest snapshot testing
+React18 new feature
+
+
 //Cooding 
 //Question 1
 var array = [];
@@ -72,6 +85,7 @@ function foo(){
 //Then, another foo wil be put in callback queue
 
 
+//Question 7
 //Object Iteration
 obj = {
   name: "Helen",
@@ -82,7 +96,9 @@ Obj.keys(obj)
 Obj.values(obj)
 Obj.entries(obj)
 
-//React Component Design
+  
+//Question 8
+//React Component Design - Components separation
 ImageGallery -> left part
 ProductDetail -> right
     - ColorPicker
@@ -90,9 +106,10 @@ ProductDetail -> right
 
 this.setState 
 
+//Question 9
+//Counter - Increment + 1
 import react, { Component } from "react";
 
-//Counter - Increment + 1
 class Counter extends Component {
     constructor (props) {
         super(props);
@@ -116,3 +133,11 @@ class Counter extends Component {
 }
 
 export default Counter;
+
+//Question 10
+//Create a simple hello functional component where name is stored in state
+//Capture all the class-based life cycle as much as possible
+
+
+
+
