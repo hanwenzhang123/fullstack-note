@@ -10,6 +10,7 @@ const addNumber = (a) => (b) => (c) => {
     return a+b+c;
   }
 
+//When return a single object in arrow function
 const a = x => x+1
 const a = x => a+b+c
 const a = x => ({ x:1 })
