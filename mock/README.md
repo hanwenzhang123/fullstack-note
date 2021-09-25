@@ -62,7 +62,7 @@ arr.length = 0 - empty the array
 - `.unshift()` - adds to beginning of the array
 - `.arr.splice(index, 0, item)`;
 
-#### check if it is an array
+#### Check if it is an array
 `Array.isArray()` -  return boolean, check whether an object (or a variable) is an array or not. 
 
 #### .map() vs .forEach()
@@ -82,7 +82,7 @@ let doubled = arr.map(num => {
 // doubled = [2, 4, 6, 8, 10]
 ```
 
-#### empty an array in JavaScript
+#### Empty an array in JavaScript
 ```js
 //1. Assign it to an empty array
    var array1 = [1,2,3,4,5,6,7];  // Created array
