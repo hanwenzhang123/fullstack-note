@@ -180,6 +180,8 @@ console.log(obj["you what"])  //1
 ```
 
 #### Check if JavaScript Object is empty
+- if `Object.keys(obj).length` returns 0, object is null
+ 
 ```js
 function isEmpty(obj) {
     for(var key in obj) {
