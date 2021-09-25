@@ -612,7 +612,7 @@ The event loops behind the browser handles the sync and async JavaScript code, l
 - `element.addEventListener(event, function, useCapture)`
 - addEventListener() method attaches an event handler to the specified element.
 - removeEventListener() method to remove an event handler that has been attached with the addEventListener() method.
-- event: A String that specifies the name of the event like click, mouseover, keyup
+- event: A String that specifies the name of the event like "click", "mouseover", "keyup"
 - function: Specifies the function to run when the event occurs
 - useCapture: Optional. A Boolean value that specifies whether the event should be executed in the capturing or in the bubbling phase.
 
@@ -620,8 +620,8 @@ Using the optional useCapture parameter to demonstrate the difference between bu
 `document.getElementById("myDiv").addEventListener("click", myFunction, true);`
 
 useCapture Possible values:
-- true - The event handler is executed in the capturing phase
-- false- Default. The event handler is executed in the bubbling phase
+- true: The event handler is executed in the capturing phase
+- false: Default. The event handler is executed in the bubbling phase
 
 #### event propagation
 - like a deeper ocean goes to the layer one by one travel through the DOM tree to arrive at its target and what happens to it afterward
