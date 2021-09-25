@@ -24,6 +24,8 @@ title: SSI-Training-Note
 string.length - The length property returns the length of a string.
 ```
 
+[[↑] Back to top](#table-of-contents)
+
 ## Array
 
 #### Array Methods
@@ -83,6 +85,8 @@ while(a.length > 0) {
     a.pop();
 }
 ```
+
+[[↑] Back to top](#table-of-contents)
 
 ## Object
 
@@ -151,6 +155,8 @@ function emptyObject(obj) {
 }
 ```
 
+[[↑] Back to top](#table-of-contents)
+
 ## Class
 
 #### check if the type of an object at run time. 
@@ -177,6 +183,8 @@ console.log(auto instanceof Object);	// true
 - Objects created using the new keyword inherit from a prototype called Object.prototype.
 - the new operator to create an instance based on the prototype. 
 
+[[↑] Back to top](#table-of-contents)
+
 ## API
 
 #### Do you know AJAX, JavaScript and JSON
@@ -197,6 +205,8 @@ console.log(auto instanceof Object);	// true
 
 #### What is SQL Injection and how do you avoid it?
 
+[[↑] Back to top](#table-of-contents)
+
 ## Miscellaneous
 
 #### React 18 New Features
@@ -212,3 +222,4 @@ console.log(auto instanceof Object);	// true
 
 #### how to see the different kind of front-end frameworks, the advantage/limitation
 
+[[↑] Back to top](#table-of-contents)
