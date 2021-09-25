@@ -1038,10 +1038,8 @@ export default App2;
 ### Hooks
 
 #### What is Hooks?
-- React features that help you to "hook into" react methodology
 - Hooks are functions that let you “hook into” React state and lifecycle features from function components. 
-- Hooks don't work inside classes — they let you use React without classes. 
-- You can also create your own Hooks to reuse stateful behavior between different components.
+- Hooks don't work inside class components. You can also create your own Hooks to reuse stateful behavior between different components.
 
 #### useState()
 ```js
