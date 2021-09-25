@@ -1,15 +1,8 @@
-Why hooks
-State props
-Sass experience
-Iterate Object keys
-=== vs ==
-Web worker
 Enclosure bar foo
-Counter+1 component
-Components separation
 Jest snapshot testing
 React18 new feature
-
+What’s the webpack? Have your used other bundler tools
+What’s jest? Did you use snapshot? 
 
 //Cooding 
 //Question 1
@@ -137,7 +130,4 @@ export default Counter;
 //Question 10
 //Create a simple hello functional component where name is stored in state
 //Capture all the class-based life cycle as much as possible
-
-
-
-
+  
