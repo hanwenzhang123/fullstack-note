@@ -220,15 +220,37 @@ const auto = new Car('Honda', 'Accord', 1998);
 console.log(auto instanceof Car);	// true
 console.log(auto instanceof Object);	// true
 ```
+
 #### what is prototype
 - an object that is associated with every functions and objects by default 
-- where function's prototype property is accessible and modifiable and object's prototype property (aka attribute) is not visible. 
+- the mechanism by which JavaScript objects inherit features from one another.
+- All JavaScript objects inherit properties and methods from a prototype.
+- Where function's prototype property is accessible and modifiable and object's prototype property (aka attribute) is not visible. 
 - Every function includes prototype object by default.
 
 #### prototype chain
-- all the objects inherit the properties and methods from Object.prototype.
-- Objects created using the new keyword inherit from a prototype called Object.prototype.
-- the new operator to create an instance based on the prototype. 
+- All the objects inherit the properties and methods from `Object.prototype`.
+- Objects created using the `new` keyword inherit from a prototype called `Object.prototype`.
+
+#### `new` keyword
+- The `new` operator to create an instance of the class based on the prototype. 
+- `new` makes the this variable point to the newly created object.
+- it instantiates a class by allocating memory for a new object and returning a reference to that memory.
+
+#### ES6 Class Syntax
+```js
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+  sayHi() {
+    alert(this.name);
+  }
+}
+
+let user = new User("John");
+user.sayHi();
+```
 
 [[↑] Back to top](#table-of-contents)
 
