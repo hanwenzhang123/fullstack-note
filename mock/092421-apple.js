@@ -1,9 +1,3 @@
-Enclosure bar foo
-Jest snapshot testing
-React18 new feature
-What’s the webpack? Have your used other bundler tools
-What’s jest? Did you use snapshot? 
-
 //Cooding 
 //Question 1
 var array = [];
