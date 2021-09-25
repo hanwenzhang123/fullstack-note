@@ -1,5 +1,3 @@
-Describe features or components developed before
-
 Design pattern used in the daily work
 https://www.uxpin.com/studio/blog/react-design-patterns/
 Design patterns are repeatable solutions to commonly occurring problems in software development.
@@ -49,6 +47,7 @@ is a great way to handle something after something else has been completed.
 React Hooks
 create your own hooks. This allows you to extract the component logic and create reusable functions.
 
+
 What is a design system? 
 A design system is a collection of reusable components, guided by clear standards, that can be assembled together to build any number of applications.
 
@@ -65,39 +64,67 @@ By design, singletons create an instance of a class if it does not yet exist. Ot
 What is a singleton hook?
 Singleton hooks very similar to React Context in terms of functionality. 
 Each singleton hook has a body, you might think of it as of Context Provider body. 
-Hook has a return value, it’s similar to the value provided by context. 
+Hook has a return value, it is similar to the value provided by context. 
 Using a singleton hook from a component is like consuming a context.
 Singleton hooks are lazy. The body is not executed until the hook is called by some component or other hook. 
 Once loaded, the hook body remains loaded forever. 
 If you want to eager-load some Singleton hooks, use them at the top-level component of your App.
-Singleton hooks do not require a provider or a special App structure. 
-Under the hood, it uses useState/useRef/useEffect and some less-known react features for performance and portability.
-It is possible to mix into single app Singleton hooks, React-Redux hooks api, React Context hooks and any custom
 
 
 HOC in react, why do we need to use them?
 takes a component and returns a new component under a certain reusing component logic pattern
 const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
-
 When do you need to use a class component, when do you use a functional component?
 class - local state, lifecycle
 functions - other than above, with the help of hooks, everything
 
+
 Software Engineering
-Types of Scrum Meetings
+Agile Scrum
+Sprint: 2 - 3 weeks
+Scrum team: 3 to 9 people
+
+Product Owner: release management
+  scrum manegment - what should team do for each scrum
+  communicate with clients, gathering requirements => put into backlog
+  backlog management
+Scrum Master: host meetings
+  in the planning meetings or retrospective
+  non-technical
+Business Analysis: they will get stories, separate them into tickets
+Development Team:
+  team leader
+  front-end developer 2-4
+  back-end developer 3-5
+Tester Team:
+  QA: quality assurance 3
+UI/UX designer: creating mock up for front-end developers
+
+Weekly Meetings
+Agile/Scrum Meetings
 - Sprint Planning Meeting
+  - scrums will assign tickets to developers
+  - JIRA ticket => we need to discuss how long a developer should take to finish
+  - we do not suggest using hours nowadays
+  - story points: if you have a ticket which is more than 5 story points, most likely you are trying to separate it
+  - for each sprint, you will get around 10 points
 - Daily Scrum Meeting
 - Sprint Review Meeting
-- Sprint Retrospective Meeting
+- Sprint Retrospective Meeting: 
+  - scrum master is giving feedback to the whole team 
+  - all team members give feedback on what we did good, bad, what to improve
 - Backlog Refinement Meeting
+Sprint demo: each of the developer should make presentation
+Back Refinement: check backlog, move backlog tickets to active sprint/future sprint
+Business Meeting: communicate with clients
 
-
-Daily tasks, like daily standup, assign tickets to work on, reviews
-
-Teamwork, Sprint, feature, module
-
-Software development life cycle and daily work details
-
-Do you have any questions for me?
- 
+Daily Meetings
+- Daily Stand-ups: What did you do yesterday? What will you do today? What (if anything) is blocking your progress?
+- Daily Tag-ups: Get updates for today and solve blockers
+  
+Sprint cycle
+- Sprints are developmental cycles that repeat until your project is complete. 
+- Requirements (often in the form of user stories) are developed, tested, integrated, and approved within each sprint.
+- And the process continues sprint after sprint. The figure depicts a one-week sprint life cycle.
+  
