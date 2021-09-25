@@ -16,26 +16,15 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/mock/README.md
 
 ## React Example
 
-#### setState Example
+#### setTimeout example
 ```js
-//setState - Asynchronous
-//react will batch several setStates together into a single update for performing the state change due to performance
-//use callback function to setState to make it correctly rendered instead of just assigning the new object
-
-this.setState((prevState) => {     //passing in a callback function instead of setState directly
-	return { number: prevState.number + 1 };
-})
-```
-
-```js
-//setTimeout example
 handleClick = () => {
     const { number } = this.state;
     setTimeout(() => {     //no good, synchronous
       this.setState({ number: number + 1 }); // 0: 0 + 1    //always pass the copy, always the number, 0 + 1, closure case
       this.setState({ number: number + 1 }); // 1: 0 + 1    //change back to 0 + 1, outdated value
     }, 0)
-    V.S.
+
   //const { number } = this.state;   
     setTimeout(() => {     //correct value
       this.setState({ number: this.state.number + 1 }); // 0: 0 + 1
@@ -43,6 +32,43 @@ handleClick = () => {
     }, 0)
   }
 }
+```
+
+#### Parent-Child Example
+```js
+//Parent.js
+import React, {useState} from 'react';
+improt './Parent.css';
+improt Child from './components/Child';
+
+function Parent() {
+  const [word, setWord] = useState("Parent");
+  
+  return(
+    <div className = "parent">
+      <h1>{Word}</h1>
+      <Child 
+        changeWord={word => setWord(word)}/>    //set the parameter word to word
+    </div>
+    );
+}
+export default Parent;
+
+//Child.js
+import React from 'react';
+improt './Child.css';
+
+function Child(props) {
+  return(
+    <div className = "child">
+      <h1>Child</h1>
+      <button onClick={()=> props.changeWord("Hello World")}>      //onClick then we want something to happen
+        Click to Change the Word      //props.changeWord from parent
+      </button>
+    </div>
+    );
+}
+export default Child;
 ```
 
 #### Class Component Example
@@ -86,43 +112,6 @@ class App extends React.Component { //extends the component
 }
 
 export default App;
-```
-
-#### Parent-Child Example
-```js
-//Parent.js
-import React, {useState} from 'react';
-improt './Parent.css';
-improt Child from './components/Child';
-
-function Parent() {
-  const [word, setWord] = useState("Parent");
-  
-  return(
-    <div className = "parent">
-      <h1>{Word}</h1>
-      <Child 
-        changeWord={word => setWord(word)}/>    //set the parameter word to word
-    </div>
-    );
-}
-export default Parent;
-
-//Child.js
-import React from 'react';
-improt './Child.css';
-
-function Child(props) {
-  return(
-    <div className = "child">
-      <h1>Child</h1>
-      <button onClick={()=> props.changeWord("Hello World")}>      //onClick then we want something to happen
-        Click to Change the Word      //props.changeWord from parent
-      </button>
-    </div>
-    );
-}
-export default Child;
 ```
 
 [[↑] Back to top](#table-of-contents)
@@ -209,6 +198,8 @@ class App extends React.Component {
 [[↑] Back to top](#table-of-contents)
 
 ## React Context
+
+#### React Context API
 ```js
 const MyContext = React.createContext();    //JSX - Capitalize
 class Component
@@ -346,12 +337,536 @@ const rootReducer = combineReducers({     //here pass the switch case counterRed
 export default rootReducer;
 ```
 
-#### to-do list example
-using `.push()` to push a new item to the state is no good in redux, since push manipulates the existing array in the existing state.
+[[↑] Back to top](#table-of-contents)
 
-instead, we can using the spread operator `...` to get the copy of the array, and then return the manipulated one.
-
+## React HOC
+ContentContainer.js 
 ```js
+import React from "react";
+import "./ContentContainer.css";
+
+const ContentContainer = (OriginalComponent) => {
+  class NewComponent extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        checked: false,
+      };
+    }
+
+    handleVisibility = (e) => {
+      this.setState({
+        checked: !this.state.checked,
+      });
+    };
+
+    render() {
+      const hidden = this.state.checked === true ? "" : "hidden";
+      return (
+        <div>
+          <span>Invisible Checkbox</span>
+          <input type="checkbox" onClick={this.handleVisibility} />
+          {hidden ? <OriginalComponent /> : null}
+        </div>
+      );
+    }
+  }
+  return NewComponent;
+};
+
+export default ContentContainer;
+```
+
+App.js
+```js
+import React, { Component } from "react";
+import "./App.css";
+
+import HOCCounter from "./components/Counter/Counter";
+import HOCTdList from "./components/TdList/TdList";
+class App extends Component {
+  render() {
+    return (
+      <React.Fragment>
+        <HOCCounter />
+        <HOCTdList />
+      </React.Fragment>
+    );
+  }
+}
+
+export default App;
+```
+
+index.js
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+
+import "./index.css";
+import App from "./App";
+
+ReactDOM.render(<App />, document.getElementById("root"));
+```
+
+## React Counter
+Counter.js
+```js
+import React, { Component } from "react";
+import Count from "./Count";
+import ButtonRow from "./ButtonRow";
+import Card from "../UI/Card";
+import ContentContainer from "../HOC/ContentContainer";
+
+class Counter extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      number: 0,
+      isRunning: false,
+    };
+  }
+
+  increment = () => {
+    this.setState((prevState) => {
+      return { number: prevState.number + 1 };
+    });
+  };
+
+  decrement = () => {
+    this.setState((prevState) => {
+      return { number: prevState.number - 1 };
+    });
+  };
+
+  incIfOdd = () => {
+    if (this.state.number % 2 !== 0) {
+      this.increment();
+    }
+  };
+
+  asyncInc = () => {
+    setTimeout(() => {
+      this.increment();
+    }, 1000);
+  };
+
+  reset = () => {
+    this.setState({ number: 0 });
+  };
+
+  timerHandler = () => {
+    this.setState((prevState) => ({
+      isRunning: !prevState.isRunning,
+    }));
+  };
+
+  componentDidMount() {
+    this.intervalID = setInterval(() => {
+      if (this.state.isRunning) {
+        this.setState((prevState) => ({
+          number: prevState.number + 1,
+        }));
+      }
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+
+  render() {
+    const { number } = this.state;
+    const { increment, decrement, incIfOdd, asyncInc, reset, timerHandler } =
+      this;
+
+    return (
+      <Card>
+        <Count num={number} />
+        <ButtonRow clickHandler={increment} value="Increment +1" />
+        <ButtonRow clickHandler={decrement} value="Decrement -1" />
+        <ButtonRow clickHandler={incIfOdd} value="Increment-If-Odd" />
+        <ButtonRow clickHandler={asyncInc} value="Async-Inc" />
+        <ButtonRow clickHandler={reset} value="Reset" />
+        <ButtonRow
+          clickHandler={timerHandler}
+          value={this.state.isRunning ? "TIMER STOP" : "TIMER START"}
+        />
+      </Card>
+    );
+  }
+}
+
+const HOCCounter = ContentContainer(Counter);
+export default HOCCounter;
+```
+
+ButtonRow.js
+```js
+import React from "react";
+
+function ButtonRow(props) {
+  return (
+    <div className="App">
+      <button onClick={props.clickHandler}>{props.value}</button>
+    </div>
+  );
+}
+
+export default ButtonRow;
+```
+
+Count.js
+```js
+import React from "react";
+
+function Count(props) {
+  const { num } = props;
+  return (
+    <div>
+      <h1>COUNTING</h1>
+      <h2>Current Count: {num}</h2>
+    </div>
+  );
+}
+
+export default Count;
+```
+
+[[↑] Back to top](#table-of-contents)
+
+## React To Do List
+TdList.js
+```js
+import React, { Component } from "react";
+import InputField from "./InputField";
+import ItemList from "./ItemList";
+import Card from "../UI/Card";
+import ContentContainer from "../HOC/ContentContainer";
+
+class TdList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: ["Study React", "Do Homework"],
+    };
+  }
+
+  addItem = (inputText) => {
+    const list = [...this.state.list];
+    list.push(inputText);
+    this.setState({ list });
+  };
+
+  deleteItem = (id) => {
+    const list = [...this.state.list];
+    const updatedList = list.filter((item, index) => index !== id);
+    this.setState({ list: updatedList });
+  };
+
+  sortList = (value) => {
+    const list = [...this.state.list];
+    if (value === "asc") {
+      const ascList = list.sort((a, b) => a.localeCompare(b));
+      this.setState({ list: ascList });
+    } else if (value === "desc") {
+      const descList = list.sort((a, b) => b.localeCompare(a));
+      this.setState({ list: descList });
+    }
+  };
+
+  render() {
+    const { list } = this.state;
+    const { addItem, deleteItem, sortList } = this;
+
+    return (
+      <Card>
+        <InputField onAdd={addItem} onSelect={sortList} />
+        <ItemList onDisplay={list} onDelete={deleteItem} />
+      </Card>
+    );
+  }
+}
+
+const HOCTdList = ContentContainer(TdList);
+export default HOCTdList;
+```
+
+InputField.js
+```js
+import React, { Component } from "react";
+class InputField extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputText: "",
+    };
+  }
+
+  handleClick = () => {
+    if (this.state.inputText.trim().length > 0) {
+      this.props.onAdd(this.state.inputText);
+    }
+    this.setState({
+      inputText: "",
+    });
+  };
+
+  handleChange = (event) => {
+    this.setState({ inputText: event.target.value });
+  };
+
+  handleDropdown = (event) => {
+    this.props.onSelect(event.target.value);
+  };
+
+  render() {
+    const { inputText } = this.state;
+    const { handleChange, handleClick, handleDropdown } = this;
+    return (
+      <div>
+        <h1> TO-DO LIST </h1>
+        <input
+          onChange={handleChange}
+          type="text"
+          placeholder="Enter Task"
+          value={inputText}
+        />
+        <button onClick={handleClick}>ADD</button>
+        <select onChange={handleDropdown}>
+          <option>***sort***</option>
+          <option value="asc">A-Z</option>
+          <option value="desc">Z-A</option>
+        </select>
+      </div>
+    );
+  }
+}
+
+export default InputField;
+```
+
+ItemList.js
+```js
+import React from "react";
+import Item from "./Item";
+
+function ItemList(props) {
+  if (props.onDisplay.length === 0) {
+    return <p>Found No To-do Items.</p>;
+  }
+
+  return (
+    <div className="App">
+      {props.onDisplay.map((item, index) => (
+        <Item id={index} key={index} item={item} onDelete={props.onDelete} />
+      ))}
+    </div>
+  );
+}
+
+export default ItemList;
+```
+
+Item.js
+```js
+import React from "react";
+
+function Item(props) {
+  return (
+    <div>
+      <li>
+        {props.item}
+        <button onClick={() => props.onDelete(props.id)}>x</button>
+      </li>
+    </div>
+  );
+}
+
+export default Item;
+```
+
+[[↑] Back to top](#table-of-contents)
+
+## Redux Store
+index.js
+```js
+import ReactDOM from "react-dom";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
+
+import rootReducer from "./store/reducer";
+import App from "./App";
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
+```
+
+App.js
+```js
+import React, { Component } from "react";
+import HOCCounter from "./components/Counter/Counter";
+import HOCTdList from "./components/TdList/TdList";
+
+class App extends Component {
+  render() {
+    return (
+      <React.Fragment>
+        <HOCCounter />
+        <HOCTdList />
+      </React.Fragment>
+    );
+  }
+}
+
+export default App;
+```
+
+action.js
+```js
+//COUNTER
+const incAction = () => {
+  return {
+    type: "INCREMENT",
+  };
+};
+const decAction = () => {
+  return {
+    type: "DECREMENT",
+  };
+};
+const oddAction = () => {
+  return {
+    type: "ODD",
+  };
+};
+const resetAction = () => {
+  return {
+    type: "RESET",
+  };
+};
+const timerAction = () => {
+  return {
+    type: "TIMER",
+  };
+};
+
+let timer;
+export const timerUpdate = () => (dispatch, getState) => {
+    clearInterval(timer);
+    timer = setInterval(() => {
+        dispatch(incAction());
+    }, 1000);
+  }
+
+export const timerStopUpdate = () => (dispatch, getState) =>
+  clearInterval(timer);
+
+
+//TO-DO LIST
+const textAction = (item) => {
+  return {
+    type: "TEXT",
+    payload: item,
+  };
+};
+
+const addAction = () =>  (dispatch, getState) => {
+  const inputText = getState().tdListReducer.text;
+  dispatch({
+  type: "ADD",
+  payload: inputText, 
+    })
+};
+
+const deleteAction = (id) => {
+  return {
+    type: "DELETE",
+    payload: id
+  };
+};
+
+const sortAction = (value) => {
+  return {
+    type: "SORT",
+    payload: value,
+  };
+};
+
+//Visibility
+const visibilityAction = () => {
+  return {
+    type: "CHECK",
+  };
+};
+
+export {
+  incAction,
+  decAction,
+  oddAction,
+  resetAction,
+  timerAction,
+  textAction,
+  addAction,
+  deleteAction,
+  sortAction,
+  visibilityAction
+};
+```
+reducer.js
+```js
+import { combineReducers } from "redux";
+
+//COUNTER
+const COUNT_INIT_STATE = {
+  counter: 0,
+  isRunning: false,
+};
+
+const counterReducer = (state = COUNT_INIT_STATE, action) => {
+  switch (action.type) {
+    case "INCREMENT":
+      return {
+        ...state,
+        counter: state.counter + 1,
+      };
+    case "DECREMENT":
+      return {
+        ...state,
+        counter: state.counter - 1,
+      };
+    case "ODD":
+      return {
+        ...state,
+        counter: state.counter % 2 !== 0 ? state.counter + 1 : state.counter,
+      };
+    case "RESET":
+      return {
+        ...state,
+        counter: (state.counter = 0),
+      };
+    case "TIMER":
+      return {
+        ...state,
+        isRunning: !state.isRunning,
+      };
+    default:
+      return state;
+  }
+};
+
+//TO-DO LIST
 const TODO_INIT_STATE = {
   todo: ["Study Redux", "Do Homework"],
   text: "",
@@ -378,6 +893,259 @@ const tdListReducer = (state = TODO_INIT_STATE, action) => {
       return state;
   }
 };
+
+//Visibility
+const VISIBILITY_INIT_STATE = {
+  checked: false,
+};
+
+const visibilityReducer = (state = VISIBILITY_INIT_STATE, action) => {
+  switch (action.type) {
+    case "CHECK":
+      return {
+        checked: !state.checked,
+      }
+    default:
+      return state;
+  }
+};
+
+const rootReducer = combineReducers({
+  counterReducer,
+  tdListReducer,
+  visibilityReducer
+});
+
+export default rootReducer;
+```
+
+## Redux Counter
+Counter.js
+```js
+import React, { Component } from "react";
+
+import Card from "../UI/Card";
+import Count from "./Count";
+import ButtonRow from "./ButtonRow";
+import ContentContainer from "../HOC/ContentContainer";
+
+class Counter extends Component {
+  render() {
+    return (
+      <Card>
+        <Count />
+        <ButtonRow />
+      </Card>
+    );
+  }
+}
+
+const HOCCounter = ContentContainer(Counter);
+export default HOCCounter;
+```
+
+ButtonRow.js
+```js
+import React from "react";
+import { connect } from "react-redux";
+import * as actions from "../../store/action";
+
+function ButtonRow(props) {
+  function async() {
+    setTimeout(() => {
+      props.incHandler();
+    }, 1000);
+  }
+
+  if(props.isRunning) {
+    props.timerUpdate();
+  } else {
+    props.timerStopUpdate();
+  }
+
+  return (
+    <div className="App">
+      <button onClick={props.incHandler}>Increment +1</button> <br />
+      <button onClick={props.decHandler}>Decrement -1</button> <br />
+      <button onClick={props.oddHandler}>Increment-If-Odd</button> <br />
+      <button onClick={async}>Async-Inc</button> <br />
+      <button onClick={props.resetHandler}>Reset</button> <br />
+      <button onClick={props.timerHandler}>
+        {props.isRunning ? "TIMER STOP" : "TIMER START"}
+      </button>
+    </div>
+  );
+}
+
+const mapStateToProps = (state) => ({
+  isRunning: state.counterReducer.isRunning,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  incHandler: () => dispatch(actions.incAction()),
+  decHandler: () => dispatch(actions.decAction()),
+  oddHandler: () => dispatch(actions.oddAction()),
+  resetHandler: () => dispatch(actions.resetAction()),
+  timerHandler: () => dispatch(actions.timerAction()),
+  timerUpdate: () => dispatch(actions.timerUpdate()),
+  timerStopUpdate: () => dispatch(actions.timerStopUpdate()),
+});
+
+const ConnectedCounter = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ButtonRow);
+
+export default ConnectedCounter;
+```
+
+Count.js
+```js
+import React from "react";
+import { connect } from "react-redux";
+
+function Count(props) {
+  return (
+    <div>
+      <h1>COUNTING</h1>
+      <h2>Current Count: {props.counter}</h2>
+    </div>
+  );
+}
+
+const mapStateToProps = (state) => ({
+  counter: state.counterReducer.counter,
+});
+
+export default connect(mapStateToProps)(Count);
+```
+
+[[↑] Back to top](#table-of-contents)
+
+## Redux To Do List
+TdList.js
+```js
+import React, { Component } from "react";
+
+import InputField from "./InputField";
+import ItemList from "./ItemList";
+import Card from "../UI/Card";
+import ContentContainer from "../HOC/ContentContainer";
+
+class TdList extends Component {
+  render() {
+    return (
+      <Card>
+        <InputField />
+        <ItemList />
+      </Card>
+    );
+  }
+}
+
+const HOCTdList = ContentContainer(TdList);
+export default HOCTdList;
+```
+
+InputField.js
+```js
+import React from "react";
+import { connect } from "react-redux";
+import * as actions from "../../store/action";
+
+const InputField = ({ text, textHandler, addHandler, sortHandler }) => {
+  const handleChange = (e) => {
+    textHandler(e.target.value);
+  };
+
+  const handleAdd = (e) => {
+    addHandler(e.target.value);
+  };
+
+  const handleDropdown = (e) => {
+    sortHandler(e.target.value);
+  };
+
+  return (
+    <div>
+      <h1> TO-DO LIST </h1>
+      <input
+        type="text"
+        value={text}
+        placeholder="Enter Task"
+        onChange={handleChange}
+      />
+
+      <button onClick={handleAdd}>ADD</button>
+      <select onChange={handleDropdown}>
+        <option>***sort***</option>
+        <option value="asc">A-Z</option>
+        <option value="desc">Z-A</option>
+      </select>
+    </div>
+  );
+};
+const mapStateToProps = (state) => ({
+  text: state.tdListReducer.text,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  textHandler: (item) => dispatch(actions.textAction(item)),
+  addHandler: (todo) => dispatch(actions.addAction(todo)),
+  sortHandler: (value) => dispatch(actions.sortAction(value)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(InputField);
+```
+
+ItemList.js
+```js
+import React from "react";
+import Item from "./Item";
+import { connect } from "react-redux";
+import * as actions from "../../store/action";
+
+function ItemList(props) {
+  if (props.todo.length === 0) {
+    return <p>Found No To-do Items.</p>;
+  }
+
+  return (
+    <div className="App">
+      {props.todo.map((item, index) => (
+        <Item id={index} key={index} item={item} onDelete={props.deleteHandler}/>
+      ))}
+    </div>
+  );
+}
+
+const mapStateToProps = (state) => ({
+  todo: state.tdListReducer.todo,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  deleteHandler: (id) => dispatch(actions.deleteAction(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemList);
+```
+
+Item.js
+```js
+import React from "react";
+
+function Item(props) {
+  return (
+    <div>
+      <li>
+        {props.item}
+        <button onClick={() => props.onDelete(props.id)}>x</button>
+      </li>
+    </div>
+  );
+}
+
+export default Item;
 ```
 
 [[↑] Back to top](#table-of-contents)
