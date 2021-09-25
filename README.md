@@ -223,6 +223,11 @@ arr = [] // object (array)
 function(){}  //function - object
 ```
 
+#### =, ==, ===
+`=` - assignment operator, which sets the variable on the left of the = to the value of the expression that is on its right
+`==` - comparison operator, which transforms the operands having the same type before comparison `2=='2'`
+`===` - strict equality comparison operator, which returns false for the values which are not of a similar type  `2==='2'`
+
 #### concat
 ```js
 //automatically convert to string; number + -> concat
