@@ -174,3 +174,8 @@ The prototype is an object that is associated with every functions and objects b
 #### client-side rendering vs server-side rendering
 
 #### object oriented programming vs functional programming
+
+## React 18 New Features
+- Concurrency control with the Transition API,
+- Automatic Batching of function calls and events to improve in-app performance, and.
+- Much faster page loads for SSR with Suspense.
