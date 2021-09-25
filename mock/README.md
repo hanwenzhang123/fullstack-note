@@ -44,15 +44,15 @@ string.length - The length property returns the length of a string.
 arr.length = 0 - empty the array
 ```
 #### Remove Elements
-- pop - Removes from the End of an Array
-- shift - Removes from the beginning of an Array
-- splice - removes from a specific Array index
-- filter - allows you to programatically remove elements from an Array
+- `.pop()` - Removes from the End of an Array
+- `.shift()` - Removes from the beginning of an Array
+- `.splice()` - removes from a specific Array index
+- `.filter()` - allows you to programatically remove elements from an Array
 
 #### Add Elements
-- push() method adds new items to the end of an array
-- unshift() method adds to beginning of the array
-- arr.splice(index, 0, item);
+- `.push()` - adds new items to the end of an array
+- `.unshift()` - adds to beginning of the array
+- `.arr.splice(index, 0, item)`;
 
 #### check if it is an array
 `Array.isArray()` -  return boolean, check whether an object (or a variable) is an array or not. 
@@ -85,7 +85,16 @@ while(a.length > 0) {
 
 ## Object
 
+#### Object Methods
+```js
+- Object.entries(): Returns an array containing all of the key value pairs of a given object's own enumerable string properties.
+- Object.keys(): Returns an array containing the names of all of the given object's own enumerable string properties.
+- Object.values(): Returns an array containing the values that correspond to all of a given object's own enumerable string properties.
+- Object.prototype.hasOwnProperty(): returns a boolean indicating whether the object has the specified property as its own property.
+```
+
 #### 4 ways to create an object:
+https://dzone.com/articles/easy-javascript-part-13-four-ways-to-create-object
 - Object Literals
 - New operator or constructor
 - Object.create method
@@ -112,10 +121,6 @@ console.log(obj["x"])  //1
 const obj = { "you what":1 }; //with space
 console.log(obj["you what"])  //1
 ```
-- Object.entries(): Returns an array containing all of the key value pairs of a given object's own enumerable string properties.
-- Object.keys(): Returns an array containing the names of all of the given object's own enumerable string properties.
-- Object.values(): Returns an array containing the values that correspond to all of a given object's own enumerable string properties.
-- Object.prototype.hasOwnProperty(): returns a boolean indicating whether the object has the specified property as its own property.
 
 #### Check if JavaScript Object is empty
 ```js
@@ -157,7 +162,9 @@ console.log(auto instanceof Car);	// true
 console.log(auto instanceof Object);	// true
 ```
 #### What is prototype in JS
-The prototype is an object that is associated with every functions and objects by default in JavaScript, where function's prototype property is accessible and modifiable and object's prototype property (aka attribute) is not visible. ... Every function includes prototype object by default.
+- an object that is associated with every functions and objects by default 
+- where function's prototype property is accessible and modifiable and object's prototype property (aka attribute) is not visible. 
+- Every function includes prototype object by default.
 
 #### prototype chain
 - all the objects inherit the properties and methods from Object.prototype.
@@ -175,7 +182,9 @@ The prototype is an object that is associated with every functions and objects b
 
 #### object oriented programming vs functional programming
 
-## React 18 New Features
+## New Features
+
+#### React 18 New Features
 - Concurrency control with the Transition API,
 - Automatic Batching of function calls and events to improve in-app performance, and.
 - Much faster page loads for SSR with Suspense.
