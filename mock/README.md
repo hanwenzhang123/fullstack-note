@@ -5,6 +5,9 @@ title: SSI-Training-Note (Part2)
 ## SSI-Training-Note (Part1)
 https://github.com/hanwenzhang123/SSI-training-note/blob/main/README.md
 
+## SSI-Training-Note (Part3)
+https://github.com/hanwenzhang123/SSI-training-note/blob/main/react-redux-code/README.md
+
 ## Table of Contents
 - [String](#String)
 - [Array](#Array)
