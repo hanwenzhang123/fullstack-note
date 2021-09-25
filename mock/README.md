@@ -291,8 +291,13 @@ user.sayHi();
 - DELETE deletes the specified resource.
 
 #### Client-Side Rendering vs Server-Side Rendering
-- Client-side rendering manages the routing dynamically without refreshing the page every time a user requests a different route. Your browser downloads a minimal HTML page. It renders the JavaScript and fills the content into it. React uses client-side rendering.
-- Server-side rendering when a user makes a request to a webpage, the server prepares an HTML page by fetching user-specific data and sends it to the user’s machine over the internet. The browser then construes the content and displays the page.
+- Client-side rendering manages the routing dynamically without refreshing the page every time a user requests a different route. 
+- Your browser downloads a minimal HTML page. It renders the JavaScript and fills the content into it. 
+- React uses client-side rendering.
+
+- Server-side rendering when a user makes a request to a webpage, 
+- the server prepares an HTML page by fetching user-specific data and sends it to the user’s machine over the internet. 
+- The browser then construes the content and displays the page.
 
 #### Object Oriented Programming vs Functional Programming
 
@@ -315,7 +320,17 @@ user.sayHi();
 
 #### if two projects/fields using same components in the same library, how to design and use it with other teams
 
-#### What's difference between element and components in React
+#### element vs components in React
+React Element 
+- It is a simple object that describes a DOM node and its attributes or properties you can say. 
+- It is an immutable description object and you can not apply any methods on it. 
+
+React Component 
+- It is a function or class that accepts an input and returns a React element.
+
+#### stateful component vs stateless component
+- stateful components are keeping track of changing data
+- stateless components print out what is given to them via props, or they always render the same thing.
 
 #### how to see the different kind of front-end frameworks, the advantage/limitation
 
