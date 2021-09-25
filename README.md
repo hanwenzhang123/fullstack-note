@@ -16,7 +16,6 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/mock/README.md
 - [React-Example](#react-example)
 - [Lifecycle](#lifecycle)
 - [HOC](#HOC)
-- [CC-](#HOC)
 - [Hooks](#hooks)
 - [Context](#context)
 - [Redux](#redux)
