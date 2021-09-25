@@ -9,6 +9,8 @@ title: SSI-Training-Note
 - [Class](#Class)
 - [API](#API)
 - [Miscellaneous](#miscellaneous)
+- [Performance](#performance)
+- [Testing](#testing)
 
 ## String
 
@@ -60,6 +62,23 @@ arr.length = 0 - empty the array
 #### check if it is an array
 `Array.isArray()` -  return boolean, check whether an object (or a variable) is an array or not. 
 
+#### .map() vs .forEach()
+- `.forEach()`: returns undefined, does not modify the array, it just iterates over it (allow a callback function to mutate the current array).
+```js
+let arr = [1, 2, 3, 4, 5];
+arr.forEach((num, index) => {
+    return arr[index] = num * 2;
+});
+// arr = [2, 4, 6, 8, 10]
+```
+- `.map()`: returns a new array with the transformed elements, does not change the original array.
+```js
+let doubled = arr.map(num => {
+    return num * 2;
+});
+// doubled = [2, 4, 6, 8, 10]
+```
+
 #### empty an array in JavaScript
 ```js
 //1. Assign it to an empty array
@@ -84,6 +103,28 @@ arr.length = 0 - empty the array
 while(a.length > 0) {
     a.pop();
 }
+```
+
+#### Math in Array
+javascript array does not have Math Method - it expects distinct variables
+```js
+Math.max(1, 2, 3)    // 3
+Math.min(1, 2, 3)    // 1
+const nums = [1, 2, 3]
+Math.min(nums)    // NaN
+Math.max(nums)    // NaN
+
+//apply()
+var nums = [1, 2, 3]
+Math.min.apply(Math, nums)    // 1
+Math.max.apply(Math, nums)    // 3
+Math.min.apply(null, nums)    // 1    //this assigns to null
+Math.max.apply(null, nums)    // 3
+
+//destructuring
+const nums = [1, 2, 3]
+Math.min(...nums)    // 1
+Math.max(...nums)    // 3
 ```
 
 [[↑] Back to top](#table-of-contents)
@@ -223,3 +264,123 @@ console.log(auto instanceof Object);	// true
 #### how to see the different kind of front-end frameworks, the advantage/limitation
 
 [[↑] Back to top](#table-of-contents)
+
+## Performance
+
+#### How do you generally improve performance?
+React
+  -HOC
+  -memo/PureComponent (shouldComponentUpdate) - lifecycle
+  -reduce unnecessary re-rendering
+  
+Redux
+  -Thunk
+  -Re-selector
+  
+JS
+  -Event Delegation (allows you to avoid adding event listeners to specific nodes)
+  
+CSS
+  -Animation
+  -image-sprite (reduce requests)
+  -image compression
+  
+HTML
+  -Empty HTML
+  -Style on the top, script down/defer/async
+
+#### Webpack 
+- A module bundler for front-end dev applications -> bundle your styles
+- Webpack gives you control over how to treat different assets it encounters
+- Webpack recursively builds every module in your application, then packs all those modules into a small number of bundles.
+- Similar bundler: Gulp or Grunt task runners
+
+HMR(Hot Module Replacement)
+- Update the page directly without a fully page reload - more efficient dev environment and will not loss the current state
+
+Tree Shaking
+- Get rid of unnecessary code
+```js
+if (false) {console.log ("Never Reached")}    //dead code elimination
+const c = x + 1;
+return c;   //=> return x+1
+```
+
+Code Splitting
+- Split your modules properly according to the dependency graph
+
+Lazy Loading
+- Split your code at logical breakpoints, and then loading it once the user has done something that requires a new block of code. 
+
+
+####  Minification - Minifier/uglifier 
+- make your code prettier, make it more efficient during compiling phase
+- remove unnecessary code 
+- rename to a more efficient version for machine
+- save time onloading
+
+```js
+  const aaaaa=1;
+  console.log (aaaaa);
+  // ===>
+  const a=1; console.log(a)
+```
+
+#### loadsh
+Debounce and throttle are techniques to control how many times we allow a function to be executed over time 
+- debounce -> search bar (auto-complete)
+- throttle -> scrolling / resizing page
+- debounce / throtte -> web performance improvement -> control the number of times the function will be called
+
+debounce 
+- setTimeout
+- like a search bar, you enter text, once yoou finish, wait for the timer done, it will send the request only one time to UI after the time period
+- like we post comments everytime triggers a hard delay, then reset the timer to 100 again
+- “group” multiple sequential calls in a single one.
+
+```js
+func fetchAPI ... const debouncedFunc = _.debounce(fetchAPI, 100) //shorter than a 100
+onUserInput => {
+  debouncedFunc()
+}
+```
+
+throtte 
+- setInterval
+- like resizing page, you send requests to the UI with a timer interval, will be sent no matter how many requests within the time period
+- like comments triggers 100 for the entire cycle 
+- `_.throttle(fetchAPI, 100)`;
+
+[[↑] Back to top](#table-of-contents)
+
+## Testing
+
+#### Have you done Unit Test?  
+Yes, doing unit testing to ensure correctness of any codebase. 
+
+#### What do you use for Unit Test?
+Jest
+- JS helper functions (logic helper)
+- `x => x+1` -> pure function
+- test any side effect `x => x+1`
+	
+Enzyme: 
+- component test
+
+#### Jest - Snapshot Testing
+- useful tool whenever you want to make sure your UI does not change unexpectedly
+- A typical snapshot test case renders a UI component, takes a snapshot, then compares it to a reference snapshot file stored alongside the test.
+- The test will fail if the two snapshots do not match
+
+#### What is the coverage? 
+How complete your unit test cover all the code
+- 90% coverage (out of 100 lines, at least 90 lines are ran)
+
+#### Unit Test File Example
+- button.js
+- button.test.js
+- npm run test *.test.js
+
+[[↑] Back to top](#table-of-contents)
+ 
+
