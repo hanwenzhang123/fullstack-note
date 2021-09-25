@@ -590,6 +590,24 @@ console.log(obj);  //{x: { y: 9 } - also change to 9, both get update
 
 ### DOM Event
 
+#### JS mechanism (how to handle the sync and async code)
+The event loops behind the browser handles the sync and async JavaScript code, like when JS engine that built in the browser (for chrome is V8) runs JS code, because JS is a single threaded language, the code will be read line by line, and stores the memory in the heap, and push the function call to the call stack. If it is async function code, it will be then pushed to the web API instead to wait for the condition to be met while the call stack keeps running as first in last out and garbage collects the variables that are no longer in use. Once the async code in the web API is ready to run, it will then be pushed to the message queue. When there are no functions to run in the call stack, the Event Loop will take the first event from the Queue and will push it to the Call Stack to run.
+
+#### addEventListener()
+- `element.addEventListener(event, function, useCapture)`
+- addEventListener() method attaches an event handler to the specified element.
+- removeEventListener() method to remove an event handler that has been attached with the addEventListener() method.
+- event: A String that specifies the name of the event like click, mouseover, keyup
+- function: Specifies the function to run when the event occurs
+- useCapture: Optional. A Boolean value that specifies whether the event should be executed in the capturing or in the bubbling phase.
+
+Using the optional useCapture parameter to demonstrate the difference between bubbling and capturing:
+`document.getElementById("myDiv").addEventListener("click", myFunction, true);`
+
+useCapture Possible values:
+- true - The event handler is executed in the capturing phase
+- false- Default. The event handler is executed in the bubbling phase
+
 #### event propagation
 - like a deeper ocean goes to the layer one by one travel through the DOM tree to arrive at its target and what happens to it afterward
 - Event.stopPropagation() - prevents further propagation of the current event in the capturing and bubbling phases. 
