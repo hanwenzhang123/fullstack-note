@@ -1,5 +1,5 @@
 ---
-title: SSI-Training-Note
+title: SSI-Training-Note (Part1)
 ---
 
 ## Table of Contents
@@ -8,7 +8,7 @@ title: SSI-Training-Note
 - [JavaScript](#javascript)
 - [ES6](#ES6)
 - [JS Methods](#JS-Methods)
-- [DOM event](#DOM-event)
+- [DOM Event](#DOM-event)
 - [React](#react)
 - [React-Example](#react-example)
 - [Lifecycle](#lifecycle)
@@ -19,6 +19,9 @@ title: SSI-Training-Note
 - [Redux-Example](#redux-example)
 - [Middleware](#middleware)
 - [Re-selectors](#re-selectors)
+
+## SSI-Training-Note (Part2)
+https://github.com/hanwenzhang123/SSI-training-note/blob/main/mock/README.md
 
 ## HTML
 
@@ -584,7 +587,7 @@ console.log(newObj); //{x: { y: 9 } - only direct properties on the object point
 console.log(obj);  //{x: { y: 9 } - also change to 9, both get update
 ```
 
-### DOM event
+### DOM Event
 
 #### event propagation
 - like a deeper ocean goes to the layer one by one travel through the DOM tree to arrive at its target and what happens to it afterward
