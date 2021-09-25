@@ -1,5 +1,5 @@
 ---
-title: SSI-Training-Note
+title: SSI-Training-Note (Part2)
 ---
 
 ## Table of Contents
@@ -11,6 +11,9 @@ title: SSI-Training-Note
 - [Miscellaneous](#miscellaneous)
 - [Performance](#performance)
 - [Testing](#testing)
+
+## SSI-Training-Note (Part1)
+https://github.com/hanwenzhang123/SSI-training-note/blob/main/README.md
 
 ## String
 
