@@ -203,7 +203,7 @@ Remove data from local storage
 
 ## JavaScript
 
-#### What is V8?
+#### what is V8?
 Internal JavaScript engine built in Chrome.
 
 #### "use strict" Mode
@@ -305,7 +305,7 @@ let b = 1;
 - let - we can still re-assign value
 - const - no re-assign value allowed, good with objects because we are not changing pointer
 
-#### Describe arrow function
+#### Describe Arrow Function
 - simple syntax, less code
 - does not have its own "this" to be referred to the current object
 - does not need to bind functions
@@ -763,9 +763,9 @@ export class App2 extends Component {
 
 [[↑] Back to top](#table-of-contents)
 
-### Lifecycle
+## Lifecycle
 
-#### class component vs functional component
+#### Class Component vs Functional Component
 - we use class component when the component has its own local state and lifecycle before React 16.8
 - now we can use react hooks to perform local state and lifecycle in functional component
 
@@ -775,86 +775,33 @@ export class App2 extends Component {
 - componentDidUpdate (update) -> when we update, we need to change some state to trigger the re-render, config update, changing flag for next render
 - componentWillUnmount -> proper clean-up to prevent memory leak (remove eventListener, remove setTimeout)
 
-#### React.PureComponent vs memo -> performance improvement
+useEffect()
+- takes two parameters, 1st is callback function, 2nd is dependencies array
+- the returned function will be called after component is removed
+- we can do clean up in the returned function
+```js
+componentDidMount() {
+  window.addEventListener('mousemove', () => {})
+}
+componentWillUnmount() {
+  window.removeEventListener('mousemove', () => {})
+}
+
+//Hook equivalent of above code will be as follows
+useEffect(() => {
+  window.addEventListener('mousemove', () => {});
+
+  // returned function will be called on component unmount 
+  return () => {
+    window.removeEventListener('mousemove', () => {})
+  }
+}, [])
+```
+
+#### React.PureComponent vs memo
+- same functionality, both are for performance improvement
 - with PureComponent or memo, it already contains the logics of shouldComponentUpdate  - compare the props
 - to compare current props and previous props to make sure it cuts off unnecessary renders
-
-class wrap with `PureComponent`
-```js
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {  
-      number: 0
-    }
-  }
-   handleClick = () => {
-      const {number} = this.state;
-      this.setState({number: number + 1});
-   }
-  render() {
-    const {number} = this.state;
-    return (
-       <div className ="App">
-         <Title /> 
-         <h3> {number} </h3>
-         <button onClick={this.handleClick}>CCC</button>  
-       </div>
-     )
-  }
-} 
-class Title extends React.PureComponent {  //extends React.PureComponent, always compare the previous props and current props to determine if needs re-render
-//   constructor(props) {
-//     super(props);
-//   }  
-//   shouldComponentUpdate() {...}    //PureComponent works like containing logics with shouldComponentUpdate - compare the props to see if any changes
-  render() {  
-     console.log("Title rendering");    //this title will only render once, considers shouldComponentUpdate, we cut out unnecessary rendering
-     return (
-      <div>
-       <h1>Happy Today</h1>  
-     </div>
-    );
-  }
-}
-export default App;
-```
-
-function wrap with `memo` for functional component
-```js
-function Title() {		//capitalize the first letter for customized component
-  console.log("Title rendering");    //only render once, considers shouldComponentUpdate
-  return (
-     <div>
-       <h1>Happy Today</h1>  
-     </div>
-   );
-}
-const WrapperTitle = memo(Title);      //using memo and change return to the <WrapperTitle /> 
-
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {  
-      number: 0
-    }
-  }
-   handleClick = () => {
-      const {number} = this.state;
-      this.setState({number: number + 1});
-   }
-  render() {
-    const {number} = this.state;
-    return (
-       <div className ="App">
-         <WrapperTitle />     //here we use <WrapperTitle /> 
-         <h3> {number} </h3>
-         <button onClick={this.handleClick}>CCC</button>  
-       </div>
-     )
-  }
-} 
-```
 
 [[↑] Back to top](#table-of-contents)
 
@@ -989,6 +936,7 @@ function App() {
 - Context provides a way to pass data through the component tree without having to pass props down manually at every level.
 - With the help of context, we can get the value to the nested children directly. 
 - Without Redux and React Context, we have to do lifting state up.
+- Using Provider and Consumer
 
 #### Is React Context working the same way as Redux?
 - You can have multiple contexts but only one store in Redux
@@ -1000,41 +948,6 @@ function App() {
 #### When will be great to use Context? When will be great to use Context?
 - Redux - Larger scale application
 - Context - Smaller scale application
-
-#### Context API Example - Provider and Consumer
-```js
-const MyContext = React.createContext();    //JSX - Capitalize
-class Component
-  state = {
-   value: 1 
-  }
-  contextObj = {    //better performance
-        data: this.state.value,
-        onActionHandle: () => {   //with a function to pass down
-         this.setState({value: 2})
-        }
-  }
-  render() {
-    return(
-      <MyContext.Provider value = {this.contextObj}>    //like store={store}, better to put the object out not inside nested
-        <Child>
-      </MyContext.Provider>
-      )
-  }
-//Child.js
-  return(
-      <MyContext.Consumer>    //function call to get the value that passed in through the provider
-        {({data, onActionHandle}) => {
-        return (
-          <div> 
-            {data} 
-            <button onClick = {onActionHandler}>Click</button>          
-          </div>
-        )
-      }}
-      </MyContext.Consumer>
-    )
-```
 
 [[↑] Back to top](#table-of-contents)
 
