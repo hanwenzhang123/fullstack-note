@@ -301,8 +301,6 @@ user.sayHi();
 
 #### Object Oriented Programming vs Functional Programming
 
-#### Object Oriented Programing vs Processing Programing
-
 #### Combining frontend code with backend code or SQL
 
 #### What is SQL Injection and how do you avoid it?
@@ -316,11 +314,11 @@ user.sayHi();
 - Automatic Batching of function calls and events to improve in-app performance, and.
 - Much faster page loads for SSR with Suspense.
 
-#### how to share components with others or other teams
+#### How to share components with others or other teams
 
-#### if two projects/fields using same components in the same library, how to design and use it with other teams
+#### If two projects/fields using same components in the same library, how to design and use it with other teams
 
-#### element vs components in React
+#### Element vs Components in React
 React Element 
 - It is a simple object that describes a DOM node and its attributes or properties you can say. 
 - It is an immutable description object and you can not apply any methods on it. 
@@ -328,11 +326,22 @@ React Element
 React Component 
 - It is a function or class that accepts an input and returns a React element.
 
-#### stateful component vs stateless component
+#### Stateful Component vs Stateless Component
 - stateful components are keeping track of changing data
 - stateless components print out what is given to them via props, or they always render the same thing.
 
-#### how to see the different kind of front-end frameworks, the advantage/limitation
+#### How to see the different kind of front-end frameworks, the advantage/limitation
+Pros
+- easy and quick to get started
+- component based reusibility
+- good looking consistent UI design 
+- code is reliable and tested
+- help from strong community
+
+
+Cons
+- updates can introduce issues
+- easy to get started, but require more time down the road to add features and customizations. 
 
 [[↑] Back to top](#table-of-contents)
 
