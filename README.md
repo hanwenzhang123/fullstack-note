@@ -851,6 +851,7 @@ export default HOCCounter;
 - Hooks don't work inside class components. You can also create your own Hooks to reuse stateful behavior between different components.
 
 #### useState()
+- `const [state, setState] = useState(initialState)`
 ```js
 const computationInit = () => {
   console.log("Computing init");
@@ -899,9 +900,9 @@ function App() {
 }
 ```
 #### useEffect()
-- componentDidMount() - called once component mounted (was evaluated and rendered) - `useEffect(...,[])`
-- componentDidUpdate() - called once component updated (was evaluated and rendered) - `useEffect(..., [someValue])`
-- componentWillUnmount() - called right before component is unmounted (removed from DOM) - `useEffect(() => {return () => {...}}, [])`
+- `useEffect(...,[])`: componentDidMount() - called once component mounted (was evaluated and rendered)
+- `useEffect(..., [someValue])`: componentDidUpdate() - called once component updated (was evaluated and rendered)
+- `useEffect(() => {return () => {...}}, [])`: componentWillUnmount() - called right before component is unmounted (removed from DOM)
 
 ```js
 function App() {
@@ -935,6 +936,12 @@ function App() {
   );
 }
 ```
+
+#### useCallback()
+- `useCallback(() => setState(state => !state), [])`
+
+#### useReducer()
+- `const [state, dispatch] = useReducer(reducer, initialState)`
 
 [[↑] Back to top](#table-of-contents)
 
