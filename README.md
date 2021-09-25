@@ -681,9 +681,17 @@ Three phases in order are:
 - -> using callback 
 
 #### What does setState do?
-1. update local state correctly (a way to properly modify local state)
-2. setState will trigger re-rendering 
-3. when invole previous value, we should always use a callback function to properly handle it base on the current value
+- update local state correctly (a way to properly modify local state)
+- setState will trigger re-rendering 
+- when invole previous value, we should always use a callback function to properly handle it base on the current value
+```js
+//react will batch several setStates together into a single update for performing the state change due to performance
+//use callback function to setState to make it correctly rendered previous value instead of just assigning the new object
+
+this.setState((prevState) => {     //passing in a callback function instead of setState directly
+	return { number: prevState.number + 1 };
+})
+```
 
 #### React.Fragment 
 - Looks cleaner, avoid too many `<div>`
