@@ -52,7 +52,7 @@ What is a design system?
 A design system is a collection of reusable components, guided by clear standards, that can be assembled together to build any number of applications.
 
 Singleton pattern
-The singleton pattern is a software design pattern that restricts the instantiation of a class to one "single" instance. 
+The singleton pattern is a software design pattern that restricts the instantiation of a class to one single instance. 
   it is used in object-oriented programming that ensures only a single instance of an object exists within a system at any given time (globally accessible).
 This is useful when exactly one object is needed to coordinate actions across the system, 
   useful for things like loggers, state managers, and other objects that need to be globally accessible across an application.
