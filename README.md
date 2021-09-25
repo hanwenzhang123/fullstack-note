@@ -2,6 +2,9 @@
 title: SSI-Training-Note (Part1)
 ---
 
+## SSI-Training-Note (Part2)
+https://github.com/hanwenzhang123/SSI-training-note/blob/main/mock/README.md
+
 ## Table of Contents
 - [HTML](#html)
 - [CSS](#css)
@@ -19,9 +22,6 @@ title: SSI-Training-Note (Part1)
 - [Redux-Example](#redux-example)
 - [Middleware](#middleware)
 - [Re-selectors](#re-selectors)
-
-## SSI-Training-Note (Part2)
-https://github.com/hanwenzhang123/SSI-training-note/blob/main/mock/README.md
 
 ## HTML
 
