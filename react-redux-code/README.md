@@ -9,10 +9,15 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/README.md
 https://github.com/hanwenzhang123/SSI-training-note/blob/main/mock/README.md
 
 ## Table of Contents
-- [React Example](#react-example)
+- [React Example](#React-Example)
 - [PureComponent vs memo](#PureComponent-vs-memo)
 - [React Context](#React-Context)
-- [Redux Example](#redux-example)
+- [Redux Example](#Redux-Example)
+- [React HOC](#React-HOC)
+- [React Counter](#React-Counter)
+- [React To Do List](#React-To-Do-List)
+- [Redux Counter](#Redux-Counter)
+- [Redux To Do List](#Redux-To-Do-List)
 
 ## React Example
 
@@ -408,6 +413,8 @@ import App from "./App";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 ```
+
+[[↑] Back to top](#table-of-contents)
 
 ## React Counter
 Counter.js
@@ -918,6 +925,8 @@ const rootReducer = combineReducers({
 
 export default rootReducer;
 ```
+
+[[↑] Back to top](#table-of-contents)
 
 ## Redux Counter
 Counter.js
