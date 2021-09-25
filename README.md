@@ -8,6 +8,7 @@ title: SSI-Training-Note
 - [JavaScript](#javascript)
 - [ES6](#ES6)
 - [JS Methods](#JS-Methods)
+- [DOM event](#DOM-event)
 - [React](#react)
 - [React-Example](#react-example)
 - [Lifecycle](#lifecycle)
@@ -485,6 +486,32 @@ a();   //undefined
 
 ### JS Methods
 
+#### Closure 
+- a function retured by another function that still has access to its outer scope variable
+- used to enable data privacy.
+```js
+function makeCounter(){
+    let count = 0;      //private variable for keeping data private and safe
+    			//value by the function will be saved as it will be needed by the inner function, not for garbage collection
+    return function(){
+        count++
+        return count;
+    };
+}
+
+const counterFunc = makeCounter();
+console.log(counterFunc()); //1
+console.log(counterFunc()); //2
+
+const newFunc = makeCounter();  //a new function, variabel value start over
+console.log(newFunc());  //1
+console.log(newFunc());  //2
+```
+
+#### Callbacks
+- a function passed into another function as an argument to be executed later after another function has finished executing
+- it is a great way to handle something after something else has been completed.
+
 #### function declaration vs function expression in JS
 ```js
 myF()
@@ -559,32 +586,6 @@ let doubled = arr.map(num => {
 // doubled = [2, 4, 6, 8, 10]
 ```
 
-#### Closure 
-- a function retured by another function that still has access to its outer scope variable
-- used to enable data privacy.
-```js
-function makeCounter(){
-    let count = 0;      //private variable for keeping data private and safe
-    			//value by the function will be saved as it will be needed by the inner function, not for garbage collection
-    return function(){
-        count++
-        return count;
-    };
-}
-
-const counterFunc = makeCounter();
-console.log(counterFunc()); //1
-console.log(counterFunc()); //2
-
-const newFunc = makeCounter();  //a new function, variabel value start over
-console.log(newFunc());  //1
-console.log(newFunc());  //2
-```
-
-#### Callbacks
-- a function passed into another function as an argument to be executed later after another function has finished executing
-- it is a great way to handle something after something else has been completed.
-
 #### Deep Clone vs Shallow Clone
 Deep Clone - no more contact with previous reference, they are not related, any modification would not influence original copy
 
@@ -623,6 +624,8 @@ newObj.x.y = 9;
 console.log(newObj); //{x: { y: 9 } - only direct properties on the object point to different address, nested properties point to the same
 console.log(obj);  //{x: { y: 9 } - also change to 9, both get update
 ```
+
+### DOM event
 
 #### event propagation
 - like a deeper ocean goes to the layer one by one travel through the DOM tree to arrive at its target and what happens to it afterward
