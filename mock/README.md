@@ -335,14 +335,25 @@ React Component
 
 #### Object Oriented Programming vs Functional Programming
 Functional Programming
-- attempts to avoid changing state and mutable data
+- attempts to avoid changing state and mutable data (immutable data structure)
 - the output of a function should always be the same given the same exact inputs to the function, relies on arguments of the function
 
 Object Oriented Programming
-- using objects to represent things you are programming about, the ability to encapsulate data from outsiders.
-- The objects hold data about them in attributes. 
-- The attributes in the objects are manipulated through methods or functions that are given to the object.
-- Encapsulation is the ability to hide variables within the class from outside access 
+- Group related variables and functions in a unit called objects
+- Using objects to represent things you are programming about, variable as properties, function as methods
+- The objects hold data about them in attributes which objects are manipulated through methods that are given to the object.
+
+4 Pillars in OOP: Encapsulation, Abstraction, Inheritance, Polymorphism
+- Encapsulation is the ability to hide variables within the class from outside access
+- Abstraction shows only essential attributes and hides unnecessary information -> hiding the unnecessary details from the users
+- Inheritance reduces redundant code `class Teacher extends Person { constructor(subject, grade) { super(); this.subject = subject; this.grade = grade; } }`
+- Polymorphism means a single action can be performed in many forms, get rid of if else and switch, use `element.render()`
+
+Benefits of OOP
+- Encapsulation: reduce complexity + increase reusibility
+- Abstraction: reduce complexity + isolate impacts of change
+- Inheritance: elimate redundant code
+- Polymorphism: refactor ugly switch case statement
 
 #### The Different Kind of Frontend Frameworks, Advantage, Limitation
 Pros
@@ -351,7 +362,6 @@ Pros
 - good looking consistent UI design 
 - code is reliable and tested
 - help from strong community
-
 
 Cons
 - updates can introduce issues
