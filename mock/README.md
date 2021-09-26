@@ -317,6 +317,7 @@ user.sayHi();
 - Much faster page loads for SSR with Suspense.
 
 #### How to Share Components with Others
+https://hackernoon.com/how-we-started-sharing-components-as-a-team-d863657afaca
 
 #### If Two Projects Using Same Components in the Same Library, How to Design and Use it with Others
 
@@ -333,6 +334,15 @@ React Component
 - stateless components print out what is given to them via props, or they always render the same thing.
 
 #### Object Oriented Programming vs Functional Programming
+Functional Programming
+- attempts to avoid changing state and mutable data
+- the output of a function should always be the same given the same exact inputs to the function, relies on arguments of the function
+
+Object Oriented Programming
+- using objects to represent things you are programming about, the ability to encapsulate data from outsiders.
+- The objects hold data about them in attributes. 
+- The attributes in the objects are manipulated through methods or functions that are given to the object.
+- Encapsulation is the ability to hide variables within the class from outside access 
 
 #### The Different Kind of Frontend Frameworks, Advantage, Limitation
 Pros
