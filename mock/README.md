@@ -299,11 +299,13 @@ user.sayHi();
 - the server prepares an HTML page by fetching user-specific data and sends it to the user’s machine over the internet. 
 - The browser then construes the content and displays the page.
 
-#### Object Oriented Programming vs Functional Programming
+#### Combining Frontend Code with Backend Code or SQL
 
-#### Combining frontend code with backend code or SQL
+#### What is SQL Injection
+- a code injection technique that might destroy your database (used with the goal of retrieving sensitive data)
+- one of the most common web hacking techniques, it is the placement of malicious code in SQL statements via web page input.
 
-#### What is SQL Injection and how do you avoid it?
+#### How to Prevent SQL Injection Attacks
 
 [[↑] Back to top](#table-of-contents)
 
@@ -314,9 +316,9 @@ user.sayHi();
 - Automatic Batching of function calls and events to improve in-app performance, and.
 - Much faster page loads for SSR with Suspense.
 
-#### How to share components with others or other teams
+#### How to Share Components with Others
 
-#### If two projects/fields using same components in the same library, how to design and use it with other teams
+#### If Two Projects Using Same Components in the Same Library, How to Design and Use it with Others
 
 #### Element vs Components in React
 React Element 
@@ -330,7 +332,9 @@ React Component
 - stateful components are keeping track of changing data
 - stateless components print out what is given to them via props, or they always render the same thing.
 
-#### How to see the different kind of front-end frameworks, the advantage/limitation
+#### Object Oriented Programming vs Functional Programming
+
+#### The Different Kind of Frontend Frameworks, Advantage, Limitation
 Pros
 - easy and quick to get started
 - component based reusibility
