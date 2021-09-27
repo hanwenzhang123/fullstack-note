@@ -300,12 +300,26 @@ user.sayHi();
 - The browser then construes the content and displays the page.
 
 #### Combining Frontend Code with Backend Code or SQL
+1. Setting up the database. 
+2. Setting up the server. 
+3. Setting up the routing. 
+4. Adding data to the database. 
+5. Getting data from the database. 
+6. Updating data on the database.
 
 #### What is SQL Injection
 - a code injection technique that might destroy your database (used with the goal of retrieving sensitive data)
 - one of the most common web hacking techniques, it is the placement of malicious code in SQL statements via web page input.
 
 #### How to Prevent SQL Injection Attacks
+- stolen credit cards or password lists, happen through SQL injection vulnerabilities
+- approach: controlling and vetting user input to watch for attack patterns
+- input validation
+- sanitize data by limiting special characters
+- enforce prepared statements and parameterization
+- use stored procedures in the database
+- actively manage patches and updates
+- web application firewall, raise virtual or physical firewalls
 
 [[↑] Back to top](#table-of-contents)
 
@@ -315,11 +329,6 @@ user.sayHi();
 - Concurrency control with the Transition API,
 - Automatic Batching of function calls and events to improve in-app performance, and.
 - Much faster page loads for SSR with Suspense.
-
-#### How to Share Components with Others
-https://hackernoon.com/how-we-started-sharing-components-as-a-team-d863657afaca
-
-#### If Two Projects Using Same Components in the Same Library, How to Design and Use it with Others
 
 #### Element vs Components in React
 React Element 
@@ -332,6 +341,25 @@ React Component
 #### Stateful Component vs Stateless Component
 - stateful components are keeping track of changing data
 - stateless components print out what is given to them via props, or they always render the same thing.
+
+#### How to Share Components with Others?
+shared component architecture
+-  how to develop components independently but avoid the overhead of too many repositories
+-  how to version, publish and manage each component individually
+-  how to help others discover and adopt the components
+
+build, distribute and collaborate over components to build multiple projects and applications
+- Bit + Bit.dev - develop, build and test individual components in the library in complete isolation - https://github.com/teambit/bit 
+- When you update a single components, Bit “knows” which other components depend on it, and help you update all the component that are impacted by the update.
+- Lerna - manage multi-repository structure inside a single repository - https://github.com/lerna/lerna
+- Multiple packages - create new Git repo for every piece of code you want to reuse
+- A Single library package for many components - put a few dozen shared components in a single repo
+
+#### What is Micro-service Architecture?
+- focus on building individual services that do one thing and one thing well
+- splits large applications into much smaller pieces that exist independently of each other.
+- a flexible and efficient approach to designing software systems that are made up of small independent services that each have a specific and well-defined purpose.
+- consider => what goes into building, deploying, and updating an enterprise application => and break that work into more manageable, efficient batches.
 
 #### Object Oriented Programming vs Functional Programming
 Functional Programming
