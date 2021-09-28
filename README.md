@@ -1049,6 +1049,11 @@ function App() {
 2. State is read-only - immutable, persistent data structure, the only way to change the state is to emit an action
 3. Changes are made with pure function (reducer) -  changes need actions
 
+#### Redux Data Flow
+- store is the place we save the state
+- getState is the method to get the state
+- action & reducer is the method to change the mapStateToProps
+
 #### How to setup Redux? How do you create store?
 - The store will be generated based on reducer that analyze behaviors and modify current local state
 - store is like global state, available to all children
