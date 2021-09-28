@@ -898,7 +898,7 @@ export default HOCCounter;
 
 [[↑] Back to top](#table-of-contents)
 
-### Hooks
+## Hooks
 
 #### What is Hooks?
 - Hooks are functions that let you “hook into” React state and lifecycle features from function components. 
@@ -999,7 +999,7 @@ function App() {
 
 [[↑] Back to top](#table-of-contents)
 
-### Context 
+## Context 
 
 #### What is React Context?
 - Context provides a way to pass data through the component tree without having to pass props down manually at every level.
