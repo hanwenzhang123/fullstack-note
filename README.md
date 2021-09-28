@@ -704,9 +704,10 @@ Three phases in order are:
 #### Pros of React
 - Easy to learn -> Strong communityt supporting
 - VirtualDOM - Real DOM manipulation is very expensive
-- diffing algorithms -> reconciliation (“virtual” representation of a UI is kept in memory and synced with the “real” DOM by a library such as ReactDOM)
+- Diff Algorithms (outputs the set of differences between two inputs) -> reconciliation (“virtual” representation of a UI is kept in memory and synced with the “real” DOM by a library such as ReactDOM)
 - Component-based framework -> Reusability
 - JSX (HTML + JS) - good for dev - efficient context switching is now avoid
+- Focus on the view
 
 #### state & props
 - mutable? => both immutable, read only
