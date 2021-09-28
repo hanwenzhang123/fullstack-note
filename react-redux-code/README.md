@@ -9,6 +9,7 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/README.md
 https://github.com/hanwenzhang123/SSI-training-note/blob/main/mock/README.md
 
 ## Table of Contents
+- [JavaScript Example](#JavaScript-Example)
 - [React Example](#React-Example)
 - [PureComponent vs memo](#PureComponent-vs-memo)
 - [React Context](#React-Context)
@@ -18,6 +19,28 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/mock/README.md
 - [React To Do List](#React-To-Do-List)
 - [Redux Counter](#Redux-Counter)
 - [Redux To Do List](#Redux-To-Do-List)
+
+## JavaScript Example
+
+#### fizzBuzz
+
+let fizzBuzz = (n) => {
+   for(let i = 1; i <= n; i++){
+     if(i % 3 === 0 && i % 5 === 0){  
+     //Then in each iteration we will first check if the number is divisible by both 3 and 5, then print ‘FizzBuzz’.
+        console.log('FizzBuzz');
+	//Else if it is divisible by only 3 then print ‘Fizz’ or If it is only divisible by 5 then print ‘Buzz’
+     }else if(i % 3 === 0){
+        console.log('Fizz'); 
+     }else if(i % 5 === 0){
+        console.log('Buzz');
+     }else{	//Otherwise just print the number.
+        console.log(i);
+     }
+   }
+}
+
+[[↑] Back to top](#table-of-contents)
 
 ## React Example
 
