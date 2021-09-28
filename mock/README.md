@@ -31,6 +31,11 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/react-redux-code/R
 .trim() - removes whitespace from both sides of a string.
 string.length - The length property returns the length of a string.
 ```
+#### reverse string
+```js
+"i'm a lasagna hog".split("").reverse().join("");
+//"goh angasal a m'i"
+```
 
 [[↑] Back to top](#table-of-contents)
 
@@ -74,16 +79,25 @@ arr.length = 0 - empty the array
 let arr = [1, 2, 3, 4, 5];
 arr.forEach((num, index) => {
     return arr[index] = num * 2;
-});
-// arr = [2, 4, 6, 8, 10]
+});	// arr = [2, 4, 6, 8, 10]
 ```
 - `.map()`: returns a new array with the transformed elements, does not change the original array.
 ```js
 let doubled = arr.map(num => {
     return num * 2;
-});
-// doubled = [2, 4, 6, 8, 10]
+});	// doubled = [2, 4, 6, 8, 10]
 ```
+
+#### .slice() vs .splice()
+.slice()	
+- Doesn't modify the original array(immutable)	
+- Returns the subset of original array	
+- Used to pick the elements from array	
+
+.splice()
+- Modifies the original array(mutable)
+- Returns the deleted elements as array
+- Used to insert or delete elements to/from array
 
 #### Empty an array in JavaScript
 ```js
