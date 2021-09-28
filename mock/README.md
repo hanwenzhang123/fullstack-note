@@ -342,18 +342,6 @@ user.sayHi();
 - Automatic Batching of function calls and events to improve in-app performance, and.
 - Much faster page loads for SSR with Suspense.
 
-#### Element vs Components in React
-React Element 
-- It is a simple object that describes a DOM node and its attributes or properties you can say. 
-- It is an immutable description object and you can not apply any methods on it. 
-
-React Component 
-- It is a function or class that accepts an input and returns a React element.
-
-#### Stateful Component vs Stateless Component
-- stateful components are keeping track of changing data
-- stateless components print out what is given to them via props, or they always render the same thing.
-
 #### How to Share Components with Others?
 shared component architecture
 -  how to develop components independently but avoid the overhead of too many repositories
