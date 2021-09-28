@@ -680,19 +680,6 @@ Three phases in order are:
 - ?? whether child talks back to parent using props too? NO
 - -> using callback 
 
-#### What does setState do?
-- update local state correctly (a way to properly modify local state)
-- setState will trigger re-rendering 
-- when invole previous value, we should always use a callback function to properly handle it base on the current value
-```js
-//react will batch several setStates together into a single update for performing the state change due to performance
-//use callback function to setState to make it correctly rendered previous value instead of just assigning the new object
-
-this.setState((prevState) => {     //passing in a callback function instead of setState directly
-	return { number: prevState.number + 1 };
-})
-```
-
 #### Lists and Keys
 - key is unique item for iterating through sub-components, always add the key! 
 - we do not add key to individual component.
@@ -708,8 +695,12 @@ this.setState((prevState) => {     //passing in a callback function instead of s
 - Composition: {props.children} - built-in method, pass down as property children
 - Inheritance: not a good model to use in React
 
+#### SyntheticEvent 
+- because we run react in different environment, so we want consistency across multiple broswer like a wrapper
+- consistency -> wrapper(basicEvent)
+
 #### React.Fragment 
-- Looks cleaner, avoid too many `<div>`
+- looks cleaner, avoid too many `<div>`
 - `<React.Fragment>...</React.Fragment>`
 
 #### Styled Components
@@ -722,9 +713,26 @@ const Button = styled.button`color: white;`	//using tagged template literal
 export default Button;
 ```
 
-#### SyntheticEvent 
-- because we run react in different environment, so we want consistency across multiple broswer like a wrapper
-- consistency -> wrapper(basicEvent)
+#### What does setState do?
+- update local state correctly (a way to properly modify local state)
+- setState will trigger re-rendering 
+- when invole previous value, we should always use a callback function to properly handle it base on the current value
+```js
+//react will batch several setStates together into a single update for performing the state change due to performance
+//use callback function to setState to make it correctly rendered previous value instead of just assigning the new object
+
+this.setState((prevState) => {     //passing in a callback function instead of setState directly
+	return { number: prevState.number + 1 };
+})
+```
+
+#### Re-renders Situations
+- The parent component re-renders, which causes all of the parent's children to try to re-render, even if the props from the parent haven't changed.
+- The component calls this.setState(), which causes a state update and a re-render
+- The component calls this.forceUpdate(), which causes a re-render.
+- Component changed? Re-render. 
+- Parent changed? Re-render. 
+- Section of props that doesn't actually impact the view changed? Re-render.
 
 #### Controlled Component vs Uncontrolled Component
 Controlled Component
@@ -749,7 +757,6 @@ Uncontrolled Component
 - a bit more like traditional HTML, keeps the single source of truth in the DOM,
 - you query the DOM using a ref to find its current value when you need it. 
 - Refs provide a way to access DOM nodes or React elements created in the render method.
-
 ```js
 import React, { Component } from 'react';
 
