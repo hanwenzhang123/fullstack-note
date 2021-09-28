@@ -91,9 +91,9 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/react-redux-code/R
 - for web content to run scripts in an isolated thread in the browser (background threads)
 
 #### Difference between a cookie, sessionStorage and localStorage
-- `cookie` - primarily for server-side, stores data has to be sent back to server, expiration can be set from either server-side or client-side when manually set
-- `sessionStorage` - client side, use when you need to store somthing temporary, will only be accessible while the window is open, expires when tab closes
-- `localStorage` - client side, store data on the client computer, save key/value pairs in web browser, store data with no expiration date, last until the user deletes it
+- `cookie` - primarily for server-side, stored data needs to be sent back to server, expiration can be set from either server-side or client-side when manually set, 4KB Max
+- `sessionStorage` - client side, use when you need to store somthing temporary, will only be accessible while the window is open, expires when tab closes, 5MB Min
+- `localStorage` - client side, store data on the client computer, save key/value pairs in web browser, store data with no expiration date, last until the user deletes it, 5MB Min
 
 #### local storage
 - let now = new Date() || new Date().getTime();
@@ -122,7 +122,14 @@ Remove data from local storage
 - class selector `.`
 - Type selectors `p`
 - Universal selector `*`
- 
+
+#### px, em and rem
+specify sizes or lengths of elements using various units of measure
+
+- px: You get what you asked for. Pixels may be good at spacing and layout, but are not good fit for font-size.
+- em: Relative to the parent element
+- rem: Relative to the root element (HTML tag)
+
 #### Three ways to insert CSS
 - external CSS (better choice, a separate css file)
 - internal CSS (putting css directly in the html page)
@@ -504,6 +511,7 @@ a();   //undefined
 #### Closure 
 - a function retured by another function that still has access to its outer scope variable
 - used to enable data privacy.
+- cons: cause memory leak
 ```js
 function makeCounter(){
     let count = 0;      //private variable for keeping data private and safe
@@ -1091,6 +1099,7 @@ const ConnectedApp = connect(	//here we use the connection function, connect wil
 - => analyze behavior and modify current local state
 - Pure function, A input -> A output a + b = c (same input with consistant output)
 - Pure function is static, when we do not perform the render.
+- only has one reducer function: the "root reducer" function that you will pass to createStore later on
 - no side-effect, output will be predictable
 
 #### How do you group different reducers? 
