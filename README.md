@@ -91,7 +91,7 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/react-redux-code/R
 #### Difference between a cookie, sessionStorage and localStorage
 - `cookie` - primarily for server-side, stores data has to be sent back to server, expiration can be set from either server-side or client-side when manually set
 - `sessionStorage` - client side, use when you need to store somthing temporary, will only be accessible while the window is open, expires when tab closes
-- `localStorage` - store data on the client computer, save key/value pairs in web browser, store data with no expiration date, last until the user deletes it
+- `localStorage` - client side, store data on the client computer, save key/value pairs in web browser, store data with no expiration date, last until the user deletes it
 
 #### local storage
 - let now = new Date() || new Date().getTime();
@@ -292,7 +292,6 @@ console.log(1 && 2 && 3) //3 - AND - looking for the first FALSY value, if not a
 8. class syntax
 
 #### Difference between var and let/const 
-Variable hoisting means the JavaScript engine moves the variable declarations to the top of the script. 
 - var - value hoisting, put things on the top, scope to the function
 - let/const - not accessible before the line we declare them, scope to the block
 ```js
@@ -304,6 +303,13 @@ let b = 1;
 - var - old time, issue with variable hoisting
 - let - we can still re-assign value
 - const - no re-assign value allowed, good with objects because we are not changing pointer
+
+#### Hoisting
+- Variable hoisting means the JavaScript engine moves the variable declarations to the top of the script. 
+
+#### Temporal Dead Zone
+- accessing a let or const variable before its declaration (within its scope) causes a ReferenceError.
+- between the creation of a variable’s binding and its declaration, is called the temporal dead zone.
 
 #### Describe Arrow Function
 - simple syntax, less code
@@ -478,12 +484,12 @@ a();   //undefined
 - JS is a single-threaded language, use promise to handle async operation
 - new feature of ES6 -> avoid callback hell - a chained nested code
 
-- 3 phrases -> pending, fulfilled, rejected
+3 phrases -> pending, fulfilled, rejected
 - chain .then() to do something, and/or .catch() to catch error
 - will return another promise so we can chain more then()
 - output order - only after the main thread is done
 
-- main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)
+`main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)`
 
 [[↑] Back to top](#table-of-contents)
 
@@ -501,11 +507,9 @@ function makeCounter(){
         return count;
     };
 }
-
 const counterFunc = makeCounter();
 console.log(counterFunc()); //1
 console.log(counterFunc()); //2
-
 const newFunc = makeCounter();  //a new function, variabel value start over
 console.log(newFunc());  //1
 console.log(newFunc());  //2
@@ -519,6 +523,22 @@ console.log(newFunc());  //2
 - transform a function of arguments n, to n functions of one or less arguments. 
 - we do not change the functionality of a function, we just change the way it is invoked. 
 - `const addNumber = (a) => (b) => (c) => a+b+c;`
+
+#### First Order Function
+First-order function is a function that doesn’t accept another function as an argument and doesn’t return a function as its return value.
+- `const firstOrder = () => console.log ('I am a first order function!');`
+
+#### Higher Order Function
+Higher-order function is a function that accepts another function as an argument or returns a function as a return value or both.
+```js
+const firstOrderFunc = () => console.log ('Hello, I am a First order function');
+const higherOrder = ReturnFirstOrderFunc => ReturnFirstOrderFunc();
+higherOrder(firstOrderFunc);
+```
+
+#### Unary Function
+Unary function is a function that accepts exactly one argument. It stands for a single argument accepted by a function.
+- `const unaryFunction = a => console.log (a + 10); // Add 10 to the given argument and display the value`
 
 #### Function Declaration vs Function Expression in JS
 - Function declarations load before any code is executed 
@@ -547,8 +567,9 @@ Benefits of Function Expressions:
 - As Immediately Invoked Function Expressions (IIFE)
 
 #### IIFE - immediate invoked function expression 
-runs as soon as it is defined, invoke immediately
-variables declared in the function expression will not be available outside the function
+- runs as soon as it is defined, invoke immediately
+- variables declared in the function expression will not be available outside the function
+- primary purpose: data privacy because any variables declared within the IIFE cannot be accessed by the outside world.
 
 contains two major parts: 
 1. function expression within the Grouping Operator () 
