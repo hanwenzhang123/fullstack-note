@@ -348,6 +348,8 @@ return (
 }
 ```
 
+[[↑] Back to top](#table-of-contents)
+
 ## Backend
 
 #### Client-Side Rendering vs Server-Side Rendering
