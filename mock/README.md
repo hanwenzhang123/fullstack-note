@@ -445,6 +445,11 @@ Cons
 - updates can introduce issues
 - easy to get started, but require more time down the road to add features and customizations. 
 
+- React data flows only in one way and is easy to debug.
+- Angular data flows both ways and hence debugging is often difficult.
+- It is different from angular,vue. The react alway passes the data to view, and to update the view, you need to use a callback to update it.
+
+
 [[↑] Back to top](#table-of-contents)
 
 ## Performance
