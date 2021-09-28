@@ -14,6 +14,7 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/react-redux-code/R
 - [Object](#Object)
 - [Class](#Class)
 - [API](#API)
+- [Backend](#Backend)
 - [Miscellaneous](#miscellaneous)
 - [Performance](#performance)
 - [Testing](#testing)
@@ -302,6 +303,53 @@ user.sayHi();
 - PUT means "insert, replace if already exists" 
 - DELETE deletes the specified resource.
 
+#### Fetch API
+```js
+fetch('http://example.com/movies.json')
+  .then(response => response.json())
+  .then(data => console.log(data));
+  .catch(error => console.error('There has been a problem with your fetch operation:', error));
+```
+
+Fetch Data from an API with React
+- Create a React state variable to store data - useState()
+- Make the API request and store the data - fetch data
+- Render the returned data - useEffect()
+```js
+import { useState, useEffect } from 'react';
+
+function App() {
+  const [books, setBooks] = useState(null);
+
+  useEffect(() => {
+    getData();
+
+    async function getData() {		// we will use async/await to fetch this data
+      const response = await fetch("https://www.anapioficeandfire.com/api/books");
+      const data = await res.json();
+      setBooks(data) ;		// store the data into our books variable
+    }
+  }, []); // <- you may need to put the setBooks function in this array
+
+return (
+  <div>
+    <h1>Game of Thrones Books</h1>
+    {books && (		{/* display books from the API */}
+      <div className="books">
+        {books.map((book, index) => (	 {/* loop over the books */}
+          <div key={index}>
+            <h2>{book.name}</h2>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+)
+}
+```
+
+## Backend
+
 #### Client-Side Rendering vs Server-Side Rendering
 - Client-side rendering manages the routing dynamically without refreshing the page every time a user requests a different route. 
 - Your browser downloads a minimal HTML page. It renders the JavaScript and fills the content into it. 
@@ -400,6 +448,11 @@ Cons
 ## Performance
 
 #### How do you generally improve performance?
+- use uglify and minify to reduce the bundle size
+- use content delivery network to improve the loading speed.
+- use lazy loading to improve the page loading speed.
+- use shouldComponentUpdate to improve the component’s rendering performance
+
 React
 -HOC
 -memo/PureComponent (shouldComponentUpdate) - lifecycle
@@ -443,7 +496,6 @@ Code Splitting
 
 Lazy Loading
 - Split your code at logical breakpoints, and then loading it once the user has done something that requires a new block of code. 
-
 
 #### Minification - Minifier/uglifier 
 - make your code prettier, make it more efficient during compiling phase
