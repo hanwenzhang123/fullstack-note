@@ -13,9 +13,11 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/react-redux-code/R
 - [CSS](#css)
 - [JavaScript](#javascript)
 - [ES6](#ES6)
+- [This](#this)
 - [JS Methods](#JS-Methods)
 - [DOM Event](#DOM-event)
 - [React](#react)
+- [Rendering](#rendering)
 - [Lifecycle](#lifecycle)
 - [HOC](#HOC)
 - [Hooks](#hooks)
@@ -414,6 +416,21 @@ function func(a, b, ...rest) {
 func(1, 2, 3, 4, 5, 6, 7);
 ```
 
+#### Promise(Event-loop, task scheduling)
+- JS is a single-threaded language, use promise to handle async operation
+- new feature of ES6 -> avoid callback hell - a chained nested code
+
+3 phrases -> pending, fulfilled, rejected
+- chain .then() to do something, and/or .catch() to catch error
+- will return another promise so we can chain more then()
+- output order - only after the main thread is done
+
+`main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)`
+
+[[↑] Back to top](#table-of-contents)
+
+## This
+
 #### bind vs apply vs call
 `bind()`
 - The bind() method creates a new function used to provide a proper "this" reference to the function
@@ -479,17 +496,6 @@ a();   //undefined
     click to remove me!
 </button>
 ```
-
-#### Promise(Event-loop, task scheduling)
-- JS is a single-threaded language, use promise to handle async operation
-- new feature of ES6 -> avoid callback hell - a chained nested code
-
-3 phrases -> pending, fulfilled, rejected
-- chain .then() to do something, and/or .catch() to catch error
-- will return another promise so we can chain more then()
-- output order - only after the main thread is done
-
-`main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)`
 
 [[↑] Back to top](#table-of-contents)
 
@@ -716,6 +722,14 @@ Three phases in order are:
 - Composition: {props.children} - pass down as property children, contains any child elements defined within the component
 - Inheritance: not a good model to use in React
 
+#### Element vs Components in React
+React Element is is an immutable object describes a DOM node, you can not apply any methods on it.
+- React Component is a function or class that accepts an input and returns a React element.
+
+#### Stateful Component vs Stateless Component
+stateful components are keeping track of changing data
+stateless components print out what is given to them via props, or they always render the same thing.
+
 #### SyntheticEvent 
 - because we run react in different environment, so we want consistency across multiple broswer like a wrapper
 - consistency -> wrapper(basicEvent)
@@ -733,6 +747,10 @@ import styled from "styled-components";
 const Button = styled.button`color: white;`	//using tagged template literal
 export default Button;
 ```
+
+[[↑] Back to top](#table-of-contents)
+
+## Rendering
 
 #### What does setState do?
 - update local state correctly (a way to properly modify local state)
