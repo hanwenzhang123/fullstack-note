@@ -692,7 +692,7 @@ Three phases in order are:
 
 #### Lifting State Up vs Composition vs Inheritance
 - Lifting State Up: enable children components to have better smooth communication among each other
-- Composition: {props.children} - built-in method, pass down as property children
+- Composition: {props.children} - pass down as property children, contains any child elements defined within the component
 - Inheritance: not a good model to use in React
 
 #### SyntheticEvent 
@@ -759,7 +759,6 @@ Uncontrolled Component
 - Refs provide a way to access DOM nodes or React elements created in the render method.
 ```js
 import React, { Component } from 'react';
-
 export class App2 extends Component {
     constructor(props){
         super(props);
@@ -779,8 +778,7 @@ export class App2 extends Component {
                         onChange={(event) => this.handleChange(event.target.value)}
                     />
                 </div>
-            </div>
-            
+            </div>    
         );
     }
 }
