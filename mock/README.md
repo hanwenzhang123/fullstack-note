@@ -165,11 +165,11 @@ JSON.parse() & JSON.stringify() - deep copy
 ```
 
 #### 4 ways to create an object:
-https://dzone.com/articles/easy-javascript-part-13-four-ways-to-create-object
-- Object Literals
-- New operator or constructor
-- Object.create method
-- Class
+- Object Literals - `var object = {};`
+- Object.create method - `var object = Object.create(null);`
+- Object constructor - `var object = new Object();`
+- function constructor and apply new operator to create object instances - `function Person(name){this.name=name;} var object = new Person("Sudheer");`
+- Class - class Person {constructor(name) { this.name = name;} } var object = new Person("Sudheer");`
 
 #### 3 ways to clone objects:
 - Spread Operator - `{ ...food }`
@@ -246,6 +246,7 @@ console.log(auto instanceof Object);	// true
 - which enables all the other objects to inherit these methods and properties.
 
 #### prototype chain
+- Prototype chaining is used to build new types of objects based on existing ones. 
 - If you try to call a property on an object, JavaScript will go to the prototype object and look for it, until it finds it. 
 - If it doesn’t find the specific property that you’re looking for, it’ll return undefined for you. 
 - Otherwise, it’ll return the specific property. 
@@ -288,8 +289,8 @@ user.sayHi();
 3. Send data to a web server - in the background
 
 #### JSON
-- JavaScript Object Notation (JSON) - text-based format for representing structured data
-- commonly used for transmitting data in web applications, `{}` object, `[]` array, "key" "value" pairs, seperated by `,`
+- JavaScript Object Notation (JSON) - text-based format for representing structured data 
+- commonly used for transmitting data across a network , `{}` object, `[]` array, "key" "value" pairs, seperated by `,`
 - Client Browser -> Request GET -> Your Server -> Request through API (Path, Parameter) -> Someone Else's Server -> Response through API (DATA) -> Your Server -> Response POST -> Client Browser
 
 `JSON.parse()` to convert the string into a JavaScript object
