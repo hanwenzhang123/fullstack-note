@@ -732,12 +732,12 @@ Three phases in order are:
 - Inheritance: not a good model to use in React
 
 #### Element vs Components in React
-React Element is is an immutable object describes a DOM node, you can not apply any methods on it.
+- React Element is is an immutable object describes a DOM node, you can not apply any methods on it.
 - React Component is a function or class that accepts an input and returns a React element.
 
 #### Stateful Component vs Stateless Component
-stateful components are keeping track of changing data
-stateless components print out what is given to them via props, or they always render the same thing.
+- stateful components are keeping track of changing data
+- stateless components print out what is given to them via props, or they always render the same thing.
 
 #### SyntheticEvent 
 - because we run react in different environment, so we want consistency across multiple broswer like a wrapper
@@ -934,7 +934,6 @@ function App() {
     </>
   );
 }
-
 export default App;
 ```
 ```js
@@ -1000,11 +999,27 @@ function App() {
 }
 ```
 
-#### useCallback()
-- `useCallback(() => setState(state => !state), [])`
+#### useRef()
+- query the DOM using a ref to find its current value when you need it. 
+- `const inputRef = useRef(null)`
+
+#### useContext()
+- specify certain pieces of data that will be available to all components nested inside the context with no need to pass this data through each component
+- `const ThemeContext = React.createContext()`
+- `const { theme, setTheme } = useContext(ThemeContext)`
 
 #### useReducer()
+- handling complex state interactions 
 - `const [state, dispatch] = useReducer(reducer, initialState)`
+
+#### React Performance - useMemo() & useCallback()
+- useMemo is a function that does the complex calculation you want to memoize, and the second argument is an array of all dependencies for that memoization.
+- `useCallback(() => setState(state => !state), [])`
+```js
+const handleReset = useCallback(() => {
+  return doSomething(a, b)
+}, [a, b])
+```
 
 [[↑] Back to top](#table-of-contents)
 
