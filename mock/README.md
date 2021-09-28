@@ -89,15 +89,12 @@ let doubled = arr.map(num => {
 ```
 
 #### .slice() vs .splice()
-.slice()	
-- Doesn't modify the original array(immutable)	
+- `.slice()` Doesn't modify the original array(immutable)	
 - Returns the subset of original array	
-- Used to pick the elements from array	
-
-.splice()
-- Modifies the original array(mutable)
+- Used to pick the elements from array.
+- `.splice()` Modifies the original array(mutable)
 - Returns the deleted elements as array
-- Used to insert or delete elements to/from array
+- Used to insert or delete elements to/from array.
 
 #### Empty an array in JavaScript
 ```js
