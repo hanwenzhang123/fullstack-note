@@ -23,7 +23,7 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/mock/README.md
 ## JavaScript Example
 
 #### fizzBuzz
-
+```js
 let fizzBuzz = (n) => {
    for(let i = 1; i <= n; i++){
      if(i % 3 === 0 && i % 5 === 0){  
@@ -39,6 +39,7 @@ let fizzBuzz = (n) => {
      }
    }
 }
+```
 
 [[↑] Back to top](#table-of-contents)
 
