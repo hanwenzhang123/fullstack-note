@@ -546,6 +546,11 @@ throtte
 
 ## Testing
 
+#### Different Kinds of Tests
+- unit testing - test individual building blocks in isolation
+- integration testing - test the combination of multiple building blocks
+- end to end (e2e) test - test complete scenarios in your app as the user would experience them
+
 #### Have you done Unit Test?  
 Yes, doing unit testing to ensure correctness of any codebase. 
 
