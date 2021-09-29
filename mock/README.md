@@ -541,6 +541,9 @@ throtte
 - like resizing page, you send requests to the UI with a timer interval, will be sent no matter how many requests within the time period
 - like comments triggers 100 for the entire cycle 
 - `_.throttle(fetchAPI, 100)`;
+- 
+#### Alternatives to Webpack
+- provide the same functionality as webpack, alternatives are gulp, babel, parcel, browserify, grunt, npm, and requireJS.
 
 [[↑] Back to top](#table-of-contents)
 
