@@ -369,6 +369,11 @@ return (
 5. Getting data from the database. 
 6. Updating data on the database.
 
+1. Step 1: Create your Node (Express) backend
+2. Step 2: Create an API Endpoint
+3. Step 3: Create your React frontend
+4. Step 4: Make HTTP Requests from React to Node
+
 #### What is SQL Injection
 - a code injection technique that might destroy your database (used with the goal of retrieving sensitive data)
 - one of the most common web hacking techniques, it is the placement of malicious code in SQL statements via web page input.
