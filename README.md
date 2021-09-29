@@ -989,9 +989,7 @@ function App() {
             };
           })
         }
-      >
-        +
-      </button>
+      > + </button>
       <div>Count 1 - {count1}</div>
       <div>Count 2 - {count2}</div>
     </>
@@ -1000,25 +998,65 @@ function App() {
 ```
 
 #### useRef()
-- query the DOM using a ref to find its current value when you need it. 
-- `const inputRef = useRef(null)`
+- request the DOM using a ref to find its current value when you need it (use ref to referennce element inside of your HTML)
+- ref stores value persistent but does not cause your component to re-update when it is changed, whereas setState triggers re-render
+- when you need to change any value, still use setState()
+```js
+const [name, setName] = useState('')
+const inputRef = useRef()
+const prevName = useRef('')
+function focus(){
+  inputRef.current.focus()	//inputRef.current refers to <input value>
+}
+useEffect(() => {
+  prevName.current = name
+}, [name])
+return (
+  <>
+    <input ref={inputRef} value={name} onChange={e => setName(e.target.value)}/>
+    <div>My name is {name}, used to be {prevName.current}. </div>
+    <button onClick={focus}>Focus</button>
+  </>
+  )
+}
+```
 
 #### useContext()
 - specify certain pieces of data that will be available to all components nested inside the context with no need to pass this data through each component
-- `const ThemeContext = React.createContext()`
-- `const { theme, setTheme } = useContext(ThemeContext)`
+- `export const ThemeContext = React.createContext()` like our store in redux
+- `const [darkTheme, setDarkTheme] = useState(true)`
+- `<ThemeContext.Provider value={darkTheme}>{everything has the access to the value props}</ThemeContext.Provider>`
+- class - `<ThemeContext.Consumer>{value is available to the component}</ThemeContext.Consumer>`
+- function - `const darkTheme = useContext(ThemeContext)` - then darkTheme is available to use in the component
+
 
 #### useReducer()
 - handling complex state interactions 
-- `const [state, dispatch] = useReducer(reducer, initialState)`
+- `const [state, dispatch] = useReducer(reducer, initialState)`	- initialState always object like `[]` `{count:0}`
+- `function increment() { dispatch({ type: "increment" }) }` in side the App, dispatch the action type to reducer
+- `function reducer(state, action) { return {} }` - usually be switch cases with the action.type that dispatched to reducer for changes
 
 #### React Performance - useMemo() & useCallback()
-- useMemo is a function that does the complex calculation you want to memoize, and the second argument is an array of all dependencies for that memoization.
-- `useCallback(() => setState(state => !state), [])`
+`.useMemo()`
+- useMemo accepts two arguments: a function and a list of dependencies
+- every time useMemo will first check if any dependencies have changed
+- If not, it will return the cached return value, not calling the function. (memoize, cache, no needs to re-compute)
+- If they have changed, useMemo will call the provided function again and repeat the process.
+- Returns a memoized value. useMemo will remember the returned value from your function. 
 ```js
-const handleReset = useCallback(() => {
-  return doSomething(a, b)
-}, [a, b])
+const doubleNumber = useMemo(() => {	//only return the value of the function
+  return slowerFunction(number)
+}, [number])
+```
+
+`.useCallback()`
+- just like useMemo, not going to re-run the code inside of it unless certain parameter has changed
+- take a function which is useCallback returned, stores to an variable and later you can use it like `getItems(1)`
+- Returns a memoized callback. useCallback will remember your actual function.
+```js
+const getItems = useCallback((incrementor) => {	//return us the entire function
+  return [number + incrementor, number + incrementor + 1, number + incrementor + 2]
+}, [number])
 ```
 
 [[↑] Back to top](#table-of-contents)
