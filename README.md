@@ -78,6 +78,10 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/react-redux-code/R
 - `<meta>` tags always go inside the `<head>` element, and are used to specify character set, page description, keywords, author, and viewport settings.
 - `<meta>` is important for SEO (search engine optimization). we do not visually see any of the code in the browser, but the browser will analyze the information.
 
+#### What is the `<iframe>` tag
+- An inline frame is used to embed another document within the current HTML document.
+- represents a nested browsing context, embedding another HTML page into the current one.
+
 #### Difference between `<script>`, `<script async>` and `<script defer>`.
 - `<script>` - HTML parsing is blocked, the script is fetched and executed immediately, HTML parsing resumes after the script is executed.
 - `<script async>` - in parallel to HTML parsing and executed as soon as it is available (potentially before HTML parsing completes)
