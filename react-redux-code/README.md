@@ -19,6 +19,7 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/mock/README.md
 - [React To Do List](#React-To-Do-List)
 - [Redux Counter](#Redux-Counter)
 - [Redux To Do List](#Redux-To-Do-List)
+- [Hooks Counter](#Hooks-Counter)
 
 ## JavaScript Example
 
@@ -1179,6 +1180,43 @@ function Item(props) {
 }
 
 export default Item;
+```
+
+[[↑] Back to top](#table-of-contents)
+
+
+## Hooks Counter
+```js
+export default function App() {
+  const [time, setTime] = useState(0);
+  const [show, setShow] = useState(() => initValue());
+
+  function changeTime() {
+    setShow(!show); //this.setState - async - batch multiple
+    console.log(show); // show => false (delay because setSate is async)
+  }
+
+  useEffect(() => {
+    let intId; //initiate the intId variable here so we can access it due to the scope if we declare the variable below
+    if (show) {
+      intId = setInterval(() => {
+        //we can use var here if we do not initially declare the varibale
+        setTime((old) => old + 1);
+      }, 1000);
+    }
+    //clean-up the interval we have not finished at previous render before the next render
+    return () => {
+      clearInterval(intId);
+    };
+  }, [show]); //re-render based on the show value
+
+  return (
+    <div>
+      Time: {time}
+      <button onClick={() => changeTime()}>{show ? "Stop" : "Start"}</button>
+    </div>
+  );
+}
 ```
 
 [[↑] Back to top](#table-of-contents)
