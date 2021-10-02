@@ -376,6 +376,15 @@ return (
 3. Step 3: Create your React frontend
 4. Step 4: Make HTTP Requests from React to Node
 
+#### Database
+- SQL is relational database
+- MongoDB db is nosql database
+- SQL is more for structural data model
+- NoSQL data is more for a flex data model
+
+#### DBs mongodb vs mysql (ie.performance)
+MongoDB is faster than MySQL due to its ability to handle large amounts of unstructured data when it comes to speed.
+
 #### What is SQL Injection
 - a code injection technique that might destroy your database (used with the goal of retrieving sensitive data)
 - one of the most common web hacking techniques, it is the placement of malicious code in SQL statements via web page input.
