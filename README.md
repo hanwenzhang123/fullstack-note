@@ -101,20 +101,19 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/react-redux-code/R
 
 #### local storage
 - let now = new Date() || new Date().getTime();
-- let itemStr = localStorage.getItem('item');
 - let userData = JSON.parse(localStorage.getItem('storedData'))
+- localStorage.setItem('key', 'value')
+- localStorage.getItem('key')
+- localStorage.removeItem('key')
+- localStorage.clear()
 
 Handle expiration of storage on the browser
-- localStorage.setItem('storedData', JSON.stringify(data))
 - localStorage.setItem(key, JSON.stringify(item))
 
 setWithExpiry and getWithExpiry
 - setWithExpiry("myKey", inputSet.value, 5000)
 - const value = getWithExpiry("myKey")
 - valueDisplay.innerHTML = value
-
-Remove data from local storage
-- localStorage.removeItem("storedData")
 
 [[↑] Back to top](#table-of-contents)
 
