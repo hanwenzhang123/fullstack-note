@@ -721,11 +721,6 @@ Three phases in order are:
 - ?? whether child talks back to parent using props too? NO
 - -> using callback 
 
-#### Lists and Keys
-- key is unique item for iterating through sub-components, always add the key! 
-- we do not add key to individual component.
-- `{ this.state.numArr.map((num, index) => ( <Child key={index} num={num} /> ))}`
-
 #### Lifting State Up
 - For sub-components to talk to each other through parents
 - sharing state is accomplished by moving the local state up to the closest common ancestor of the components that need it.
@@ -741,8 +736,23 @@ Three phases in order are:
 - stateless components print out what is given to them via props, or they always render the same thing.
 
 #### Element vs Components in React
-- React Element is is an immutable object describes a DOM node, you can not apply any methods on it.
+- React Element is like HTML element, is an immutable object describes a DOM node, you can not apply any methods on it.
 - React Component is a function or class that accepts an input and returns a React element.
+
+#### Lists and Keys
+- Keys help React identify which items have changed (added/removed/re-ordered). 
+- To give a unique identity to every element inside the array, a key is required.
+- key is unique item for iterating through sub-components, always add the key! 
+- we do not add key to individual component.
+- `{ this.state.numArr.map((num, index) => ( <Child key={index} num={num} /> ))}`
+
+#### Key not using indexes
+- not recommended using indexes for keys especially the order of items may change - bad design.
+- If the key is an index, reordering an item changes it. 
+- The component state can get mixed up and may use the old key for a different component instance.
+- Also, iterating over the list when it is large causes poor performance.
+- `[a:0, b:1, c:2]` -> `[d:0, a:1, b:2, c:3]` - bad
+- `[d:unique key, a:0, b:1, c:2]` - good
 
 #### Shallow Compare vs Deep Compare
 - React.memo() does a shallow comparison of props and objects of props.
