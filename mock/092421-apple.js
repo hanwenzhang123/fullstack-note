@@ -14,6 +14,7 @@ Web worker
 Jest snapshot testing
 React18 new feature
 
+
 //Clean up function => Just like componentWillUnmount
 useEffect(() => {
   const eventId = document.addEventListener()
