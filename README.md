@@ -767,8 +767,7 @@ export default Button;
 ## Rendering
 
 #### What does setState do?
-- update local state correctly (a way to properly modify local state)
-- setState will trigger re-rendering 
+- setState will trigger re-rendering, and update/modify local state correctly 
 - when invole previous value, we should always use a callback function to properly handle it base on the current value
 ```js
 //react will batch several setStates together into a single update for performing the state change due to performance
