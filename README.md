@@ -1042,6 +1042,9 @@ return (
 - `function reducer(state, action) { return {} }` - usually be switch cases with the action.type that dispatched to reducer for changes
 
 #### React Performance - useMemo() & useCallback()
+- both to prevent unnecessary re-renders and make your code more efficient
+- cache the function in functional component with a dependency array
+ 
 `.useMemo()`
 - useMemo accepts two arguments: a function and a list of dependencies
 - every time useMemo will first check if any dependencies have changed
