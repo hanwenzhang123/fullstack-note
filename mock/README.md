@@ -75,7 +75,7 @@ arr.length = 0 - empty the array
 `Array.isArray()` -  return boolean, check whether an object (or a variable) is an array or not. 
 
 #### Eliminate duplicate item in Array
-- `const uniqueNames = Array.from(new Set(names));` - it will return a collection of unique items
+- `const uniqueNames = Array.from(new Set(names));` Array.from() returns an Array object, Set returns a collection of unique items
 - `const uniqueNames = names.filter((elem, pos) => names.indexOf(elem) == pos);`
 
 #### .map() vs .forEach()
@@ -290,6 +290,25 @@ array.map(element => {
   map[element.id] = element;
 }
 })
+```
+```js
+// initialize a Set object that holds unique values.
+const uniqueValuesSet = new Set();
+
+const arr = [{ name: "John Doe" }, { name: "John Doe" }, { name: "Lily Roy" }];
+
+const filteredArr = arr.filter((obj) => {
+  // check if name property value is already in the set, return boolean
+  const isPresentInSet = uniqueValuesSet.has(obj.name);
+
+  // add name property value to Set
+  uniqueValuesSet.add(obj.name);
+
+  // if boolean true is returned the filter method keeps the array element and filter out the element is false is returned.
+  return !isPresentInSet;
+});
+
+console.log(filteredArr);
 ```
 
 [[↑] Back to top](#table-of-contents)
