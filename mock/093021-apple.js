@@ -11,26 +11,71 @@ When did you start using react? What was the version of react?
     - Streaming server renderer
 
 Most recent project, describe the feature/component you’ve been working on
+- Listing, Data Visualization
 
 How did you do mapping? 
-  
 When you hover, where does the data come from?
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: [],
+      isLoaded: false,
+    };
+  }
 
-Do you know how to use …? Kind of data manipulation tool
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(res => res.json())
+      .then(result => {
+        this.setState({
+          isLoaded: true,
+          items: result
+        });
+      });
+  }
 
-Can I use? check if i can use the feature across the web broswer
+  render() {
+    const { items } = this.state;
+    if (!isLoaded) {
+      return <div>Loading ... </div>;
+    } else {
+      return (
+        <ul>
+          {items.map(item => (
+            <li key={item.id}>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </li>
+          ))}
+        </ul>
+      );
+    }
+  }
+}
 
-What do you do to ensure the cross browser functionality
+Why do I need Keys in React Lists? 
+- Keys help React identify which items have changed, are added, or are removed. 
+- Keys should be given to the elements inside the array to give the elements a stable identity, a key is required. 
+- Each item in the array has an id associated with it. Hence, this is the id that is assigned as a key for each item.
+- not recommended using indexes for keys especially the order of items may change - bad design.
 
-Last most class component you have checked for cross browser compatibility
+How can I check if i can use the feature across the web broswer?
+What do you do to ensure the cross browser functionality?
+- Cross Browser Compatibility Testing
+- CrossBrowserTesting, LambdaTest, BrowserStack
+- Can I use - https://caniuse.com/
 
-Anything you want to emphasize on your Zillow project? Why do you leave?
-  
+Last most class component you have checked for cross browser compatibility?
+- CSS, for instance: animation
+- https://www.w3schools.com/cssref/css3_browsersupport.asp
+
 Talk about your dropbox project？
+- Detail about dropbox project?
+- Loading, web performance
 
 Any experience with React Native? Did you use in the dropbox project?
-  
-Detail about dropbox project
+- The project involves React Native but I focused on React UI on the web
 
 What is react memo? How does it speed up the process? 
 - contains the logics of shouldComponentUpdate to compare current props and previous props to make sure it cuts off unnecessary renders
@@ -43,17 +88,27 @@ When you call react memo, does the result store somewhere in the browser?
 - React.memo explicitly caches the function, which means that it stores the result (VDOM) in memory.
   
 Anything you want to share working with dropbox?
+- Team Culture
   
 What did you do at Nike?
+- Web performance for large volume of trafficking
   
 What do you know about lazy loading. Give me an example, when did you use it on Nike.com. How did you implement it? 
+- use lazy loading to improve the page loading speed
+- React.lazy() and React.suspense() support lazy loading with webpack.
   
-What is OOP vs functional programming in JS
-
-Example when did you use OOP and when did you use functional programming
+What is OOP vs functional programming in JS?
+Example when did you use OOP and when did you use functional programming?
+- OOP: using objects to represent things you are programming about
+	- A class is an abstract blueprint used to create more specific, concrete objects. 
+	- Classes often represent broad categories, like Car or Dog that share attributes.
+- FP: avoid changing state and mutable data
+	- the output of a function should always be the same, given the same exact inputs to the function.
+	- we use FP when we expect to receive the same output when using the same input, like "functional operations"
 
 What is prototype?
-- A reference to another object, every function includes prototype object that enables all the other objects to inherit these methods and properties
+- A reference to another object
+- every function includes prototype object that enables all the other objects to inherit these methods and properties
   
 What is promise?
 - JS is a single-threaded language, use promise to handle async operation
@@ -66,8 +121,14 @@ If you start a small project, do you use redux or not?
 - No, Redux is recommended for large scale applications
 
 What happen when you call setState, why the page rerender? 
+- setState will trigger re-rendering, and update/modify local state correctly
   
 What’s the underlying logic of setState?
+- this.setState(newState) -> newState saves to pending -> batch update?  (batch compares and renders)
+	-> Y save to dirtyComponent -> N iterate dirtyComponent, use updateComponent, update pending state or props
+- setState is asynchronous uses dirtyComponents_queue -> react fiber -> then render
+- fiber: reconciliation, diffing algorithms - outputs the set of differences between two inputs
+- set same keys in the list -> pass to fiber -> benefit from diffing -> no new key no change on virtual DOM, improve web performance
   
 Element vs component?
 - Element is is an immutable object describes a DOM node like HTML elements
