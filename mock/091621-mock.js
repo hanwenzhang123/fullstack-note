@@ -14,11 +14,14 @@ console.log(i);
 //Test 2
 
 for (let i = 0; i < 3; i++) {
-  setTimeout(() => console.log(i)); 
+  setTimeout(() => console.log(i));   
 }
-console.log(i);
+console.log(i); 
 
 //ReferenceError: i is not defined
+//0 
+//1 
+//2 
 
 
 //Test 3
