@@ -509,7 +509,9 @@ Code Splitting
 - Split your modules properly according to the dependency graph
 
 Lazy Loading
+- Load certain part of the comp tree only when its in use
 - Split your code at logical breakpoints, and then loading it once the user has done something that requires a new block of code. 
+- components inside, we can wrap the comp with lazy load to delay the loading and improve performance
 
 #### Minification - Minifier/uglifier 
 - make your code prettier, make it more efficient during compiling phase
