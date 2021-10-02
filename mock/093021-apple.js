@@ -126,7 +126,7 @@ What happen when you call setState, why the page rerender?
 What’s the underlying logic of setState?
 - this.setState(newState) -> newState saves to pending -> batch update?  (batch compares and renders)
 	-> Y save to dirtyComponent -> N iterate dirtyComponent, use updateComponent, update pending state or props
-- setState is asynchronous uses dirtyComponents_queue -> react fiber -> then render
+- setState may be asynchronous uses dirtyComponents_queue -> react fiber -> then render
 - fiber: reconciliation, diffing algorithms - outputs the set of differences between two inputs
 - set same keys in the list -> pass to fiber -> benefit from diffing -> no new key no change on virtual DOM, improve web performance
   
