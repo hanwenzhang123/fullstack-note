@@ -75,14 +75,16 @@ arr.length = 0 - empty the array
 `Array.isArray()` -  return boolean, check whether an object (or a variable) is an array or not. 
 
 #### .map() vs .forEach()
-- `.forEach()`: returns undefined, does not modify the array, it just iterates over it (allow a callback function to mutate the current array).
+- `.forEach()`: Executes a callback for each element, Does not return a value.
+- returns undefined, just iterate through the elements, does not modify the array (allow a callback function to mutate the current array).
 ```js
 let arr = [1, 2, 3, 4, 5];
 arr.forEach((num, index) => {
     return arr[index] = num * 2;
 });	// arr = [2, 4, 6, 8, 10]
 ```
-- `.map()`: returns a new array with the transformed elements, does not change the original array.
+- `.map()`: Calls the function on each element.
+- returns a new array with the transformed elements, does not change the original array.
 ```js
 let doubled = arr.map(num => {
     return num * 2;
