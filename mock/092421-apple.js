@@ -1,3 +1,63 @@
+Introduce last project
+=== vs ==
+PBV vs PBR
+Iterate Object keys
+Functional component vs Class-based component
+Why hooks
+useEffect
+State props
+Enclosure bar foo
+Counter+1 component
+Components separation
+Sass experience
+Web worker
+Jest snapshot testing
+React18 new feature
+
+//Clean up function => Just like componentWillUnmount
+useEffect(() => {
+  const eventId = document.addEventListener()
+  return () =>  {
+	  elem.removeEventlistener(eventId)   //clearTimeout（）
+}
+  
+/*
+create a simple hello name functional component where name is stored in state
+capture all the class based lifecycle as much as possible
+console.log("this is component did mount")
+console.log("this is component did unmount")
+console.log("this is component did update")
+*/
+const ComponentUpdateExample = () => {
+  const [value, setValue] = React.useState(true);
+  
+  const handleToggle = () => setValue(!value);
+
+  useEffect(() => {
+      // This gets called after every render, on mount by default, (the first one, and every one after that)
+      // Side-effect logic gets executed any update happens to the component
+      console.log("this is component did mount");
+    
+      if (value) {
+      // ONLY trigger when a certain state or prop values gets updated
+      // Side-effect logic gets executed when values in array only get updated
+      console.log("this is component did update");
+    }
+
+      // If you want to implement componentWillUnmount,
+      // return a function from here, and React will call it prior to unmounting.
+      return () => console.log("this is component did unmount");
+    }, [value])
+  
+  return (
+    <>
+      <input type={value ? "true" : "false"} />
+      <button onClick={handleToggle}>Toggle True/False</button>
+    </>
+  );
+}
+  
+
 //Cooding 
 //Question 1
 var array = [];
