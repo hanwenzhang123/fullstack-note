@@ -253,11 +253,8 @@ console.log(auto instanceof Object);	// true
 
 #### what is prototype
 - A reference to another object 
-- Every function includes prototype object by default, and all the objects inherit the properties and methods from `Object.prototype`
+- every function includes prototype object that enables all the other objects to inherit these methods and properties
 - Objects created using the `new` keyword inherit from a prototype called `Object.prototype`.
-- whenever we create a function，JS engine adds a prototype property inside a function
-- Prototype property is an object, where we can attach methods and properties in a prototype object
-- which enables all the other objects to inherit these methods and properties.
 
 #### prototype chain
 - Prototype chaining is used to build new types of objects based on existing ones. 
@@ -451,10 +448,16 @@ Object Oriented Programming
 - Using objects to represent things you are programming about, variable as properties, function as methods
 - The objects hold data about them in attributes which objects are manipulated through methods that are given to the object.
 
+Examples
+- FP: we use FP when we expect to receive the same output when using the same input, like "functional operations"
+- OOP: A class is an abstract blueprint used to create more specific, concrete objects. 
+- Classes often represent broad categories, like Car or Dog that share attributes.
+
 4 Pillars in OOP: Encapsulation, Abstraction, Inheritance, Polymorphism
 - Encapsulation is the ability to hide variables within the class from outside access
 - Abstraction shows only essential attributes and hides unnecessary information -> hiding the unnecessary details from the users
-- Inheritance reduces redundant code `class Teacher extends Person { constructor(subject, grade) { super(); this.subject = subject; this.grade = grade; } }`
+- Inheritance
+-  reduces redundant code `class Teacher extends Person { constructor(subject, grade) { super(); this.subject = subject; this.grade = grade; } }`
 - Polymorphism means a single action can be performed in many forms, get rid of if else and switch, use `element.render()`
 
 Benefits of OOP
@@ -478,7 +481,6 @@ Cons
 - React data flows only in one way and is easy to debug.
 - Angular data flows both ways and hence debugging is often difficult.
 - It is different from angular,vue. The react alway passes the data to view, and to update the view, you need to use a callback to update it.
-
 
 [[↑] Back to top](#table-of-contents)
 
