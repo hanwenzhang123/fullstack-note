@@ -239,6 +239,8 @@ arr = [] // object (array)
 function(){}  //function - object
 ```
 
+false values: false, 0, -0, 0n, "", null, undefined, and NaN
+
 #### =, ==, ===
 - `=` - assignment operator, which sets the variable on the left of the = to the value of the expression that is on its right
 - `==` - comparison operator, which transforms the operands having the same type before comparison `2=='2'`
@@ -667,9 +669,9 @@ useCapture Possible values:
 - Event.stopPropagation() - prevents further propagation of the current event in the capturing and bubbling phases. 
 
 Three phases in order are:
-1. the event capturing phase - top to the botton - click outter which will trigger the inner one. 
+1. the event capturing phase - top to the botton - outermost to inner - click outter which will trigger the inner one. 
 2. the target phase - all the listeners registered on the event target will be invoked
-3. the event bubbling phase - buttom to the top -  click the inner one, the outter one will also be clicked
+3. the event bubbling phase - buttom to the top - innermost to outer - click the inner one, the outter one will also be clicked
 
 #### Event Delegation
 - Allow you to avoid adding event listeners to specific nodes; instead, the event listener is added to one parent. 
