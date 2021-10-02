@@ -30,7 +30,7 @@ console.log("this is component did unmount")
 console.log("this is component did update")
 */
 const ComponentUpdateExample = () => {
-  const [value, setValue] = React.useState(true);
+  const [value, setValue] = useState(true);
   
   const handleToggle = () => setValue(!value);
 
