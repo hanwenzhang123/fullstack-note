@@ -71,32 +71,66 @@ Element vs component?
 - Element is is an immutable object describes a DOM node like HTML elements
 - Component is a function or class that accepts an input and returns a React element.
 
-  
-Use Vue.js?
-Lifecycle of react and vue.js
-Roles had worked in different teams, solution to some problems that encountered in projects
-Only use webpack?
-New feature of ES7, use sass?
-Talk about your experience/solution to deal with different tools without just using webpack.
-Ownership of the whole project????
 
-Sass experience?
-Experience of delivering new feature and service
-How to commit, integration and deploy
-Who design and manage the build pipeline
-How collaborate and avoid duplicate work
- 
+https://www.tutorialspoint.com/es6/es7_newfeatures.htm
+New feature of ES7
+- Exponentiation Operator ** 
+<script>
+   let base = 2
+   let exponent = 3
+   console.log('using Math.pow()',Math.pow(base,exponent))
+   console.log('using exponentiation operator',base**exponent)
+</script>
+- Array.includes(value) || Array.includes(value,start_index)
+
+New feature of ES8
+- Async and Await (pause the execution of a function till a promise is settled)
+- String.padStart(targetLength [, padString]) && string_value.padEnd(targetLength [, padString])
+- Trailing Commas ,, - empty value, a comma after the last item in a list, final commas, are skipped while using forEach loop.
+
+New feature of ES9
+- Asynchronous Generators and Iteration
+async function* generator_name() {
+   //yeild await 
+}
+- for await of loop
+for await (variable of iterable) {
+   statement
+}
+- Promise: finally() - executed whenever a promise is settled, regardless of its outcome. 
+
+
+Lifecycle of react and vue.js
+https://ash.ms/2019-02-19/vue-react-lifecycle-method-comparison/
+//Component mount compared
+constructor	beforeCreate	Roughly synonymous with each other. The constructor sets up the React class, whereas Vue handles the class creation for you.
+	-	data	Set data. Vue recursively converts these properties into getter/setters to make them “reactive”.
+	-	created	Data observation, computed properties, methods, watch/event callbacks have been set up.
+	-	beforeMount	Right before the mounting begins: the render function is about to be called for the first time.
+getDerivedStateFromProps	-	Invoked right before calling the render method. It should return an object to update the state, or null to update nothing.
+render		render	The virtual DOM is rendered and inserted into the actual DOM.
+componentDidMount	mounted	The component is now mounted. We can make any direct DOM manipulations at this point.
+
+//Component update compared
+getDerivedStateFromProps	-	Same as when mounting.
+shouldComponentUpdate		-	Let React know if a component’s output is not affected by the current change in state or props. We can use this to prevent React blowing away our changes.
+	-		beforeUpdate	Called when data changes, before the DOM is patched.
+	render		render		The virtual DOM is rendered and patched into the actual DOM.
+getSnapshotBeforeUpdate		-	Right before the most recently rendered output is committed to the DOM. Lets you save the previous state of the DOM for use after the component has updated.
+componentDidUpdate	updated		After the DOM has been updated
+
+//Component unmount compared
+	-		deactivated	When using Vue keep-alive, the component is removed from the page but not destroyed so that we can load it again later without the overhead of component mount.
+	-		activated	The previously deactivated component is reactivated.
+componentWillUnmount	beforeDestroy	When a component is being removed from the DOM
+	-		destroyed	The component is completely gone.
+
+
 Update Only What’s Needed -> only update the needed observable
 Eliminate Duplicate Rendering with key in list
 Virtual Scrolling
-
  
-use Auto CI/CD tool or platform to auto deploy  the library, like Jenkins / github actions
 
-
- 
-How do you think about separating things into components?
-How do you design component
 shallow compare vs deep compare
 React.memo() does a shallow comparison of props and objects of props.
 
