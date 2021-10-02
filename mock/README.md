@@ -486,9 +486,9 @@ Cons
 
 #### How do you generally improve performance?
 - use uglify and minify to reduce the bundle size
-- use content delivery network to improve the loading speed.
-- `React.lazy` and `React.suspense` support lazy loading with webpack.
 - use lazy loading to improve the page loading speed.
+- `React.lazy` and `React.suspense` support lazy loading with webpack.
+- use content delivery network to improve the loading speed.
 - use shouldComponentUpdate to improve the component’s rendering performance
 
 React
@@ -534,9 +534,10 @@ Code Splitting
 - Split your modules properly according to the dependency graph
 
 Lazy Loading
-- Load certain part of the comp tree only when its in use
+- `React.lazy` and `React.suspense` support lazy loading with webpack.
+- Load certain part of the component tree only when its in use.
 - Split your code at logical breakpoints, and then loading it once the user has done something that requires a new block of code. 
-- components inside, we can wrap the comp with lazy load to delay the loading and improve performance
+- Wrap the component inside with lazy load to delay the loading and improve performance
 
 #### Minification - Minifier/uglifier 
 - make your code prettier, make it more efficient during compiling phase
