@@ -211,6 +211,11 @@ specify sizes or lengths of elements using various units of measure
 - a way to reduce the number of HTTP requests made for image resources, by combining images in a single file
 - A web page with many images can take a long time to load and generates multiple server requests, using image sprites will reduce the number of server requests
 
+#### Cross Browser Compatibility
+- The ability of a website, application or script to support various web browsers identically.
+- For example, we can check if CSS animation features support equally under various web environments
+- We can use CrossBrowserTesting for testing and check on Can I use website
+
 [[↑] Back to top](#table-of-contents)
 
 ## JavaScript
@@ -604,6 +609,10 @@ contains two major parts:
 })()
 ```
 
+#### Shallow Comparison & Deep Comparison
+- Shallow strategy compares superficially 2 operands equality — 1st level in depth only,
+- Deep strategy compares the equality from all depth levels.
+
 #### Deep Clone vs Shallow Clone
 Deep Clone - no more contact with previous reference, they are not related, any modification would not influence original copy
 
@@ -754,9 +763,6 @@ Three phases in order are:
 - `[a:0, b:1, c:2]` -> `[d:0, a:1, b:2, c:3]` - bad
 - `[d:unique key, a:0, b:1, c:2]` - good
 
-#### Shallow Compare vs Deep Compare
-- React.memo() does a shallow comparison of props and objects of props.
-
 #### SyntheticEvent 
 - because we run react in different environment, so we want consistency across multiple broswer like a wrapper
 - consistency -> wrapper(basicEvent)
@@ -886,9 +892,15 @@ useEffect(() => {
 ```
 
 #### React.PureComponent vs memo
-- same functionality, both are for performance improvement
-- with PureComponent or memo, it already contains the logics of shouldComponentUpdate  - compare the props
-- to compare current props and previous props to make sure it cuts off unnecessary renders
+- Same functionality, both are for performance improvement, React.memo is a higher-order component - wrapper
+- With PureComponent or memo, it already contains the logics of shouldComponentUpdate  - compare the props
+- To compare current props and previous props to make sure it cuts off unnecessary renders
+
+#### Shallow Compare - React.memo()
+- React.memo() does a shallow comparison of props and objects of props.
+- In JavaScript, comparing objects shallowly will always return false even if they have the same values
+- If you want more control and be in charge of that comparison, 
+- React.memo accepts a second argument, a comparison function. 
 
 [[↑] Back to top](#table-of-contents)
 
