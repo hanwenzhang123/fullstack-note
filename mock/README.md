@@ -74,6 +74,10 @@ arr.length = 0 - empty the array
 #### Check if it is an array
 `Array.isArray()` -  return boolean, check whether an object (or a variable) is an array or not. 
 
+#### Eliminate duplicate item in Array
+- `const uniqueNames = Array.from(new Set(names));` - it will return a collection of unique items
+- `const uniqueNames = names.filter((elem, pos) => names.indexOf(elem) == pos);`
+
 #### .map() vs .forEach()
 - `.forEach()`: Executes a callback for each element, Does not return a value.
 - returns undefined, just iterate through the elements, does not modify the array (allow a callback function to mutate the current array).
@@ -216,6 +220,16 @@ for (const prop of Object.getOwnPropertyNames(obj)) {
 function emptyObject(obj) {
   Object.keys(obj).forEach(k => delete obj[k])
 }
+```
+
+#### Eliminate duplicate keys in Object
+```js
+let map = {};
+array.map(element => {
+ if(!map(element.id)){
+  map[element.id] = element;
+}
+})
 ```
 
 [[↑] Back to top](#table-of-contents)
