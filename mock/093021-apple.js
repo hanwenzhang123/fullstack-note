@@ -12,7 +12,7 @@ When did you start using react? What was the version of react?
 
 Most recent project, describe the feature/component you’ve been working on
 
-How did you do mapping?? 
+How did you do mapping? 
   
 When you hover, where does the data come from?
 
@@ -30,10 +30,17 @@ Any experience with React Native? Did you use in the dropbox project?
   
 Detail about dropbox project
 
-What is react memo? How does it speed up the process? When you call react memo, does the result store somewhere in the browser? 
+What is react memo? How does it speed up the process? 
+- contains the logics of shouldComponentUpdate to compare current props and previous props to make sure it cuts off unnecessary renders
+- React renders the component and memoizes the result
+- Before the next render, if the new props are the same, React reuses the memoized result skipping the next rendering.
+	
+When you call react memo, does the result store somewhere in the browser? 
+- the result of the function wrapped in React.memo is saved in memory and returns the cached result if it is being called with the same input again. 
+- Since it is used for pure functions: If the arguments do not change, the result does not change either.
+- React.memo explicitly caches the function, which means that it stores the result (VDOM) in memory.
   
 Anything you want to share working with dropbox?
-  
   
 What did you do at Nike?
   
@@ -44,20 +51,25 @@ What is OOP vs functional programming in JS
 Example when did you use OOP and when did you use functional programming
 
 What is prototype?
+- A reference to another object, every function includes prototype object that enables all the other objects to inherit these methods and properties
   
 What is promise?
+- JS is a single-threaded language, use promise to handle async operation
   
 Why do we need Redux?
+- Better state management 
+- Avoid complicated communication (excessive lifting state up, passing props down)
   
 If you start a small project, do you use redux or not?
-  - No, Redux is recommended for large scale applications
+- No, Redux is recommended for large scale applications
 
 What happen when you call setState, why the page rerender? 
   
 What’s the underlying logic of setState?
   
 Element vs component?
-
+- Element is is an immutable object describes a DOM node like HTML elements
+- Component is a function or class that accepts an input and returns a React element.
 
   
 Use Vue.js?
@@ -66,12 +78,9 @@ Roles had worked in different teams, solution to some problems that encountered 
 Only use webpack?
 New feature of ES7, use sass?
 Talk about your experience/solution to deal with different tools without just using webpack.
-Talk about web socket
 Ownership of the whole project????
-Timezone, Comfortable to work with global workers?
 
-  Sass experience?
-How is the team and responsibility of everyone
+Sass experience?
 Experience of delivering new feature and service
 How to commit, integration and deploy
 Who design and manage the build pipeline
@@ -81,68 +90,13 @@ Update Only What’s Needed -> only update the needed observable
 Eliminate Duplicate Rendering with key in list
 Virtual Scrolling
 
+ 
+use Auto CI/CD tool or platform to auto deploy  the library, like Jenkins / github actions
 
-element means the hTML native element, like div img
- 
-component is React word that means a react component that can have state and be reusable
- 
-answer related the virtual dom 
- 
-mongo db is nosql database
-sql is relational database,
- 
-sql is more for structural data model
- 
-nosql data is more for a flex data model
- 
-?use Auto CI/CD tool or platform to auto deploy  the library, like Jenkins / github actions
- 
-We have slack channel, every time new version is published, we have the notifuication
-Then, on the main app, we can use `yarn add`, it will always pull the latest
- 
- 
- 
- 
-cookie is set by server, frontend basely needs to touch cookie, local storage is set by frontnend
- 
- 
-SSR -> use next.js -> prebuilt the page in server
- 
-useCallback is to cache the function in functional component with a deps array
- 
- 
-With bubbling, the event is first captured and handled by the innermost element and then propagated to outer elements.
-With capturing, the event is first captured by the outermost element and propagated to the inner elements
- 
- 
- truthy value is a value that is considered true when encountered in a Boolean context. All values are truthy unless they are defined as falsy
-(i.e., except for false, 0, -0, 0n, "", null, undefined, and NaN).
- 
- 
-Foreach , map
-forEach() 
-- Iterates through the elements in an array.
-- Executes a callback for each element.
-    	- Does not return a value.
- 
-	map()
-    - Iterates through the elements in an array.
-    - Calls the function on each element.
-    - Creating a new array as a result.
- 
-hook method manage state in fn comp   
-Functional component + useEffect = class component (state & lifecycle)
-useEffect = componentDidMount + componentDidupdate + componentWillUnmount
- 
-Single source of truth. 
-	The state of your whole application is stored in an object tree within a single store. ...
-State is read-only. 
-	The only way to change the state is to emit an action, an object describing what happened. ...
- 
- 
 
-  How do you think about separating things into components?
+ 
+How do you think about separating things into components?
 How do you design component
+shallow compare vs deep compare
+React.memo() does a shallow comparison of props and objects of props.
 
-  shallow compare vs deep compare
-  DBs mongodb vs mysql(ie.performance)
