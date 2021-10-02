@@ -736,13 +736,16 @@ Three phases in order are:
 - Composition: {props.children} - pass down as property children, contains any child elements defined within the component
 - Inheritance: not a good model to use in React
 
+#### Stateful Component vs Stateless Component
+- stateful components are keeping track of changing data
+- stateless components print out what is given to them via props, or they always render the same thing.
+
 #### Element vs Components in React
 - React Element is is an immutable object describes a DOM node, you can not apply any methods on it.
 - React Component is a function or class that accepts an input and returns a React element.
 
-#### Stateful Component vs Stateless Component
-- stateful components are keeping track of changing data
-- stateless components print out what is given to them via props, or they always render the same thing.
+#### Shallow Compare vs Deep Compare
+- React.memo() does a shallow comparison of props and objects of props.
 
 #### SyntheticEvent 
 - because we run react in different environment, so we want consistency across multiple broswer like a wrapper
@@ -758,8 +761,7 @@ Three phases in order are:
 - `npm install --save styled-components`
 ```js
 import styled from "styled-components";
-const Button = styled.button`color: white;`	//using tagged template literal
-export default Button;
+export const Button = styled.button`color: white;`	//using tagged template literal
 ```
 
 [[↑] Back to top](#table-of-contents)
