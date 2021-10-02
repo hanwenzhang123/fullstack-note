@@ -18,6 +18,8 @@ When you hover, where does the data come from?
 
 Do you know how to use …? Kind of data manipulation tool
 
+Can I use? check if i can use the feature across the web broswer
+
 What do you do to ensure the cross browser functionality
 
 Last most class component you have checked for cross browser compatibility
@@ -124,13 +126,4 @@ componentDidUpdate	updated		After the DOM has been updated
 	-		activated	The previously deactivated component is reactivated.
 componentWillUnmount	beforeDestroy	When a component is being removed from the DOM
 	-		destroyed	The component is completely gone.
-
-
-Update Only What’s Needed -> only update the needed observable
-Eliminate Duplicate Rendering with key in list
-Virtual Scrolling
- 
-
-shallow compare vs deep compare
-React.memo() does a shallow comparison of props and objects of props.
-
+  
