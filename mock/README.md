@@ -562,6 +562,12 @@ throtte
 - like comments triggers 100 for the entire cycle 
 - `_.throttle(fetchAPI, 100)`;
 
+#### Virtual Scrolling
+- While the user is scrolling the table, the Grid requests and displays only the visible pages.
+- Import component. import VirtualScroll from "react-dynamic-virtual-scroll";
+- Add component as follows in your render method: 
+- `<VirtualScroll className="List" minItemHeight={40} totalLength={100} renderItem={(rowIndex) => { return ( <div className="List-item"> <h3>List item: {rowIndex}</h3> </div> ); }} />`
+
 [[↑] Back to top](#table-of-contents)
 
 ## Testing
@@ -598,4 +604,5 @@ How complete your unit test cover all the code
 - npm run test *.test.js
 
 [[↑] Back to top](#table-of-contents)
+  
   
