@@ -462,6 +462,7 @@ Cons
 #### How do you generally improve performance?
 - use uglify and minify to reduce the bundle size
 - use content delivery network to improve the loading speed.
+- `React.lazy` and `React.suspense` support lazy loading with webpack.
 - use lazy loading to improve the page loading speed.
 - use shouldComponentUpdate to improve the component’s rendering performance
 
@@ -491,6 +492,7 @@ HTML
 - Webpack gives you control over how to treat different assets it encounters
 - Webpack recursively builds every module in your application, then packs all those modules into a small number of bundles.
 - Similar bundler: Gulp or Grunt task runners
+- provide similar functionality as webpack: Gulp, Grunt, babel, parcel, browserify, npm, and requireJS.
 
 HMR(Hot Module Replacement)
 - Update the page directly without a fully page reload - more efficient dev environment and will not loss the current state
@@ -546,9 +548,6 @@ throtte
 - like resizing page, you send requests to the UI with a timer interval, will be sent no matter how many requests within the time period
 - like comments triggers 100 for the entire cycle 
 - `_.throttle(fetchAPI, 100)`;
-- 
-#### Alternatives to Webpack
-- provide the same functionality as webpack, alternatives are gulp, babel, parcel, browserify, grunt, npm, and requireJS.
 
 [[↑] Back to top](#table-of-contents)
 
