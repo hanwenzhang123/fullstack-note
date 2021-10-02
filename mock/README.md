@@ -211,6 +211,8 @@ function isEmpty(obj) {
 ```
 
 #### Clear a JavaScript Object
+- `delete` operator allows you to remove a property from an object.
+- `delete thisIsObject[key];`
 ```js
 for (const prop of Object.getOwnPropertyNames(obj)) {
   delete obj[prop];
@@ -219,6 +221,64 @@ for (const prop of Object.getOwnPropertyNames(obj)) {
 ```js
 function emptyObject(obj) {
   Object.keys(obj).forEach(k => delete obj[k])
+}
+```
+
+#### Compare Objects
+Referential equality
+- The strict equality operator ===
+- The loose equality operator ==
+- Object.is(obj1, obj2) - return boolean
+
+Manual comparison
+```js
+function isEqual(object1, object2) {
+  return object1.key === object2.key;
+}
+```
+
+Shallow equality
+```js
+function shallowEqual(object1, object2) {
+  const keys1 = Object.keys(object1);
+  const keys2 = Object.keys(object2);
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+  for (let key of keys1) {
+    if (object1[key] !== object2[key]) {
+      return false;
+    }
+  }
+  return true;
+}
+```
+
+Deep equality
+- `isDeepStrictEqual(object1, object2)` of Node built-in util module
+- `_.isEqual(object1, object2)` of lodash library.
+```js
+function deepEqual(object1, object2) {
+  const keys1 = Object.keys(object1);
+  const keys2 = Object.keys(object2);
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+  for (const key of keys1) {
+    const val1 = object1[key];
+    const val2 = object2[key];
+    const areObjects = isObject(val1) && isObject(val2);
+    if (
+      areObjects && !deepEqual(val1, val2) ||
+      !areObjects && val1 !== val2
+    ) {
+      return false;
+    }
+  }
+  return true;
+}
+function isObject(object) {
+  return object != null && typeof object === 'object';
 }
 ```
 
