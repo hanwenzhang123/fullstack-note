@@ -11,6 +11,7 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/react-redux-code/R
 ## Table of Contents
 - [HTML](#html)
 - [CSS](#css)
+- [Sass](#sass)
 - [JavaScript](#javascript)
 - [ES6](#ES6)
 - [This](#this)
@@ -215,6 +216,80 @@ specify sizes or lengths of elements using various units of measure
 - The ability of a website, application or script to support various web browsers identically.
 - For example, we can check if CSS animation features support equally under various web environments
 - We can use CrossBrowserTesting for testing and check on Can I use website
+
+[[↑] Back to top](#table-of-contents)
+
+## Sass
+
+#### What is Sass?
+- CSS can get messy when the code gets large
+- Sass is an extension of CSS3, adding nested rules, mixins, variables, selector inheritance, etc.
+- We write sass code to sass file and compile the ccode to css code using npm.
+- Sass syntax: no curly braces, no semicolons
+- SCSS syntax: with curly braces, with semicolons
+
+#### key features for Sass?
+- Full CSS3-compatible
+- Language extensions such as nesting, variables, and mixins
+- Many useful functions for manipulating colors and other values
+- Advanced features like control directives for libraries
+- Well-formatted, customizable output
+
+#### Data Types that SassScript supports
+SassScript supports seven main data types
+1. Numbers ( eg; 1,5 ,10px)
+2. Strings of texts ( g., “foo”, ‘bar’, etc.)
+3. Colors (blue, #04a3f9)
+4. Booleans (true or false)
+5. Nulls (e.g; null)
+6. List of values, separated by space or commas (g., 1.5em, Arial, Helvetica etc.)
+7. Maps from one value to another (g., ( key 1: value1, key 2: Value 2))
+
+#### How to define a variable in Sass
+- variables in Sass begin with a ($) sign 
+- variable assignment is done with a colon(:).
+
+#### Selector Nesting in Sass
+- compute long selectors by nesting shorter selectors within each other.
+
+#### Sass comments
+- regular CSS starts with /* comments…*/
+- SASS: the single line comments // and the multiline CSS comments with /* */.
+
+#### How interpolation is used in Sass?
+- Define an element in a variable and interpolate it inside the Sass code
+- It is useful when you keep your modules in separate files.
+
+#### the use of Mixin function in Sass?
+- define styles that can be re-used throughout the stylesheet without needing to resort to non-semantic classes like .float-left.
+
+#### the meaning of DRY-ing out a mixin?
+- splitting it into dynamic and static parts.
+- the dynamic mixin is the one that the user actually going to call
+- the static mixin is the pieces of information that would otherwise get duplicated. 
+
+#### what Sass Maps is and what is the use of Sass Maps?
+A structured data in a hierarchical way and not just a bunch of variables. It can help in organizing the code.
+- It is very useful when dealing with layers of elements
+- It can be helpful in color management when there is long list of different color and shade
+- Use icon map for various social media icons for example: facebook: ‘\e607’ or twitter: ‘\e602’
+- Unlike other programming libraries, Sass map will consist only of code that is going to be used
+
+#### @extend 
+- @EXTEND directive provides a simple way to allow a selector to inherit the styles of another one. 
+- providing a way for a selector A to extend the styles from a selector B
+- selector A will be added to selector B so they both share the same declarations
+- @EXTEND prevents code bloat by grouping selectors that share the same style into one rule
+
+#### @IMPORT
+- Extends the CSS import rule by enabling import of SCSS and Sass files
+- All imported files are merged into a single outputted CSS file
+- Can virtually mix and match any file and be certain of all your styles
+- @IMPORT takes a filename to import
+
+#### %placeholders
+- when you want to write styles that were meant to be extended
+- but you don’t want the base styles to be seen in output CSS styles
 
 [[↑] Back to top](#table-of-contents)
 
