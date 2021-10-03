@@ -235,6 +235,7 @@ specify sizes or lengths of elements using various units of measure
 - Advanced features like control directives for libraries
 - Well-formatted, customizable output
 
+#### Key Features for Sass
 - Variables: for reusable values such as colors, font-sizes, spacing etc
 - Nesting: to nest selectors inside of one another, allowing us to write less code
 - Operators: for mathematical operations right inside of CSS
