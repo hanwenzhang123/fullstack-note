@@ -95,6 +95,13 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/react-redux-code/R
 - preventing the UI from freezing up
 - for web content to run scripts in an isolated thread in the browser (background threads)
 
+#### HttpRequest & HttpResponse
+- WWW is about communication between web clients and servers
+- Communication between client computers and web servers is done by sending HTTP Requests and receiving HTTP Responses
+- HttpRequest: HttpVersion, URL, content
+- HttpResponse: HttpVersion, StatusCode, ReasonPhrase, content
+- Browser - Internet - Server - Internet - Broswer
+
 #### Difference between a cookie, sessionStorage and localStorage
 - `cookie` - primarily for server-side, stored data needs to be sent back to server, expiration can be set from either server-side or client-side when manually set, 4KB Max
 - `sessionStorage` - client side, use when you need to store somthing temporary, will only be accessible while the window is open, expires when tab closes, 5MB Min
