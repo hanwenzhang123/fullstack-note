@@ -228,12 +228,21 @@ specify sizes or lengths of elements using various units of measure
 - Sass syntax: no curly braces, no semicolons
 - SCSS syntax: with curly braces, with semicolons
 
-#### key features for Sass?
+#### Key Features for Sass
 - Full CSS3-compatible
 - Language extensions such as nesting, variables, and mixins
 - Many useful functions for manipulating colors and other values
 - Advanced features like control directives for libraries
 - Well-formatted, customizable output
+
+- Variables: for reusable values such as colors, font-sizes, spacing etc
+- Nesting: to nest selectors inside of one another, allowing us to write less code
+- Operators: for mathematical operations right inside of CSS
+- Partials and imports: to write CSS in different files and importing them all into one single file
+- Mixins: to write reusable pieces of CSS code
+- Functions: similar to mixins, with the difference that they produce a value that can be used
+- Extends: to make different selectors inherit declarations that are common to all of them
+- Control directives: for writing complex code using conditionals and loops
 
 #### Data Types that SassScript supports
 SassScript supports seven main data types
