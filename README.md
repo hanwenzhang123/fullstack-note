@@ -534,6 +534,8 @@ func(1, 2, 3, 4, 5, 6, 7);
 - will return another promise so we can chain more then()
 - output order - only after the main thread is done
 
+`Promoise.all` to send all promises, will reject immediately upon any of the input promises rejecting
+
 `main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)`
 
 [[↑] Back to top](#table-of-contents)
