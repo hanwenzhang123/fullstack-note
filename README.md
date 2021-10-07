@@ -525,6 +525,14 @@ func(1, 2, 3, 4, 5, 6, 7);
 
 `main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)`
 
+```js
+const promise = new Promise(function(resolve, reject) {
+  return setTimeout(() => resolve("done"), 3000);
+});
+
+promise.then((resolve) => {console.log(resolve)});
+```
+
 [[↑] Back to top](#table-of-contents)
 
 ## This
