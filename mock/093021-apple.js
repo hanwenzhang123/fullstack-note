@@ -1,5 +1,5 @@
 What’s your most confident technique or language skill
-  - JavaScript and its library 
+  - JavaScript and its library React and Redux
 
 Which version of react?
 When did you start using react? What was the version of react?
