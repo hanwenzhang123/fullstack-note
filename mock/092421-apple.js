@@ -57,6 +57,20 @@ const ComponentUpdateExample = () => {
     </>
   );
 }
+	  
+function XXX () {
+  const [name, setName] = useState("");
+  useEffect(() => {
+	console.log("This is component did mount");
+	return () => {
+	  console.log("This is component did unmount")'
+	}
+  }, [])
+  useEffect(() => {
+	console.log("This is component did update");
+  })
+  return <p>This is render.</p>
+}
   
 
 //Cooding 
