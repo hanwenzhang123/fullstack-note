@@ -1085,34 +1085,25 @@ function App() {
 - `useEffect(() => {return () => {...}}, [])`: componentWillUnmount() - called right before component is unmounted (removed from DOM)
 
 ```js
-function App() {
-  const [{ count1, count2 }, setCount] = useState({ count1: 1, count2: 2 });
+function XXX () {
+  const [name, setName] = useState("");
+  useEffect(() => {
+	console.log("This is component did mount");
+	return () => {
+	  console.log("This is component did unmount")'
+	}
+  }, []).   //empty array -> ComponentDidMount (no dependency, we call it after every render)
+  useEffect(() => {
+	console.log("This is component did update");
+  })
+  return <p>This is render.</p>
+}
 
   useEffect(() => {
     console.log("useEffect called!");
   }, [count1, count2]);
-  //dependency array -> empty array <-> ComponentDidMount (no dependency, we call it after every render)
   //if only count1 is the dependency, same count1 changes when we click the button, so rendering and useEffect called will the printed out.
   //if only count2 is the dependency, same count2 never changes, we only have rendering printout in the console.
-
-  return (
-    <>
-      {console.log("Rendering")}
-      <button
-        onClick={() =>
-          setCount((prevState) => {
-            return {
-              ...prevState,
-              count1: prevState.count1 + 1
-            };
-          })
-        }
-      > + </button>
-      <div>Count 1 - {count1}</div>
-      <div>Count 2 - {count2}</div>
-    </>
-  );
-}
 ```
 
 #### useRef()
