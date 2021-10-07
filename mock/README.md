@@ -657,10 +657,9 @@ Debounce and throttle are techniques to control how many times we allow a functi
 
 debounce 
 - setTimeout
+- continuously execute when event change ends, only execute once after event change stop
 - like a search bar, you enter text, once yoou finish, wait for the timer done, it will send the request only one time to UI after the time period
-- like we post comments everytime triggers a hard delay, then reset the timer to 100 again
-- “group” multiple sequential calls in a single one.
-
+- “group” multiple sequential calls in a single one, only send the final one
 ```js
 func fetchAPI ... const debouncedFunc = _.debounce(fetchAPI, 100) //shorter than a 100
 onUserInput => {
@@ -670,8 +669,8 @@ onUserInput => {
 
 throtte 
 - setInterval
+- continuously execute when event change happens
 - like resizing page, you send requests to the UI with a timer interval, will be sent no matter how many requests within the time period
-- like comments triggers 100 for the entire cycle 
 - `_.throttle(fetchAPI, 100)`;
 
 #### Virtual Scrolling
