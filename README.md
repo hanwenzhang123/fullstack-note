@@ -197,6 +197,7 @@ specify sizes or lengths of elements using various units of measure
 - referring specific for that element
 - `p::first-line/::last-letter`
 - `::after/::before`
+- capitalize first letter: `p:first-letter { text-transform:capitalize; }`
 
 #### invisible from the page
 - `display:none` - does not occupy space or consume clicks, hide the whole element and remove that from layout, gone from the DOM tree, disappear from UI
