@@ -229,15 +229,14 @@ specify sizes or lengths of elements using various units of measure
 ## Sass
 
 #### What is Sass?
-- CSS can get messy when the code gets large
-- Sass is an extension of CSS3, adding nested rules, mixins, variables, selector inheritance, etc.
-- We write sass code to sass file and compile the ccode to css code using npm.
+- CSS can get messy when the code gets large, Sass is an extension of CSS3 that does things CSS do not
+- for exmple, adding nested rules, mixins, variables, selector inheritance, etc.
+- Broswer reads CSS but Sass, we write Sass code to Sass file and compile the code to css code using npm or Watch Sass in VS Code.
 - Sass syntax: no curly braces, no semicolons
 - SCSS syntax: with curly braces, with semicolons
 
 #### Key Features for Sass
-- Full CSS3-compatible
-- Language extensions such as nesting, variables, and mixins
+- Full CSS3-compatible along with language extensions like nesting, import variables, and mixins
 - Many useful functions for manipulating colors and other values
 - Advanced features like control directives for libraries
 - Well-formatted, customizable output
