@@ -38,6 +38,19 @@ string.length - The length property returns the length of a string.
 //"goh angasal a m'i"
 ```
 
+#### uppercase the first letter of a string
+```js
+name.charAt(0).toUpperCase() + name.slice(1)
+
+function titleCase(str) {
+   var splitStr = str.toLowerCase().split(' ');
+   for (var i = 0; i < splitStr.length; i++) {		// Assign it back to the array
+       splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+   }
+   return splitStr.join(' '); 		// Directly return the joined string
+}
+```
+
 [[↑] Back to top](#table-of-contents)
 
 ## Array
@@ -56,7 +69,9 @@ string.length - The length property returns the length of a string.
 .filter() - creates a new array with all elements that pass the test
 .forEach() - executes a provided function once for each array element (just iterate through it)
 .map() - returns a new array with the transformed elements, does not change the original array.
-.slice() - subtract a portion of the array, like a big sandwich cutting the portion, it creates a new array
+.substr(start,length) - if you know the length of characters to be extracted 
+.substring(start,end) - if you know the index(the position) on which you'll stop (but NOT include)
+.slice(start,end) - subtract a portion of the array, like a big sandwich cutting the portion, it creates a new array
 .splice(start, deleteCount, items) - removing or replacing existing elements, it returns a new array with removed elements
 arr.length = 0 - empty the array
 ```
