@@ -1389,7 +1389,7 @@ const requestDataFromServer = () => {
 
 [[↑] Back to top](#table-of-contents)
 
-### Re-selectors
+## Re-selectors
 
 #### Selectors & Reselect for improvement enhancement
 
