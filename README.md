@@ -245,10 +245,11 @@ Full CSS3-compatible along with language extensions and useful functions, well-f
 - Variables: `$primaryBtm` for reusable values; `&:hover``&&:after` for psuedo
 - Nesting: to nest selectors inside of one another, allowing us to write less code
 - Operators: for mathematical operations right inside of CSS `100%-20%`
-- Partials and imports: ``@import` to write CSS in different files and importing them all into one single file 
-- Mixins: define style that can be re-used in the CSS `@mixin name{}` `@include name()`
-- Functions: similar to mixins, with the difference that they produce a value that can be used (a parameter)
+- Mixins: `@mixin name{}` `@include name()` define style that can be re-used in the CSS 
+- Functions: similar to mixins, with the difference that they produce a value that can be used `@mixin name($parameter){}`
+- Partials and imports: `@import` to write CSS in different files and importing them all into one single file 
 - Extends: `@extend` allow a selector to inherit the styles of another one, you can overwrite the style
+- Placeholder: styles that were meant to be extended `%placeholder``@extend %placeholder`
 - Control directives: for writing complex code using conditionals and loops
 
 #### Mixin function in Sass
@@ -264,13 +265,9 @@ header{
 }
 ```
 
-#### %placeholders
-- when you want to write styles that were meant to be extended
-- but you don’t want the base styles to be seen in output CSS styles
-
 #### Sass comments
-- regular CSS starts with /* comments…*/
-- SASS: the single line comments // and the multiline CSS comments with /* */.
+- regular CSS starts with `/* comments…*/`
+- SASS: the single line comments `//` and the multiline CSS comments with `/* */`.
 
 #### Data Types that SassScript supports
 SassScript supports seven main data types
@@ -292,7 +289,7 @@ SassScript supports seven main data types
 - the static mixin is the pieces of information that would otherwise get duplicated. 
 
 #### what Sass Maps is and what is the use of Sass Maps?
-A structured data in a hierarchical way and not just a bunch of variables. It can help in organizing the code.
+A structured data in a hierarchical way and not just a bunch of variables, helps in organizing the code.
 - It is very useful when dealing with layers of elements
 - It can be helpful in color management when there is long list of different color and shade
 - Use icon map for various social media icons for example: facebook: ‘\e607’ or twitter: ‘\e602’
