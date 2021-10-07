@@ -232,24 +232,45 @@ specify sizes or lengths of elements using various units of measure
 - CSS can get messy when the code gets large, Sass is an extension of CSS3 that does things CSS do not
 - for exmple, adding nested rules, mixins, variables, selector inheritance, etc.
 - Broswer reads CSS but Sass, we write Sass code to Sass file and compile the code to css code using npm or Watch Sass in VS Code.
+- We link the regular CSS file in the HTML file; `<link ref:"stylesheet" href="./style.css">`
+
+#### Syntax
 - Sass syntax: no curly braces, no semicolons
 - SCSS syntax: with curly braces, with semicolons
+- `@import "./header";` - import the sub-scss in style.scss
+- naming for the sub-file: _heaader.scss
 
 #### Key Features for Sass
-- Full CSS3-compatible along with language extensions like nesting, import variables, and mixins
-- Many useful functions for manipulating colors and other values
-- Advanced features like control directives for libraries
-- Well-formatted, customizable output
-
-#### Key Features for Sass
-- Variables: for reusable values such as colors, font-sizes, spacing etc
+Full CSS3-compatible along with language extensions and useful functions, well-formatted, customizable output
+- Variables: `$primaryBtm` for reusable values; `&:hover``&&:after` for psuedo
 - Nesting: to nest selectors inside of one another, allowing us to write less code
-- Operators: for mathematical operations right inside of CSS
-- Partials and imports: to write CSS in different files and importing them all into one single file
-- Mixins: to write reusable pieces of CSS code
-- Functions: similar to mixins, with the difference that they produce a value that can be used
-- Extends: to make different selectors inherit declarations that are common to all of them
+- Operators: for mathematical operations right inside of CSS `100%-20%`
+- Partials and imports: ``@import` to write CSS in different files and importing them all into one single file 
+- Mixins: define style that can be re-used in the CSS `@mixin name{}` `@include name()`
+- Functions: similar to mixins, with the difference that they produce a value that can be used (a parameter)
+- Extends: `@extend` allow a selector to inherit the styles of another one, you can overwrite the style
 - Control directives: for writing complex code using conditionals and loops
+
+#### Mixin function in Sass
+```css
+@mixin flexCenter ($direction){
+  display:  flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+header{
+  @include flexCenter(column);
+}
+```
+
+#### %placeholders
+- when you want to write styles that were meant to be extended
+- but you don’t want the base styles to be seen in output CSS styles
+
+#### Sass comments
+- regular CSS starts with /* comments…*/
+- SASS: the single line comments // and the multiline CSS comments with /* */.
 
 #### Data Types that SassScript supports
 SassScript supports seven main data types
@@ -261,23 +282,9 @@ SassScript supports seven main data types
 6. List of values, separated by space or commas (g., 1.5em, Arial, Helvetica etc.)
 7. Maps from one value to another (g., ( key 1: value1, key 2: Value 2))
 
-#### How to define a variable in Sass
-- variables in Sass begin with a ($) sign 
-- variable assignment is done with a colon(:).
-
-#### Selector Nesting in Sass
-- compute long selectors by nesting shorter selectors within each other.
-
-#### Sass comments
-- regular CSS starts with /* comments…*/
-- SASS: the single line comments // and the multiline CSS comments with /* */.
-
 #### How interpolation is used in Sass?
 - Define an element in a variable and interpolate it inside the Sass code
 - It is useful when you keep your modules in separate files.
-
-#### the use of Mixin function in Sass?
-- define styles that can be re-used throughout the stylesheet without needing to resort to non-semantic classes like .float-left.
 
 #### the meaning of DRY-ing out a mixin?
 - splitting it into dynamic and static parts.
@@ -290,22 +297,6 @@ A structured data in a hierarchical way and not just a bunch of variables. It ca
 - It can be helpful in color management when there is long list of different color and shade
 - Use icon map for various social media icons for example: facebook: ‘\e607’ or twitter: ‘\e602’
 - Unlike other programming libraries, Sass map will consist only of code that is going to be used
-
-#### @extend 
-- @EXTEND directive provides a simple way to allow a selector to inherit the styles of another one. 
-- providing a way for a selector A to extend the styles from a selector B
-- selector A will be added to selector B so they both share the same declarations
-- @EXTEND prevents code bloat by grouping selectors that share the same style into one rule
-
-#### @IMPORT
-- Extends the CSS import rule by enabling import of SCSS and Sass files
-- All imported files are merged into a single outputted CSS file
-- Can virtually mix and match any file and be certain of all your styles
-- @IMPORT takes a filename to import
-
-#### %placeholders
-- when you want to write styles that were meant to be extended
-- but you don’t want the base styles to be seen in output CSS styles
 
 [[↑] Back to top](#table-of-contents)
 
