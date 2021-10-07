@@ -684,13 +684,15 @@ throtte
 
 ## Testing
 
+#### Testing
+- UI tests that are always running inside a browser or a browser like environment
+- Purpose: doing testing to ensure correctness of any codebase
+
 #### Different Kinds of Tests
 - unit testing - test individual building blocks in isolation
 - integration testing - test the combination of multiple building blocks
 - end to end (e2e) test - test complete scenarios in your app as the user would experience them
-
-#### Have you done Unit Test?  
-Yes, doing unit testing to ensure correctness of any codebase. 
+- automation test (e2e) - simulating user behavior and make sure scenarios work from the point of view of an end user
 
 #### What do you use for Unit Test?
 Jest
@@ -699,12 +701,14 @@ Jest
 - test any side effect `x => x+1`
 	
 Enzyme: 
-- component test
+- component test, render our components in a test component
+- then use expect methods that we want to test whatever is rendered
 
 #### Jest - Snapshot Testing
 - useful tool whenever you want to make sure your UI does not change unexpectedly
 - A typical snapshot test case renders a UI component, takes a snapshot, then compares it to a reference snapshot file stored alongside the test.
 - The test will fail if the two snapshots do not match
+- `npm test -- --coverage` for coverage report
 
 #### What is the coverage? 
 How complete your unit test cover all the code
