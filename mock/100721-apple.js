@@ -1,12 +1,10 @@
 //Question 1
 //convert a counter from class component to functional component
-
 const Counter = () => {
     const [count, setCount] = useState(0);
     const incrementCount = () => {
         setCount(count + 1)
     }
-    
     return (
         <div>
             <button onClick={incrementCount}>{count}</button>
@@ -17,17 +15,12 @@ const Counter = () => {
 
 //Question 2
 //implement a divide function
-
 function divide(a,b) {
-
-	let count = 0;
-  
+  let count = 0;
   while (a >= b) {
-  
-  	a = a-b;
+    a = a-b;
     count += 1;
   }
-  
   return count;       //return a / b;
 }
 
@@ -35,8 +28,7 @@ assignment.log(divide(12,3));
 
 
 //Question 3
-//using useEffect()
-
+//using useEffect() for counter
 import {useState, useEffect} from "react";
 
 const Counter = () => {
