@@ -181,6 +181,14 @@ specify sizes or lengths of elements using various units of measure
 
 #### media queries
 - for responsive design, change the styling once the size reaches a certain value
+- <source srcset="img_smallflower.jpg" media="(max-width: 600px)">
+```css
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
+```
 
 #### combinators
 - descendant selector (space) - all elements that are descendants of a specified element.
