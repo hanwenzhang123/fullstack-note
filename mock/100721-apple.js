@@ -39,6 +39,10 @@ const Counter = () => {
       setCount(count+1)
     }, 1000)
   }, [count])
+    
+//   useEffect(() => {
+//     setCount((prev) => prev + 1) 
+//   })
   
   return (
       <div>
