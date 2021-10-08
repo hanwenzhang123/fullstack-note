@@ -609,13 +609,15 @@ HTML
 -Empty HTML
 -Style on the top, script down/defer/async
 
-#### Webpack 
+#### What is Webpack 
 - A module bundler for front-end dev applications -> bundle your styles
-- Webpack gives you control over how to treat different assets it encounters
-- Webpack recursively builds every module in your application, then packs all those modules into a small number of bundles.
-- Similar bundler: Gulp or Grunt task runners
-- provide similar functionality as webpack: Gulp, Grunt, babel, parcel, browserify, npm, and requireJS.
+- Webpack is a static module front-end bundler for JavaScript applications, bundle your JavaScript files together.
+— It takes all the code from your application and makes it usable in a web browser.
+- It takes different dependencies, creates modules for them, and bundles the entire network up into manageable output files. 
+- Great for working with Single Page Applications (SPAs)
+- Provide similar functionality as webpack: Gulp, Grunt, babel, parcel, browserify, npm, and requireJS.
 
+#### Webpack 
 HMR(Hot Module Replacement)
 - Update the page directly without a fully page reload - more efficient dev environment and will not loss the current state
 
@@ -648,6 +650,18 @@ Lazy Loading
   // ===>
   const a=1; console.log(a)
 ```
+
+#### Production build vs Development build
+- production and development build come into the picture because of performance impact in real life deployed the application.
+- Development build: for development reasons. You have Source Maps, debugging and often times hot reloading ability in those builds.
+- Production build: runs in production mode which means this is the code running on your client machine. 
+- The production build runs uglify and builds your source files into one or multiple minimized files. 
+
+#### Why production build
+- Production Build has ugly, minified(compressed) version of your javascript code
+- this makes rendering of file on end user browser very quick and performance enhancing.
+- rendering development build js files on UI will take more time as compared to production version 
+- which production is very crisp, compact, compressed, uglified for better user experience and loading on UI.
 
 #### loadsh
 Debounce and throttle are techniques to control how many times we allow a function to be executed over time 
