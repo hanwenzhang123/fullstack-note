@@ -98,14 +98,55 @@ export default function App() {
 
 
 //Questions
-Production build vs dev build
+Production build vs Development build
+- production and development build come into the picture because of performance impact in real life deployed the application.
+- Development build: for development reasons. You have Source Maps, debugging and often times hot reloading ability in those builds.
+- Production build: runs in production mode which means this is the code running on your client machine. 
+    The production build runs uglify and builds your source files into one or multiple minimized files. 
+
 Why production build
+- Production Build has ugly, minified(compressed) version of your javascript code
+- this makes rendering of file on end user browser very quick and performance enhancing.
+- rendering development build js files on UI will take more time as compared to production version 
+- which production is very crisp, compact, compressed, uglified for better user experience and loading on UI.
+
 What does webpack do
+- Webpack is a static module front-end bundler for JavaScript applications, bundle your JavaScript files together.
+— It takes all the code from your application and makes it usable in a web browser.
+- It takes different dependencies, creates modules for them, and bundles the entire network up into manageable output files. 
+- Great for working with Single Page Applications (SPAs)
+    
 How to improve react app performance
+-HOC
+-memo/PureComponent (shouldComponentUpdate) - lifecycle
+-reduce unnecessary re-rendering
+
 How to do responsive design
+- for responsive design, change the styling once the size reaches a certain value
+- <source srcset="img_smallflower.jpg" media="(max-width: 600px)">
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
+
 How to find and fix the layout bugs for responsive design for different devices
+
 How to test App and get test coverage
+
+
 How to test production build and fix bugs on production build
+1. Establish a standardized process.
+2. Make plans to quickly fix defects.
+3. Practice time management.
+4. Implement benchmarks.
+5. Prioritize test code.
+6. Perform chaos engineering.
+7. Move fast and break things.
+8. Adopt a mission-critical mentality.
+9. Mature the product.
+
+
 Test CSS styles
 Test APIs
 Front-end API errors handling
