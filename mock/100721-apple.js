@@ -28,7 +28,7 @@ assignment.log(divide(12,3));
 
 
 //Question 3
-//using useEffect() for counter
+//Example 1: using useEffect() for counter
 import {useState, useEffect} from "react";
 
 const Counter = () => {
@@ -54,8 +54,7 @@ const Counter = () => {
 export default Counter;
 
 
-//Question 4
-//using useEffect() for counter
+//Example 2: using useEffect() for counter
 import React, { useState, useEffect } from 'react';
 
 function Example() {
@@ -78,6 +77,24 @@ function Example() {
 }
 
 export default Example;
+
+//Example 3: using useEffect() for counter
+export default function App() {
+    const [counter, setCounter] = useState(0);
+    const pRef = useRef(null);
+    
+    useEffect(() => {
+        pRef.current.innerHTML = counter
+    }, [counter])
+    
+    return (
+      <div>
+        <p ref={pRef}></p>
+        <label>{counter}</label>
+        <button onClick={() => (setCounter(counter + 1))}>+</button>
+      </div>
+    );
+}
 
 
 //Questions
