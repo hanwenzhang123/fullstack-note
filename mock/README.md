@@ -1,12 +1,15 @@
 ---
-title: SSI-Training-Note (Part2)
+title: SSI-Training-Note (Part3)
 ---
 
 ## SSI-Training-Note (Part1)
 https://github.com/hanwenzhang123/SSI-training-note/blob/main/README.md
 
-## SSI-Training-Note (Part3)
-https://github.com/hanwenzhang123/SSI-training-note/blob/main/react-redux-code/README.md
+## SSI-Training-Note (Part2)
+https://github.com/hanwenzhang123/SSI-training-note/blob/main/react-redux/README.md
+
+## SSI-Training-Note (Part4)
+https://github.com/hanwenzhang123/SSI-training-note/blob/main/homework-code/README.md
 
 ## Table of Contents
 - [String](#String)
