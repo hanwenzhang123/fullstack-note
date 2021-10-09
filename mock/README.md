@@ -609,15 +609,27 @@ HTML
 -Empty HTML
 -Style on the top, script down/defer/async
 
+#### Minification - Minifier/uglifier 
+- make your code prettier, make it more efficient during compiling phase
+- remove unnecessary code 
+- rename to a more efficient version for machine
+- save time onloading
+
+```js
+  const aaaaa=1;
+  console.log (aaaaa);
+  // ===>
+  const a=1; console.log(a)
+```
+
 #### What is Webpack 
-- A module bundler for front-end dev applications -> bundle your styles
-- Webpack is a static module front-end bundler for JavaScript applications, bundle your JavaScript files together.
+- A static module bundler for front-end development for JS applications -> bundle your styles (bundle your JavaScript files together)
 — It takes all the code from your application and makes it usable in a web browser.
 - It takes different dependencies, creates modules for them, and bundles the entire network up into manageable output files. 
 - Great for working with Single Page Applications (SPAs)
-- Provide similar functionality as webpack: Gulp, Grunt, babel, parcel, browserify, npm, and requireJS.
+- Provide similar functionality: Gulp, Grunt, babel, parcel, browserify, npm, and requireJS.
 
-#### Webpack 
+#### Webpack Examples
 HMR(Hot Module Replacement)
 - Update the page directly without a fully page reload - more efficient dev environment and will not loss the current state
 
@@ -633,23 +645,17 @@ Code Splitting
 - Split your modules properly according to the dependency graph
 
 Lazy Loading
-- `React.lazy` and `React.suspense` support lazy loading with webpack.
 - Load certain part of the component tree only when its in use.
 - Split your code at logical breakpoints, and then loading it once the user has done something that requires a new block of code. 
 - Wrap the component inside with lazy load to delay the loading and improve performance
 
-#### Minification - Minifier/uglifier 
-- make your code prettier, make it more efficient during compiling phase
-- remove unnecessary code 
-- rename to a more efficient version for machine
-- save time onloading
+#### `React.lazy` and `React.suspense` support lazy loading with webpack.
+.lazy()
+- a built-in method that will help us with code splitting.
+- React.lazy(() => import('./pages/NewQuote')) - the function we pass to lazy will be executed by React when this new quote component is needed.
 
-```js
-  const aaaaa=1;
-  console.log (aaaaa);
-  // ===>
-  const a=1; console.log(a)
-```
+<Suspense> </Suspense>
+- We need to wrap this around the code, where we use React lazy.
 
 #### Production build vs Development build
 - production and development build come into the picture because of performance impact in real life deployed the application.
