@@ -649,13 +649,11 @@ Lazy Loading
 - Split your code at logical breakpoints, and then loading it once the user has done something that requires a new block of code. 
 - Wrap the component inside with lazy load to delay the loading and improve performance
 
-#### `React.lazy` and `React.suspense` support lazy loading with webpack.
-.lazy()
-- a built-in method that will help us with code splitting.
+#### `React.lazy` and `React.suspense` 
+Both support lazy loading with webpack.
+- `.lazy()` - a built-in method that will help us with code splitting.
 - React.lazy(() => import('./pages/NewQuote')) - the function we pass to lazy will be executed by React when this new quote component is needed.
-
-<Suspense> </Suspense>
-- We need to wrap this around the code, where we use React lazy.
+- `<Suspense> ... </Suspense>` - We need to wrap this around the code, where we use React lazy.
 
 #### Production build vs Development build
 - production and development build come into the picture because of performance impact in real life deployed the application.
