@@ -10,6 +10,7 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/mock/README.md
 
 ## Table of Contents
 - [JavaScript Example](#JavaScript-Example)
+- [Map Example](#Map-Example)
 - [React Example](#React-Example)
 - [PureComponent vs memo](#PureComponent-vs-memo)
 - [React Context](#React-Context)
@@ -39,6 +40,22 @@ let fizzBuzz = (n) => {
         console.log(i);
      }
    }
+}
+```
+
+[[↑] Back to top](#table-of-contents)
+
+## JavaScript Example
+
+#### Implementing our own Array.map() method in javascript
+A map is a built-in function of Arrays in javascript which helps us iterate over each individual element of the array and returns a brand new array.
+```js
+Array.prototype.mymap = function(callback) {
+    const resultArray = [];
+    for (let index = 0; index < this.length; index++) {
+        resultArray.push(callback(this[index], index, this));
+    }
+    return resultArray;
 }
 ```
 
