@@ -100,6 +100,10 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/code/README.md
 - because we run react in different environment, so we want consistency across multiple broswer like a wrapper
 - consistency -> wrapper(basicEvent)
 
+#### Portals
+- render children into a DOM node, behaves like a normal React child, but also includes event bubbling because in the DOM tree
+- `ReactDOM.createPortal(child {any renderable React child}, container {a DOM element})`
+
 #### React.Fragment 
 - looks cleaner, avoid too many `<div>`
 - `<React.Fragment>...</React.Fragment>`
@@ -232,8 +236,21 @@ useEffect(() => {
 #### Shallow Compare - React.memo()
 - React.memo() does a shallow comparison of props and objects of props.
 - In JavaScript, comparing objects shallowly will always return false even if they have the same values
-- If you want more control and be in charge of that comparison, 
-- React.memo accepts a second argument, a comparison function. 
+- If you want more control and be in charge of that comparison, React.memo accepts a second argument, a comparison function. 
+
+#### Error Boundary
+- catch JS error in their child component tree, log those errors and display a fall-back UI
+- use class component only, define either or both getDerivedStateFromError and componentDidCatch lifecycle methods
+- getDerivedStateFromError - render a fallback UI after an error is thrown
+- componentDidCatch - log the error information
+- no error boundaries on: event handler, async codes, server side rendering, errors thrown in itself than children
+
+#### Error Boundary vs Try...Catch...
+- Try…catch deals with imperative code while error boundaries deal with declarative code. 
+- Imperative programming is how you do something
+- Declarative programming is what you do.
+- With error boundary, if there is an error, you can trigger a fallback UI
+- with try…catch, you can catch errors in your code.
 
 [[↑] Back to top](#table-of-contents)
 
@@ -426,16 +443,20 @@ const getItems = useCallback((incrementor) => {	//return us the entire function
 - Context provides a way to pass data through the component tree without having to pass props down manually at every level.
 - With the help of context, we can get the value to the nested children directly. 
 - Without Redux and React Context, we have to do lifting state up.
-- Using Provider and Consumer
 
-#### Is React Context working the same way as Redux?
+#### How to use Context
+- `export const Context = React.createContext()` - initiate the context
+- class: Using `< Context.Provider value={} >` and `< Context.Consumer >` to wrap the return code
+- function: Using `< Context.Provider value={} >` and use hook useContext then `const value = useContext(Context)`
+
+#### React vs Redux
 - You can have multiple contexts but only one store in Redux
 - If you use React Context, it may cause Data Contamination since the Consumer looks for the nearest Provider ancestry
 - defaultValue <=> bubbling - always go up to look at the closest ancestry
 - In Context, GrandChild.js - Look for the Child value but not the Parent value
 - we could make mistake, or not able to get value we want, since the value passing down to GrandChild, the nearest ancestry is Child
 
-#### When will be great to use Context? When will be great to use Context?
+#### When will be great to use Context?
 - Redux - Larger scale application
 - Context - Smaller scale application
 
