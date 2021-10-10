@@ -177,15 +177,12 @@ export class App2 extends Component {
     }
     render() {
         return (
-            <div className="App2">
-                <div className="container">
-                    <input type="text"
-                        placeholder="Your message here.."
-                        ref={this.input}
-                        onChange={(event) => this.handleChange(event.target.value)}
-                    />
-                </div>
-            </div>    
+          <div className="App2">
+	    <input type="text"
+		ref={this.input}
+		onChange={(event) => this.handleChange(event.target.value)}
+	    />
+          </div>    
         );
     }
 }
@@ -315,7 +312,6 @@ function App() {
 export default App;
 ```
 ```js
-//...prevState - modify selected key-value in the object
 function App() {
   const [{ count1, count2 }, setCount] = useState({ count1: 1, count2: 2 });
 
@@ -325,7 +321,7 @@ function App() {
         onClick={() =>
           setCount((prevState) => {	//without ...prevState, it overwrites the object
             return {
-              ...prevState,		//...prevState first - give all the key I have then make modification to the count1
+              ...prevState,	//...prevState first - give all the key I have then make modification to the count1
               count1: prevState.count1 + 1 //we only modify count1 without changing/overriding count2
             };
           })
