@@ -9,7 +9,7 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/README.md
 https://github.com/hanwenzhang123/SSI-training-note/blob/main/react-redux/README.md
 
 ## SSI-Training-Note (Part4)
-https://github.com/hanwenzhang123/SSI-training-note/blob/main/homework-code/README.md
+https://github.com/hanwenzhang123/SSI-training-note/blob/main/code/README.md
 
 ## Table of Contents
 - [String](#String)
