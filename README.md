@@ -9,7 +9,7 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/react-redux/README
 https://github.com/hanwenzhang123/SSI-training-note/blob/main/mock/README.md
 
 ## SSI-Training-Note (Part4)
-https://github.com/hanwenzhang123/SSI-training-note/blob/main/react-redux-code/README.md
+https://github.com/hanwenzhang123/SSI-training-note/blob/main/code/README.md
 
 ## Table of Contents
 - [HTML](#html)
