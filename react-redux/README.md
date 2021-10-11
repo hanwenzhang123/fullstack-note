@@ -336,7 +336,7 @@ function App() {
 }
 ```
 #### useEffect() 
-- create a side effect when dependencies change, "If some variable changes, do this".
+- create a side effect when something happens or dependencies change, "If some variable changes, do this". 
 - `useEffect(...,[])`: componentDidMount() - called once component mounted (was evaluated and rendered)
 - `useEffect(..., [someValue])`: componentDidUpdate() - called once component updated (was evaluated and rendered)
 - `useEffect(() => {return () => {...}}, [])`: componentWillUnmount() - called right before component is unmounted (removed from DOM)
@@ -344,23 +344,21 @@ function App() {
 ```js
 function XXX () {
   const [name, setName] = useState("");
+  
   useEffect(() => {
 	console.log("This is component did mount");
 	return () => {
 	  console.log("This is component did unmount")'
 	}
-  }, []).   //empty array -> ComponentDidMount (no dependency, we call it after every render)
+  }, [])  //empty array -> ComponentDidMount (no dependency, we call it after every render)
+  	//with dependencies in the array, will be called when the value changes
+  
   useEffect(() => {
 	console.log("This is component did update");
   })
+ 
   return <p>This is render.</p>
 }
-
-  useEffect(() => {
-    console.log("useEffect called!");
-  }, [count1, count2]);
-  //if only count1 is the dependency, same count1 changes when we click the button, so rendering and useEffect called will the printed out.
-  //if only count2 is the dependency, same count2 never changes, we only have rendering printout in the console.
 ```
 
 #### useRef()
@@ -389,17 +387,17 @@ return (
 
 #### useContext()
 - specify certain pieces of data that will be available to all components nested inside the context with no need to pass this data through each component
-- `export const ThemeContext = React.createContext()` like our store in redux
+- `export const ThemeContext = React.createContext()` initiate the context, default values, not actually in use but for auto completion
 - `const [darkTheme, setDarkTheme] = useState(true)`
 - `<ThemeContext.Provider value={darkTheme}>{everything has the access to the value props}</ThemeContext.Provider>`
-- class - `<ThemeContext.Consumer>{value is available to the component}</ThemeContext.Consumer>`
-- function - `const darkTheme = useContext(ThemeContext)` - then darkTheme is available to use in the component
-
+- class: `<ThemeContext.Consumer>{value is available to the component}</ThemeContext.Consumer>`
+- function: `const darkTheme = useContext(ThemeContext)` - then darkTheme is available to use in the component
 
 #### useReducer()
-- handling complex state interactions 
+- handling complex state interaction management, alternative to useState
+- reducer takes 2 parameters, a function and an initial value, and returns a single value
 - `const [state, dispatch] = useReducer(reducer, initialState)`	- initialState always object like `[]` `{count:0}`
-- `function increment() { dispatch({ type: "increment" }) }` in side the App, dispatch the action type to reducer
+- `function increment() { dispatch({ type: "increment" }) }` - dispatch the action type to reducer
 - `function reducer(state, action) { return {} }` - usually be switch cases with the action.type that dispatched to reducer for changes
 
 #### React Performance - useMemo() & useCallback()
@@ -441,7 +439,7 @@ const getItems = useCallback((incrementor) => {	//return us the entire function
 - Without Redux and React Context, we have to do lifting state up.
 
 #### How to use Context
-- `export const Context = React.createContext()` - initiate the context
+- `export const Context = React.createContext()` - initiate the context, default values, not actually in use but for auto completion
 - class: Using `< Context.Provider value={} >` and `< Context.Consumer >` to wrap the return code
 - function: Using `< Context.Provider value={} >` and use hook useContext then `const value = useContext(Context)`
 
