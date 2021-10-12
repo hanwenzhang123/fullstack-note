@@ -220,9 +220,11 @@ window.onerror = function(message, url, lineNumber) {
     return false;
   }
 }
+https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror
 
 The most important takeaway for error handling is that you need to do it. 
-Any step towards informing the user when something goes wrong is a good one. Even an alert() box is better than a silent failure.
+Any step towards informing the user when something goes wrong is a good one. 
+Even an alert() box is better than a silent failure.
 
 
 JavaScript Errors - Throw and Try to Catch
