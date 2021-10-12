@@ -131,9 +131,17 @@ How to do responsive design
 }
 
 How to find and fix the layout bugs for responsive design for different devices
+Responsinator -> See what your site looks like in different viewports with Responsinator.
+Screenfly -> Check how your website appears on different devices, including TVs, with Screenfly.
+Google DevTools Device Mode -> simulate mobile devices within the Chrome browser
+Google Resizer ->  include advice about using breakpoints, responsive grids, surface behaviours and user interface patterns
+Ghostlab -> paid-for app, test your website on a multiplicity of browsers and mobile devices simultaneously
+Browser Stack -> paid-for app, full-featured testing tools around
+CrossBrowserTesting -> all-in-one platform allows you to run parallel automated tests, compare screenshots visually, swipe and interact with your website on real-world devices, and remotely debug your code as you go.
 
 How to test App and get test coverage
-
+Step 1) The total lines of code in the piece of software quality you are testing.
+Step 2) The number of lines of code all test cases currently execute.
 
 How to test production build and fix bugs on production build
 1. Establish a standardized process.
@@ -146,8 +154,28 @@ How to test production build and fix bugs on production build
 8. Adopt a mission-critical mentality.
 9. Mature the product.
 
-
 Test CSS styles
+- You could use Selenium, which is a web testing framework. This way you could assert what styles are to be applied to elements in the DOM etc
+- Automatic CSS testing is the most reliable way of detecting breaking changes after a CMS update, or after updating plug-ins and themes. 
+    - Syntax checking
+    - CSS Lint
+        - $ npm install -g csslint
+        - $ csslint [site folder]/styles/*.css
+    - Image diffs
+    - PhantomCSS
+- If you are using Google Chrome, navigate to File > View> Developer > Developer Tools.
+
 Test APIs
+- API testing is a software testing practice that tests the APIs directly — from their functionality, reliability, performance, to security.
+- RapidAPI.  collaborate on APIs using RapidAPI for teams with external and internal APIs.
+- REST-assured. REST-assured is considered as one of the best tools for testing APIs in Java. 
+- Postman. offers a web version as well as a desktop app, and can also be used for testing API services. 
+- SOAPUI is not just a functional Api Testing tool but also lets us perform non-functional testing such as performance and security test.
+
 Front-end API errors handling
+https://www.staticapps.org/articles/front-end-error-handling/
+
+
+
 MongoDB? NodeJS? Backend?
+ 
