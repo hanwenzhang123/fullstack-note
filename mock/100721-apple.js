@@ -154,6 +154,7 @@ How to test production build and fix bugs on production build
 8. Adopt a mission-critical mentality.
 9. Mature the product.
 
+
 Test CSS styles
 - You could use Selenium, which is a web testing framework. This way you could assert what styles are to be applied to elements in the DOM etc
 - Automatic CSS testing is the most reliable way of detecting breaking changes after a CMS update, or after updating plug-ins and themes. 
@@ -165,6 +166,7 @@ Test CSS styles
     - PhantomCSS
 - If you are using Google Chrome, navigate to File > View> Developer > Developer Tools.
 
+
 Test APIs
 - API testing is a software testing practice that tests the APIs directly — from their functionality, reliability, performance, to security.
 - RapidAPI.  collaborate on APIs using RapidAPI for teams with external and internal APIs.
@@ -172,9 +174,109 @@ Test APIs
 - Postman. offers a web version as well as a desktop app, and can also be used for testing API services. 
 - SOAPUI is not just a functional Api Testing tool but also lets us perform non-functional testing such as performance and security test.
 
+
 Front-end API errors handling
 https://www.staticapps.org/articles/front-end-error-handling/
+Most errors: 
+- Input Errors: Information provided by the user is unacceptable for some reason. This includes errors from form validation, duplicate actions, uniqueness issues, resources not found, etc.
+- Authorization Errors: A user is attempting to perform an action to which he/she does not have permission.
+- Availability Errors: A resource that is needed to complete the user's action is unavailable for some reason. This may be expected (scheduled maintenance) or unexpected (server crash!).
+- Unexpected Errors: These are errors that likely indicate a bug in the application, such as unhandled exceptions.
 
+When a JavaScript error occurs, usually one of three things happens, you must handle the errors yourself:
+- The application keeps running, but something the user expected to happen doesn't happen. The most common user response to this type of error is simply to try the action again (and again) hoping it will "work this time."
+- The application stops running but displays no sign that it has stopped. The user will retry the action (or try to perform a different one) to no avail.
+- If the error happened early enough, the entire page may be prevented from being properly set up and the user will just see a white screen.
+
+Ways to implement error handling in a JavaScript application:
+You may define a global error handler that can display messages passed to it, or have each component or control handle its own errors.
+User communication when an error occurs is vital. 
+- Change Something, Try Again. The user has entered some kind of invalid input, but with a few changes the action might succeed.
+- Try Again Later. Something has gone wrong, but it's likely to work again soon. Check back in a while, and if it's still not working contact support.
+- Contact us. Something is wrong in an unexpected place. Get in touch with support as this isn't likely to get better on its own.
+
+AJAX Errors and HTTP Status Codes -> These can tell you much about what has gone wrong with a request
+4XX codes (something is wrong with the request) and 5XX codes (something is wrong with the server).
+400 Bad Request: This is generally an input error, the most common instance being invalid user input (such as a malformed email address).
+401 Unauthorized: Use this error code when a user is either trying to access something without being logged in, or trying to access something they shouldn't (such as another user's data or admin functionality).
+403 Forbidden: The difference between this and 400 can be subtle, but a 403 error generally means that the server understood the request (it's not an input error) but will not fulfill it. An example of this might be the entry of an expired coupon code.
+404 Not Found: The most well-known of all the error codes, this simply means that the requested resource could not be found (either because of a malformed URL or a deleted or moved resource).
+409 Conflict: While mostly meant to refer to versioning conflicts (two users trying to write to the same resource), this can also be used to indicate uniqueness constraints (e.g. "email has already been taken").
+500 Internal Server Error: This is the generic "something has gone wrong, but we don't know what error." It's the catch-all.
+503 Unavailable: The server is experiencing an outage, either planned or unplanned.
+
+Catching Errors
+You can attach an error handler at a global level by using window.onerror. 
+Once attached, your handler can override the default browser behavior allowing you to display information to the user as necessary.
+window.onerror = function(message, url, lineNumber) {
+  // detect if the error is something you know how to handle
+  if (errorCanBeHandled) {
+    // display an error message to the user
+    displayErrorMessage(message);
+    // return true to short-circuit default error behavior
+    return true;
+  } else {
+    // run the default error handling of the browser
+    return false;
+  }
+}
+
+The most important takeaway for error handling is that you need to do it. 
+Any step towards informing the user when something goes wrong is a good one. Even an alert() box is better than a silent failure.
+
+
+JavaScript Errors - Throw and Try to Catch
+- The try statement lets you test a block of code for errors.
+- The catch statement lets you handle the error.
+- The throw statement lets you create custom errors.
+- The finally statement lets you execute code, after try and catch, regardless of the result.
+
+The throw statement throws a user-defined exception. 
+Execution of the current function will stop (the statements after throw won't be executed), 
+and control will be passed to the first catch block in the call stack. 
+If no catch block exists among caller functions, the program will terminate
+
+try {
+  Block of code to try
+}
+catch(err) {
+  Block of code to handle errors
+}
+finally {
+  Block of code to be executed regardless of the try / catch result
+}
+
+function myFunction() {
+  const message = document.getElementById("p01");
+  message.innerHTML = "";
+  let x = document.getElementById("demo").value;
+  try {
+    if(x == "") throw "is empty";
+    if(isNaN(x)) throw "is not a number";
+    x = Number(x);
+    if(x > 10) throw "is too high";
+    if(x < 5) throw "is too low";
+  }
+  catch(err) {
+    message.innerHTML = "Error: " + err + ".";
+  }
+  finally {
+    document.getElementById("demo").value = "";
+  }
+}
+
+
+The Error Object
+- JavaScript has a built in error object that provides error information when an error occurs.
+- The error object provides two useful properties: name and message.
+name	Sets or returns an error name
+message	Sets or returns an error message (a string)
+EvalError	An error has occurred in the eval() function
+RangeError	A number "out of range" has occurred
+ReferenceError	An illegal reference has occurred
+SyntaxError	A syntax error has occurred
+TypeError	A type error has occurred
+URIError	An error in encodeURI() has occurred
 
 
 MongoDB? NodeJS? Backend?
