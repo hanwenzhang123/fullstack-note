@@ -226,6 +226,15 @@ The most important takeaway for error handling is that you need to do it.
 Any step towards informing the user when something goes wrong is a good one. 
 Even an alert() box is better than a silent failure.
 
+let num =prompt("insert a number greater than 30 but less than 40")
+try { 
+    if(isNaN(num)) throw "Not a number (☉｡☉)!" 
+    else if (num>40) throw "Did you even read the instructions ಠ︵ಠ, less than 40"
+    else if (num <= 30) throw "Greater than 30 (ب_ب)" 
+}catch(e){
+    alert(e) 
+}
+
 
 JavaScript Errors - Throw and Try to Catch
 - The try statement lets you test a block of code for errors.
