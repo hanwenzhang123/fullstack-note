@@ -554,8 +554,8 @@ promise.then((resolve) => {console.log(resolve)});
 - the value will always depend on the object that is invoking the function.
 
 the key word "this" behaves differently in arrow functions compared to a regular function.
-- "this" in function, this belongs to function
-- "this" in arrow function, "this" DOES NOT belong to arrFunc, it is outside of the arrFunc 
+- "this" in function, this belongs to function, it binds its own value, like person.fullName(), "this" refers to the left to the '.' 
+- "this" in arrow function, "this" DOES NOT belong to arrFunc, it is outside of the function, arrow functions don't bind their own this value
 ```js
 //1. this IN method, this -> object owner
 const person = {
