@@ -582,6 +582,20 @@ Cons
 
 [[↑] Back to top](#table-of-contents)
 
+## Authentication
+
+#### What is Authentication
+- Authentication is needed if content should be protected, not accessible by everyone. 
+
+#### Authentication is a two-step process: 
+1. Get access/permission 
+- Client (browser) - Request (with user credentials) - 
+- Server - Response (yes/no). 
+2. Send the request to the protected resource 
+- Server-side Sessions: server grants your access, stores unique identifier on server, sends same identifier to the client, client sends identifier along with requests to protected resources. Backend generates the jwt token, then sends the generated token to the client, then all the following requests will contain the token.
+- Authentication Tokens: send credentials to server, and the server validates credentials, comparing the combination to what is stored in the database, if that is valid, then the server creates a permission token, create but not store "permission" token on server (server is stateless), send token to client, client sends token along with requests to protected resources
+
+
 ## Performance
 
 #### How do you generally improve performance?
