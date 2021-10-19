@@ -457,13 +457,14 @@ return (
 ## Backend
 
 #### Client-Side Rendering vs Server-Side Rendering
-- Client-side rendering manages the routing dynamically without refreshing the page every time a user requests a different route. 
+Client-side rendering
+- It manages the routing dynamically without refreshing the page every time a user requests a different route. 
 - Your browser downloads a minimal HTML page. It renders the JavaScript and fills the content into it. 
 - React uses client-side rendering.
 
-- Server-side rendering when a user makes a request to a webpage, 
-- the server prepares an HTML page by fetching user-specific data and sends it to the user’s machine over the internet. 
-- The browser then construes the content and displays the page.
+Server-side rendering
+- convert HTML files on the server into a fully rendered HTML page for the client.
+- When a user makes a request to a webpage, the server prepares an HTML page by fetching user-specific data and sends it to the user’s machine over the internet. The browser then construes the content and displays the page.
 
 #### Combining Frontend Code with Backend Code or SQL
 1. Setting up the database. 
