@@ -26,13 +26,15 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/code/README.md
 
 #### What is HTTP?
 - HTTP stands for Hyper Text Transfer Protocol
-- WWW is about communication between web clients and servers
+- WWW World Wide Web is about communication between web clients (often browsers) and servers (often computers in the cloud)
 - Communication between client computers and web servers is done by sending HTTP Requests and receiving HTTP Responses
 
-#### GET, POST, PUT, DELETE
+#### HTTP Methods
 - GET requests data from a specified resource
 - POST send data to a server to create/update a resource - always contains a body
-- PUT means "insert, replace if already exists" 
+- PUT means "insert, replace if already exists", similar to POST, but same PUT request multiple times will always produce the same result
+- HEAD is almost identical to GET, but without the response body.
+- PATCH is making partial changes to an existing resource.
 - DELETE deletes the specified resource.
 
 #### HTTP response status codes
