@@ -456,16 +456,6 @@ return (
 
 ## Backend
 
-#### Client-Side Rendering vs Server-Side Rendering
-Client-side rendering
-- It manages the routing dynamically without refreshing the page every time a user requests a different route. 
-- Your browser downloads a minimal HTML page. It renders the JavaScript and fills the content into it. 
-- React uses client-side rendering.
-
-Server-side rendering
-- convert HTML files on the server into a fully rendered HTML page for the client.
-- When a user makes a request to a webpage, the server prepares an HTML page by fetching user-specific data and sends it to the user’s machine over the internet. The browser then construes the content and displays the page.
-
 #### Combining Frontend Code with Backend Code or SQL
 1. Setting up the database. 
 2. Setting up the server. 
@@ -486,8 +476,8 @@ Node.js
 - SQL is more for structural data model
 - NoSQL data is more for a flex data model
 
-#### DBs mongodb vs mysql (ie.performance)
-MongoDB is faster than MySQL due to its ability to handle large amounts of unstructured data when it comes to speed.
+#### MongoDB vs MySQL
+- In terms of performance, MongoDB is faster than MySQL due to its ability to handle large amounts of unstructured data when it comes to speed.
 
 #### What is SQL Injection
 - a code injection technique that might destroy your database (used with the goal of retrieving sensitive data)
@@ -508,9 +498,20 @@ MongoDB is faster than MySQL due to its ability to handle large amounts of unstr
 ## Miscellaneous
 
 #### React 18 New Features
-- Concurrency control with the Transition API,
-- Automatic Batching of function calls and events to improve in-app performance, and.
-- Much faster page loads for SSR with Suspense.
+- Concurrency control with the Transition API (Concurrency is the ability to execute multiple tasks simultaneously)
+- Much faster page loads for server-side rendering with Suspense API
+- Automatic State Batching of function calls and events to improve in-app performance (batching: collects all and then executes them together, avoids unnecessary re-renders)
+- Streaming Server Renderer, converting data from a stream into something visual. 
+
+#### Client-Side Rendering vs Server-Side Rendering
+Client-side rendering
+- It manages the routing dynamically without refreshing the page every time a user requests a different route. 
+- Your browser downloads a minimal HTML page. It renders the JavaScript and fills the content into it. 
+- React uses client-side rendering.
+
+Server-side rendering
+- convert HTML files on the server into a fully rendered HTML page for the client.
+- When a user makes a request to a webpage, the server prepares an HTML page by fetching user-specific data and sends it to the user’s machine over the internet. The browser then construes the content and displays the page.
 
 #### How to Share Components with Others?
 shared component architecture
