@@ -1,0 +1,23 @@
+- HTML5 Tutorial: https://www.w3schools.com/html/
+- Semantic HTML: https://medium.com/adalab/the-importance-of-semantic-html-78e74fb75ff0
+- Chrome DevTools Tip: https://umaar.com/dev-tips/
+- Check browser support : Caniuse.com 
+- Pixel is not a pixel:https://www.quirksmode.org/blog/archives/2010/04/a_pixel_is_not.html
+- localStorage vs Cookie: https://wpreset.com/localstorage-sessionstorage-cookies-detailed-comparison/
+
+- Meta tags in HTML
+- What is iframe and how it works
+- SEO
+- What is Character Encoding
+- Semantic html 
+- What’s new in HTML5
+- Canvas vs SVG
+- Cookie vs SessionStorage vs LocalStorage
+- What does a DOCTYPE do
+- Can a web page contain multiple <header> /<footer> elements? 
+- Why is it generally a good idea to position CSS <link>s between <head></head> and JS <script>s just before </body>? 
+- What are `defer` and `async` attributes on a <script> tag
+- What is DOM
+- XHTML vs HTML5
+- Where should we put <link> and <script> and why
+- 508 policy / accessibility / aria
