@@ -12,6 +12,7 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/mock/README.md
 https://github.com/hanwenzhang123/SSI-training-note/blob/main/code/README.md
 
 ## Table of Contents
+- [HTTP](#http)
 - [HTML](#html)
 - [CSS](#css)
 - [Sass](#sass)
@@ -20,6 +21,52 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/code/README.md
 - [This](#this)
 - [JS Methods](#JS-Methods)
 - [DOM Event](#DOM-event)
+
+## HTTP
+
+#### What is HTTP?
+- HTTP stands for Hyper Text Transfer Protocol
+- WWW is about communication between web clients and servers
+- Communication between client computers and web servers is done by sending HTTP Requests and receiving HTTP Responses
+
+#### GET, POST, PUT, DELETE
+- GET requests data from a specified resource
+- POST send data to a server to create/update a resource - always contains a body
+- PUT means "insert, replace if already exists" 
+- DELETE deletes the specified resource.
+
+#### HTTP response status codes
+- Informational responses (100–199)
+- Successful responses (200–299)
+- Redirection messages (300–399)
+- Client error responses (400–499)
+- Server error responses (500–599)
+
+#### HttpRequest & HttpResponse
+- HttpRequest: HttpVersion, URL, content
+- HttpResponse: HttpVersion, StatusCode, ReasonPhrase, content
+- Browser - Internet - Server - Internet - Broswer
+
+#### cookie, sessionStorage and localStorage
+- `cookie` - primarily for server-side, stored data needs to be sent back to server, expiration can be set from either server-side or client-side when manually set, 4KB Max
+- `sessionStorage` - client side, use when you need to store somthing temporary, will only be accessible while the window is open, expires when tab closes, 5MB Min
+- `localStorage` - client side, store data on the client computer, save key/value pairs in web browser, store data with no expiration date, last until the user deletes it, 5MB Min
+
+#### local storage
+- let now = new Date() || new Date().getTime();
+- let userData = JSON.parse(localStorage.getItem('storedData'))
+- localStorage.setItem('key', 'value')
+- localStorage.getItem('key')
+- localStorage.removeItem('key')
+- localStorage.clear()
+
+Handle expiration of storage on the browser
+- localStorage.setItem(key, JSON.stringify(item))
+
+setWithExpiry and getWithExpiry
+- setWithExpiry("myKey", inputSet.value, 5000)
+- const value = getWithExpiry("myKey")
+- valueDisplay.innerHTML = value
 
 ## HTML
 
@@ -36,7 +83,7 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/code/README.md
 - `<div>` is too broad, we do not know what does it mean. 
 - semantic elements carry accessibility by itself, proper reading
   
-#### web a11y 
+#### web a11y accessibility
 - computer accessibility, for people with disability using screen reader 
 - mac machine, window, 3rd party tool, it will read out the web contents for you
 - you want to have your website good with accessibility features
@@ -88,34 +135,6 @@ https://github.com/hanwenzhang123/SSI-training-note/blob/main/code/README.md
 - give developers a way of instructing the browser to process large tasks in the background
 - preventing the UI from freezing up
 - for web content to run scripts in an isolated thread in the browser (background threads)
-
-#### HttpRequest & HttpResponse
-- WWW is about communication between web clients and servers
-- Communication between client computers and web servers is done by sending HTTP Requests and receiving HTTP Responses
-- HttpRequest: HttpVersion, URL, content
-- HttpResponse: HttpVersion, StatusCode, ReasonPhrase, content
-- Browser - Internet - Server - Internet - Broswer
-
-#### Difference between a cookie, sessionStorage and localStorage
-- `cookie` - primarily for server-side, stored data needs to be sent back to server, expiration can be set from either server-side or client-side when manually set, 4KB Max
-- `sessionStorage` - client side, use when you need to store somthing temporary, will only be accessible while the window is open, expires when tab closes, 5MB Min
-- `localStorage` - client side, store data on the client computer, save key/value pairs in web browser, store data with no expiration date, last until the user deletes it, 5MB Min
-
-#### local storage
-- let now = new Date() || new Date().getTime();
-- let userData = JSON.parse(localStorage.getItem('storedData'))
-- localStorage.setItem('key', 'value')
-- localStorage.getItem('key')
-- localStorage.removeItem('key')
-- localStorage.clear()
-
-Handle expiration of storage on the browser
-- localStorage.setItem(key, JSON.stringify(item))
-
-setWithExpiry and getWithExpiry
-- setWithExpiry("myKey", inputSet.value, 5000)
-- const value = getWithExpiry("myKey")
-- valueDisplay.innerHTML = value
 
 [[↑] Back to top](#table-of-contents)
 
