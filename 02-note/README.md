@@ -1,15 +1,15 @@
 ---
-title: SSI-Training-Note (Part2)
+title: React, Redux (Note Part2)
 ---
 
-## SSI-Training-Note (Part1)
-https://github.com/hanwenzhang123/SSI-training-note/blob/main/README.md
+## HTML, CSS, JavaScript (Note Part1)
+https://github.com/hanwenzhang123/frontend-note/blob/main/01-note/README.md
 
-## SSI-Training-Note (Part3)
-https://github.com/hanwenzhang123/SSI-training-note/blob/main/mock/README.md
+## Performance, Testing (Note Part3)
+https://github.com/hanwenzhang123/frontend-note/blob/main/03-note/README.md
 
-## SSI-Training-Note (Part4)
-https://github.com/hanwenzhang123/SSI-training-note/blob/main/code/README.md
+## Boilerplate Code (Note Part4)
+https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 
 ## Table of Contents
 - [React](#react)
