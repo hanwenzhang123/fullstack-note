@@ -1,15 +1,15 @@
 ---
-title: SSI-Training-Note (Part4)
+title: Boilerplate Code (Part4)
 ---
 
-## SSI-Training-Note (Part1)
-https://github.com/hanwenzhang123/SSI-training-note/blob/main/README.md
+## HTML, CSS, JavaScript (Note Part1)
+https://github.com/hanwenzhang123/frontend-note/blob/main/01-note/README.md
 
-## SSI-Training-Note (Part2)
-https://github.com/hanwenzhang123/SSI-training-note/blob/main/react-redux/README.md
+## React, Redux (Note Part2)
+https://github.com/hanwenzhang123/frontend-note/blob/main/02-note/README.md
 
-## SSI-Training-Note (Part3)
-https://github.com/hanwenzhang123/SSI-training-note/blob/main/mock/README.md
+## Performance, Testing (Note Part3)
+https://github.com/hanwenzhang123/frontend-note/blob/main/03-note/README.md
 
 ## Table of Contents
 - [JavaScript Example](#JavaScript-Example)
