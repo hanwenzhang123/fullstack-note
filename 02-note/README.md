@@ -54,7 +54,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 - Diff Algorithms (outputs the set of differences between two inputs) -> reconciliation (“virtual” representation of a UI is kept in memory and synced with the “real” DOM by a library such as ReactDOM)
 - Component-based framework -> Reusability
 - JSX (HTML + JS) - good for dev - efficient context switching is now avoid
-- Focus on the view
+- Focus on the view -> User Interfaces
 
 #### state & props
 - mutable? => both immutable, read only
@@ -121,6 +121,12 @@ export const Button = styled.button`color: white;`	//using tagged template liter
 
 ## Rendering
 
+#### Re-renders Situations
+- The parent component re-renders, which causes all of the parent's children to try to re-render, even if the props from the parent haven't changed.
+- The component calls this.setState(), which causes a state update and a re-render
+- The component calls this.forceUpdate(), which causes a re-render.
+- Component changed? Re-render. Parent changed? Re-render. Section of props that doesn't actually impact the view changed? Re-render.
+
 #### What does setState do?
 - setState will trigger re-rendering, and update/modify local state correctly 
 - when invole previous value, we should always use a callback function to properly handle it base on the current value
@@ -133,13 +139,12 @@ this.setState((prevState) => {     //passing in a callback function instead of s
 })
 ```
 
-#### Re-renders Situations
-- The parent component re-renders, which causes all of the parent's children to try to re-render, even if the props from the parent haven't changed.
-- The component calls this.setState(), which causes a state update and a re-render
-- The component calls this.forceUpdate(), which causes a re-render.
-- Component changed? Re-render. 
-- Parent changed? Re-render. 
-- Section of props that doesn't actually impact the view changed? Re-render.
+#### setState() behind the scene
+- setState are asynchronous and are batched for performance gains -> react fiber -> then render
+- fiber: reconciliation, diffing algorithms - outputs the set of differences between two inputs -> no new key no change on virtual DOM, improve web performance
+- Batching: React groups multiple state updates into a single re-render for better performance.
+- using setState to change a variable inside any function, instead of making a render at each setState, React collects all setStates and then executes them together.
+- no matter how many setState calls you make inside a React event handler or synchronous lifecycle method, it will be batched into a single update.
 
 #### Controlled Component vs Uncontrolled Component
 Controlled Component
