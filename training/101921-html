@@ -4,6 +4,8 @@
 - Check browser support : Caniuse.com 
 - Pixel is not a pixel:https://www.quirksmode.org/blog/archives/2010/04/a_pixel_is_not.html
 - localStorage vs Cookie: https://wpreset.com/localstorage-sessionstorage-cookies-detailed-comparison/
+- Why is HTTP not secure: https://www.cloudflare.com/learning/ssl/why-is-http-not-secure/
+- critical rendering path: https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
 
 - Meta tags in HTML
 - What is iframe and how it works
