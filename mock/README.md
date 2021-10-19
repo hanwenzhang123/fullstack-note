@@ -407,12 +407,6 @@ user.sayHi();
 `JSON.stringify()` to convert a JavaScript object into a JSON string
 - `const jsonData = JSON.stringify(obj);`
 
-#### GET, POST, PUT, DELETE
-- GET requests data from a specified resource
-- POST sends data to a server to create a resource - "create new"
-- PUT means "insert, replace if already exists" 
-- DELETE deletes the specified resource.
-
 #### Fetch API
 ```js
 fetch('http://example.com/movies.json')
@@ -457,6 +451,19 @@ return (
 )
 }
 ```
+
+#### GET, POST, PUT, DELETE
+- GET requests data from a specified resource
+- POST send data to a server to create/update a resource - always contains a body
+- PUT means "insert, replace if already exists" 
+- DELETE deletes the specified resource.
+
+#### HTTP response status codes
+- Informational responses (100–199)
+- Successful responses (200–299)
+- Redirection messages (300–399)
+- Client error responses (400–499)
+- Server error responses (500–599)
 
 [[↑] Back to top](#table-of-contents)
 
