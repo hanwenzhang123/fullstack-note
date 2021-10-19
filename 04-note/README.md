@@ -1,5 +1,5 @@
 ---
-title: Boilerplate Code (Part4)
+title: Boilerplate Code (Note Part4)
 ---
 
 ## HTML, CSS, JavaScript (Note Part1)
