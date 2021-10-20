@@ -199,11 +199,11 @@ specify sizes or lengths of elements using various units of measure
 
 #### Difference Between Relative and Absolute
 - `position: relative` - starts from where the element would be in the normal document flow
-- `position: absolute` - removed from the normal document flow, placed in an exact location where you tell it to go on the page, relative to the nearest positioned ancestor 
+- `position: absolute` - removed from the normal document flow, placed in an exact location where you tell it to go on the page, relative to the nearest positioned ancestor (focus on the parent)
 
 #### media queries
 - for responsive design, change the styling once the size reaches a certain value
-- <source srcset="img_smallflower.jpg" media="(max-width: 600px)">
+- `<source srcset="img_smallflower.jpg" media="(max-width: 600px)">`
 ```css
 @media only screen and (max-width: 600px) {
   body {
@@ -666,8 +666,9 @@ console.log(newFunc());  //2
 ```
 
 #### Callbacks
-- a function passed into another function as an argument to be executed later after another function has finished executing
-- it is a great way to handle something after something else has been completed.
+- a function passed into another function as an argument 
+- this function will be executed later only after this another function has finished executing
+- great for async calls, handle something after something else has been completed, enforce the order of operation that we want. 
 
 #### Currying
 - transform a function of arguments n, to n functions of one or less arguments. 
