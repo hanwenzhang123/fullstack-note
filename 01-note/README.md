@@ -162,8 +162,8 @@ specify sizes or lengths of elements using various units of measure
 
 #### Three ways to insert CSS
 - external CSS (better choice, a separate css file)
-- internal CSS (putting css directly in the html page)
-- inline CSS (not recommended)
+- internal CSS (putting css directly in the html page using style tag, higher priorty)
+- inline CSS (not recommended, highest priority, overriding other ways, not reusable)
 
 #### The CSS Box Model
 - margin, border, padding, content
@@ -173,6 +173,9 @@ specify sizes or lengths of elements using various units of measure
 - 4 value order: top right bottom left 
 - 3 value order: top left&right bottom
 - 2 value order: top&bottom left&right
+
+#### reset css
+- `* { margin:0; padding:0; }`
 
 #### what is margin collapse?
 - Top and bottom margins collapse into a single margin when it comes in contact with one another
