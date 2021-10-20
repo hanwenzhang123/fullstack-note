@@ -54,6 +54,11 @@ function titleCase(str) {
 }
 ```
 
+#### sorting
+- `x.sort(function(a, b){return a - b});` -> numeric sort
+- `x.sort(function(a, b){return b - a});` -> numeric descending sort
+- `x.sort(function(a, b){return 0.5 - Math.random()});` -> random order sort
+
 [[↑] Back to top](#table-of-contents)
 
 ## Array
