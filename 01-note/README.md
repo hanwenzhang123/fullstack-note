@@ -175,7 +175,7 @@ specify sizes or lengths of elements using various units of measure
 - 2 value order: top&bottom left&right
 
 #### reset css
-- `* { margin:0; padding:0; }`
+- `* { margin:0; padding:0; box-sizing: border-box }`
 
 #### what is margin collapse?
 - Top and bottom margins collapse into a single margin when it comes in contact with one another
