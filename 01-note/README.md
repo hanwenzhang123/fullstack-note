@@ -26,6 +26,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 
 #### What is HTTP?
 - HTTP stands for Hyper Text Transfer Protocol, used for transferring data over a network
+- HTTP is the foundation of data communication for the World Wide Web.
 - WWW World Wide Web is about communication between web clients (often browsers) and servers (often computers in the cloud)
 - Communication between client computers and web servers is done by sending HTTP Requests and receiving HTTP Responses
 
@@ -115,19 +116,20 @@ setWithExpiry and getWithExpiry
 #### form elements
 ```html
 <form action="/action.php" method="post" id="form">
-  <label for="name">Name:</label><br>
-  <input type="text" id="name" name="name"><br>
-  <input max="99" min="1" name="age" step="1" type="number" value="18" /> <br />
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name">
+  <input max="99" min="1" name="age" step="1" type="number" value="18" />
   <select name="gender">
 	<option selected="selected" value="male">Male</option>
 	<option value="female">Female</option>
   </select><br /> 
-  <input checked="checked" name="newsletter" type="radio" value="daily" /> Checked <br />
-  <textarea cols="20" name="comments" rows="5">Comment</textarea><br />
-  <input name="terms" type="checkbox" value="tandc" /><br />
+  <input checked="checked" name="newsletter" type="radio" value="daily" />
+  <textarea cols="20" name="comments" rows="5">Comment</textarea>
+  <input name="terms" type="checkbox" value="tandc" />
   <input type="submit" value="Submit" />
   <input type="reset">
 </form>
+<button form="form">Send</button>
 ```
 
 #### What is the `<meta>` tag in the head tag? Why do we need it?
