@@ -5,7 +5,7 @@ title: HTML, CSS, JavaScript (Note Part1)
 ## React, Redux (Note Part2)
 https://github.com/hanwenzhang123/frontend-note/blob/main/02-note/README.md
 
-## Performance, Testing (Note Part3)
+## Frontend Miscellaneous (Note Part3)
 https://github.com/hanwenzhang123/frontend-note/blob/main/03-note/README.md
 
 ## Boilerplate Code (Note Part4)
