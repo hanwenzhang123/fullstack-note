@@ -280,6 +280,10 @@ specify sizes or lengths of elements using various units of measure
 - a way to reduce the number of HTTP requests made for image resources, by combining images in a single file
 - A web page with many images can take a long time to load and generates multiple server requests, using image sprites will reduce the number of server requests
 
+#### SVG icon and icon font
+- icon fonts are treated as a piece of text by the browser
+- SVGs are treated as an image/graphic with built in semantic elements – like < title > and < desc > that makes it accessible to screen reader 
+
 #### BEM Naming Convention
 - Block: describes its purpose ("What is it?" — menu or button) - it doesn't depend on other page components
 - Element: describes its purpose ("What is this?" — item, text, input) `block-name__element-name` with a double underscore `(__)` - can't be used separately without the parent entity (the block)
