@@ -197,7 +197,7 @@ specify sizes or lengths of elements using various units of measure
 - `fixed` - fixed based on the doc and always stick to where it is
 - `sticky` - combination of relative and relative stick to the position based on the users scroll position
 
-#### Difference Between Relative and Absolute
+#### relative vs absolute
 - `position: relative` - starts from where the element would be in the normal document flow
 - `position: absolute` - removed from the normal document flow, placed in an exact location where you tell it to go on the page, relative to the nearest positioned ancestor (focus on the parent). 
 
