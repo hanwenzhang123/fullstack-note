@@ -132,35 +132,38 @@ setWithExpiry and getWithExpiry
 <button form="form">Send</button>
 ```
 
-#### What is the `<meta>` tag in the head tag? Why do we need it?
+#### What is the `<meta>` tag in the `<head>` tag?
 - `<meta>` - metadata about an HTML document, is data (information) about data. 
 - `<meta>` tags always go inside the `<head>` element, and are used to specify character set, page description, keywords, author, and viewport settings.
 - `<meta>` is important for SEO (search engine optimization). we do not visually see any of the code in the browser, but the browser will analyze the information.
 
 #### SEO (Search engine optimization)
-- the process of improving the quality and quantity of website traffic to a website or a web page from search engines.
+- The process of improving the quality and quantity of website traffic to a website or a web page from search engines.
 - Publish Relevant, Authoritative Content. Update Your Content Regularly. 
-- Metadata. Improve Title Tags. Use alt tags.
+- Metadata. Improve title Tags. Use alt tags describe imagines.
 
-#### canvas
-- `<canvas>` element is used to draw graphics on a web page.
-- only a container for graphics. use JavaScript to actually draw the graphics.
+#### Character Encoding
+- To display an HTML page correctly, a web browser must know which character set to use.
+- Charset a table of unique numbers assigned to different characters like letters, numbers and other symbols like ASCII 128 different characters
+- HTML5 charset standard: `<meta charset="UTF-8">`
+
+#### multiple `<header>` and `<footer>`
+- you can use multiple `<header>` and `<footer>` elements in a webpage
+- they represent a header and footer of a section, like every `<section>` and `<article>` also can contain these two tags
+- An HTML should only one `<html>` and `<body>` tag in the document
+
+#### `<canvas>` vs `<svg>`
+- both elements are used to draw two-dimensional graphics on a web page.
+- only a container for graphics. use JavaScript to actually draw like `setAttribute("fill", "green");`
 
 #### What is the `<iframe>` tag
-- An inline frame is used to embed another document within the current HTML document.
-- represents a nested browsing context, embedding another HTML page into the current one.
+- an inline frame is used to embed/display a web page within a web page.
+- `<iframe src="https://www.w3schools.com"></iframe>`
 
 #### Difference between `<script>`, `<script async>` and `<script defer>`.
 - `<script>` - HTML parsing is blocked, the script is fetched and executed immediately, HTML parsing resumes after the script is executed.
 - `<script async>` - in parallel to HTML parsing and executed as soon as it is available (potentially before HTML parsing completes)
 - `<script defer>` - in parallel to HTML parsing and executed when the page has finished parsing, ensuring that the HTML is fully parsed before executing. There's not much difference in putting a normal `<script>` at the end of `<body>`.
-
-#### Web Workers
-- HTML5 new feature
-- we can off load some ccomputer heavy task to web work, they will execute in parallel
-- give developers a way of instructing the browser to process large tasks in the background
-- preventing the UI from freezing up
-- for web content to run scripts in an isolated thread in the browser (background threads)
 
 [[↑] Back to top](#table-of-contents)
 
@@ -175,7 +178,6 @@ setWithExpiry and getWithExpiry
 
 #### px, em and rem
 specify sizes or lengths of elements using various units of measure
-
 - px: You get what you asked for. Pixels may be good at spacing and layout, but are not good fit for font-size.
 - em: Relative to the parent element
 - rem: Relative to the root element (HTML tag), do not care about the parent
@@ -196,6 +198,8 @@ specify sizes or lengths of elements using various units of measure
 
 #### reset css
 - `* { margin:0; padding:0; box-sizing: border-box }`
+- reset: consistent baseline, more control over the styling of everything.
+- normalize: cross-browser consistency without completely losing the default styles and working with modern CSS standards.
 
 #### what is margin collapse?
 - Top and bottom margins collapse into a single margin when it comes in contact with one another
@@ -221,16 +225,8 @@ specify sizes or lengths of elements using various units of measure
 - `position: relative` - starts from where the element would be in the normal document flow
 - `position: absolute` - removed from the normal document flow, placed in an exact location where you tell it to go on the page, relative to the nearest positioned ancestor (focus on the parent). 
 
-#### media queries
-- for responsive design, change the styling once the size reaches a certain value
-- `<source srcset="img_smallflower.jpg" media="(max-width: 600px)">`
-```css
-@media only screen and (max-width: 600px) {
-  body {
-    background-color: lightblue;
-  }
-}
-```
+#### z-index
+- set the order of a positioned overlapping element, larger z-index cover smaller one.
 
 #### combinators
 - descendant selector (space) - all elements that are descendants of a specified element.
@@ -254,16 +250,30 @@ specify sizes or lengths of elements using various units of measure
 - `visibility:hidden` - occupies space, but does not consumes clicks, hides an element but take up the same space as before
 - `opacity:0` - occupies space and consumes clicks, create transparency or fade effect
 
-#### flexbox
-- `display: flex`
-- A flexible layout must have a parent element with the diplay property set to flex.
-- direct child elements if the flexible container automatically becomes flexible items. 
-- `flex-grow | flex-shrink | flex-basis`
-
 #### center both vertically and horizontally using flexbox
 - `display: flex`
 - `justify-content: center` - horizontally or vertically depends on the main axis
-- `align-items: center` - center in the middle
+- `align-items: center` - center in the middle 
+
+#### flexbox
+- `display: flex`, `flex-grow | flex-shrink | flex-basis`
+- A flexible layout must have a parent element with the diplay property set to flex.
+- Direct child elements in the flexible container automatically becomes flexible items. 
+
+#### grid system
+- `display: grid | inline-grid;`
+- grid-based layout system, with rows and columns, making it easier to design web pages without having to use floats and positioning.
+- All direct children of the grid container automatically become grid items. (one container with multiple items).
+
+#### flex and grid
+- Grid is for layout, Flexbox is for alignment
+- flex: small design to implement, align elements, content-first design
+- grid: complex design to implement, a gap between block elements, overlap elements, layout-first design
+
+#### media queries
+- for responsive design, change the styling once the size reaches a certain value
+- `<source srcset="img_smallflower.jpg" media="(max-width: 600px)">`
+- `@media only screen and (max-width: 600px) {}`
 
 #### what is image sprite?
 - a collection of images put into a single image -> (reduce requests)
@@ -714,7 +724,12 @@ higherOrder(firstOrderFunc);
 
 #### Page Redirection
 - `function redirect() { window.location="{URL}" };`
-- `setTimeout("redirect()", 1000)`
+- `setTimeout(redirect, 1000)`
+
+#### Popup Boxes
+- alert: `window.alert("sometext");`
+- prompt: `window.prompt("sometext","defaultText");`
+- confirm: `window.confirm("somtext")` ok and cancel -> return boolean
 
 #### Unary Function
 Unary function is a function that accepts exactly one argument. It stands for a single argument accepted by a function.
