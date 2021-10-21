@@ -574,7 +574,7 @@ function func(a, b, ...rest) {
 func(1, 2, 3, 4, 5, 6, 7);
 ```
 
-#### Promise(Event-loop, task scheduling)
+#### Promise(event loop, task scheduling)
 - JS is a single-threaded language, use promise to handle async operation
 - new feature of ES6 -> avoid callback hell - a chained nested code
 
@@ -711,6 +711,10 @@ const firstOrderFunc = () => console.log ('Hello, I am a First order function');
 const higherOrder = ReturnFirstOrderFunc => ReturnFirstOrderFunc();
 higherOrder(firstOrderFunc);
 ```
+
+#### Page Redirection
+- `function redirect() { window.location="{URL}" };`
+- `setTimeout("redirect()", 1000)`
 
 #### Unary Function
 Unary function is a function that accepts exactly one argument. It stands for a single argument accepted by a function.
