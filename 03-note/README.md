@@ -354,8 +354,8 @@ console.log(auto instanceof Object);	// true
 ```
 
 #### what is prototype
-- A reference to another object 
-- every function includes prototype object that enables all the other objects to inherit these methods and properties
+- All JavaScript objects inherit the properties and methods from their prototype, like a reference to another object 
+- Every function includes prototype object that enables all the other objects to inherit these methods and properties
 - Objects created using the `new` keyword inherit from a prototype called `Object.prototype`.
 
 #### prototype chain
