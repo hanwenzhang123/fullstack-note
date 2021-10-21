@@ -518,19 +518,6 @@ Server-side rendering
 - convert HTML files on the server into a fully rendered HTML page for the client.
 - When a user makes a request to a webpage, the server prepares an HTML page by fetching user-specific data and sends it to the user’s machine over the internet. The browser then construes the content and displays the page.
 
-#### How to Share Components with Others?
-shared component architecture
--  how to develop components independently but avoid the overhead of too many repositories
--  how to version, publish and manage each component individually
--  how to help others discover and adopt the components
-
-build, distribute and collaborate over components to build multiple projects and applications
-- Bit + Bit.dev - develop, build and test individual components in the library in complete isolation - https://github.com/teambit/bit 
-- When you update a single components, Bit “knows” which other components depend on it, and help you update all the component that are impacted by the update.
-- Lerna - manage multi-repository structure inside a single repository - https://github.com/lerna/lerna
-- Multiple packages - create new Git repo for every piece of code you want to reuse
-- A Single library package for many components - put a few dozen shared components in a single repo
-
 #### What is Micro-service Architecture?
 - focus on building individual services that do one thing and one thing well
 - splits large applications into much smaller pieces that exist independently of each other.
@@ -565,6 +552,19 @@ Benefits of OOP
 - Inheritance: elimate redundant code
 - Polymorphism: refactor ugly switch case statement
 
+#### How to Share Components with Others?
+shared component architecture
+-  how to develop components independently but avoid the overhead of too many repositories
+-  how to version, publish and manage each component individually
+-  how to help others discover and adopt the components
+
+build, distribute and collaborate over components to build multiple projects and applications
+- Bit + Bit.dev - develop, build and test individual components in the library in complete isolation - https://github.com/teambit/bit 
+- When you update a single components, Bit “knows” which other components depend on it, and help you update all the component that are impacted by the update.
+- Lerna - manage multi-repository structure inside a single repository - https://github.com/lerna/lerna
+- Multiple packages - create new Git repo for every piece of code you want to reuse
+- A Single library package for many components - put a few dozen shared components in a single repo
+
 #### The Different Kind of Frontend Frameworks, Advantage, Limitation
 Pros
 - easy and quick to get started
@@ -577,9 +577,11 @@ Cons
 - updates can introduce issues
 - easy to get started, but require more time down the road to add features and customizations. 
 
+#### React Angular Vue
 - React data flows only in one way and is easy to debug.
 - Angular data flows both ways and hence debugging is often difficult.
-- It is different from angular,vue. The react alway passes the data to view, and to update the view, you need to use a callback to update it.
+- Vue mainly uses HTML templates with some JSX, while React only uses JSX that allows you to insert HTML directly into JS code.
+- React alway passes the data to view, and to update the view, you need to use a callback to update it -> different from react and angualr
 
 [[↑] Back to top](#table-of-contents)
 
@@ -673,6 +675,25 @@ Both support lazy loading with webpack.
 - React.lazy(() => import('./pages/NewQuote')) - the function we pass to lazy will be executed by React when this new quote component is needed.
 - `<Suspense> ... </Suspense>` - We need to wrap this around the code, where we use React lazy.
 
+#### loadsh
+Debounce and throttle are techniques to control how many times we allow a function to be executed over time 
+- debounce -> search bar (auto-complete)
+- throttle -> scrolling / resizing page
+- debounce / throtte -> web performance improvement -> control the number of times the function will be called
+
+debounce 
+- setTimeout
+- continuously execute when event change ends, only execute once after event change stop
+- like a search bar, you enter text, once yoou finish, wait for the timer done, it will send the request only one time to UI after the time period
+- “group” multiple sequential calls in a single one, only send the final one
+- `const debouncedFunc = _.debounce(fetchAPI, 100); onUserInput => { debouncedFunc() }` - shorter than a 100 
+
+throtte 
+- setInterval
+- continuously execute when event change happens
+- like resizing page, you send requests to the UI with a timer interval, will be sent no matter how many requests within the time period
+- `_.throttle(fetchAPI, 100)`;
+
 #### Production build vs Development build
 - production and development build come into the picture because of performance impact in real life deployed the application.
 - Development build: for development reasons. You have Source Maps, debugging and often times hot reloading ability in those builds.
@@ -685,35 +706,15 @@ Both support lazy loading with webpack.
 - rendering development build js files on UI will take more time as compared to production version 
 - which production is very crisp, compact, compressed, uglified for better user experience and loading on UI.
 
-#### loadsh
-Debounce and throttle are techniques to control how many times we allow a function to be executed over time 
-- debounce -> search bar (auto-complete)
-- throttle -> scrolling / resizing page
-- debounce / throtte -> web performance improvement -> control the number of times the function will be called
-
-debounce 
-- setTimeout
-- continuously execute when event change ends, only execute once after event change stop
-- like a search bar, you enter text, once yoou finish, wait for the timer done, it will send the request only one time to UI after the time period
-- “group” multiple sequential calls in a single one, only send the final one
-```js
-func fetchAPI ... const debouncedFunc = _.debounce(fetchAPI, 100) //shorter than a 100
-onUserInput => {
-  debouncedFunc()
-}
-```
-
-throtte 
-- setInterval
-- continuously execute when event change happens
-- like resizing page, you send requests to the UI with a timer interval, will be sent no matter how many requests within the time period
-- `_.throttle(fetchAPI, 100)`;
-
 #### Virtual Scrolling
 - While the user is scrolling the table, the Grid requests and displays only the visible pages.
-- Import component. import VirtualScroll from "react-dynamic-virtual-scroll";
-- Add component as follows in your render method: 
+- Import component. Import VirtualScroll from "react-dynamic-virtual-scroll". Add component as follows in your render method: 
 - `<VirtualScroll className="List" minItemHeight={40} totalLength={100} renderItem={(rowIndex) => { return ( <div className="List-item"> <h3>List item: {rowIndex}</h3> </div> ); }} />`
+
+#### Web Workers
+- JS scripts running in the background threads, which are separate from the main execution thread, without affecting the performance of the page.
+- web content to run scripts in an isolated thread in the browser in parallel, prevent the UI from freezing up
+- `var myWorker = new Worker('worker.js');`, `myWorker.terminate();`
 
 [[↑] Back to top](#table-of-contents)
 
