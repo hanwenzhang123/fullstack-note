@@ -158,7 +158,7 @@ specify sizes or lengths of elements using various units of measure
 
 - px: You get what you asked for. Pixels may be good at spacing and layout, but are not good fit for font-size.
 - em: Relative to the parent element
-- rem: Relative to the root element (HTML tag)
+- rem: Relative to the root element (HTML tag), do not care about the parent
 
 #### Three ways to insert CSS
 - external CSS (better choice, a separate css file)
@@ -191,15 +191,15 @@ specify sizes or lengths of elements using various units of measure
 - 'inline-block' - allow elements to sit to left & right, top & bottom margins and padding, height and width
 
 #### position
-- `static` - default, follow the flow
-- `relative` - almost same as static, but you can change the position relatively to the docs (its normal position), can even overflow
+- `static` - default, follow the flow into the page as it normally would
+- `relative` - almost same as static, but you can change the position relatively to the docs (its normal position), can even overflow (the ability to use z-index)
 - `absolute` - other elements render as this absolute element does not even exist, relative to the nearest positioned ancestor 
 - `fixed` - fixed based on the doc and always stick to where it is
 - `sticky` - combination of relative and relative stick to the position based on the users scroll position
 
 #### Difference Between Relative and Absolute
 - `position: relative` - starts from where the element would be in the normal document flow
-- `position: absolute` - removed from the normal document flow, placed in an exact location where you tell it to go on the page, relative to the nearest positioned ancestor (focus on the parent)
+- `position: absolute` - removed from the normal document flow, placed in an exact location where you tell it to go on the page, relative to the nearest positioned ancestor (focus on the parent). 
 
 #### media queries
 - for responsive design, change the styling once the size reaches a certain value
@@ -250,10 +250,15 @@ specify sizes or lengths of elements using various units of measure
 - a way to reduce the number of HTTP requests made for image resources, by combining images in a single file
 - A web page with many images can take a long time to load and generates multiple server requests, using image sprites will reduce the number of server requests
 
+#### BEM Naming Convention
+- Block: describes its purpose ("What is it?" — menu or button) - it doesn't depend on other page components
+- Element: describes its purpose ("What is this?" — item, text, input) `block-name__element-name` with a double underscore `(__)` - can't be used separately without the parent entity (the block)
+- Modifier: describes its appearance ("What size?" or "Which theme?"), its state ("How is it different from the others?"), and its behavior ("How does it behave?"), like `directions_left-top` with a single underscore `(_)`
+
 #### Cross Browser Compatibility
+- check browser support: `caniuse.com` or use `CrossBrowserTesting` for testing
 - The ability of a website, application or script to support various web browsers identically.
 - For example, we can check if CSS animation features support equally under various web environments
-- We can use CrossBrowserTesting for testing and check on Can I use website
 
 [[↑] Back to top](#table-of-contents)
 
