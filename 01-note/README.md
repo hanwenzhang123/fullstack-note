@@ -372,7 +372,7 @@ Internal JavaScript engine built in Chrome.
 It gives you less tolerate to errors, put on top of your program
 
 #### data type
-primitive data types, variable stores the values
+primitive data types, variable stores the values, refer by value
 ```js
 let a = 1; //number
 a= "hello" //string
@@ -381,7 +381,7 @@ a = undefined // let a;
 a = null; // let a = null;
 ```
 
-non-primitive, object points to a reference, not the value itself
+non-primitive, object points to a reference (memory location of the value), not the value itself
 ```js
 a = {} // object
 arr = [] // object (array)
