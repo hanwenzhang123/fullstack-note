@@ -786,6 +786,10 @@ console.log(obj);  //{x: { y: 9 } - also change to 9, both get update
 
 ## DOM Event
 
+#### What is DOM?
+- DOM stands for Document Object Model, it represents a document with a logical tree of objects, is the render path of elements in a website
+- DOM is a platform allows programs and scripts to dynamically access and update the content, structure, and style of a document.
+
 #### JS mechanism (how to handle the sync and async code)
 The event loops behind the browser handles the sync and async JavaScript code, like when JS engine that built in the browser (for chrome is V8) runs JS code, because JS is a single threaded language, the code will be read line by line, and stores the memory in the heap, and push the function call to the call stack. If it is async function code, it will be then pushed to the web API instead to wait for the condition to be met while the call stack keeps running as first in last out and garbage collects the variables that are no longer in use. Once the async code in the web API is ready to run, it will then be pushed to the message queue. When there are no functions to run in the call stack, the Event Loop will take the first event from the Queue and will push it to the Call Stack to run.
 
