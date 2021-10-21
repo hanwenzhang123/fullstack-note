@@ -84,25 +84,21 @@ setWithExpiry and getWithExpiry
 - `_blank` (new tab) and `_self` (current tab)
 - `<a href=“https://www.youtube.com/” target="_blank"></a>`
 
+#### div and span
+- `<div>` - anything can be putting within a div, it is a block element
+- `<span>` - like a div but only for inline container, which div is block level element
+
 #### why using semantic tags?
 - we want to know what does it exactly means in the HTML, we can know it directly by its name 
 - `<div>` is too broad, we do not know what does it mean. 
 - semantic elements carry accessibility by itself, proper reading
   
-#### web a11y accessibility
+#### a11y 508 accessibility
 - computer accessibility, for people with disability using screen reader 
 - mac machine, window, 3rd party tool, it will read out the web contents for you
 - you want to have your website good with accessibility features
 
-#### div and span
-- `<div>` - anything can be putting within a div, it is a block element
-- `<span>` - like a div but only for inline container, which div is block level element
-
-#### canvas
-- `<canvas>` element is used to draw graphics on a web page.
-- only a container for graphics. use JavaScript to actually draw the graphics.
-
-#### Video and Audio Tag
+#### video and audio
 - the text between the tags only appears when audio is not working
 ```html
 <video width="320" height="240" controls>
@@ -116,15 +112,37 @@ setWithExpiry and getWithExpiry
 </audio>
 ```
 
-#### SEO (Search engine optimization)
-- the process of improving the quality and quantity of website traffic to a website or a web page from search engines.
-- Publish Relevant, Authoritative Content. Update Your Content Regularly. 
-- Metadata. Improve Title Tags. Use alt tags.
+#### form elements
+```html
+<form action="/action.php" method="post" id="form">
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name"><br>
+  <input max="99" min="1" name="age" step="1" type="number" value="18" /> <br />
+  <select name="gender">
+	<option selected="selected" value="male">Male</option>
+	<option value="female">Female</option>
+  </select><br /> 
+  <input checked="checked" name="newsletter" type="radio" value="daily" /> Checked <br />
+  <textarea cols="20" name="comments" rows="5">Comment</textarea><br />
+  <input name="terms" type="checkbox" value="tandc" /><br />
+  <input type="submit" value="Submit" />
+  <input type="reset">
+</form>
+```
 
 #### What is the `<meta>` tag in the head tag? Why do we need it?
 - `<meta>` - metadata about an HTML document, is data (information) about data. 
 - `<meta>` tags always go inside the `<head>` element, and are used to specify character set, page description, keywords, author, and viewport settings.
 - `<meta>` is important for SEO (search engine optimization). we do not visually see any of the code in the browser, but the browser will analyze the information.
+
+#### SEO (Search engine optimization)
+- the process of improving the quality and quantity of website traffic to a website or a web page from search engines.
+- Publish Relevant, Authoritative Content. Update Your Content Regularly. 
+- Metadata. Improve Title Tags. Use alt tags.
+
+#### canvas
+- `<canvas>` element is used to draw graphics on a web page.
+- only a container for graphics. use JavaScript to actually draw the graphics.
 
 #### What is the `<iframe>` tag
 - An inline frame is used to embed another document within the current HTML document.
