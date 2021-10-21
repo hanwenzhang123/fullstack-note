@@ -1,5 +1,5 @@
 ---
-title: Performance, Testing (Note Part3)
+title: Frontend Miscellaneous (Note Part3)
 ---
 
 ## HTML, CSS, JavaScript (Note Part1)
@@ -368,6 +368,11 @@ console.log(auto instanceof Object);	// true
 - The `new` operator to create an instance of the class based on the prototype. 
 - `new` makes the this variable point to the newly created object.
 - it instantiates a class by allocating memory for a new object and returning a reference to that memory.
+
+#### getter and setter
+- data encapsulation, used to protect your data, particularly when creating classes. 
+- The constructors are used to initialize the instance variable of a class or, create objects. 
+- The setter/getter methods are used to assign/change and retrieve values of the instance variables of a class
 
 #### ES6 Class Syntax
 ```js
