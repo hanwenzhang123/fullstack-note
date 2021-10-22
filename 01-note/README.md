@@ -93,6 +93,7 @@ setWithExpiry and getWithExpiry
 - we want to know what does it exactly means in the HTML, we can know it directly by its name 
 - `<div>` is too broad, we do not know what does it mean. 
 - semantic elements carry accessibility by itself, proper reading
+- `<article><aside><details><figcaption><figure><footer><header><main><mark><nav><section><summary><time>`
   
 #### a11y 508 accessibility
 - computer accessibility, for people with disability using screen reader 
