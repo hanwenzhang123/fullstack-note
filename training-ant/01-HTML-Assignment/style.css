@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+body {
+    margin: 10% auto;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+    font-weight: lighter;
+    margin: 0.3em;
+}
+
+/* form */
+
+input {
+    width: 100%;
+    margin: 6px 0px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid lightgray;
+}
+
+.name,
+.password {
+    display: flex;
+    justify-content: space-between;
+}
+
+#lname,
+#fname,
+#password,
+#confirmpw {
+    width: 48%
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus {
+    outline: none;
+    border: 2px solid skyblue;
+}
+
+/* agreement */
+
+.agreement {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.check {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#check-box {
+    width: 10px;
+    cursor: pointer;
+}
+
+#check-label {
+    font-size: 12px;
+    font-weight: bolder;
+}
+
+.paragraph {
+    font-size: 10px;
+    margin-left: 40px
+}
+
+#register {
+    background-color: rgb(95, 162, 218);
+    color: white;
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+.agreement a {
+    color: rgb(95, 162, 218);
+    text-decoration: none;
+}
+
+/* button */
+
+.btn {
+    display: inline;
+    margin: 10px 0px;
+}
+
+button {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 80px;
+    margin: 0 10px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.register {
+    background-color: rgb(95, 162, 218);
+    color: white
+}
+
+.signin {
+    background-color: rgb(94, 212, 78);
+    color: white
+}
