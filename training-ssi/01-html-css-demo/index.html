@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>HTML-CSS-Demo</title>
+    <meta name="description" content="Cute Gorilla" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <ul class="nav_container">
+        <li>
+          <a href="#index.html"><span class="material-icons">home</span>Home</a>
+        </li>
+        <li>
+          <a href="#gorilla"><span class="material-icons">search</span>Article</a>
+        </li>
+        <li>
+          <a href="#checkout"><span class="material-icons">email</span>Payment</a>
+        </li>
+        <li>
+          <a href="#timeline"><span class="material-icons">face</span>TimeLine</a>
+        </li>
+      </ul>
+    </nav>
+    <section class="article" id="gorilla">
+      <article class="article-box">
+        <div class="article-left">
+          <img src="./src/gorilla.jpg" alt="Cute Gorilla" />
+        </div>
+        <div class="article-right">
+          <h1>Gorilla is a Cute Animal</h1>
+          <p title="Gorilla Introduction">
+            Gorillas are ground-dwelling, predominantly herbivorous great apes that inhabit the tropical forests of
+            central Sub-Saharan Africa. The genus Gorilla is divided into two species: the eastern gorillas and the
+            western gorillas, and either four or five subspecies. They are the largest living primates. The DNA of
+            gorillas is highly similar to that of humans, from 95 to 99% depending on what is included, and they are the
+            next closest living relatives to humans after chimpanzees and bonobos.
+            Gorillas are the largest non-human primates, reaching heights between 1.25-1.8 metres, weights between
+            100–270 kg, and arm spans up to 2.6 metres, depending on species and sex. They tend to live in troops, with
+            the leader being called a silverback. The Eastern gorilla is distinguished from the Western by darker fur
+            colour and some other minor morphological differences. Gorillas tend to live 35–40 years in the wild.<br />
+            <p><i>-- information from <a href="https://en.wikipedia.org/wiki/Gorilla" target="_blank">WikiPedia</a></i>
+            </p>
+          </p>
+        </div>
+      </article>
+    </section>
+    <section class="checkout" id="checkout">
+      <div class="checkout-box">
+        <form action="#">
+          <div class="billing-address">
+            <h2>Billing Address</h2>
+
+            <label><span class="material-icons">person</span>Full Name:</label><br>
+            <input type="text" placeholder="John M. Doe"><br>
+            <label><span class="material-icons">contact_mail</span>Email:</label><br>
+            <input type="email" placeholder="michael@example.com" /><br>
+            <label><span class="material-icons">home</span>Address:</label><br>
+            <input type="text" placeholder="830 Hill View Dr" /><br>
+            <label><span class="material-icons">location_city</span>City:</label><br>
+            <input type="text" placeholder="San Jose" /><br>
+
+            <div class="state-zip">
+              <div class="state">
+                <label>State:</label><br>
+                <input type="text" placeholder="CA" /><br>
+              </div>
+              <div class="zip">
+                <label>Zip:</label><br>
+                <input type="number" placeholder="90001" /><br>
+              </div>
+            </div>
+          </div>
+
+          <div class="payment">
+            <h2>Payment Method</h2>
+            <label><span class="material-icons">
+                monetization_on
+              </span>Accepted Cards</label>
+            <div class="icons">
+              <img src="./src/visa.png" alt="Visa" />
+              <img src="./src/amex.png" alt="American Express" />
+              <img src="./src/discover.png" alt="Discover" />
+              <img src="./src/mastercard.png" alt="Master" />
+              <img src="./src/applepay.png" alt="Apple Pay" />
+            </div>
+            <label><span class="material-icons">badge</span>Name on Card: </label><br>
+            <input type="text" placeholder="John M. Doe" /><br>
+            <label><span class="material-icons">credit_card</span>Credit Card Number: </label><br>
+            <input type="number" placeholder="xxxx-xxxx-xxxx-xxxx" /><br>
+            <label><span class="material-icons">today</span>Exp Month: </label><br />
+            <input type="text" placeholder="August" /><br>
+
+            <div class="card-info">
+              <div class="year">
+                <label>Exp Year: </label><br />
+                <input type="number" placeholder="2018" /><br>
+              </div>
+              <div class="cvv">
+                <label>CVV: </label><br />
+                <input type="number" placeholder="123" /><br>
+              </div>
+            </div>
+          </div>
+
+          <div class="bottom">
+            <input type="checkbox"><b> Shipping address same as billing</b><br>
+            <button>Continue to checkout</button>
+          </div>
+      </div>
+      </form>
+
+
+      <div class="shopping-cart">
+        <div class="cart"><b>Cart</b>
+          <span class="material-icons">shopping_cart</span><b>4</b>
+        </div>
+        <ul class="items">
+          <li><a href="#">Item 1</a> <span>$2</span></li>
+          <li><a href="#">Item 2</a> <span>$5</span></li>
+          <li><a href="#">Item 3</a> <span>$8</span></li>
+          <li><a href="#">Item 4</a> <span>$15</span></li>
+        </ul>
+        <hr>
+        <div class="total">
+          <b>Total</b>
+          <span><b>$30</b></span>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="timeline" id="timeline">
+      <div class="container">
+        <div class="line"> </div>
+        <div class="first">
+          <div class="circle"></div>
+          <h1>2019</h1>
+          <p>Gorilla is a 2019 Indian Tamil-language heist comedy film written and directed by Don Sandy. The film stars
+            Jiiva, Shalini Pandey and Kong in the lead roles, while Yogi Babu, Radha Ravi, Sathish, Rajendran, Vivek
+            Prasanna, Madhan, and Ramdoss appears in pivotal supporting roles.</p>
+        </div>
+        <div class="second">
+          <div class="circle"></div>
+          <h1>2018</h1>
+          <p>New protected areas are being designated for some gorilla populations, and the population of mountain
+            gorillas has continued to increase in recent years, leading to its downlisting from Critically Endangered to
+            Endangered in November 2018.</p>
+        </div>
+        <div class="third">
+          <div class="circle"></div>
+          <h1>2017</h1>
+          <p>The gorilla was shot and killed after a 3-year-old boy fell into Gorilla World at the Cincinnati Zoo. Zoo
+            President Thane Maynard had previously said the child crawled through a barrier and fell an estimated 10 to
+            12 feet into the moat surrounding the habitat. Harambe grabbed the boy and dragged him around.</p>
+        </div>
+      </div>
+    </section>
+  </body>
+
+</html>

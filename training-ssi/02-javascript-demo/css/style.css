@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.progress,
+.api,
+.no-api,
+.game-board {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 6% 15%;
+}
+
+.game {
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+hr {
+    width: 20%;
+}
+
+/* progress-bar */
+
+.progress-bar {
+    height: 100%;
+    width: 100%;
+    border: 2px solid lightgray;
+    background: beige;
+}
+
+.progress-filling {
+    height: 50px;
+    border: none;
+    background: green;
+}
+
+.btn {
+    padding: 15px 18px;
+    margin: 30px auto auto auto;
+    width: 120px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    background: green;
+    cursor: pointer;
+}
+
+.btn:hover {
+    transition-duration: 0.3s;
+    background-color: red;
+    transform: translateY(-5px);
+}
+
+/* API */
+
+.container {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+input {
+    border: none;
+    background-color: rgb(232, 233, 232);
+    height: 40px;
+    width: 45%;
+}
+
+.text {
+    font-size: 18px;
+    display: block;
+    text-align: center;
+}
+
+#api,
+#no-api {
+    font-size: 15px;
+    padding: 2px 10px;
+    margin-bottom: -10px;
+}
+
+.list-group {
+    top: -30px;
+}
+
+.list-group>li {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #aaa;
+    background-color: whitesmoke;
+    text-align: center;
+    list-style: none;
+}
+
+.list-group>li:hover {
+    transform: scale(1.5);
+}
+
+/* GAME */
+
+.cell {
+    width: 150px;
+    height: 150px;
+    margin: 8px 8px;
+    border-radius: 15px;
+    background-color: brown;
+    text-align: center;
+    font-size: 120px;
+}
+
+#game-text {
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: -10px auto 25px auto;
+}
+
+#winning-text {
+    text-align: center;
+    margin-bottom: -20px;
+    font-size: 20px;
+    color: purple;
+}
