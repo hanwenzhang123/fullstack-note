@@ -57,3 +57,4 @@ Q11. Pros and cons between SVG icon and icon font
 - SVGs are treated as an image / graphics with built in semantic elements – like < title > and < desc > that makes it accessible to screen reader 
 
  
+Q3 asynchronous things in redux?
