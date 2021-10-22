@@ -11,23 +11,23 @@ Resources:
 - CSS guidelines: https://cssguidelin.es/#bem-like-naming
 
 Key Points:
-  - Explain the three main ways to apply CSS styles to a web page  
-	- What is CSS selector? Name some.
-	- SASS(SCSS)/LESS
-	- CSS box model/ box-sizing
-	- CSS Flexbox
-	- CSS Grid
-	- CSS Position
-	- CSS resetting vs CSS normalize
-	- What is a Grid System in CSS? 
-	- How would you approach fixing browser-specific styling issues
-	- Describe pseudo-elements and discuss what they are used for 
-	- Responsive image in HTML5
-	- CSS position
-	- CSS Z-index
-	- Display:none vs visibility: hidden
-	- What kind of grid system did u use before
-	- coding a website to be responsive vs using a mobile-first strategy
+- Explain the three main ways to apply CSS styles to a web page  
+- What is CSS selector? Name some.
+- SASS(SCSS)/LESS
+- CSS box model/ box-sizing
+- CSS Flexbox
+- CSS Grid
+- CSS Position
+- CSS resetting vs CSS normalize
+- What is a Grid System in CSS? 
+- How would you approach fixing browser-specific styling issues
+- Describe pseudo-elements and discuss what they are used for 
+- Responsive image in HTML5
+- CSS position
+- CSS Z-index
+- Display:none vs visibility: hidden
+- What kind of grid system did u use before
+- coding a website to be responsive vs using a mobile-first strategy
 
 Notes:
 Em is depended on the parent, rem don’t care about the parent
