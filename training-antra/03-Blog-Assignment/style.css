@@ -16,7 +16,16 @@ body {
 
 header {
     display: block;
-    width: 90%;
+    width: 75%;
+}
+
+header h1 {
+    text-decoration: underline;
+}
+
+header a,
+header span {
+    color: grey
 }
 
 header ul {
