@@ -20,6 +20,7 @@ function remove_odd_numbers2(arr){
 Q3：There’s a JS function taking three parameters. Say I mistakenly passed only the first two parameters when calling it. What would happen?
   if it is number, I only passed 2 numbers to the parameter as arguments, it will return NaN.
   if it is string, the last part returns as undefined. 
+  if we have default parameter set advance, it works as normally
 
 Q4：Difference between state and props. 
 If I have a parent, a child and a grandchild component, can I pass the state and callback function from Parent down to the GrandChild? 
