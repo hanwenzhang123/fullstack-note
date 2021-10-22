@@ -1,0 +1,39 @@
+Resources:
+- HTML5 Tutorial: https://www.w3schools.com/html/
+- Semantic HTML: https://medium.com/adalab/the-importance-of-semantic-html-78e74fb75ff0
+- Chrome DevTools Tip: https://umaar.com/dev-tips/
+- Check browser support : Caniuse.com 
+- Pixel is not a pixel:https://www.quirksmode.org/blog/archives/2010/04/a_pixel_is_not.html
+- localStorage vs Cookie: https://wpreset.com/localstorage-sessionstorage-cookies-detailed-comparison/
+- Why is HTTP not secure: https://www.cloudflare.com/learning/ssl/why-is-http-not-secure/
+- critical rendering path: https://medium.com/@luisvieira_gmr/understanding-the-critical-rendering-path-rendering-pages-in-1-second-735c6e45b47a
+
+Key Points:
+- Meta tags in HTML
+- What is iframe and how it works
+- SEO
+- What is Character Encoding
+- Semantic html 
+- What’s new in HTML5
+- Canvas vs SVG
+- Cookie vs SessionStorage vs LocalStorage
+- What does a DOCTYPE do
+- Can a web page contain multiple <header> /<footer> elements? 
+- Why is it generally a good idea to position CSS <link>s between <head></head> and JS <script>s just before </body>? 
+- What are `defer` and `async` attributes on a <script> tag
+- What is DOM
+- XHTML vs HTML5
+- Where should we put <link> and <script> and why
+- 508 policy / accessibility / aria
+
+Notes:
+Get and post: post has the body part
+Put and patch: patch can change data by passing in an obj that only has one of it property while the put need to pass in the whole obj
+Dom is the render path of the elements in a website
+Meta tag is used for seo to look for specific content of the website. 
+Ex <Meta name=“name” content=“Kyle” />
+508 policy ask for semantic elements
+Arial attributes will help the screen-reader(tool reads content) to read the content for the disable people.
+Network is a place to find the load time of the website like how much time each file took stuff like that.
+( A place to check when you want to make the website faster to load). 
+or a place to check whether this url has a page.

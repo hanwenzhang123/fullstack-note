@@ -1,0 +1,153 @@
+HTML
+- why do we need DOCTYPE?
+	- when we have a doctype, it is an "information" to the browser about what document type to expect. 
+	- Not case-sensitive.
+- href & target in <a> tag
+	- _blank (new tab) and _self (current tab) 
+- <article> semantic element
+	- why using semantic tags?
+		- we want to know what does it exactly means in the HTML, we can know it directly by its name 
+		- <div> is too broad, we do not know what does it mean. 
+		- it is better to look at semantic tags, easier to look and identify the use
+		- semantic elements carry accessibility by itself, proper reading
+		- header attribute is for article specifically
+	- a11y - web a11y - computer accessibility - for people with disability
+		- using screen reader 
+			- mac machine, window, 3rd party took,
+			- it will read out the web contents for you
+		- you want to have your website good with accessibility features
+- <audio> <video>
+	- demo - an audio bar/a video window
+	- the text between the tags only appears when audio is not working
+- <body>
+	- the main part of the page
+- <button>
+	- onclick - html/javascript - something happens after clicking it
+	- onClick - react
+	- type
+		- type is default for button
+		- if reset it looks for the form and clear all the values
+		- submit is submitting for the form
+	- value
+		- just like something you put in between the tags
+- <div>
+	- anything can be putting within a <div>, it is a block element
+- <form>
+	- frontend talk to backend
+	- action is to the server side, where to catch the data flow, where to take the input to destination
+	- label is for the name of a certain input
+	- textarea is for a bigger place that you can put text
+	- select/option - like a drop-down list with options, value in the option is for communicating the data
+- <iframe>
+	- embedded little tiny box, you can give height and width
+- <img>
+	- for pictures, alt is the default text if the picture fails
+	- you can manipulate the size of the image directly
+- <input>
+	- text, button, checkbox, radio, submit(like the submit button)
+- <li>
+	- ol - order list
+	- ul - unorder list
+	- li - list item
+- <nav>
+	- navigation, semantic, only use for what is needed for the top of the page
+- <script>
+	- where does the javascript code list
+	- usually placed at the bottom of code before </html>
+	- because for loading reason, you want html and css to run first before js code for actions
+	- async vs defer - improve performance
+	- https://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html#script
+- <span>
+	- like a div but only for inline container, which div is block level element
+- <style>
+	- import css, put the style on the top
+- <table>
+	- tr - tree row
+	- th - table head
+	- td - table data
+	- thead
+	- tbody
+	- tfoot
+
+CSS
+using dash-case, using semicolon, using curly braces {}
+cascading, waterfall style, order matters
+- selector
+	- id #
+	- class .
+- three ways to insert CSS - common ask question
+	- external CSS (better choice, a separate css file)
+	- internal CSS (putting css directly in the html page)
+	- inline CSS (not recommended)
+- margin
+	- 4 value order: top right bottom left 
+	- 3 value order: top left&right bottom
+	- 2 value order: top&bottom left&right
+- what is margin collapse?
+	- Sometimes two margins collapse into a single margin.
+	- take the greater value, only top and bottom margins!
+	- top bottom margin of an element collapses when it comes in contact with one another
+- The CSS Box Model
+	- margin, border, padding, content
+	- goes from outside to the inside
+- box-sizing property
+	- content-box: using content as the basis, default
+		- only care about your content
+	- border-box: using border as the basis 
+		- like when we put a padding
+- media queries
+	- for responsive design
+	- @media (min-height: 680px) {}
+	- change the styling once the size reaches a certain value
+- display
+	- block-level elements - full width, force a line break
+	- inline elements - just for inline, you can set margin and padding left-right, but not top-bottom, no width and height
+	- Inline-block elements: allow elements to sit to left and right, top & bottom margins and padding, height and width
+	- https://stackoverflow.com/questions/9189810/css-display-inline-vs-inline-block
+- position
+	- static - default, follow the flow
+	- relative - almost same as static, but you can change the position relatively to the docs (its normal position), can even overflow
+	- absolute - other elements render as this absolute element does not even exist, relative to the nearest positioned ancestor 
+	- fixed - fixed based on the doc and always stick to where it is
+	- sticky - combination of relative and relative stick to the position based on the users scroll position
+- Difference Between Absolute and Relative
+	Relative is always in proportion to a whole. Absolute is the total of all existence.
+	Relative is dependent while absolute is independent.
+	position: absolute
+	This tells the browser that whatever is going to be positioned should be removed from the normal flow of the document 
+	and will be placed in an exact location on the page. 
+	the element is removed from the document and placed exactly where you tell it to go.
+	position: relative;
+	instead of basing the position of the element upon the browser view port, it starts from where the element would be if it were still in the normal flow.
+	You can use top or bottom, and left or right to move the element relative to where it would normally occur in the document.
+- combinators
+	- descendant selector (space) - all elements that are descendants of a specified element.
+	- child selector (>) - all elements that are the children of a specified element
+	- adjacent sibling selector (+) - immediate, an element that is directly after another specific element
+	- general sibling selector (~) - all elements that are next siblings of a specific element
+- pseudo-classes
+	- classes are not elements, they are different
+	- class like specific state, this sentence is like when this happens, under what kind of condition
+	- a:hover - mouse over
+	- a:visited/:focus
+- pseudo-element
+	- p::first-line
+	- p::last-letter
+	- ::after
+	- ::before
+	- referring specific for that element
+- :nth-child()
+	- pseudo-class
+- visibility:hidden vs display:none vs opacity 0
+	- when we use display:none, the element will be gone from the DOM tree, disappear from UI
+	- visibility:hidden: hide it, cover it, still there in the DOM tree, just you can not see it
+	- opacity 0: occupy the space and consumes clicks
+	- https://stackoverflow.com/questions/14731049/visibilityhidden-vs-displaynone-vs-opacity0
+- flex box
+	- center both vertically and horizontally
+		- display: flex;
+		- justify-content: center; - horizontally or vertically depends on the main axis
+		- align-items: center; - center in the middle
+	- align-content: treating the row as a whole unit for grouping
+	- https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+ 
