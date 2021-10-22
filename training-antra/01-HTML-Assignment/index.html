@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>HTML Assignment</title>
+        <meta name="HTML Assignment" content="Antra HTML Assignment">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <h1>Sign Up</h1>
+        <form id="form">
+            <div class="name">
+                <input type="text" id="fname" placeholder="First Name">
+                <input type="text" id="lname" placeholder="Last Name">
+            </div>
+            <div class="contact">
+                <input type="text" id="mobile" placeholder="Mobile No.">
+                <input type="email" id="email" placeholder="Email Address">
+            </div>
+            <div class="password">
+                <input type="password" id="password" placeholder="Password">
+                <input type="password" id="confirmpw" placeholder="Confirm Password">
+            </div>
+            <div class="agreement">
+                <div class="check">
+                    <input id="check-box" type="checkbox" />
+                    <label id="check-label" for="check">I Agree</label>
+                </div>
+                <div class="paragraph">
+                    <p>By clicking <span id="register">Register</span>, you agree to the <a href="#">Terms and
+                            Conditions</a> set out by this site, including our Cookie use.</p>
+                </div>
+            </div>
+        </form>
+        <div class="btn">
+            <button class="register" form="form">Register</button>
+            <button class="signin" form="form">Sign In</button>
+        </div>
+
+    </body>
+
+</html>

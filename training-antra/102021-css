@@ -1,0 +1,39 @@
+Resources: 
+- CSS Tutorial: https://www.w3schools.com/css/
+- BEM: https://en.bem.info/methodology/quick-start/
+- SASS(SCSS): https://sass-lang.com/guide
+- CSS FlexBox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+- CSS Grid: https://css-tricks.com/snippets/css/complete-guide-grid/
+- Check browser support: Caniuse.com 
+- CSS selectors cheatsheet: https://frontend30.com/css-selectors-cheatsheet/
+- Flex Cheatsheet: https://yoksel.github.io/flex-cheatsheet/
+- Grid Cheatsheet: https://yoksel.github.io/grid-cheatsheet/
+- CSS guidelines: https://cssguidelin.es/#bem-like-naming
+
+Key Points:
+  - Explain the three main ways to apply CSS styles to a web page  
+	- What is CSS selector? Name some.
+	- SASS(SCSS)/LESS
+	- CSS box model/ box-sizing
+	- CSS Flexbox
+	- CSS Grid
+	- CSS Position
+	- CSS resetting vs CSS normalize
+	- What is a Grid System in CSS? 
+	- How would you approach fixing browser-specific styling issues
+	- Describe pseudo-elements and discuss what they are used for 
+	- Responsive image in HTML5
+	- CSS position
+	- CSS Z-index
+	- Display:none vs visibility: hidden
+	- What kind of grid system did u use before
+	- coding a website to be responsive vs using a mobile-first strategy
+
+Notes:
+Em is depended on the parent, rem don’t care about the parent
+Absolute will not follow its parent if the parent has the default position or the static position. Default position of every element is static.
+Fixed is based on the viewport when doing the left 20px right 40px.
+Sticky is like fixed but it’s relative to its parent not the view port.
+BEM shows you how to name your element
+Learn about sass
+CSS Preprocessor: SCSS SASS LAST
