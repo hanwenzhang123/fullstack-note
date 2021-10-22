@@ -42,6 +42,9 @@ Q6：You know “npm start”, when you’re done developing, what would you do 
   
   When you run build, say it creates a dist directory. When you run the server, do you need to dist only, or you have to get the source code?
   
+  npm start - just start the app
+  npm build - more like deploy your app to the server
+  
 Q7：Say you are working on production and find an issue, how do you debug?
 - Recognize that a bug exists. (understand the stack trace)
 - Isolate the source of the bug. (Make Good Use of Breakpoints)
@@ -52,3 +55,7 @@ Q7：Say you are working on production and find an issue, how do you debug?
 Q8：Your react component renders a list of data with thousands of items. 
 When you tick the checkbox attached to any data item, the page respond slowly. 
 Is the issue caused by the data consuming a lot of memory, or by the DOM render. How do you solve the issue.
+
+Q3 asynchronous things in redux?
+Q4.Explain Event loop
+
