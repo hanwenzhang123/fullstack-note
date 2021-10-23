@@ -257,20 +257,18 @@ specify sizes or lengths of elements using various units of measure
 - `align-items: center` - center in the middle 
 
 #### flexbox
-- layout: have a parent element set to flex, all direct child elements in the container automatically becomes flexible items. 
+- With a parent element set to flex, all direct child elements in the container automatically becomes flexible items. (one dimension layout)
 - initially all flex items in one row (`flex-direction`) with same stretch height (`align items`: layout for all items on the main axis line)
 - `justify-content`: layout based on main axis, `align-content`: for multilines, `flex-wrap`: wrap items instead of shrinking, `align-self`: for individual item
 - `display: flex`, `flex: flex-grow, flex-shrink, flex-basis` with all default 1, `order` to change item order, `gap` to change gap
 
 #### grid system
-- `display: grid | inline-grid;`
-- grid-based layout system, with rows and columns, making it easier to design web pages without having to use floats and positioning.
-- All direct children of the grid container automatically become grid items. (one container with multiple items).
+- two dimensions layout with rows and columns, direct children of the grid container automatically become grid items
+- `display: grid; grid-template-column: 2fr 1fr; grid-auto-rows: minmax(1, auto); grid-column/column: start/end(-1); row-start/end; grid-gap;`
 
 #### flex and grid
-- Grid is for layout, Flexbox is for alignment
-- flex: small design to implement, align elements, content-first design
-- grid: complex design to implement, a gap between block elements, overlap elements, layout-first design
+- flex: for alignment -> small design to implement, align elements, content-first design
+- grid: for layout -> complex design to implement, a gap between block elements, overlap elements, layout-first design
 
 #### media queries
 - for responsive design, change the styling once the size reaches a certain value
