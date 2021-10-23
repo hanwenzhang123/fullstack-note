@@ -257,9 +257,10 @@ specify sizes or lengths of elements using various units of measure
 - `align-items: center` - center in the middle 
 
 #### flexbox
-- `display: flex`, `flex-grow | flex-shrink | flex-basis`
-- A flexible layout must have a parent element with the diplay property set to flex.
-- Direct child elements in the flexible container automatically becomes flexible items. 
+- layout: have a parent element set to flex, all direct child elements in the container automatically becomes flexible items. 
+- initially all flex items in one row (`flex-direction`) with same stretch height (`align items`: layout for all items on the main axis line)
+- `justify-content`: layout based on main axis, `align-content`: for multilines, `flex-wrap`: wrap items instead of shrinking, `align-self`: for individual item
+- `display: flex`, `flex: flex-grow, flex-shrink, flex-basis` with all default 1, `order` to change item order, `gap` to change gap
 
 #### grid system
 - `display: grid | inline-grid;`
