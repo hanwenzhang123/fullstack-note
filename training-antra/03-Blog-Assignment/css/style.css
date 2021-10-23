@@ -1,0 +1,204 @@
+/* layout */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, HelveMca, sans-serif;
+}
+
+body {
+    margin: 60px auto 0px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* header */
+
+header {
+    display: block;
+    width: 75%;
+}
+
+header h1 {
+    text-decoration: underline;
+}
+
+header a,
+header span {
+    color: grey
+}
+
+header ul {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    list-style-type: none;
+}
+
+/* footer */
+
+footer {
+    background-color: rgb(235, 232, 232);
+    color: grey;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    width: 120%;
+    height: 100px;
+    line-height: 2em;
+}
+
+/* homepage */
+
+.homepage-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container {
+    border: 5px solid lightgray;
+    width: 450px;
+    height: 250px;
+    padding: 30px;
+    margin: 40px 15px;
+}
+
+.container h6 {
+    color: lightgray
+}
+
+.example-blog-post h5 {
+    color: rgb(48, 180, 233)
+}
+
+.post-title h5 {
+    color: rgb(50, 206, 50)
+}
+
+.homepage-section h2,
+.homepage-section p {
+    padding-top: 10px;
+}
+
+.example-blog-post a {
+    line-height: 150px;
+}
+
+.post-title a {
+    line-height: 120px;
+}
+
+/* blog post */
+
+.post-section {
+    margin: 50px auto;
+    width: 75%;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    gap: 5%;
+}
+
+/* left section */
+
+.left-section {
+    line-height: 1.5;
+}
+
+.left-section>* {
+    margin-bottom: 10px;
+}
+
+.left-section h1 {
+    font-size: 32px
+}
+
+.left-section h2 {
+    font-size: 28px
+}
+
+.left-section h3 {
+    font-size: 25px
+}
+
+.left-section h5 {
+    color: gray;
+    margin-top: -10px;
+}
+
+.left-section ul,
+.left-section ol {
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+.left-section li {
+    margin-left: 25px;
+}
+
+.border-text {
+    border: 1px solid gray;
+}
+
+.border-text span {
+    font-weight: bold;
+}
+
+.regular-block {
+    padding-bottom: 15px;
+}
+
+.code-block code {
+    font-family: monospace;
+    font-weight: bold;
+    padding: 2px;
+}
+
+.left-section button {
+    margin: 50px 5px 0px 0px;
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: white;
+    border-radius: 30px;
+}
+
+#old-btn {
+    color: rgb(59, 190, 241);
+    border: 1px solid rgb(59, 190, 241)
+}
+
+#new-btn {
+    color: gray;
+    border: 1px solid gray
+}
+
+/* right section */
+
+.right-section {
+    line-height: 1.2;
+}
+
+.right-section div a {
+    display: block;
+}
+
+.right-section h3 {
+    margin-top: 40px;
+    margin-bottom: 8px;
+    font-style: italic;
+}
+
+.about {
+    padding: 8%;
+    background-color: #eee;
+}
+
+.about h3 {
+    margin-top: 8px;
+}
