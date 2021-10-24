@@ -47,7 +47,7 @@ let fizzBuzz = (n) => {
 
 [[↑] Back to top](#table-of-contents)
 
-#### Implementing our own Array.map() method in javascript
+#### Implementing own `Array.map()` method in javascript
 A map is a built-in function of Arrays in javascript which helps us iterate over each individual element of the array and returns a brand new array.
 ```js
 Array.prototype.mymap = function(callback) {
