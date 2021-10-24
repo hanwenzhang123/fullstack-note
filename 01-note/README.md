@@ -590,16 +590,11 @@ func(1, 2, 3, 4, 5, 6, 7);
 
 #### Promise(event loop, task scheduling)
 - JS is a single-threaded language, use promise to handle async operation
-- new feature of ES6 -> avoid callback hell - a chained nested code
+- new feature of ES6 -> avoid callback hell - a chained nested code - no good
 
 3 phrases -> pending, fulfilled, rejected
 - chain .then() to do something, and/or .catch() to catch error
-- will return another promise so we can chain more then()
-- output order - only after the main thread is done
-
-`Promoise.all` to send all promises, will reject immediately upon any of the input promises rejecting
-
-`main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)`
+- we can chain more then(), return promise, execute only after the main thread is done
 
 ```js
 const promise = new Promise(function(resolve, reject) {
@@ -608,6 +603,28 @@ const promise = new Promise(function(resolve, reject) {
 
 promise.then((resolve) => {console.log(resolve)});
 ```
+
+#### Promoise.all
+- send all promises, returns a single Promise that resolves to an array of the results of the input promises
+- will reject immediately upon any of the input promises rejecting
+
+```js
+const promise1 = Promise.resolve(3);
+const promise2 = 42;
+const promise3 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, 'foo');
+});
+
+Promise.all([promise1, promise2, promise3]).then((values) => {
+  console.log(values);	 Array [3, 42, "foo"]
+});
+```
+
+#### async/await
+- cleaner style handling asynchonous tasks, return promise, await takes a pause, returns its result -> must with async keyword
+- easier for promise chaining (not faster), better to access value in the slope with assigned variable -> replace .then calls with await
+
+`main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)`
 
 [[↑] Back to top](#table-of-contents)
 
