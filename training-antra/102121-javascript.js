@@ -29,54 +29,63 @@ Key Points:
 - What is high order function
 
 
+//JavaScript
 NODE, Javascript, EcmaScript(ES5, ES6, ES7...)
 EcmaScript = Sytanx standard
 Javacirpt =  EcmaScript + webAPI
 NODE = EcmaScript + NODEAPI
 
-primative type 
+//Primative Type 
 let num =5; // number
-console.log(typeof num)
+console.log(typeof num)     //number
 let str = 'abc';
-console.log(typeof str)
+console.log(typeof str)     //string
 let b = true;
-console.log(typeof b)
+console.log(typeof b)       //boolean
 let und = undefined;
-console.log(typeof und)
+console.log(typeof und)     //undefined
 let n = null;
-console.log(typeof n);
+console.log(typeof n);      //object - how JS was originally built
 
+
+// Pass by Value (just the value itself)
 let c = 10;
 let d = c;
 d = 5;
 console.log('d',d) // 5
-foo(c);
 
-console.log("c",c) // 10
+foo(c);
+console.log("c",c) // 10 - not changing its value
 
 function foo(input){
-    input = 7;
+    input = 7;     //input makes a copy of the value, not the location
     console.log("input",input) // 7
 }
 
-/ object data type : object | function
+
+// object data type : object | function
 function foo(){
 
 }
-console.log(typeof foo);
+console.log(typeof foo);    //function
 let obj = {}
-console.log(typeof obj);
+console.log(typeof obj);    //object 
 let arr = []
-console.log(typeof arr);
+console.log(typeof arr);    //object 
 
+
+//Pass by Reference (point to the memory location of the value)
 let obj = {name:'patrick'}
 
 foo(obj);
-console.log(obj)
+console.log(obj)    //{name:'changed'}
+
 function foo(input){
     input.name = 'changed'
-    console.log(input)
+    console.log(input)    //{name:'changed'}
 }
+ 
 
 // deepcopy, shallow copy
 // class key in ES6 and constructor function in ES5
+ 
