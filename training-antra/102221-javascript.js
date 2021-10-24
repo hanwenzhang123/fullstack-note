@@ -17,7 +17,8 @@ console.log(foo);               // ["plugh"]
 bar = bar.toUpperCase();       // BAZ
 
 
-//the variable may be reassigned a new value, but the existing value can not be changed in the ways that objects, arrays, and functions can be altered.
+- the variable may be reassigned a new value but the existing value can not be changed 
+- in the ways that objects, arrays, and functions can be altered.
 
 
 //reference type data you can change, function is also objects
@@ -30,4 +31,4 @@ function foo(input) {
 foo.a = 5;
 console.log(foo.a) //5
 
-  
+ 
