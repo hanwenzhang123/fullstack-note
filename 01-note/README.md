@@ -622,7 +622,8 @@ Promise.all([promise1, promise2, promise3]).then((values) => {
 
 #### async/await
 - cleaner style handling asynchonous tasks, return promise, await takes a pause, returns its result -> must with async keyword
-- easier for promise chaining (not faster), better to access value in the slope with assigned variable -> replace .then calls with await
+- easier for promise chaining (not faster), better for accessing value in the scope with assigned variable 
+- start with async function, replace .then() with await, async function can be dynamic
 
 `main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)`
 
