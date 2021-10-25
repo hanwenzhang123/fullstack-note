@@ -159,6 +159,8 @@ foo(1, 2, "hello", ()=>{})  //"patrick"
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 familiar with Standard Built-in JavaScript objects
 - Array   //const arr = []  //forEach is prototype - iteration  //for..of - array value //for..in - property keys of an object
+- Date
+- Error 
 - Object
 - Promise
 
