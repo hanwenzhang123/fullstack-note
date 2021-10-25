@@ -57,6 +57,7 @@ function foo(){ }
 let res = foo(); 
 console.log(res);  //undefined - because we did not return anything inside the function
 
+
 //example1
 function foo() {
   let a=5;
@@ -84,7 +85,6 @@ function foo() {
 let res = foo()
 console.log(res)    //hello
 
-
 //example3
 function getUser(){
   return {
@@ -97,6 +97,7 @@ console.log(getUser().hello)  //welcome
 
 
 //ES5 syntax
+//example1
 function Person(name,age){
     this.name = name;
     this.age = age;
@@ -117,7 +118,7 @@ console.log(p.showName === p2.showName) //true - prototype method
 console.log(p.showName) //(){console.log(`I am ${this.name}`)}
 p.showName()  //I am patrick
 
-
+//example2
 function Person(name,age){
     this.name = name;
     this.age = age;
