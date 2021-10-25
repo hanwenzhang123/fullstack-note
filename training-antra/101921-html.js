@@ -20,7 +20,7 @@ Key Points:
 - What does a DOCTYPE do
 - Can a web page contain multiple <header> /<footer> elements? 
 - Why is it generally a good idea to position CSS <link>s between <head></head> and JS <script>s just before </body>? 
-- What are `defer` and `async` attributes on a <script> tag
+- What are defer and async attributes on a <script> tag
 - What is DOM
 - XHTML vs HTML5
 - Where should we put <link> and <script> and why
