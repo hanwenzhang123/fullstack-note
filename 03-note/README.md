@@ -466,6 +466,13 @@ return (
 
 ## Backend
 
+#### npm
+- npm run dev: start off the development server like using nodemon if downloaded
+- npm init: create a package.json file
+- npm start: start a package
+- npm install: installs dependencies
+- npm run build: runs the build field from the package.json scripts field.
+
 #### Combining Frontend Code with Backend Code or SQL
 1. Setting up the database. 
 2. Setting up the server. 
