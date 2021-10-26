@@ -338,53 +338,61 @@ console.log(filteredArr);
 
 ## Class
 
-#### check if the type of an object at run time. 
-`object instanceof constructor` -  return boolean
-
-```js
-function Car(make, model, year) {
-  this.make = make;
-  this.model = model;
-  this.year = year;
-}
-const auto = new Car('Honda', 'Accord', 1998);
-
-console.log(auto instanceof Car);	// true
-console.log(auto instanceof Object);	// true
-```
+#### What is class?
+- help us do some patterns, for reusability, declare with a "class" keyword and constructor function (ES6)
 
 #### what is prototype
 - All JavaScript objects inherit the properties and methods from their prototype, like a reference to another object 
-- Every function includes prototype object that enables all the other objects to inherit these methods and properties
 - Objects created using the `new` keyword inherit from a prototype called `Object.prototype`.
 
 #### prototype chain
-- Prototype chaining is used to build new types of objects based on existing ones. 
-- If you try to call a property on an object, JavaScript will go to the prototype object and look for it, until it finds it. 
-- If it doesn’t find the specific property that you’re looking for, it’ll return undefined for you. 
-- Otherwise, it’ll return the specific property. 
+- Prototype chaining is used to build new types of objects based on existing ones
+- to do inheritance, like hasOwnProperty(), toString(), isPropertyOf()
+
+#### check type of an object
+- `object instanceof constructor` -  return boolean
+- `auto instanceof Car` - true/false
+- `const p = new Person("patrick", 18);` - datatype of p is object, datatype of Person is function
 
 #### `new` keyword
 - The `new` operator to create an instance of the class based on the prototype. 
-- `new` makes the this variable point to the newly created object.
-- it instantiates a class by allocating memory for a new object and returning a reference to that memory.
+- `new` makes the this variable point to the newly created object and returning a reference to that memory.
 
 #### getter and setter
 - data encapsulation, used to protect your data, particularly when creating classes. 
 - The constructors are used to initialize the instance variable of a class or, create objects. 
 - The setter/getter methods are used to assign/change and retrieve values of the instance variables of a class
 
+#### overriding vs overloading
+- overriding: with same function name, the newly created one overriding the previous one
+- overloading: depends on how many parameter set in the function, only takes the number of that arguments pass into the function
+
+#### ES5 Class Syntax
+```js
+function Person(name,age){
+    this.name = name;
+    this.showName = function(){		//constructor function - return false for ===, function built points to different address in memory
+      console.log(`I am ${this.name}`)
+  }
+}
+Person.prototype.showName = function(){		//class/prototype method - return true for ===
+  console.log(`I am ${this.name}`)
+}
+```
+
 #### ES6 Class Syntax
 ```js
 class User {
-  constructor(name) {
+  constructor(name) {	
     this.name = name;
+    this.showName = function() {	//constructor function - return false for ===, function built points to different address in memory
+      console.log(`I am ${this.name}`)
+    }
   }
-  sayHi() {
+  sayHi() {		//class/prototype method - return true for ===, function built points to different address in memory
     alert(this.name);
   }
 }
-
 let user = new User("John");
 user.sayHi();
 ```
@@ -394,13 +402,12 @@ user.sayHi();
 ## API
 
 #### API
-- Application Programming Interface (API)
-- a connection that allows two applications to talk to each other
+- Application Programming Interface (API) - a connection that allows two applications to talk to each other
 - enabling applications to exchange data and functionality easily and securely
 - Your Server -> Request through API -> Someone Else's Server -> Response through API -> Your Server
 
 #### REST API
-- use/setup http endpoint to allow us access and doing create/read/update/delete data
+- use/setup http endpoint to allow us access and doing create/read/update/delete data in the database
 
 #### AJAX
 - Asynchronous JavaScript And XML, making request behind the scene
