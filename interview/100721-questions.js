@@ -2,7 +2,7 @@
 Production build vs Development build
 - production and development build come into the picture because of performance impact in real life deployed the application.
 - Development build: for development reasons. You have Source Maps, debugging and often times hot reloading ability in those builds.
-- Production build: runs in production mode which means this is the code running on your client machine. 
+- Production build: runs in production mode which means this is the code running on your client machine. Production is after development, is what you see on the application.
     The production build runs uglify and builds your source files into one or multiple minimized files. 
 
 Why production build
