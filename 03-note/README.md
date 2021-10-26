@@ -408,6 +408,7 @@ user.sayHi();
 
 #### REST API
 - use/setup http endpoint to allow us access and doing create/read/update/delete data in the database
+- `app.get('/tasks/:id', (req, res) => {}`
 
 #### AJAX
 - Asynchronous JavaScript And XML, making request behind the scene
