@@ -1,4 +1,36 @@
 //Question 1
+//Explain the following code
+async function updateEditorClear(req, res) {
+    const { user } = req;
+    let updatedCampaign = await Campaign.findOneAndUpdate(
+        { _id: req.params._id },
+        {
+            $set: {
+                currentEditor: ""
+            }
+        },
+        {
+            upsert: true,
+             new: true,
+             useFindAndModify: false
+        }
+    );
+    return res.json({
+        campaign: updatedCampaign
+    });
+} catch (error) {
+    let errorMessage = "Error: " + error;
+    sendError(res, error, errorMessage);
+    }
+}
+router.put(
+    "/api/campaignsEditorClear/:_id",
+    mustBeAuthenticated,        //auth middleware
+    updateEditorClearTest
+);
+        
+
+//Question 2
 //convert a counter from class component to functional component
 const Counter = () => {
     const [count, setCount] = useState(0);
@@ -13,7 +45,7 @@ const Counter = () => {
 }
 
 
-//Question 2
+//Question 3
 //implement a divide function
 function divide(a,b) {
   let count = 0;
@@ -27,7 +59,7 @@ function divide(a,b) {
 assignment.log(divide(12,3));
 
 
-//Question 3
+//Question 4
 //Example 1: using useEffect() for counter
 import {useState, useEffect} from "react";
 
