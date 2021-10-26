@@ -5,7 +5,7 @@ class Person{
     this.age = age;
   }
   showName(){
-    console.log(`I am %{this.name})
+    console.log(`I am ${this.name}`)
   }
 }
 
@@ -30,7 +30,7 @@ function Person(name, age) {
 }
 
 Person.prototype.showName = function(){
-  console.log(`I am %{this.name})
+  console.log(`I am ${this.name}`)
 }
 
 function Employee(name, age, company){    //bind call apply - control this in function, this depends on the which invoke the function
@@ -40,11 +40,13 @@ function Employee(name, age, company){    //bind call apply - control this in fu
 
 //JS is using prototype chain to do the inheritance - Object.create() create a new object, a new memory to avoid infinite loop
 Employee.prototype = Object.create(Person.prototype)  //works as extends in ES6, extends the prototype from another function
+console.log(Employee.prototype) //Person{}
 Employee.prototype.constructor = Employee;    //still need to get the constructor back after creating the new object otherwise overriding
 Employee.prototype.showCompany = function(){
-    console.log(`I am working at %{this.company}`)
+    console.log(`I am working at ${this.company}`)
 }
-console.log(Employee.prototype) //object with constructor and something else (the function we created in the object)
+console.log(Employee.prototype) //Person{constructor: ƒ, showCompany: ƒ}
+//object with constructor and something else (the function we created in the object)
 
 const e = new Employee("patrick", 18, "Antra Inc");
 e.showName()  //I am patrick
@@ -68,11 +70,11 @@ function foo(callback) {}
 foo(foo2)   //foo is higher order function while foo2 is the callback function
 
 
-//use prototype to declare a method
+//use prototype to declare an Array method
 let arr = [1, 2, 3];  //[2, 4, 6]
 let arr2 = [2, 4, 6]; //[4, 8, 12]
 Array.prototype.myforEach = function(callbackFn) { 
-   return 5; 
+   return 5;    //does not matter what we return, forEach itself does not return anything
 }
 function multiplyByTwo(arr){
   let res = [];
@@ -92,11 +94,10 @@ let forEachResult = arr.forEach((item) => {item * 3})   //forEach returns undefi
 console.log(forEachResult)  //undefined
 
 Array.prototype.myforEach = function(callbackFn) {
-   console.log("this", this)  //this related to the array we pass in
+   console.log("this", this)  //[2, 4, 6], this related to the array we pass in
    for (let i = 0; i < this.length; i++) {    //every() some() help you break the iteration, otherwise, you can not break the iteration
-     callbackFn(this[i], i, this) 
+     callbackFn(this[i], i, this)   //item 2 index 0 array (3) [2, 4, 6]; item 4 index 1 array (3) [2, 4, 6]; item 6 index 2 array (3) [2, 4, 6]
    }
-   return 5; 
 }
 function multiplyByTwo(arr){
   let res = [];
@@ -106,7 +107,7 @@ function multiplyByTwo(arr){
   })  
   return res;
 }
-console.log(multiplyByTwo(arr2)) //[]
+console.log(multiplyByTwo(arr2)) //[4, 8, 12]
 
 
 // homework 
