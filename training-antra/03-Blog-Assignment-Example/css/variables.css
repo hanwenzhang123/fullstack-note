@@ -1,0 +1,43 @@
+:root {
+  --theme-color-primary: #20232a;
+  --theme-color-secondary: #61dafb;
+
+  --main-bg-color: #e2e1e0;
+  --main-font-family: 'Roboto', sans-serif;
+  --main-min-height: 40rem;
+
+  --main-header-height: 6.5rem;
+  --main-header-height-sm: 15rem;
+  --main-footer-height: 12rem;
+
+  --svg-icon-fill-color: var(--theme-color-secondary);
+
+  --heading-1: 3.2rem;
+  --heading-2: calc(0.8 * var(--heading-1));
+  --heading-3: calc(0.8 * var(--heading-2));
+  --heading-4: calc(0.8 * var(--heading-3));
+
+  --header-color: #ffffff;
+
+  --footer-color: #ffffff;
+
+  --card-bg-color: #ffffff;
+  --card-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  --card-box-shadow-hover: 0 14px 28px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22);
+  --card-trasition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --card-border-radius: 5px;
+  --card-date-color: #adaaaa;
+  --card-padding: 1rem;
+  --card-height: 22rem;
+  --card-height-category: 2.5rem;
+  --card-height-title: 3rem;
+  --card-height-date: 1.5rem;
+  --card-height-footer: 2rem;
+  --card-height-content: calc(
+    var(--card-height) - var(--card-padding) - var(--card-padding) -
+      var(--card-height-category) - var(--card-height-title) -
+      var(--card-height-date) - var(--card-height-footer)
+  );
+}

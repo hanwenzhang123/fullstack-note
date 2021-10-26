@@ -1,0 +1,23 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    align-content: start;
+    justify-items: center;
+    align-items: center;
+    grid-gap: 2rem;
+    padding: 2rem;
+  }
+
+  @media (max-width: 700px) {
+    .grid-container {
+      grid-template-columns: auto;
+    }
+  }
+  
+  @media (max-width: 380px) {
+    .grid-container {
+      grid-gap: 1rem 0.5rem;
+      padding: 1rem 0;
+    }
+  }

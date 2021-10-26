@@ -1,0 +1,32 @@
+.heading-1{
+    font-size: var(--heading-1);
+    font-weight: bold;
+}
+.heading-2{
+    font-size: var(--heading-2);
+    font-weight: bold;
+}
+.heading-3{
+    font-size: var(--heading-3);
+    font-weight: bold;
+}
+.heading-4{
+    font-size: var(--heading-4);
+    font-weight: bold;
+}
+
+.pre-code{
+    font-family: monospace;
+    border: 1px solid grey;
+    padding: 1rem;
+}
+
+p{
+    font-size: 1.2rem;
+    padding: 5px 0;
+}
+
+ul, ol{
+    padding-left: 3rem;
+    font-size: 1.2rem;
+}

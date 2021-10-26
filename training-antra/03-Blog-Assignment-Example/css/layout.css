@@ -1,0 +1,126 @@
+.app-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: var(--main-min-height);
+  max-width: 1000px;
+  min-width: 320px;
+  margin: auto;
+  background-color: var(--main-bg-color);
+}
+/* Header */
+.app-container .app-header {
+  background-color: var(--theme-color-primary);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--main-header-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 20px;
+  color: var(--header-color);
+}
+
+/* for testing */
+.header__leftGroup,
+.header__centerGroup,
+.header__rightGroup {
+  height: 100%;
+  flex: 1 1 33.3%;
+}
+
+.app-header .header__leftGroup {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  order: 1;
+}
+
+.app-header .header__centerGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  order: 2;
+  min-width: 32rem;
+}
+
+.app-header .header__rightGroup {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  order: 3;
+}
+
+/* Content */
+.app-container .app-content {
+  display: grid;
+  position: absolute;
+  top: var(--main-header-height);
+  left: 0;
+  right: 0;
+  bottom: var(--main-footer-height);
+  overflow: auto;
+}
+
+/* Footer */
+.app-container .app-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: var(--main-footer-height);
+  color: var(--footer-color);
+  background-color: var(--theme-color-primary);
+}
+.app-footer .footer__column {
+  margin-bottom: 1rem;
+}
+
+/* responsive */
+
+@media (max-width: 700px) {
+  .app-container .app-header {
+    background-color: var(--theme-color-primary);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: var(--main-header-height-sm);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 20px;
+  }
+
+  .app-container .app-content {
+    display: grid;
+    position: absolute;
+    top: var(--main-header-height-sm);
+    left: 0;
+    right: 0;
+    bottom: var(--main-footer-height);
+    overflow: auto;
+  }
+
+  .app-header .header__leftGroup {
+    order: 3;
+  }
+
+  .app-header .header__centerGroup {
+    order: 1;
+  }
+
+  .app-header .header__rightGroup {
+    order: 2;
+  }
+}

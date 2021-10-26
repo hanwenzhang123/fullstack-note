@@ -1,0 +1,38 @@
+*,
+*::before,
+*::after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.6rem;
+    font-family: var(--main-font-family);
+}
+
+a{
+    color: var(--theme-color-secondary)
+}
+.svg-icon{
+    fill:var(--svg-icon-fill-color);
+}
+
+figure {
+    border: 1px #cccccc solid;
+    padding: 4px;
+    width: 10rem;
+  }
+  
+  figcaption {
+    background-color: black;
+    color: white;
+    font-style: italic;
+    padding: 2px;
+    text-align: center;
+    font-size: 1rem;
+  }
