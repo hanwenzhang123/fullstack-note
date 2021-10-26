@@ -478,10 +478,10 @@ return (
 ## Backend
 
 #### npm
-- npm run dev: start off the development server like using nodemon if downloaded
 - npm init: create a package.json file
-- npm start: start a package
+- npm start: start a package, start local server
 - npm install: installs dependencies
+- npm run dev: start off the development server like using nodemon if downloaded
 - npm run build: runs the build field from the package.json scripts field.
 
 #### Combining Frontend Code with Backend Code or SQL
