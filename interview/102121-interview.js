@@ -58,3 +58,25 @@ Q11. Pros and cons between SVG icon and icon font
 
  
 Q3 asynchronous things in redux?
+
+ 
+ 10/26 - Judy
+Click and scrolling stuck whats the solution?
+What’s the reason causing the stuck, dom or rendering
+Application build, steps to have the application run?
+Render on DOM, cause issue - JS single thread, cause threading issue
+Deployment?? - Webpack config, dockerfile
+npm build - deploy project on web
+File type other than .js .css
+React library, internal library?
+ 
+10/26 - Doug
+Margin collapse - display as the larger one
+Only Even number - filter - const oddArr2 = filter(arr, num => num % 2 === 0);
+Using splice to change array - array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+State vs props - State and props are immutable, props pass value from parent to children
+Child to parent - use callback
+React Route
+npm start - start local server
+npm production? 
+Debounce and throttle
