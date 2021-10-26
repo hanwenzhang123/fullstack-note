@@ -1,3 +1,46 @@
+Semantic tag is used for screen reader, applying aria-label can make element tag semantic
+
+Element attribute is within the tag (HTML file)
+
+Property is inside the js file when you try to refer into the attribute of an element.
+
+JS is passed by data type, if the data type is primitive then it’s passed by value, else by reference.
+
+Coercion is js try to perform operation for two different data type.
+
+Sum of a number and a none number data will be NaN
+
+== compare after coercion
+
+=== compare strictly, first check the data type then the value
+
+If the function is not returning anything, it will return undefined.
+
+If an obj doesn’t have a property it will return undefined.
+
+Prototype is a keyword use for js to do the inheritance
+
+JS doesn’t allow overload to happen, each function should have unique name else, it might be override
+
+
+function example(a,b,c) => abc are parameter,   example(1,2,3) 123 are argument
+
+
+Array, date, error, promises
+
+
+instanceOf => can be use to check if an obj inherited from a class.
+
+obj instanceof car 
+
+which will return a boolean whether the obj has inherited from the car class.
+
+==============================================================================
+
+forEach return undefined
+
+Arrow function doesn’t bind you the this keyword with the function that is calling this function.
+
 // coersion
 const res = 1 + undefined //NaN
 const res = 1 + "2"   //12
