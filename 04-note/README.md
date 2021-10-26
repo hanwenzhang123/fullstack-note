@@ -26,6 +26,26 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/03-note/README.md
 
 ## JavaScript Example
 
+#### Implementing `Array.map()`
+```js
+Array.prototype.mymap = function(callback) {	//map - iterate over each individual element of the array
+    const resultArray = [];
+    for (let index = 0; index < this.length; index++) {
+        resultArray.push(callback(this[index], index, this));
+    }
+    return resultArray;		//return a brand new function
+}
+```
+
+#### Implementing `Array.forEach()`
+```js
+Array.prototype.myforEach = function(callbackFn) {	//forEach - iterate over each individual element of the array, does not return anything
+   for (let i = 0; i < this.length; i++) { 	//"this" is for the array we passed in
+     callbackFn(this[i], i, this)
+   }
+}
+```
+
 #### fizzBuzz
 ```js
 let fizzBuzz = (n) => {
@@ -42,20 +62,6 @@ let fizzBuzz = (n) => {
         console.log(i);
      }
    }
-}
-```
-
-[[↑] Back to top](#table-of-contents)
-
-#### Implementing own `Array.map()` method in javascript
-A map is a built-in function of Arrays in javascript which helps us iterate over each individual element of the array and returns a brand new array.
-```js
-Array.prototype.mymap = function(callback) {
-    const resultArray = [];
-    for (let index = 0; index < this.length; index++) {
-        resultArray.push(callback(this[index], index, this));
-    }
-    return resultArray;
 }
 ```
 
