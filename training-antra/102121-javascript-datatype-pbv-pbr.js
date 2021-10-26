@@ -146,9 +146,7 @@ function foo(input){
 
 
 // object data type : object | function
-function foo(){
-
-}
+function foo(){ }
 console.log(typeof foo);    //function
 let obj = {}
 console.log(typeof obj);    //object 
@@ -167,7 +165,7 @@ function foo(input){
     console.log(input)    //{name:'changed'}
 }
  
-
+// Homework
 // deepcopy, shallow copy
 // class key in ES6 and constructor function in ES5
- 
+  
