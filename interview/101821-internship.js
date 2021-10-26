@@ -27,3 +27,31 @@ module.exports = {
    return largestInt;
  }
 };
+
+
+//Interview - Antra 10/7/2021
+//Introduce past projects
+//Promise
+const promise = new Promise(function(resolve, reject) {
+  return setTimeout(() => resolve("done"), 3000);
+});
+
+promise.then((resolve) => {console.log(resolve)});
+
+
+//string "hello world" to "Hello World"
+//no space "hi" to "Hi"
+name.charAt(0).toUpperCase() + name.slice(1)
+
+//with space using function
+function titleCase(str) {
+   var splitStr = str.toLowerCase().split(' ');
+   for (var i = 0; i < splitStr.length; i++) {		// Assign it back to the array
+       splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+   }
+   return splitStr.join(' '); 		// Directly return the joined string
+}
+
+//CSS position
+//CSS flexbox
+ 
