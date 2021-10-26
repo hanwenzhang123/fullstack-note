@@ -399,6 +399,9 @@ user.sayHi();
 - enabling applications to exchange data and functionality easily and securely
 - Your Server -> Request through API -> Someone Else's Server -> Response through API -> Your Server
 
+#### REST API
+- use/setup http endpoint to allow us access and doing create/read/update/delete data
+
 #### AJAX
 - Asynchronous JavaScript And XML, making request behind the scene
 - web applications can send and retrieve data from a server asynchronously without interfering with the display and behaviour of the existing page
