@@ -57,7 +57,7 @@ When you tick the checkbox attached to any data item, the page respond slowly.
 Is the issue caused by the data consuming a lot of memory, or by the DOM render. How do you solve the issue.
 
 
-
+10/22
 Highlight all the even elements (pseudo element)
 Remove all the even numbers from array
 State & Props
@@ -65,3 +65,7 @@ VirtualDom
 How to resolve page slow loading caused by numerous requests
 Difference between npm start & build? (didn’t hear the Question clearly)
 What part is required for the server part of the application
+
+
+10/26
+Ecosystem Immutable JS
