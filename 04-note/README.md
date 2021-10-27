@@ -54,11 +54,16 @@ Array.prototype.myMap = function(callback) {
 - `filter()` - returns a new array with the elements that passed the provided test
 - `array.filter(function(currentValue, index, arr), thisValue)`
 ```js
-Array.prototype.myFilter = function(callback) {
-   for (let i = 0; i < this.length; i++) {
-     callback(this[i], i, this)
-   }
-}
+Array.prototype.myFilter = function (callback) {
+  const filterArray = [];
+  for (let index = 0; index < this.length; index++) {
+    let result = callback(this[index], index, this); //result returns boolean through callback for the test
+    if (result) {
+      filterArray.push(this[index]);
+    }
+  }
+  return filterArray;
+};
 ```
 
 #### Implementing `Array.reduce()`
