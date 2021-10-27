@@ -26,10 +26,11 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 
 #### String Methods
 ```js
-.split() - splits a string into an array of substrings, and returns the new array - string.split(separator, limit)
-.slice() - extracts parts of a string and returns the extracted parts in a new string - string.slice(start, end)
-.replace() - returns a new string where the specified values are replaced - string.replace(searchvalue, newvalue)
-.substring() - extracts characters between "start" and "end", not including "end"
+.split() - splits a string into an array of substrings, and returns the new array - `string.split(separator, limit)`
+.slice() - extracts parts of a string and returns the extracted parts in a new string - `string.slice(start, end)`
+.replace() - returns a new string where the specified values are replaced, case sensitive - `string.replace(searchvalue, newvalue)`
+.substr() - returns a portion of the string, extracts length characters from a str, counting from the start index - `substr(start, length)`
+.substring() - extracts characters between "start" and "end", not including "end" - `substring(indexStart, indexEnd)`
 .includes() - case sensitive, returns true if a string contains a specified string, otherwise false.
 .startsWith() - returns true if a string begins with a specified string, otherwise false.
 .trim() - removes whitespace from both sides of a string.
