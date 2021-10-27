@@ -92,11 +92,14 @@ Array.prototype.mySome = function(callback) {
 - `every()` - check if every element in the array passes a provided test, return boolean
 - `array.every(function(currentValue, index, arr), thisValue)`
 ```js
-Array.prototype.myEvery = function(callback) {
-   for (let i = 0; i < this.length; i++) {
-     callback(this[i], i, this)
-   }
-}
+Array.prototype.myEvery = function (callback) {
+  for (let i = 0; i < this.length; i++) {
+    if (!callback(this[i], i, this)) {
+      return false;
+    }
+  }
+  return true;
+};
 ```
 
 #### fizzBuzz
