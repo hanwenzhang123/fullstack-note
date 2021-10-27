@@ -81,11 +81,15 @@ Array.prototype.myReduce = function(callback) {
 - `some()` - check if any of the elements in the array passes a provided test, return boolean
 - `array.some(function(currentValue, index, arr), thisValue)`
 ```js
-Array.prototype.mySome = function(callback) {
-   for (let i = 0; i < this.length; i++) {
-     callback(this[i], i, this)
-   }
-}
+Array.prototype.mySome = function (callback) {
+  for (let i = 0; i < this.length; i++) {
+    let result = callback(this[i], i, this);
+    if (result) {
+      return true;
+    }
+  }
+  return false;
+};
 ```
 
 #### Implementing `Array.every()`
