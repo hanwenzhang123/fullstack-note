@@ -111,6 +111,59 @@ Array.prototype.myEvery = function (callback) {
 };
 ```
 
+#### Implementing `Array.find()`
+- `find()` - returns the first item that matches the result that passes a test, or undefined if no matches.
+- `array.find(function(currentValue, index, arr),thisValue)`
+```js
+Array.prototype.myFind = function(callback){
+  let result
+  for (let i = 0; i < this.length; i++) {
+    let isFound = callback(this[i], i, this)
+    if(isFound){
+      result = this[i]
+      break //stop the loop if find that item
+    }
+  }
+  return result
+}
+```
+
+#### Build an Array
+```js
+class NewArray {
+  constructor() {
+    (this.length = 0), (this.data = {});
+  }
+  get(index) {
+    return this.data[index];
+  }
+  push(item) {
+    this.data[this.length] = item;
+    this.length++;
+  }
+  pop() {
+    const lastItem = this.data[this.length - 1];
+    delete this.data[this.length - 1];
+    this.length--;
+    return lastItem;
+  }
+  delete(index) {
+    const item = this.data[index];
+    this.shiftItems(index);
+    return item;
+  }
+  shiftItems(index) {
+    for (let i = index; i < this.length - 1; i++) {
+      this.data[i] = this.data[i + 1];
+    }
+    delete this.data[this.length - 1];
+    this.length--;
+  }
+}
+const newArray = new NewArray();
+console.log(newArray);
+```
+
 #### fizzBuzz
 ```js
 let fizzBuzz = (n) => {
