@@ -128,6 +128,36 @@ Array.prototype.myFind = function(callback){
 }
 ```
 
+#### Implementing `Array.findIndex()`
+- `findIndex()` - return the index of the first element in the array that passes the test, return -1 if no element found
+- `array.findIndex(function(currentValue, index, arr), thisValue)`
+```js
+Array.prototype.myFindIndex = function(array, callback) {
+ for (let index = 0; index < this.length; index += 1) {
+   const value = array[index];
+   if (callback(value, index, array)) {
+     return index;
+   }
+ }
+ return -1;
+}
+```
+
+#### Implementing `Array.includes()`
+-  `includes()` - returns true if an array contains a specified element, otherwise false -> case sensitive
+- `array.includes(element, start)`
+```js
+Array.prototype.myIncludes = function(element){
+   for(let i = 0; i < this.length; i++){
+      const value = this[i];
+      if(element === value){
+         return true;
+      };
+   };
+   return false;
+};
+```
+
 #### Build an Array
 ```js
 class NewArray {
