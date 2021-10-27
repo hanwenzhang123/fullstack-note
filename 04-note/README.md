@@ -26,22 +26,70 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/03-note/README.md
 
 ## JavaScript Example
 
-#### Implementing `Array.map()`
+#### Implementing `Array.forEach()`
+- `forEach()` - iterate the array, does not return anything
+- `array.forEach(function(currentValue, index, arr), thisValue)`
 ```js
-Array.prototype.mymap = function(callback) {	//map - iterate over each individual element of the array
+Array.prototype.myForEach = function(callback) {
+   for (let i = 0; i < this.length; i++) { 
+     callback(this[i], i, this)
+   }
+}
+```
+
+#### Implementing `Array.map()`
+- `map()` - iterate the array, return a new array with results from the passing function
+- `array.map(function(currentValue, index, arr), thisValue)`
+```js
+Array.prototype.myMap = function(callback) {
     const resultArray = [];
     for (let index = 0; index < this.length; index++) {
         resultArray.push(callback(this[index], index, this));
     }
-    return resultArray;		//return a brand new function
+    return resultArray;
 }
 ```
 
-#### Implementing `Array.forEach()`
+#### Implementing `Array.filter()`
+- `filter()` - returns a new array with the elements that passed the provided test
+- `array.filter(function(currentValue, index, arr), thisValue)`
 ```js
-Array.prototype.myforEach = function(callbackFn) {	//forEach - iterate over each individual element of the array, does not return anything
-   for (let i = 0; i < this.length; i++) { 	//"this" is for the array we passed in
-     callbackFn(this[i], i, this)
+Array.prototype.myFilter = function(callback) {
+   for (let i = 0; i < this.length; i++) {
+     callback(this[i], i, this)
+   }
+}
+```
+
+#### Implementing `Array.reduce()`
+- `reduce()` - returns a single value which is the function's accumulated result
+- `array.reduce(function(total, currentValue, currentIndex, arr), initialValue)`
+```js
+Array.prototype.myReduce = function(callback) {
+   for (let i = 0; i < this.length; i++) {
+     callback(this[i], i, this)
+   }
+}
+```
+
+#### Implementing `Array.some()`
+- `some()` - check if any of the elements in the array passes a provided test, return boolean
+- `array.some(function(currentValue, index, arr), thisValue)`
+```js
+Array.prototype.mySome = function(callback) {
+   for (let i = 0; i < this.length; i++) {
+     callback(this[i], i, this)
+   }
+}
+```
+
+#### Implementing `Array.every()`
+- `every()` - check if every element in the array passes a provided test, return boolean
+- `array.every(function(currentValue, index, arr), thisValue)`
+```js
+Array.prototype.myEvery = function(callback) {
+   for (let i = 0; i < this.length; i++) {
+     callback(this[i], i, this)
    }
 }
 ```
