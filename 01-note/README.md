@@ -605,6 +605,7 @@ promise.then((resolve) => {console.log(resolve)});
 ```
 
 #### Promoise.all
+- run promises in parallel, create an array of promises and then use `Promise.all(promisesArray)`.
 - send all promises, returns a single Promise that resolves to an array of the results of the input promises
 - will reject immediately upon any of the input promises rejecting
 
@@ -616,14 +617,14 @@ const promise3 = new Promise((resolve, reject) => {
 });
 
 Promise.all([promise1, promise2, promise3]).then((values) => {
-  console.log(values);	 Array [3, 42, "foo"]
+  console.log(values);	 //return an array - [3, 42, "foo"]
 });
 ```
 
 #### async/await
 - cleaner style handling asynchonous tasks, return promise, await takes a pause, returns its result -> must with async keyword
-- easier for promise chaining (not faster), better for accessing value in the scope with assigned variable 
-- start with async function, replace .then() with await, async function can be dynamic like mongodb update/delete endpoints
+- easier for promise chaining (not faster), better for accessing value in the scope with assigned variable, and output of function2 is dependent on the output of function1
+- start with async function, replace .then() with await, use try catch for error handling, async function can be dynamic like mongodb update/delete endpoints
 
 `main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)`
 
