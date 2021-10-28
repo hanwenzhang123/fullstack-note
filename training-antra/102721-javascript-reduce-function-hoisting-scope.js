@@ -134,3 +134,30 @@ foo()
 console.log(a)  //ReferenceError: a is not defined - due to function scope
 
 //block scope within {}
+
+
+
+//Homework
+function foo(){
+  for(var i = 0; i < 5; i++){ //var - function scope
+    setTimeout(()=>{
+      console.log(i); //5 5 5 5 5
+    },i)
+  }
+}
+foo()
+
+function foo(){
+  for(let i = 0; i < 5; i++){ //const/let - block scope
+    setTimeout(()=>{
+      console.log(i); //0 1 2 3 4
+    },i)
+  }
+}
+foo()
+
+for (var i = 1; i <= 5; i++) {		//var makes i stays in the function scope
+    (function(index) {	//wraps the function call in another function, so inner function gets local copy of outer function arguement
+        setTimeout(function() { alert(index); }, i * 1000);	//0 1 2 3 4 - having a copy of i in it each time iterate through
+    })(i);	//using a self-invoking function, IIFE, each iteration created a new scope for each iteration
+}
