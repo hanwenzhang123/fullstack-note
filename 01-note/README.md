@@ -728,8 +728,9 @@ console.log(newFunc());  //2
 - great for async calls, handle something after something else has been completed, enforce the order of operation that we want. 
 
 #### Currying
-- transform a function of arguments n, to n functions of one or less arguments. 
-- we do not change the functionality of a function, we just change the way it is invoked. 
+- a function that takes multiple arguments one at a time, the last function returns the result based on all the argument
+- useful in the context of function composition - a function called in another function
+- we do not change the functionality of a function, we just change the way it is invoked
 - `const addNumber = (a) => (b) => (c) => a+b+c;`
 
 #### First Order Function
