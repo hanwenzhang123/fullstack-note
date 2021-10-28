@@ -234,17 +234,17 @@ function isEmpty(obj) {
 }
 ```
 
-#### Clear a JavaScript Object
+#### Empty/Clear a JavaScript Object
 - `delete` operator allows you to remove a property from an object.
 - `delete thisIsObject[key];`
 ```js
-for (const prop of Object.getOwnPropertyNames(obj)) {
-  delete obj[prop];
+function emptyObject(obj) {
+  Object.keys(obj).forEach(k => delete obj[k])
 }
 ```
 ```js
-function emptyObject(obj) {
-  Object.keys(obj).forEach(k => delete obj[k])
+for (const prop of Object.getOwnPropertyNames(obj)) {
+  delete obj[prop];
 }
 ```
 
