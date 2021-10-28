@@ -801,6 +801,13 @@ contains two major parts:
   /* */
 })()
 ```
+```js
+for (var i = 1; i <= 3; i++) {		//var makes i stays in the function scope
+    (function(index) {	//wraps the function call in another function, so inner function gets local copy of outer function arguement
+        setTimeout(function() { alert(index); }, i * 1000);	//having a copy of i in it
+    })(i);	//using a self-invoking function, IIFE, each iteration created a new scope for each iteration
+}
+```
 
 #### Shallow Comparison & Deep Comparison
 - Shallow strategy compares superficially 2 operands equality — 1st level in depth only,
