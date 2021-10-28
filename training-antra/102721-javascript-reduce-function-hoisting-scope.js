@@ -1,6 +1,12 @@
+//filter()
+- something about "truthy/falsy" - coersion - trying to convert everything to boolean
+- do not change original array, creates new array //as well as .map()
+- Array is truthy, Object is truthy
+
 //reduce() - do the iteration based on the logic, eventually return the accumulator
+//array.reduce(function(accumulator, currentValue, currentIndex, arr), initialValue) - we need initial value for accumulator
 const arr = [1, 2, 3];
-const arr5 = arr.reduce((acc, cur, index, arr) => {    //accumulator but not previous value
+const arr5 = arr.reduce((acc, cur, index, arr) => {    //think it as of accumulator, better than as of previous value
   console.log(acc, cur, index, arr)
 //   return 5;
 }, "hello")     //InitialValue to initialize the value
@@ -76,8 +82,9 @@ const foo3 = () => {    //ES6 - arrow function syntax
   console.log("foo3")
 }
 
+//hoisting - during declaration phase (before execution phase), var & func are moved/hoisted to top, but var won't be initialized.
 
-//var - also hoisting, but only the value; unlike with function keyword, which hoisting the whole function
+//var - hoisting, but only the value; unlike with function keyword, which hoisting the whole function
 //if we do console.log(xxxxx) - ReferenceError: xxxx is not defined
 console.log(xxxxx)    //undefined
 var xxxxx = 5;
@@ -88,7 +95,9 @@ console.log(a);   // ReferenceError: a is not defined
 const a = 5;    
 //let can be redefined, const is constant value
 
-//why hoisting? moved to the top of their scope regardless of whether their scope is global or local (no matter where functions and variables are declared)
+//why hoisting? 
+//moved to the top of their scope regardless of whether their scope is global or local 
+//no matter where functions and variables are declared, you can reassign and redeclare the variable later on
 var a = 1;
 console.log(a)  //1
 a = 2           //using var, you can re-assign the value
@@ -172,3 +181,10 @@ function x(){
     close(i);   //new copy of i - passing i as argument pass to the parameter
   }
 }
+
+//Event Loop - How event loop works?
+callstack & promise & async/await
+- event loop on every iteration looks if there is something in the callstack, executes it
+- setTimeout - callback function is put into Message Queue, once nothng is in the callstack, it picks up things in the Message Queue
+- promises & async/await - right after call stack & before Message Queue
+  
