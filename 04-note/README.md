@@ -194,6 +194,16 @@ const newArray = new NewArray();
 console.log(newArray);
 ```
 
+#### implement map using reduce
+```js
+const arr = [1, 2, 3];
+const arr2 = arr.map(item => item * 2); //[2, 4, 6] 
+const arr22 = arr.reduce((acc, cur,) => { //[2, 4, 6] 	//reduce is designed for everything
+  acc.push(cur*2);
+  return acc;
+}, []); 	//initial an array, and push items to this array, [] is trusy
+```
+
 #### fizzBuzz
 ```js
 let fizzBuzz = (n) => {
