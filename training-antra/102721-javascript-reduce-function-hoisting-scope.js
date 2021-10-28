@@ -134,4 +134,3 @@ foo()
 console.log(a)  //ReferenceError: a is not defined - due to function scope
 
 //block scope within {}
-
