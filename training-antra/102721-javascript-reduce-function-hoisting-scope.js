@@ -111,11 +111,11 @@ obj.name = 5;
 obj.age = 12
 console.log(obj)  //{name: 5, age: 12}
 obj = {}  //TypeError: Assignment to constant variable - because const, you can not directly reassign its value
-
 //obj itself is a reference, you can manipulate the value inside the memory address, but you can not change the memory address after initial declaration
+
 let obj2 = {name: "patrick"};
-obj2 = {} 
-console.log(obj2)   //{} - reassign the value but not the memory address
+obj2 = {}   // a new copy for obj2, different memory address
+console.log(obj2)   //{} - reassign the value with a different memory address
 
 
 //scope
@@ -137,21 +137,21 @@ console.log(a)  //ReferenceError: a is not defined - due to function scope
 
 
 
-//Homework
-function foo(){
-  for(var i = 0; i < 5; i++){ //var - function scope
-    setTimeout(()=>{
-      console.log(i); //5 5 5 5 5
-    },i)
+//Homework - Scope & Closure
+function foo(){ //var - function scope
+  for(var i = 0; i < 5; i++){   //JS will keep running the function, not wait for the timer to expire
+    setTimeout(()=>{  //so it would be too late for setTimeout to catch the current i when execute, but the reference to the memory of i
+      console.log(i); //5 5 5 5 5  -  remember the reference to i, not the value to i
+    },i)  //i refers to the same memory location
   }
 }
 foo()
 
-function foo(){
-  for(let i = 0; i < 5; i++){ //const/let - block scope
-    setTimeout(()=>{
-      console.log(i); //0 1 2 3 4
-    },i)
+function foo(){   //const/let - block scope - receive new copy each time
+  for(let i = 0; i < 5; i++){ //i has a new copy variable for each iteration due to block scope
+    setTimeout(()=>{  //each time function called, reference to a different memory location due to separate copy of i in the scope
+      console.log(i); //0 1 2 3 4 - a fresh new copy of i that binds to the function and send it
+    },i)    //closure  - a function with lexical environment
   }
 }
 foo()
@@ -160,4 +160,15 @@ for (var i = 1; i <= 5; i++) {		//var makes i stays in the function scope
     (function(index) {	//wraps the function call in another function, so inner function gets local copy of outer function arguement
         setTimeout(function() { alert(index); }, i * 1000);	//0 1 2 3 4 - having a copy of i in it each time iterate through
     })(i);	//using a self-invoking function, IIFE, each iteration created a new scope for each iteration
+}
+
+function x(){
+  for (var i = 1; i <= 5; i++) {
+    function close(x) { //get a new copy of x each time the function get called
+      setTimeout(function () {
+        console.log(x);
+      }, x* 1000);
+    }
+    close(i);   //new copy of i - passing i as argument pass to the parameter
+  }
 }
