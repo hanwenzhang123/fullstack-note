@@ -167,7 +167,7 @@ function x(){
     function close(x) { //get a new copy of x each time the function get called
       setTimeout(function () {
         console.log(x);
-      }, x* 1000);
+      }, x * 1000);
     }
     close(i);   //new copy of i - passing i as argument pass to the parameter
   }
