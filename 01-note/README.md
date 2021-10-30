@@ -18,8 +18,10 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 - [Sass](#sass)
 - [JavaScript](#javascript)
 - [ES6](#ES6)
+- [Promise](#Promise)
 - [This](#this)
-- [JS Methods](#JS-Methods)
+- [JS Funtion I](#JS-funtion-1)
+- [JS Funtion II](#JS-funtion-2)
 - [DOM Event](#DOM-event)
 
 ## HTTP
@@ -588,6 +590,8 @@ function func(a, b, ...rest) {
 func(1, 2, 3, 4, 5, 6, 7);
 ```
 
+## Promise
+
 #### Promise(event loop, task scheduling)
 - JS is a single-threaded language, use promise to handle async operation
 - new feature of ES6 -> avoid callback hell - a chained nested code - no good
@@ -604,10 +608,11 @@ const promise = new Promise(function(resolve, reject) {
 promise.then((resolve) => {console.log(resolve)});
 ```
 
-#### Promoise.all
+#### `Promoise.all([])`
 - run promises in parallel, create an array of promises and then use `Promise.all(promisesArray)`.
 - send all promises, returns a single Promise that resolves to an array of the results of the input promises
 - will reject immediately upon any of the input promises rejecting
+- `Promise.racce()` works similar as `Promoise.all()` but return a single value whichever return the first
 
 ```js
 const promise1 = Promise.resolve(3);
@@ -617,9 +622,13 @@ const promise3 = new Promise((resolve, reject) => {
 });
 
 Promise.all([promise1, promise2, promise3]).then((values) => {
-  console.log(values);	 //return an array - [3, 42, "foo"]
+  console.log(values);	 //return an array - [3, 42, "foo"] that contains all the value
 });
 ```
+
+#### `fetch()`
+- fetching a resource from the network, returning a promise which is fulfilled once the response is available
+- `const response = fetch("url").then((res) => res.json())` -> return body with json content
 
 #### async/await
 - cleaner style handling asynchonous tasks, return promise, await takes a pause, returns its result -> must with async keyword
@@ -700,7 +709,7 @@ a();   //undefined
 
 [[↑] Back to top](#table-of-contents)
 
-## JS Methods
+## JS Function 1
 
 #### Closure 
 - a function retured by another function that still has access to its outer scope variable
@@ -728,6 +737,17 @@ console.log(newFunc());  //2
 - this function will be executed later only after this another function has finished executing
 - great for async calls, handle something after something else has been completed, enforce the order of operation that we want. 
 
+```js
+function greeting(name) {
+  alert('Hello ' + name);
+}
+function processUserInput(callback) {
+  var name = prompt('Please enter your name.');
+  callback(name);
+}
+processUserInput(greeting);
+```
+
 #### Currying
 - a function that takes multiple arguments one at a time, the last function returns the result based on all the argument
 - useful in the context of function composition - a function called in another function
@@ -735,8 +755,12 @@ console.log(newFunc());  //2
 - `const addNumber = (a) => (b) => (c) => a+b+c;`
 
 #### First Order Function
-First-order function is a function that doesn’t accept another function as an argument and doesn’t return a function as its return value.
+- a function that doesn’t accept another function as an argument and doesn’t return a function as its return value.
 - `const firstOrder = () => console.log ('I am a first order function!');`
+
+#### Unary Function
+- a function that accepts exactly one argument. It stands for a single argument accepted by a function.
+- `const unaryFunction = a => console.log (a + 10); // Add 10 to the given argument and display the value`
 
 #### Higher Order Function
 Higher-order function is a function that accepts another function as an argument or returns a function as a return value or both.
@@ -755,9 +779,7 @@ higherOrder(firstOrderFunc);
 - prompt: `window.prompt("sometext","defaultText");`
 - confirm: `window.confirm("somtext")` ok and cancel -> return boolean
 
-#### Unary Function
-Unary function is a function that accepts exactly one argument. It stands for a single argument accepted by a function.
-- `const unaryFunction = a => console.log (a + 10); // Add 10 to the given argument and display the value`
+## JS Function 2
 
 #### Function Declaration vs Function Expression in JS
 - Function declarations load before any code is executed 
