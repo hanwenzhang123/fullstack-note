@@ -17,10 +17,11 @@ React18 new feature
 
 //Clean up function => Just like componentWillUnmount
 useEffect(() => {
-  const eventId = document.addEventListener()
+  const eventId = document.addEventListener();
   return () =>  {
 	  elem.removeEventlistener(eventId)   //clearTimeout（）
-}
+  };
+});
   
 /*
 create a simple hello name functional component where name is stored in state
@@ -68,7 +69,7 @@ function XXX () {
   }, [])
   useEffect(() => {
 	console.log("This is component did update");
-  })
+  }, [name])
   return <p>This is render.</p>
 }
   
