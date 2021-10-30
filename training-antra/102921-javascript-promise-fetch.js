@@ -139,10 +139,10 @@ class Test {
   constructor(msg){
     this.msg = msg
   }
-  showMsg (){
+  showMsg (){   //the function declared inside the class object, will be used for instances created based on the class
     console.log(this.msg)
   }
-  static showMsg2(){
+  static showMsg2(){  //called directly on the class - without creating an instance of the class.
     console.log("this.msg")
   }
 }
@@ -152,13 +152,13 @@ Test.showMsg3 = function(){
 }
 
 Test.showMsg()    //TypeError: Test.showMsg is not a function
-Test.showMsg2();  //function showMsg2(){ console.log("this.msg")  }
-Test.showMsg3();  //msg3
+Test.showMsg2();  //function showMsg2(){ console.log("this.msg") } -> good, static methods call Class object directly
+Test.showMsg3();  //msg3  -> create the function outside the class, it stays in this scope, not part of the class
 
 let test = new Test('patrick');
-test.showMsg()   //patrick
-test.showMsg2()  //TypeError: test.showMsg2 is not a function
-test.showMsg3()  //TypeError: test.showMsg3 is not a function
+test.showMsg()   //patrick  -> call the function in the class through the declared instance
+test.showMsg2()  //TypeError: test.showMsg2 is not a function -> no good, static keyword only be called with class not but with its instances
+test.showMsg3()  //TypeError: test.showMsg3 is not a function -> test is an instance of the class, can only get the things within the class
 
 
 
