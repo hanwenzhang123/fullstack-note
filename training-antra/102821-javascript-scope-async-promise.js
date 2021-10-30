@@ -179,3 +179,54 @@ console.log("after")
 //before hello after value: {name: "patrick"}
 //before hello after resolve value
    
+
+
+
+//Promise
+//promise like making commitment to something with 2 result, completed (resolved) or failed (rejected)
+//good for taking something takes longer proccess, so you can do something else at the same time
+
+let p = new Promise((resolve, reject) => {  //defind what the promise means, like the content of your commitment
+  let a = 1+1
+  if (a == 2) {
+    resolve("Success")
+  } else {
+    reject("Failed")
+  }
+})
+p.then((message) => {   //.then() is going to run the result from the promise, takes a function
+  console.log("this is the then " + message)
+}).catch((message) -> { //if the promise rejected, catch the error
+  console.log("this is the catch " + message)
+})
+
+
+//Promise.all() - run every promise in parallel at the same time, no needs to worry about waiting for one before the next
+const recordVideoOne = new Promise((resolve, reject) => {
+  resolve('Video 1 Recorded')
+})
+
+const recordVideoTwo = new Promise((resolve, reject) => {
+  resolve('Video 2 Recorded')
+})
+
+const recordVideoThree = new Promise((resolve, reject) => {
+  resolve('Video 3 Recorded')
+})
+
+Promise.all([ //all running at the exactly same time, and whichever finishes first, needs to wait until all finish to call .then()
+  recordVideoOne,
+  recordVideoTwo,
+  recordVideoThree
+]).then(messages => {   //will return all the messaages
+  console.log(messages)
+})
+
+Promise.race([    //just like Promise.all, but it will return when the first one completes, not all of the tasks
+  recordVideoOne,
+  recordVideoTwo,
+  recordVideoThree
+]).then(message => {    //only return a single messaage whichever resolves the first
+  console.log(message)
+})
+  
