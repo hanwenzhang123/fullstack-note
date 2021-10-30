@@ -211,23 +211,24 @@ useEffect()
 - takes two parameters, 1st is callback function, 2nd is dependencies array
 - the returned function will be called after component is removed
 - we can do clean up in the returned function
+
 ```js
-componentDidMount() {
-  window.addEventListener('mousemove', () => {})
+function XXX () {
+  const [name, setName] = useState("");
+  useEffect(() => {
+	console.log("This is component did mount");
+	
+	return () => {	//returned function will be called on componentWillUnmount, for clean up, uunmount first then updates
+	  console.log("This is component did unmount")'
+	}
+  }, [])	//on dependencies here, so only the first render
+  
+  useEffect(() => {
+	console.log("This is component did update");
+  }, [name])	//will be called whenever the dependency updates
+  
+  return <p>This is render.</p>
 }
-componentWillUnmount() {
-  window.removeEventListener('mousemove', () => {})
-}
-
-//Hook equivalent of above code will be as follows
-useEffect(() => {
-  window.addEventListener('mousemove', () => {});
-
-  // returned function will be called on component unmount 
-  return () => {
-    window.removeEventListener('mousemove', () => {})
-  }
-}, [])
 ```
 
 #### React.PureComponent vs memo
