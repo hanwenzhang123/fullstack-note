@@ -86,7 +86,7 @@ callAfter2Seconds(() => {
 });
 
 
-//promise - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+//Promise - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 //new keyword to initialize the Promise, Promise is a class, we create a new instance of the class with new keyword
 //Promise will return the datatype object, .then datatype is a function
 //what is in the Promise? a callback function
