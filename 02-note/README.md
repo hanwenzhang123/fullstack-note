@@ -202,7 +202,7 @@ export class App2 extends Component {
 - now we can use react hooks to perform local state and lifecycle in functional component
 
 #### Lifecycle (3 phases) - mounting, updating, unmounting
-- Mounting (constructor() & render()): initialize constructor and component put in the DOM that we have over the initial render
+- Mounting (constructor() & render()): initialize constructor -> assigns the initial this.state, and render components -> we have over the initial render in the DOM 
 - componentDidmount (initial render) -> only after the initial render then we call componentDidMount
 - Update: when the component updates as a result of changed state or changed props
 - componentDidUpdate (update) -> when we update, we need to change some state to trigger the re-render
