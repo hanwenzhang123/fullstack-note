@@ -60,8 +60,11 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 - mutable? => both immutable, read only
 - state is an object internally captured by class (in the constructor, this.state)
 - props down, parent talks to child
-- ?? whether child talks back to parent using props too? NO
-- -> using callback 
+- Can child talks back to parent using props too? NO -> using callback 
+
+#### super(props)
+- constructor(props) -> used to initialize an object's state in a class, called before it is mounted
+- super(props) -> calling the parent class constructor() of React.Component as a reference
 
 #### Lifting State Up
 - For sub-components to talk to each other through parents
