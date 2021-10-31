@@ -202,9 +202,11 @@ export class App2 extends Component {
 - now we can use react hooks to perform local state and lifecycle in functional component
 
 #### Lifecycle (3 phases) - mounting, updating, unmounting
-- mounting (constructor) - initialize stuffs in the state in the constructor that we have over the initial render
-- componentDidmount (initial render) -> only after the initial render then we call componentDidMount, API fetching asych like .then() .setState({data}) etc 
-- componentDidUpdate (update) -> when we update, we need to change some state to trigger the re-render, config update, changing flag for next render
+- Mounting (constructor() & render()): initialize constructor and component put in the DOM that we have over the initial render
+- componentDidmount (initial render) -> only after the initial render then we call componentDidMount
+- Update: when the component updates as a result of changed state or changed props
+- componentDidUpdate (update) -> when we update, we need to change some state to trigger the re-render
+- Unmounting: when the component is being removed from the DOM
 - componentWillUnmount -> proper clean-up to prevent memory leak (remove eventListener, remove setTimeout)
 
 useEffect()
@@ -242,18 +244,13 @@ function XXX () {
 - If you want more control and be in charge of that comparison, React.memo accepts a second argument, a comparison function. 
 
 #### Error Boundary
+- class component only, define either or both getDerivedStateFromError (render a fallback UI after an error is thrown) and componentDidCatch (log the error information) lifecycle methods
 - catch JS error in their child component tree, log those errors and display a fall-back UI
-- use class component only, define either or both getDerivedStateFromError and componentDidCatch lifecycle methods
-- getDerivedStateFromError - render a fallback UI after an error is thrown
-- componentDidCatch - log the error information
 - no error boundaries on: event handler, async codes, server side rendering, errors thrown in itself than children
 
 #### Error Boundary vs Try...Catch...
-- Try…catch deals with imperative code while error boundaries deal with declarative code. 
-- Imperative programming is how you do something
-- Declarative programming is what you do.
-- With error boundary, if there is an error, you can trigger a fallback UI
-- with try…catch, you can catch errors in your code.
+- Try…catch deals with imperative code: how you do something, you can catch errors in your code.
+- Error Boundaries deal with declarative code: what you do, like if there is an error, you can trigger a fallback UI
 
 [[↑] Back to top](#table-of-contents)
 
