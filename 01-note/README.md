@@ -856,6 +856,18 @@ console.log(newObj);  //{x: 1}
 const newObj2 = JSON.parse(JSON.stringify(obj));
 console.log(newObj2); //{x: 1}
 ```
+```js
+function copy(obj) { 
+  if (!obj) return obj; 
+  let v; 
+  let res = Array.isArray(obj) ? [] : {}; 
+  for (const k in obj) { 
+    v = obj[k]; 
+    res[k] = (typeof v === "object") ? copy(v) : v; 
+  } 
+  return res; 
+}
+```
 
 Shallow Clone - reuse previous reference, certain (sub-)values are still connected to the original variable
 ```js
