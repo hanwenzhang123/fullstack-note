@@ -431,6 +431,8 @@ user.sayHi();
 `JSON.stringify()` to convert a JavaScript object into a JSON string
 - `const jsonData = JSON.stringify(obj);`
 
+Limitation: we cannot copy the functions that are available in the target objects
+
 #### Fetch API
 ```js
 fetch('http://example.com/movies.json')
