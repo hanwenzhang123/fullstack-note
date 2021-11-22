@@ -363,6 +363,8 @@ console.log(filteredArr);
 - data encapsulation, used to protect your data, particularly when creating classes. 
 - The constructors are used to initialize the instance variable of a class or, create objects. 
 - The setter/getter methods are used to assign/change and retrieve values of the instance variables of a class
+- When we have a private instance, we do not wanna excpose the innter variables out, we set up the getter/setter for the value access and update method. 
+- Protect private values field, data safety
 
 #### overriding vs overloading
 - overriding: with same function name, the newly created one overriding the previous one
