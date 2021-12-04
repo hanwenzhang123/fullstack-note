@@ -120,7 +120,7 @@ NODE = EcmaScript + NODEAPI
 //Primative Type 
 let num =5; // number
 console.log(typeof num)     //number
-let str = 'abc';
+let str = "abc";
 console.log(typeof str)     //string
 let b = true;
 console.log(typeof b)       //boolean
@@ -134,7 +134,7 @@ console.log(typeof n);      //object - how JS was originally built
 let c = 10;
 let d = c;
 d = 5;
-console.log('d',d) // 5
+console.log("d",d) // 5
 
 foo(c);
 console.log("c",c) // 10 - not changing its value
@@ -155,14 +155,14 @@ console.log(typeof arr);    //object
 
 
 //Pass by Reference (point to the memory location of the value)
-let obj = {name:'patrick'}
+let obj = {name:"patrick"}
 
 foo(obj);
-console.log(obj)    //{name:'changed'}
+console.log(obj)    //{name:"changed"}
 
 function foo(input){
-    input.name = 'changed'
-    console.log(input)    //{name:'changed'}
+    input.name = "changed"
+    console.log(input)    //{name:"changed"}
 }
  
 // Homework
