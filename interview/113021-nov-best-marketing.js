@@ -24,8 +24,11 @@ Getters and setters, also known as accessors and mutators, are used to protect y
 For each instance variable, a getter method returns its value while a setter method sets or updates its value. 
 
 - Arrow function vs regular function
+arrow functions do not have their own this, arguments objects are not available, cannot be used as a constructor, implicitly returned without the use of return keyword (within one line)
 
 - Deep clone & shallow clone
+Deep clone: no more contact with previous reference, they are not related, any modification would not influence original copy - lodash.cloneDeep() & JSON parse and stringify
+Shallow Clone: reuse previous reference, certain (sub-)values are still connected to the original variable - {...obj} & [...arr]
 
 - Write your own code of deep clone:
 function copy(obj) { 
