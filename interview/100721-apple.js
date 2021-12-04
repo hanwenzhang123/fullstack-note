@@ -231,7 +231,7 @@ User communication when an error occurs is vital.
 AJAX Errors and HTTP Status Codes -> These can tell you much about what has gone wrong with a request
 4XX codes (something is wrong with the request) and 5XX codes (something is wrong with the server).
 400 Bad Request: This is generally an input error, the most common instance being invalid user input (such as a malformed email address).
-401 Unauthorized: Use this error code when a user is either trying to access something without being logged in, or trying to access something they should not (such as another user's data or admin functionality).
+401 Unauthorized: Use this error code when a user is either trying to access something without being logged in, or trying to access something they should not (such as another user data or admin functionality).
 403 Forbidden: The difference between this and 400 can be subtle, but a 403 error generally means that the server understood the request (it is not an input error) but will not fulfill it. An example of this might be the entry of an expired coupon code.
 404 Not Found: The most well-known of all the error codes, this simply means that the requested resource could not be found (either because of a malformed URL or a deleted or moved resource).
 409 Conflict: While mostly meant to refer to versioning conflicts (two users trying to write to the same resource), this can also be used to indicate uniqueness constraints (e.g. "email has already been taken").
@@ -276,7 +276,7 @@ JavaScript Errors - Throw and Try to Catch
 - The finally statement lets you execute code, after try and catch, regardless of the result.
 
 The throw statement throws a user-defined exception. 
-Execution of the current function will stop (the statements after throw won't be executed), 
+Execution of the current function will stop (the statements after throw will not be executed), 
 and control will be passed to the first catch block in the call stack. 
 If no catch block exists among caller functions, the program will terminate
 
