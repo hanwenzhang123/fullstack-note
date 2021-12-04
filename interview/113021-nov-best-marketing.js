@@ -174,13 +174,75 @@ console.log("Through Getter: " + myLiteralObj.getSeniorStatusThroGetter());
 
 //Answer: Output is "DirectAccess: Not Senior" followed by "Through Getter: Senior"
 
-8.
+8. Event Propagation - Bubbling and Capture
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="bubbleDiv">
+      <h2>Bubble event propagation</h2>
+      <ul id="bubbleList">
+        <li id="bubbleItem"><a id="bubbleLink">Bubble Item</a></li>
+      </ul>
+    </div>
+    <div id="captureDiv">
+      <h2>Capture event propagation</h2>
+      <ul id="captureList">
+        <li id="captureItem"><a id="capttureLink">Capture Item</a></li>
+      </ul>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
 
-//Answer: 
+function showElement(){
+  alert(this.id);
+}
+let el;
+//bubble listeners - (buttom to top)
+el = document.getElementById("bubbleList");
+el.addEventListener("click", showElement, false)
+el = document.getElementById("bubbleItem");
+el.addEventListener("click", showElement, false)
+el = document.getElementById("bubbleLink");
+el.addEventListener("click", showElement, false)
+//capture listeners (top to buttom)
+el = document.getElementById("captureList");
+el.addEventListener("click", showElement, true)
+el = document.getElementById("captureItem");
+el.addEventListener("click", showElement, true)
+el = document.getElementById("captureLink");
+el.addEventListener("click", showElement, true)
 
-9.
+//Answer: bubbleLink, bubbleItem, bubbleList; captureList, captureItem, captureLink
 
-//Answer: 
+9. addEventListener
+<html>
+  <body>
+  <div id="page">
+    <h2> Event Listener Test </h2>
+    <ul>
+      <li id="item1">Item1 - event listener with function spec</li>
+      <li id="item2">Item2 - event listener with anonymous function</li>
+    </ul>
+  </div>
+  <!-- reference to JavaScript code below via script tag -->
+  </body>
+<html>
+        
+var item1El = document.getElementById("item1");
+var item2El = document.getElementById("item2");
+
+function showMsg(e) {
+  alert(this.id + ": " + this.textContent);
+}
+
+item1El.addEventListener("click", showMsg, false);
+item2El.addEventListener("click", function(e) {   //TypeError: Cannot read properties of undefined (reading 'id')
+  showMsg(e);
+}, false);
+
+//Answer: item1 click displays alert: "Item1 - event listener with function spec".
+//item2 click causes error since anaymous function are not supported in AddEventListener call.
 
 10. This references: Bind, Call, Arrow Functions
 function topFullName() {
@@ -193,7 +255,7 @@ class Person {
     this.fullName = topFullName;
   }
   printThis() {
-    console.log(this);
+    console.log(this);    //print out the object that "this" is a property of (left side to the .)
   }
   nestedArrowFullName() {
     //test this reference in arow function within regular function
@@ -203,13 +265,18 @@ class Person {
 }
 const pWilliam = new Person("William", "Shakespear");
 const pMarie = new Person("Marie", "Shakespear");
-const bindFn = topFullName.bind(pMarie);
+const bindFn = topFullName.bind(pMarie);  //will be executed when we call it
 
 //Access function in multiple ways
-console.log(topFullName() + "; " + topFullName.call(pWilliam) + "; " + bindFn() + "; " + pWilliam.nestedArrowFullName.call(pMarie));
+console.log(topFullName() + "; " + topFullName.call(pWilliam) + "; " + bindFn() + "; " + pWilliam.nestedArrowFullName.call(pMarie));  //what inside .call() will be the object property
 
-//Answer: 
+console.log(topFullName()) //undefined, undefined
+console.log(topFullName.call(pWilliam)) //Shakespear, William
+console.log(bindFn()) //Shakespear, Marie
+console.log(pWilliam.nestedArrowFullName()) //Shakespear, William
+console.log(pWilliam.nestedArrowFullName.call(pMarie))  //Shakespear, Marie
 
+//Answer: undefined, undefined; Shakespear, William; Shakespear, Marie; Shakespear, Marie
 
 11. Promises and Then: Timing
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
