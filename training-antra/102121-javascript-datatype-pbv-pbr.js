@@ -41,7 +41,7 @@ Deep copy vs shallow copy
 Shallow copy – Makes a copy and points to the same memory address
 Deep copy – Makes a copy with a different memory address
 Class key in ES6
-The Object.keys() method returns an array of a given object's own enumerable property names
+The Object.keys() method returns an array of a given object own enumerable property names
 Constructor function in ES5
 The constructor method is a special method of a class for creating and initializing an object instance of that class.
 
@@ -79,7 +79,7 @@ You can use typeof (console.log(typeof arr))
 Or you can use Array.isArray(arr)
 How would you use a closure to create a private counter?
 How would you use a closure to create a private counter
-You can create a function within an outer function (a closure) that allows you to update a private variable but the variable wouldn't be accessible from outside the function without the use of a helper function.
+You can create a function within an outer function (a closure) that allows you to update a private variable but the variable would not be accessible from outside the function without the use of a helper function.
 
 
 Call back function example:
@@ -95,15 +95,15 @@ One way to reduce global variables is to use the YUI module pattern. The basic i
 DOM event DOMContentLoaded
 The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading.
 Undefined vs not defined
-If the variable name which is being accessed doesn’t exist in memory space then it would be not defined
-if exists in memory space but hasn’t been assigned any value till now, then it would be undefined.
+If the variable name which is being accessed does not exist in memory space then it would be not defined
+if exists in memory space but has not been assigned any value till now, then it would be undefined.
 What is currrying in js?
 currying is the technique of converting a function that takes multiple arguments into a sequence of functions that each takes a single argument
 What is high order function?
 In Javascript, functions can be assigned to variables in the same way that strings or arrays can. They can be passed into other functions as parameters or returned from them as well.
 A “higher-order function” is a function that accepts functions as parameters and/or returns a function.
 What is hoisting?
-Hoisting is JavaScript's default behavior of moving declarations to the top.
+Hoisting is JavaScripts default behavior of moving declarations to the top.
 Rest operator vs spread operator
 Rest- The rest operator is used to put the rest of some specific user-supplied values into a JavaScript array.
 
