@@ -491,10 +491,11 @@ let b = 1;
 - simple syntax, less code
 - does not have its own "this" to be referred to the current object
 - does not need to bind functions
-- does not have "arguments" which access to all the inputs parameters
 - use lexical scoping — 'this' refers to it's current surrounding scope and no further.
+- implicitly returned without the use of return keyword (within one line)
 
 Disadvantage of Arrow Function
+- does not have "arguments" which access to all the inputs parameters
 - can never be used as constructor functions
 - can never be invoked with the new keyword
 - a prototype property does not exist for an arrow function.
@@ -505,16 +506,12 @@ var obj = {
 	getName: function(){
 		return this.name    //"this" belongs to the obj that calls the function
 	}
-};
-console.log(obj.getName())    //mic
-
-var obj = {
-	name: "mic",
-	getName: () => {    
+	getName2: () => {    
 		return this.name    //arrow function does not have its own "this", "this" here means the Window    
 	}
 };
-console.log(obj.getName())    //undefined
+console.log(obj.getName())    //mic
+console.log(obj.getName2())   //undefined
 ```
 
 #### default params
@@ -899,18 +896,11 @@ The event loops behind the browser handles the sync and async JavaScript code, l
 
 #### addEventListener()
 - `element.addEventListener(event, function, useCapture)`
-- addEventListener() method attaches an event handler to the specified element.
+- addEventListener() method attaches an event handler to the specified element, anaymous function are not supported in AddEventListener call, will cause error.
 - removeEventListener() method to remove an event handler that has been attached with the addEventListener() method.
 - event: A String that specifies the name of the event like "click", "mouseover", "keyup"
 - function: Specifies the function to run when the event occurs
-- useCapture: Optional. A Boolean value that specifies whether the event should be executed in the capturing or in the bubbling phase.
-
-Using the optional useCapture parameter to demonstrate the difference between bubbling and capturing:
-`document.getElementById("myDiv").addEventListener("click", myFunction, true);`
-
-useCapture Possible values:
-- true: The event handler is executed in the capturing phase
-- false: Default. The event handler is executed in the bubbling phase
+- useCapture: Optional. A Boolean specifies whether the event should be executed in the capturing (true) or bubbling phase (false).
 
 #### Event Propagation
 - like a deeper ocean goes to the layer one by one travel through the DOM tree to arrive at its target and what happens to it afterward
