@@ -1,6 +1,6 @@
 11/1 Kevin
 Q1
-// Say you have a list of projects for a given compant returned from the server:
+// Say you have a list of projects for a given company returned from the server:
 const projects = [
   {
     projectId: "abc123",
