@@ -150,7 +150,7 @@ userInfo.forEach((user) => {
 });
 console.log(userInfo);
 
-//solution4
+//solution 4
 const userInfo = [];
 for (const { userProjects } of projects) {
   for (const { user } of userProjects) {
