@@ -6,7 +6,6 @@ Start -> A -- B -- C
               H
 
 class House {
-  
   constructor(name, pipeLabels){
     this.name = name;
     this.pipeLabels = pipeLabels;
