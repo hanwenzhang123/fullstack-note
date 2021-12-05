@@ -82,6 +82,38 @@ const projects = [
 ];
 //implement a function to take the given array above and return it in the specified format
 
+//Answer:
+const userInfo = [];
+const projectInfo = [];
+
+for (let i = 0; i < projects.length; i++) {
+  const userProject = projects[i].userProjects;
+  for (let j = 0; j < userProject.length; j++) {
+    console.log(projects[i].projectId);
+
+    const projectExist = projectInfo.some((project) =>
+      project.projectId.includes(projects[i].projectId)
+    );
+    if (!projectExist)
+      projectInfo.push({
+        projectId: projects[i].projectId,
+        name: projects[i].name,
+      });
+
+    const userExist = userInfo.some((item) =>
+      item.userId.includes(userProject[j].user.userId)
+    );
+    if (!userExist)
+      userInfo.push({
+        userId: userProject[j].user.userId,
+        email: userProject[j].user.email,
+        project: projectInfo,
+      });
+  }
+}
+
+console.log(userInfo);
+console.log(projectInfo);
 
 Q2 
 //without running it, what will this log to the console?
