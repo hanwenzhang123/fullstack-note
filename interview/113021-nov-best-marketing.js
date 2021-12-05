@@ -101,10 +101,6 @@ userInfo.forEach((user) => {
   for (let i = 0; i < projects.length; i++) {
     const userProject = projects[i].userProjects;
     for (let j = 0; j < userProject.length; j++) {
-      const userExist = userInfo.some((item) =>
-        item.userId.includes(userProject[j].user.userId)
-      );
-      if (!userExist) userInfo.push(userProject[j].user);
       if (user.userId === userProject[j].userId)
         tempArr.push({
           projectId: projects[i].projectId,
