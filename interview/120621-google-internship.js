@@ -15,19 +15,19 @@ class House {
   
   onReceivedWorkbook (fromPipeLabel, workbook){
     if(firstReceivedBookFrom === null){
-      this.firstReceivedBookFrom = fromPipeLabel;
-      workbook.apprend(this.name);
+      this.firstReceivedBookFrom = fromPipeLabel;     //when firstReceivedBookFrom is null, then we assign who we get the workbook from
+      workbook.apprend(this.name);           //put the name of this firstReceivedBookFrom 
       
       const index = this.pipeLabels.indexOf(fromPipeLabel);
-      const newPipeArr = this.pipeLabels.splice(index, 1)
-      this.fromPipes.push(newPipeArr)
+      const newPipeArr = this.pipeLabels.splice(index, 1)      //get the fromPipeLabel
+      this.fromPipes.push(newPipeArr)                 //push fromPipeLabel to fromPipes Array
     }
-    sendWorkbookThroughPipe(fromPipes[0], workbook)
+    sendWorkbookThroughPipe(fromPipes[0], workbook)   //send to next one from current pipe
     const newPipeArray = this.fromPipes.splice(0, 1)
     this.fromPipes = newPipeArray;
     
     if(fromPipes.length === 0){
-      sendWorkbookThroughPipe(firstReceivedBookFrom, workbook)
+      sendWorkbookThroughPipe(firstReceivedBookFrom, workbook)          //send it back to where it comes from
     }
   }
   
