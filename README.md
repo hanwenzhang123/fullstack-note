@@ -12,7 +12,4 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 
 ## Cheat Sheets
 [Coding](https://docs.google.com/spreadsheets/d/1X5TcMDWbSVUQZUr5kzPmnmloqUiXqmhecFPFxN7j2Mg/edit?usp=sharing)\
-[HTML](https://www.frontendcheatsheets.com/html)\
-[CSS](https://htmlcheatsheet.com/css/)\
-[JavaScript](https://htmlcheatsheet.com/js/)\
-[React](https://www.frontendcheatsheets.com/react)
+[Best Marketing](https://docs.google.com/document/d/1JOdXf9LuUY9A2C7uMTMepgVQA9qsvlxC0yxVwWlfAGg/edit)
