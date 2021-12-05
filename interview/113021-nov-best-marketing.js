@@ -84,36 +84,38 @@ const projects = [
 
 //Answer:
 const userInfo = [];
-const projectInfo = [];
 
 for (let i = 0; i < projects.length; i++) {
   const userProject = projects[i].userProjects;
+
   for (let j = 0; j < userProject.length; j++) {
-    console.log(projects[i].projectId);
-
-    const projectExist = projectInfo.some((project) =>
-      project.projectId.includes(projects[i].projectId)
-    );
-    if (!projectExist)
-      projectInfo.push({
-        projectId: projects[i].projectId,
-        name: projects[i].name,
-      });
-
     const userExist = userInfo.some((item) =>
       item.userId.includes(userProject[j].user.userId)
     );
-    if (!userExist)
-      userInfo.push({
-        userId: userProject[j].user.userId,
-        email: userProject[j].user.email,
-        project: projectInfo,
-      });
+    if (!userExist) userInfo.push(userProject[j].user);
   }
 }
 
+userInfo.forEach((user) => {
+  let tempArr = [];
+  for (let i = 0; i < projects.length; i++) {
+    const userProject = projects[i].userProjects;
+    for (let j = 0; j < userProject.length; j++) {
+      const userExist = userInfo.some((item) =>
+        item.userId.includes(userProject[j].user.userId)
+      );
+      if (!userExist) userInfo.push(userProject[j].user);
+      if (user.userId === userProject[j].userId)
+        tempArr.push({
+          projectId: projects[i].projectId,
+          name: projects[i].name,
+        });
+    }
+  }
+  user.project = tempArr;
+});
+
 console.log(userInfo);
-console.log(projectInfo);
 
 Q2 
 //without running it, what will this log to the console?
