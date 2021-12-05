@@ -83,8 +83,49 @@ const projects = [
 //implement a function to take the given array above and return it in the specified format
 
 //Answer:
+//solution 1
 const userInfo = [];
 
+for (const { userProjects, projectId, name } of projects) {
+  for (const { user } of userProjects) {
+    const userExist = userInfo.some((item) =>
+      item.userId.includes(user.userId)
+    );
+    if (!userExist) userInfo.push({ ...user, project: [] });
+
+    for (index in userInfo) {
+      console.log(userInfo[index].userId);
+      console.log(user.userId);
+      if (userInfo[index].userId === user.userId) {
+        userInfo[index].project.push({
+          projectId: projectId,
+          name: name,
+        });
+      }
+    }
+  }
+}
+
+console.log(userInfo);
+
+//solution 2
+const userProjectsByUserId = new Map();
+for (const { userProjects, projectId, name } of projects) {
+  for (const { user } of userProjects) {
+    if (!userProjectsByUserId.has(user.userId)) {
+      userProjectsByUserId.set(user.userId, { user, projects: [] });
+    }
+    userProjectsByUserId.get(user.userId).projects.push({ projectId, name });
+  }
+}
+const output = [...userProjectsByUserId.values()].map(({ user, projects }) => ({
+  ...user,
+  project: projects,
+}));
+console.log(output);
+
+//solution 3
+const userInfo = [];
 for (let i = 0; i < projects.length; i++) {
   const userProject = projects[i].userProjects;
 
@@ -95,7 +136,6 @@ for (let i = 0; i < projects.length; i++) {
     if (!userExist) userInfo.push(userProject[j].user);
   }
 }
-
 userInfo.forEach((user) => {
   let tempArr = [];
   for (let i = 0; i < projects.length; i++) {
@@ -110,8 +150,33 @@ userInfo.forEach((user) => {
   }
   user.project = tempArr;
 });
-
 console.log(userInfo);
+
+//solution4
+const userInfo = [];
+for (const { userProjects } of projects) {
+  for (const { user } of userProjects) {
+    const userExist = userInfo.some((item) =>
+      item.userId.includes(user.userId)
+    );
+    if (!userExist) userInfo.push(user);
+  }
+}
+userInfo.forEach((userInfo) => {
+  const tempArr = [];
+  for (const { userProjects, projectId, name } of projects) {
+    for (const { user } of userProjects) {
+      if (userInfo.userId === user.userId)
+        tempArr.push({
+          projectId: projectId,
+          name: name,
+        });
+      userInfo.project = tempArr;
+    }
+  }
+});
+console.log(userInfo);
+
 
 Q2 
 //without running it, what will this log to the console?
