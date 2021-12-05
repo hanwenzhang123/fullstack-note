@@ -94,8 +94,6 @@ for (const { userProjects, projectId, name } of projects) {
     if (!userExist) userInfo.push({ ...user, project: [] });
 
     for (index in userInfo) {
-      console.log(userInfo[index].userId);
-      console.log(user.userId);
       if (userInfo[index].userId === user.userId) {
         userInfo[index].project.push({
           projectId: projectId,
