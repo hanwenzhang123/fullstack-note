@@ -1,4 +1,4 @@
-11/29/2021 - 1st Interview
+//11/29/2021 - 1st Interview
 Start -> A -- B -- C
          |         |
          D    E -- F --G
@@ -41,8 +41,7 @@ class Workbook {
 }
 
 
-12/06/2021 - 2nd Interview
-
+//12/06/2021 - 2nd Interview
 class Job {
   constructor(startTime, duration, cpus) {	
     this.startTime = startTime;
@@ -65,9 +64,8 @@ Example:
       0 - - (start: 3, duration: 3)
 
 earliest start ---------------- latest end time
-         [{}, {}, {}]
-//jobs = [{startTime: 1, duration: 2, cpus: 5}, {}];
-
+jobs = [{startTime: 1, duration: 2, cpus: 5}, {}];
+       [{}, {}, {}]
 
 function checkSchedule(maxCpus, jobs){
  let check;
