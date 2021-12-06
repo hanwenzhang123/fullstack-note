@@ -43,4 +43,43 @@ class Workbook {
 
 12/06/2021 - 2nd Interview
 
- 
+class Job {
+  constructor(startTime, duration, cpus) {	
+    this.startTime = startTime;
+    this.duration = duration;
+    this.cpus = cpus;
+  }       
+}
+
+Example: maxCpus = 3
+0123456789
+0---(3) 0--------(2)
+  0------------(1) => false
+
+Example: maxCpus = 3
+0---3 0--------2 0-------1 => true
+
+Example:
+0 1 2 3 4 5 6 7 8 9
+    0 - - - (start: 2, duration: 4)
+      0 - - (start: 3, duration: 3)
+
+earliest start ---------------- latest end time
+         [{}, {}, {}]
+//jobs = [{startTime: 1, duration: 2, cpus: 5}, {}];
+
+
+function checkSchedule(maxCpus, jobs){
+ let check;
+ for (job in jobs) {
+   const earliestStart = Math.min(...Object.values(job.startTime))
+   const latestEnd = Math.max(job.startTime + (job.duration - 1))
+   let endPoint = job.startTime + (job.duration - 1);
+ }
+ if(maxCpus <= ){
+   check = true
+ } else {
+   check = false
+ }
+ return check;
+}
