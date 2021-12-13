@@ -22,7 +22,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 - [This](#this)
 - [JS Funtion I](#JS-funtion-1)
 - [JS Funtion II](#JS-funtion-2)
-- [Shallow/Deep Clone](#Shallow/Deep-Clone)
+- [Clone](#Clone)
 - [DOM Event](#DOM-event)
 
 ## HTTP
@@ -831,7 +831,7 @@ for (var i = 1; i <= 3; i++) {		//var makes i stays in the function scope
 }
 ```
 
-## Shallow/Deep Clone
+## Clone
 
 #### Shallow Comparison & Deep Comparison
 - Shallow strategy compares superficially 2 operands equality — 1st level in depth only,
