@@ -22,6 +22,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 - [This](#this)
 - [JS Funtion I](#JS-funtion-1)
 - [JS Funtion II](#JS-funtion-2)
+- [Shallow/Deep Clone](#Shallow/Deep-Clone)
 - [DOM Event](#DOM-event)
 
 ## HTTP
@@ -830,6 +831,8 @@ for (var i = 1; i <= 3; i++) {		//var makes i stays in the function scope
 }
 ```
 
+## Shallow/Deep Clone
+
 #### Shallow Comparison & Deep Comparison
 - Shallow strategy compares superficially 2 operands equality — 1st level in depth only,
 - Deep strategy compares the equality from all depth levels.
@@ -853,18 +856,6 @@ console.log(newObj);  //{x: 1}
 const newObj2 = JSON.parse(JSON.stringify(obj));
 console.log(newObj2); //{x: 1}
 ```
-```js
-function copy(obj) { 
-  if (!obj) return obj; 
-  let v; 
-  let res = Array.isArray(obj) ? [] : {}; 
-  for (const k in obj) { 
-    v = obj[k]; 
-    res[k] = (typeof v === "object") ? copy(v) : v; 
-  } 
-  return res; 
-}
-```
 
 Shallow Clone - reuse previous reference, certain (sub-)values are still connected to the original variable
 ```js
@@ -883,6 +874,20 @@ const newObj = {...obj}; //shallow copy - only restirct to the shallow level
 newObj.x.y = 9;
 console.log(newObj); //{x: { y: 9 } - only direct properties on the object point to different address, nested properties point to the same
 console.log(obj);  //{x: { y: 9 } - also change to 9, both get update
+```
+
+#### Write your own code of deep clone
+```js
+function copy(obj) { 
+  if (!obj) return obj; 
+  let v; 
+  let res = Array.isArray(obj) ? [] : {};   //check if it is array
+  for (const k in obj) { 
+    v = obj[k];   	//iterate each item in object, and store to v
+    res[k] = (typeof v === "object") ? copy(v) : v;   //recursion, if v is object then copy(v), stores in res[k]
+  } 
+return res; 
+}
 ```
 
 ## DOM Event
