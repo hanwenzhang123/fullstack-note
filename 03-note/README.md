@@ -153,6 +153,16 @@ while(a.length > 0) {
 }
 ```
 
+#### Check Array Overlapping
+
+```js
+let intersection = arrA.filter(x => arrB.includes(x));
+
+function getArraysIntersection(a1,a2){
+    return  a1.filter((n) => { return a2.indexOf(n) !== -1});
+}
+```
+
 #### Math in Array
 javascript array does not have Math Method - it expects distinct variables
 ```js
