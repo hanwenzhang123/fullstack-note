@@ -1,4 +1,5 @@
 Please briefly answer the following questions in English.
+
 1. What are the advantages of React Native over native IOS and Android?
 React Native is available for both IOS and Android devices. 
 
@@ -59,7 +60,7 @@ array.splice(0, array.length);
 Array.isArray() - return boolean, check whether an object (or a variable) is an array or not.
 
 16. What is the biggest difference between JS =>function and general function?
-arrow function does not have its own "this" to be referred to the current object
+arrow function does not have its own this to be referred to the current object
 
 17. In JS, how to understand the use of Await/Promise ?
 JavaScript is a single threaded language so we can use await/promise to do asynchronous tasks.
