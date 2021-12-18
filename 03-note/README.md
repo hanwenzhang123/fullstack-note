@@ -295,11 +295,6 @@ for (const prop of Object.getOwnPropertyNames(obj)) {
 ```
 
 #### Compare Objects
-Referential equality
-- The strict equality operator ===
-- The loose equality operator ==
-- Object.is(obj1, obj2) - return boolean
-
 Manual comparison
 ```js
 function isEqual(object1, object2) {
@@ -325,8 +320,10 @@ function shallowEqual(object1, object2) {
 ```
 
 Deep equality
+- `JSON.stringify(obj1) === JSON.stringify(obj2);` => stringify
+- `_.isEqual(object1, object2)` => using lodash library
 - `isDeepStrictEqual(object1, object2)` of Node built-in util module
-- `_.isEqual(object1, object2)` of lodash library.
+
 ```js
 function deepEqual(object1, object2) {
   const keys1 = Object.keys(object1);
