@@ -36,26 +36,32 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 .trim() - removes whitespace from both sides of a string.
 string.length - The length property returns the length of a string.
 ```
-#### reverse string
+#### Reverse String
 ```js
 "i'm a lasagna hog".split("").reverse().join("");
 //"goh angasal a m'i"
 ```
 
-#### uppercase the first letter of a string
+#### Remove Repeat Characters
+```js
+"Hello World".split('').filter((word, index, string) => string.indexOf(word) === index).join("")
+```
+
+#### Sentence Capitalization
 ```js
 name.charAt(0).toUpperCase() + name.slice(1)
-
-function titleCase(str) {
-   var splitStr = str.toLowerCase().split(' ');
-   for (var i = 0; i < splitStr.length; i++) {		// Assign it back to the array
-       splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
-   }
-   return splitStr.join(' '); 		// Directly return the joined string
+```
+```js
+function capitalize(str) {
+  const words = [];
+  for (let word of str.split(' ')) {
+    words.push(word[0].toUpperCase() + word.slice(1));
+  }
+  return words.join(' ');
 }
 ```
 
-#### sorting
+#### Sorting
 - `x.sort(function(a, b){return a - b});` -> numeric sort
 - `x.sort(function(a, b){return b - a});` -> numeric descending sort
 - `x.sort(function(a, b){return 0.5 - Math.random()});` -> random order sort
@@ -154,13 +160,43 @@ while(a.length > 0) {
 ```
 
 #### Check Array Overlapping
-
 ```js
-let intersection = arrA.filter(x => arrB.includes(x));
+const filteredArray = array1.filter(value => array2.includes(value));
 
-function getArraysIntersection(a1,a2){
-    return  a1.filter((n) => { return a2.indexOf(n) !== -1});
-}
+var filteredArray = array1.filter(function(n) {
+    return array2.indexOf(n) !== -1;
+});
+```
+
+#### Check Object Array Overlapping
+```js
+let deleting = array1.filter(
+    item1 =>
+      !array2.some(item2 => {
+        return (
+          item2.value === item1.value &&
+          item2.selected === item1.selected
+        );
+      })
+  );
+
+  if (deleting.length > 0) {
+    for (let { value } of deleting) {
+      for (let i = 0; i < array1.length; i++) {
+        if (array1[i].value === value) {
+          array1.splice(i, 1);
+        }
+      }
+    }
+  }
+  // let overlapping = embedded.filter(item1 =>
+  //   setting.some(item2 => {
+  //     return (
+  //       item2.value === item1.value &&
+  //       item2.selected === item1.selected
+  //     );
+  //   })
+  // );
 ```
 
 #### Math in Array
