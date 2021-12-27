@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <title>JQuery</title>
+  </head>
+  <body>
+    <h1>JQuery Training</h1>
+    <button class="continue">TEST!!</button>
+    <button class="continue">MyButton</button>
+
+    <div id="banner-message">Hidden</div>
+    <section id="button-container">
+      <button>Show</button>
+    </section>
+
+    <script>
+      class PQuery {
+        constructor(selector) {
+          this.targetElements = document.querySelectorAll(selector);
+          this.preDisplayList = [];
+        }
+
+        html(template) {
+          this.targetElements.forEach((element) => {
+            element.innerHTML = template;
+          });
+        }
+
+        on(event, callbackFn) {
+          this.targetElements.forEach((element) => {
+            element.addEventListener(event, (e) => {
+              callbackFn(e);
+            });
+          });
+        }
+
+        hide() {
+          this.targetElements.forEach((element) => {
+            this.preDisplayList.push(element.style.display);
+            element.style.display = 'none';
+            //element.style.visibility = 'hidden';
+            //element.style.opacity = 0;
+          });
+        }
+
+        show() {
+          this.targetElements.forEach((element, index) => {
+            element.style.display = this.preDisplayList[index];
+          });
+        }
+      }
+
+      const $$ = (selector) => {
+        return new PQuery(selector);
+      };
+
+      $$.ajax = function (options) {
+        fetch(options.url, {
+          method: options.method ? options.method : 'GET',
+        })
+          .then((res) => {
+            console.log(res.headers.get('content-type'));
+            return res.json();
+          })
+          .then((data) => {
+            options.success(data);
+          });
+      };
+
+      //   const obj1 = $$('button.test');
+      //   const obj2 = $$('button.continue');
+      //   console.log(obj1.html === obj2.html);
+      $$('button.test').html('hello');
+      $$('button.continue').html('<h1>Next Step.!!!.</h1>');
+
+      var hiddenBox = $$('#banner-message');
+      hiddenBox.hide();
+      $$('#button-container button').on('click', function (event) {
+        hiddenBox.show();
+      });
+
+      $$.ajax({
+        url: 'https://jsonplaceholder.typicode.com/todos',
+        success: function (result) {
+          console.log('success', result);
+        },
+      });
+    </scrip>
+  </body>
+</html>
