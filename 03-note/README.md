@@ -134,17 +134,20 @@ let doubled = arr.map(num => {
 - Used to insert or delete elements to/from array.
 
 #### Empty an array in JavaScript
+- Assigning to a variable never changes the object that the variable previously had as value.
+- Objects -- such as arrays -- only change when you mutate them, either through calling a method that does this, or by setting a property.
+
 ```js
 //1. Assign it to an empty array
    var array1 = [1,2,3,4,5,6,7];  // Created array
    var anotherArray = array1;     // Referenced array1 by another variable
-   array1 = [];                   // Empty the array
+   array1 = [];                   // Empty the array, assign a new array to the variable, does not modify the array object previously assigned to array1
    document.write(anotherArray);  // Output [1,2,3,4,5,6,7]
 
 //2. Set its length to 0
    var array1 = [1,2,3,4,5,6,7]; // Created array
    var anotherArray = array1; // Referenced array1 by another variable
-   array1.length = 0; // Empty the array by setting length to 0
+   array1.length = 0; // Empty the array by setting length to 0, assignment to the length property (actually a setter) will mutate the array.
    console.log(anotherArray); // Output []
    
 //3. Use Array.prototype.splice() - splice(start, deleteCount)
