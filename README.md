@@ -9,6 +9,3 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/03-note/README.md
 
 ## Boilerplate Code (Note Part4)
 https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
-
-## Coding Interview Questions
-https://github.com/hanwenzhang123/data-structures-algorithms-note/blob/main/coding-interview/README.md
