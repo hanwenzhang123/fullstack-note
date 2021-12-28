@@ -112,9 +112,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 - `<React.Fragment>...</React.Fragment>`
 
 #### Styled Components
-- a package that helps you to build componnets which have certian styles attached to them 
-- use component-level styles in your applications (CSS-in-JS)
-- `npm install --save styled-components`
+- a package that helps you to build componnets which have certian styles attached to them (CSS-in-JS)
 ```js
 import styled from "styled-components";
 export const Button = styled.button`color: white;`	//using tagged template literal
