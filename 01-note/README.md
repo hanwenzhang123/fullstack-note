@@ -910,7 +910,7 @@ The event loops behind the browser handles the sync and async JavaScript code, l
 - Modifying Element Classes: `span.classList.add("new-class")`; `span.classList.remove("hi")`; `span.classList.toggle("hi2", false)`;
 - Modifying Element Style: `span.style.backgroundColor="red"`;
 - Select: `document.querySelector("div")`;
-- Make Interactive: `.addEventListener()`;
+- Make Interactive: `btn.addEventListener()`;
 - Change CSS: Style Property
 
 #### addEventListener()
