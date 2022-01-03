@@ -892,11 +892,26 @@ return res;
 ## DOM Event
 
 #### What is DOM?
-- DOM stands for Document Object Model, it represents a document with a logical tree of objects, is the render path of elements in a website
-- DOM is a platform allows programs and scripts to dynamically access and update the content, structure, and style of a document.
+- DOM stands for Document Object Model, it represents a document with a logical tree of objects, and it is the render path of elements in a website
+- DOM dynamically access and update the content, structure, and style of a document.
+- DOM is the HTML but represent in JS => if we change DOM, HTML changes; if we change HTML, DOM will change too (broswer keeps in sync)
 
 #### JS mechanism (how to handle the sync and async code)
 The event loops behind the browser handles the sync and async JavaScript code, like when JS engine that built in the browser (for chrome is V8) runs JS code, because JS is a single threaded language, the code will be read line by line, and stores the memory in the heap, and push the function call to the callstack. If it is async function code, it will be then pushed to the web API instead to wait for the condition to be met while the call stack keeps running as first in last out, and garbage collects the variables that are no longer in use. Once the async code in the web API is ready to run, it will then be pushed to the Message Queue. When there are no functions to run in the call stack, the Event Loop will take the first event from the Queue and will push it to the Call Stack to run.
+
+#### DOM Methods
+- Adding Elements: `body.append("Hello World")`; `body.append(div)`; `.appendChild(div)`;
+- Creating Elements: `document.createElement("div")`; 
+- Modifying Element Text: `div.innerText="Hello World"` (how HTML works, and looks at CSS like invisible); `div.textContent="Hello World"` (exact text content copy pasted in HTML);
+- Modifying Element HTML: `div.innerHTML="<strong>Hello World</strong>"`;
+- Removing Elements: `div.remove()`; `.removeChild(span)`;
+- Modifying Element Attributes: `span.getAttribute("id")`; `span.setAttribute("title", "Hello")`; `span.removeAttribute("id")`;
+- Modifying Data Attributes: `console.log(span.dataset.test)`; `span.dataset.newName="hi"`;
+- Modifying Element Classes: `span.classList.add("new-class")`; `span.classList.remove("hi")`; `span.classList.toggle("hi2", false)`;
+- Modifying Element Style: `span.style.backgroundColor="red"`;
+- Select: `document.querySelector("div")`;
+- Make Interactive: `.addEventListener()`;
+- Change CSS: Style Property
 
 #### addEventListener()
 - `element.addEventListener(event, function, useCapture)`
