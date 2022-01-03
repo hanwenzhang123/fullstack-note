@@ -921,6 +921,11 @@ The event loops behind the browser handles the sync and async JavaScript code, l
 - function: Specifies the function to run when the event occurs
 - useCapture: Optional. A Boolean specifies whether the event should be executed in the capturing (true) or bubbling phase (false).
 
+#### Event.preventDefault()
+- prevent the browser from executing the default action of the selected element. 
+- Clicking on a "Submit" button, prevent it from submitting a form
+- Clicking on a link, prevent the link from following the URL
+
 #### Event Propagation
 - like a deeper ocean goes to the layer one by one travel through the DOM tree to arrive at its target and what happens to it afterward
 - Event.stopPropagation() - prevents further propagation of the current event in the capturing and bubbling phases. 
