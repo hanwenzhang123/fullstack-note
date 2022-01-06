@@ -95,6 +95,12 @@ arr.length = 0 - empty the array
 - `.shift()` - Removes from the beginning of an Array
 - `.splice()` - removes from a specific Array index
 - `.filter()` - allows you to programatically remove elements from an Array
+```js
+const index = array.indexOf(element);
+if (index > -1) {
+  array.splice(index, 1);
+}
+```
 
 #### Add Elements
 - `.push()` - adds new items to the end of an array
