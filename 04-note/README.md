@@ -67,9 +67,9 @@ Array.prototype.myFilter = function (callback) {
 ```
 
 #### Implementing `Array.reduce()`
-//reduce() - returns a single output value which is the function's accumulated result
-//array.reduce(function(total, currentValue, currentIndex, arr), initialValue) -> initialValue for accumulator
-//reduce(accumulator, currentValue) -> accumulator like sum, currentValue adds to the accumulator
+- reduce() - returns a single output value which is the function's accumulated result
+- array.reduce(function(total, currentValue, currentIndex, arr), initialValue) -> initialValue for accumulator
+- reduce(accumulator, currentValue) -> accumulator like sum, currentValue adds to the accumulator
 ```js
 Array.prototype.myReduce = function (callback, initialValue) {
   let value = initialValue;
