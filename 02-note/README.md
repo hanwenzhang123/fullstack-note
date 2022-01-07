@@ -204,6 +204,9 @@ export class App2 extends Component {
 - we use class component when the component has its own local state and lifecycle before React 16.8
 - now we can use react hooks to perform local state and lifecycle in functional component
 
+#### Lifecycle Effects
+- Functions triggers the code when a component created, updated or removed from the page
+
 #### Lifecycle (3 phases) - mounting, updating, unmounting
 - Mounting (constructor() & render()): initialize constructor -> assigns the initial this.state, and render components -> we have over the initial render in the DOM 
 - componentDidmount (initial render) -> only after the initial render then we call componentDidMount
@@ -223,10 +226,11 @@ function XXX () {
   useEffect(() => {
 	console.log("This is component did mount");
 	
-	return () => {	//returned function will be called on componentWillUnmount, for clean up, uunmount first then updates
-	  console.log("This is component did unmount")'
+	return () => {
+	  console.log("This is component did unmount");
+	  console.log("returned function will be called on componentWillUnmount, for clean up, uunmount first then updates");
 	}
-  }, [])	//on dependencies here, so only the first render
+  }, [])	//no dependencies here, so only the first render
   
   useEffect(() => {
 	console.log("This is component did update");
@@ -295,7 +299,7 @@ export default HOCCounter;
 - Hooks don't work inside class components. You can also create your own Hooks to reuse stateful behavior between different components.
 
 #### useState()
-- `const [state, setState] = useState(initialState)`
+- `const [state, setState] = useState(initialState)` - value and seter function
 ```js
 const computationInit = () => {
   console.log("Computing init");
