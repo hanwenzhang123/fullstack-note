@@ -20,8 +20,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 - [ES6](#ES6)
 - [Promise](#Promise)
 - [This](#this)
-- [JS Funtion I](#JS-funtion-1)
-- [JS Funtion II](#JS-funtion-2)
+- [JS Funtion](#JS-funtion)
 - [Clone](#Clone)
 - [DOM Event](#DOM-event)
 
@@ -705,7 +704,7 @@ a();   //undefined
 
 [[↑] Back to top](#table-of-contents)
 
-## JS Function 1
+## JS Function
 
 #### Closure 
 - a function retured by another function that still has access to its outer scope variable
@@ -774,8 +773,6 @@ higherOrder(firstOrderFunc);
 - alert: `window.alert("sometext");`
 - prompt: `window.prompt("sometext","defaultText");`
 - confirm: `window.confirm("somtext")` ok and cancel -> return boolean
-
-## JS Function 2
 
 #### Function Declaration vs Function Expression
 - Function declarations load before any code is executed 
