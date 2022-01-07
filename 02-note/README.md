@@ -300,7 +300,7 @@ export default HOCCounter;
 - Hooks don't work inside class components. You can also create your own Hooks to reuse stateful behavior between different components.
 
 #### useState()
-- `const [state, setState] = useState(initialState)` - value and seter function
+- `const [state, setState] = useState(initialState)` - value and setter function
 ```js
 const computationInit = () => {
   console.log("Computing init");
