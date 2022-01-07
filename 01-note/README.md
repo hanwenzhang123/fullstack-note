@@ -20,7 +20,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 - [ES6](#ES6)
 - [Promise](#Promise)
 - [This](#this)
-- [JS Funtion](#JS-funtion)
+- [Funtion](#funtion)
 - [Clone](#Clone)
 - [DOM Event](#DOM-event)
 
@@ -704,7 +704,7 @@ a();   //undefined
 
 [[↑] Back to top](#table-of-contents)
 
-## JS Function
+## Function
 
 #### Closure 
 - a function retured by another function that still has access to its outer scope variable
