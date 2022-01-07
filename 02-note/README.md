@@ -29,10 +29,10 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 - Component Architecture (different functions control different parts of UI)
 - Data Flow in React (one way top to bottom data flow, component to children)
 - Component State (manage its own state and pass down to children)
-- React allows you compose complex UIs from small and independent pieces of code called “components”.
 
 #### What is Component?
 - React is a component based language.
+- React allows you compose complex UIs from small and independent pieces of code called “components”.
 - Components are like functions that return HTML elements that tells what should be rendered on the screen (via a render() function).
 - Components are reusable, you can use the component across different pages, components are independent.
 
@@ -52,9 +52,10 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 
 #### Pros of React
 - Easy to learn -> Strong communityt supporting
-- VirtualDOM - Real DOM manipulation is very expensive
-- Diff Algorithms (outputs the set of differences between two inputs) -> reconciliation (“virtual” representation of a UI is kept in memory and synced with the “real” DOM by a library such as ReactDOM)
 - Component-based framework -> Reusability
+- VirtualDOM - Real DOM manipulation is very expensive
+- Diff Algorithms (outputs the set of differences between two inputs) 
+- -> reconciliation (“virtual” representation of a UI is kept in memory and synced with the “real” DOM by a library such as ReactDOM)
 - JSX (HTML + JS) - good for dev - efficient context switching is now avoid
 - Focus on the view -> User Interfaces
 
@@ -80,7 +81,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 
 #### Stateful Component vs Stateless Component
 - stateful components are keeping track of changing data
-- stateless components print out what is given to them via props, or they always render the same thing.
+- stateless components always render the same thing, print out what is given to them via props
 
 #### Element vs Components in React
 - React Element is like HTML element, is an immutable object describes a DOM node, you can not apply any methods on it.
