@@ -25,14 +25,16 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 ## React
 
 #### What is React?
-- React is a JavaScript library for building user interfaces, it is a frontend framework. 
-- It lets you compose complex UIs from small and independent pieces of code called “components”.
+- A User Interface Library (for building user interfaces)
+- Component Architecture (different functions control different parts of UI)
+- Data Flow in React (one way top to bottom data flow, component to children)
+- Component State (manage its own state and pass down to children)
+- React allows you compose complex UIs from small and independent pieces of code called “components”.
 
 #### What is Component?
 - React is a component based language.
 - Components are like functions that return HTML elements that tells what should be rendered on the screen (via a render() function).
-- Components are reusable, you can use the component across different pages.
-- We are building components that each only cares about one thing.
+- Components are reusable, you can use the component across different pages, components are independent.
 
 #### What is JSX?
 - JSX stands for JavaScript XML, it allows us to write HTML in React, and it comes with the full power of JavaScript.
