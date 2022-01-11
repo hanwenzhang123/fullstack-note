@@ -536,10 +536,12 @@ return (
 
 #### npm
 - npm init: create a package.json file
-- npm start: start a package, start local server
-- npm install: installs dependencies
+- npm start: start a package, start local server, start the development server environment
+- npm install: install dependencies
 - npm run dev: start off the development server like using nodemon if downloaded
-- npm run build: runs the build field from the package.json scripts field.
+- npm run build: bundles the app into static files for production, build application, minify all our files and gives us a production version of our application that we are deploy to a server somewhere and access on the internet. Runs the build field from the package.json scripts field.
+- npm test: start the test runner
+- npm run eject: removes this tool and copies build dependencies, configuration files and scripts into the app directory. If you do this, you can not go back.
 
 #### Combining Frontend Code with Backend Code or SQL
 1. Setting up the database. 
