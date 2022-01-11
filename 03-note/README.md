@@ -549,8 +549,13 @@ var express = require('express');
 var router = express.Router();
 let dbConfig = require('../databaseForClickMap/db');	//Database
 require('dotenv').config();		//Loads environment variables from .env file.
-let redis = dbConfig.redis();		//redis - caching - improve performance
-let vertica = dbConfig.vertica();	//SQL database management system
+router.post('/api/analytics/campaign_count', (req, res, next) => {
+  try {
+	let redis = dbConfig.redis();		//redis - caching - improve performance
+	let vertica = dbConfig.vertica();	//SQL database management system
+  } catch(e) {}
+})
+module.exports = router;
 ```
 
 #### Combining Frontend Code with Backend Code or SQL
