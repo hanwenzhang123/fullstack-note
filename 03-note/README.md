@@ -543,6 +543,16 @@ return (
 - npm test: start the test runner
 - npm run eject: removes this tool and copies build dependencies, configuration files and scripts into the app directory. If you do this, you can not go back.
 
+#### Basic ExpressJS Setup
+```js
+var express = require('express');
+var router = express.Router();
+let dbConfig = require('../databaseForClickMap/db');	//Database
+require('dotenv').config();		//Loads environment variables from .env file.
+let redis = dbConfig.redis();		//redis - caching - improve performance
+let vertica = dbConfig.vertica();	//SQL database management system
+```
+
 #### Combining Frontend Code with Backend Code or SQL
 1. Setting up the database. 
 2. Setting up the server. 
@@ -562,6 +572,10 @@ Node.js
 - MongoDB db is nosql database
 - SQL is more for structural data model
 - NoSQL data is more for a flex data model
+
+#### SQL DMS
+- SingleStore - distributed, relational, SQL database management system
+- Vertica - analytic oftware, SQL database management system
 
 #### MongoDB vs MySQL
 - In terms of performance, MongoDB is faster than MySQL due to its ability to handle large amounts of unstructured data when it comes to speed.
@@ -710,6 +724,10 @@ CSS
 HTML
 -Empty HTML
 -Style on the top, script down/defer/async
+
+Dynamic Programming (Caching)
+- Cache stores the function for reusibility
+- Redis: in-memory data structure store (server), used as a NoSQL key–value persistent database, cache, and message broker.
 
 #### Minification - Minifier/uglifier 
 - make your code prettier, make it more efficient during compiling phase
