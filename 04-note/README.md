@@ -24,6 +24,11 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/03-note/README.md
 - [Redux To Do List](#Redux-To-Do-List)
 - [Hooks Counter](#Hooks-Counter)
 
+## Project Links
+- [React Note](https://github.com/hanwenzhang123/react-note)
+- [FRC To-Do List](https://github.com/hanwenzhang123/react-note/tree/main/web-dev-simplified/to-do-list)
+- [FRC Pokemon API](https://github.com/hanwenzhang123/react-note/tree/main/web-dev-simplified/pokemon-pagination)
+
 ## JavaScript Example
 
 #### Implementing `Array.forEach()`
