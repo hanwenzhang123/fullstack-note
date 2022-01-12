@@ -121,6 +121,10 @@ import styled from "styled-components";
 export const Button = styled.button`color: white;`	//using tagged template literal
 ```
 
+#### CSS Module
+- `import styles from "./Button.module.css";` - import CSS modules, change the css file name as well
+- `<button type={props.type} className={styles.button} onClick={props.onClick}>`
+
 [[↑] Back to top](#table-of-contents)
 
 ## Rendering
