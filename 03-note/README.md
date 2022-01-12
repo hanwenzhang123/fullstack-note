@@ -659,17 +659,6 @@ Server-side rendering
 - convert HTML files on the server into a fully rendered HTML page for the client.
 - When a user makes a request to a webpage, the server prepares an HTML page by fetching user-specific data and sends it to the user’s machine over the internet. The browser then construes the content and displays the page.
 
-#### What is Micro-services Architecture?
-- building many individual different services that each do a single task and do one thing well
-- splits large applications into much smaller pieces that exist independently of each other.
-- like one server for chat server, one for caching, one do node.js only, one do Golang for concurrent task, one for message board
-- a flexible and efficient approach to designing software systems that are made up of small independent services that each have a specific and well-defined purpose.
-- consider => what goes into building, deploying, and updating an enterprise application => and break that work into more manageable, efficient batches.
-
-#### What is Docker?
-- Docker scales (structures) your apps very easily, comes with a whole set of tools for deploying across many clusters you can take your instances each micro-services that you have in each container (it contains your app in a certain space), and then allocate many machines to them.
-- You can specify how many of the resources of each machine you want, specify rules about how they should scale, what should happen if they crash, make everything scalable
-
 #### Object Oriented Programming vs Functional Programming
 Functional Programming
 - attempts to avoid changing state and mutable data (immutable data structure)
@@ -700,6 +689,22 @@ Benefits of OOP
 
 [[↑] Back to top](#table-of-contents)
 
+## System Design
+https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-design-question.js
+
+#### What is Micro-services Architecture?
+- building many individual different services that each do a single task and do one thing well
+- splits large applications into much smaller pieces that exist independently of each other.
+- like one server for chat server, one for caching, one do node.js only, one do Golang for concurrent task, one for message board
+- a flexible and efficient approach to designing software systems that are made up of small independent services that each have a specific and well-defined purpose.
+- consider => what goes into building, deploying, and updating an enterprise application => and break that work into more manageable, efficient batches.
+
+#### What is Docker?
+- Docker scales (structures) your apps very easily, comes with a whole set of tools for deploying across many clusters you can take your instances each micro-services that you have in each container (it contains your app in a certain space), and then allocate many machines to them.
+- You can specify how many of the resources of each machine you want, specify rules about how they should scale, what should happen if they crash, make everything scalable
+
+[[↑] Back to top](#table-of-contents)
+
 ## Authentication
 
 #### What is Authentication
@@ -712,6 +717,8 @@ Benefits of OOP
 2. Send the request to the protected resource 
 - Server-side Sessions: server grants your access, stores unique identifier on server, sends same identifier to the client, client sends identifier along with requests to protected resources. Backend generates the jwt token, then sends the generated token to the client, then all the following requests will contain the token.
 - Authentication Tokens: send credentials to server, and the server validates credentials, comparing the combination to what is stored in the database, if that is valid, then the server creates a permission token, create but not store "permission" token on server (server is stateless), send token to client, client sends token along with requests to protected resources
+
+[[↑] Back to top](#table-of-contents)
 
 ## Performance
 
@@ -822,13 +829,13 @@ throtte
 - web content to run scripts in an isolated thread in the browser in parallel, prevent the UI from freezing up
 - `var myWorker = new Worker('worker.js');`, `myWorker.terminate();`
 
-#### Production build vs Development build
+#### Production Build vs Development Build
 - production and development build come into the picture because of performance impact in real life deployed the application.
 - Development build: for development reasons. You have Source Maps, debugging and often times hot reloading ability in those builds.
 - Production build: runs in production mode which means this is the code running on your client machine. 
 - The production build runs uglify and builds your source files into one or multiple minimized files. 
 
-#### Why production build
+#### Why Production Build
 - Production Build has ugly, minified(compressed) version of your javascript code
 - this makes rendering of file on end user browser very quick and performance enhancing.
 - rendering development build js files on UI will take more time as compared to production version 
