@@ -20,6 +20,8 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 - [Frontend](#frontend)
 - [Backend](#backend)
 - [Miscellaneous](#miscellaneous)
+- [System Design](#system-design)
+- [Authentication](#authentication)
 - [Performance](#performance)
 - [Testing](#testing)
 
