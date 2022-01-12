@@ -17,7 +17,8 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 - [Object](#Object)
 - [Class](#Class)
 - [API](#API)
-- [Backend](#Backend)
+- [Frontend](#frontend)
+- [Backend](#backend)
 - [Miscellaneous](#miscellaneous)
 - [Performance](#performance)
 - [Testing](#testing)
@@ -444,12 +445,16 @@ class User {
       console.log(`I am ${this.name}`)
     }
   }
-  sayHi() {		//class/prototype method - return true for ===, function built points to different address in memory
+  getName() {		//class/prototype method - return true for ===, function built points to different address in memory
     alert(this.name);
+  }
+  setName(newName) {
+    this.name = newName
   }
 }
 let user = new User("John");
-user.sayHi();
+user.setName("Jack");
+user.getName();	 //Jack
 ```
 
 [[↑] Back to top](#table-of-contents)
@@ -532,6 +537,47 @@ return (
 
 [[↑] Back to top](#table-of-contents)
 
+## Frontend
+
+#### React 18 New Features
+- Concurrency control with the Transition API (Concurrency is the ability to execute multiple tasks simultaneously)
+- Much faster page loads for server-side rendering with Suspense API
+- Automatic State Batching of function calls and events to improve in-app performance (batching: collects all and then executes them together, avoids unnecessary re-renders)
+- Streaming Server Renderer, converting data from a stream into something visual. 
+
+#### The Different Kind of Frontend Frameworks, Advantage, Limitation
+Pros
+- easy and quick to get started
+- component based reusibility
+- good looking consistent UI design 
+- code is reliable and tested
+- help from strong community
+
+Cons
+- updates can introduce issues
+- easy to get started, but require more time down the road to add features and customizations. 
+
+#### React Angular Vue
+- React data flows only in one way and is easy to debug.
+- Angular data flows both ways and hence debugging is often difficult.
+- Vue mainly uses HTML templates with some JSX, while React only uses JSX that allows you to insert HTML directly into JS code.
+- React alway passes the data to view, and to update the view, you need to use a callback to update it -> different from react and angualr
+
+#### How to Share Components with Others?
+shared component architecture
+-  how to develop components independently but avoid the overhead of too many repositories
+-  how to version, publish and manage each component individually
+-  how to help others discover and adopt the components
+
+build, distribute and collaborate over components to build multiple projects and applications
+- Bit + Bit.dev - develop, build and test individual components in the library in complete isolation - https://github.com/teambit/bit 
+- When you update a single components, Bit “knows” which other components depend on it, and help you update all the component that are impacted by the update.
+- Lerna - manage multi-repository structure inside a single repository - https://github.com/lerna/lerna
+- Multiple packages - create new Git repo for every piece of code you want to reuse
+- A Single library package for many components - put a few dozen shared components in a single repo
+
+[[↑] Back to top](#table-of-contents)
+
 ## Backend
 
 #### npm
@@ -603,12 +649,6 @@ Node.js
 
 ## Miscellaneous
 
-#### React 18 New Features
-- Concurrency control with the Transition API (Concurrency is the ability to execute multiple tasks simultaneously)
-- Much faster page loads for server-side rendering with Suspense API
-- Automatic State Batching of function calls and events to improve in-app performance (batching: collects all and then executes them together, avoids unnecessary re-renders)
-- Streaming Server Renderer, converting data from a stream into something visual. 
-
 #### Client-Side Rendering vs Server-Side Rendering
 Client-side rendering
 - It manages the routing dynamically without refreshing the page every time a user requests a different route. 
@@ -619,11 +659,16 @@ Server-side rendering
 - convert HTML files on the server into a fully rendered HTML page for the client.
 - When a user makes a request to a webpage, the server prepares an HTML page by fetching user-specific data and sends it to the user’s machine over the internet. The browser then construes the content and displays the page.
 
-#### What is Micro-service Architecture?
-- focus on building individual services that do one thing and one thing well
+#### What is Micro-services Architecture?
+- building many individual different services that each do a single task and do one thing well
 - splits large applications into much smaller pieces that exist independently of each other.
+- like one server for chat server, one for caching, one do node.js only, one do Golang for concurrent task, one for message board
 - a flexible and efficient approach to designing software systems that are made up of small independent services that each have a specific and well-defined purpose.
 - consider => what goes into building, deploying, and updating an enterprise application => and break that work into more manageable, efficient batches.
+
+#### What is Docker?
+- Docker scales (structures) your apps very easily, comes with a whole set of tools for deploying across many clusters you can take your instances each micro-services that you have in each container (it contains your app in a certain space), and then allocate many machines to them.
+- You can specify how many of the resources of each machine you want, specify rules about how they should scale, what should happen if they crash, make everything scalable
 
 #### Object Oriented Programming vs Functional Programming
 Functional Programming
@@ -653,37 +698,6 @@ Benefits of OOP
 - Inheritance: elimate redundant code
 - Polymorphism: refactor ugly switch case statement
 
-#### How to Share Components with Others?
-shared component architecture
--  how to develop components independently but avoid the overhead of too many repositories
--  how to version, publish and manage each component individually
--  how to help others discover and adopt the components
-
-build, distribute and collaborate over components to build multiple projects and applications
-- Bit + Bit.dev - develop, build and test individual components in the library in complete isolation - https://github.com/teambit/bit 
-- When you update a single components, Bit “knows” which other components depend on it, and help you update all the component that are impacted by the update.
-- Lerna - manage multi-repository structure inside a single repository - https://github.com/lerna/lerna
-- Multiple packages - create new Git repo for every piece of code you want to reuse
-- A Single library package for many components - put a few dozen shared components in a single repo
-
-#### The Different Kind of Frontend Frameworks, Advantage, Limitation
-Pros
-- easy and quick to get started
-- component based reusibility
-- good looking consistent UI design 
-- code is reliable and tested
-- help from strong community
-
-Cons
-- updates can introduce issues
-- easy to get started, but require more time down the road to add features and customizations. 
-
-#### React Angular Vue
-- React data flows only in one way and is easy to debug.
-- Angular data flows both ways and hence debugging is often difficult.
-- Vue mainly uses HTML templates with some JSX, while React only uses JSX that allows you to insert HTML directly into JS code.
-- React alway passes the data to view, and to update the view, you need to use a callback to update it -> different from react and angualr
-
 [[↑] Back to top](#table-of-contents)
 
 ## Authentication
@@ -698,7 +712,6 @@ Cons
 2. Send the request to the protected resource 
 - Server-side Sessions: server grants your access, stores unique identifier on server, sends same identifier to the client, client sends identifier along with requests to protected resources. Backend generates the jwt token, then sends the generated token to the client, then all the following requests will contain the token.
 - Authentication Tokens: send credentials to server, and the server validates credentials, comparing the combination to what is stored in the database, if that is valid, then the server creates a permission token, create but not store "permission" token on server (server is stateless), send token to client, client sends token along with requests to protected resources
-
 
 ## Performance
 
@@ -799,6 +812,16 @@ throtte
 - like resizing page, you send requests to the UI with a timer interval, will be sent no matter how many requests within the time period
 - `_.throttle(fetchAPI, 100)`;
 
+#### Virtual Scrolling
+- While the user is scrolling the table, the Grid requests and displays only the visible pages.
+- Import component. Import VirtualScroll from "react-dynamic-virtual-scroll". Add component as follows in your render method: 
+- `<VirtualScroll className="List" minItemHeight={40} totalLength={100} renderItem={(rowIndex) => { return ( <div className="List-item"> <h3>List item: {rowIndex}</h3> </div> ); }} />`
+
+#### Web Workers
+- JS scripts running in the background threads, which are separate from the main execution thread, without affecting the performance of the page.
+- web content to run scripts in an isolated thread in the browser in parallel, prevent the UI from freezing up
+- `var myWorker = new Worker('worker.js');`, `myWorker.terminate();`
+
 #### Production build vs Development build
 - production and development build come into the picture because of performance impact in real life deployed the application.
 - Development build: for development reasons. You have Source Maps, debugging and often times hot reloading ability in those builds.
@@ -810,16 +833,6 @@ throtte
 - this makes rendering of file on end user browser very quick and performance enhancing.
 - rendering development build js files on UI will take more time as compared to production version 
 - which production is very crisp, compact, compressed, uglified for better user experience and loading on UI.
-
-#### Virtual Scrolling
-- While the user is scrolling the table, the Grid requests and displays only the visible pages.
-- Import component. Import VirtualScroll from "react-dynamic-virtual-scroll". Add component as follows in your render method: 
-- `<VirtualScroll className="List" minItemHeight={40} totalLength={100} renderItem={(rowIndex) => { return ( <div className="List-item"> <h3>List item: {rowIndex}</h3> </div> ); }} />`
-
-#### Web Workers
-- JS scripts running in the background threads, which are separate from the main execution thread, without affecting the performance of the page.
-- web content to run scripts in an isolated thread in the browser in parallel, prevent the UI from freezing up
-- `var myWorker = new Worker('worker.js');`, `myWorker.terminate();`
 
 [[↑] Back to top](#table-of-contents)
 
