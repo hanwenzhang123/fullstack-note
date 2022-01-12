@@ -26,8 +26,17 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/03-note/README.md
 
 ## Project Links
 - [React Note](https://github.com/hanwenzhang123/react-note)
+- [Interview Note](https://github.com/hanwenzhang123/interview-note)
+- [Coding Interview](https://github.com/hanwenzhang123/interview-note/tree/main/coding-interview)
+- [Past Interview Notes](https://github.com/hanwenzhang123/interview-note/tree/main/interview-note)
 - [FRC To-Do List](https://github.com/hanwenzhang123/react-note/tree/main/web-dev-simplified/to-do-list)
 - [FRC Pokemon API](https://github.com/hanwenzhang123/react-note/tree/main/web-dev-simplified/pokemon-pagination)
+- [SSI javascript-demo](https://github.com/hanwenzhang123/javascript-demo)
+- [SSI ugly-react-homework](https://github.com/hanwenzhang123/ugly-react-homework/tree/master/src)
+- [SSI ugly-redux-homework](https://github.com/hanwenzhang123/ugly-redux-homework/tree/master/src)
+- [SSI react-mock-demo](https://github.com/hanwenzhang123/react-mock-demo/tree/main/src)
+- [Antra javascript-album-demo](https://github.com/hanwenzhang123/javascript-album-demo)
+- [Teladocs API Parser Challenge](https://codesandbox.io/s/fe-api-parser-challenge-forked-psc61)
 
 ## JavaScript Example
 
