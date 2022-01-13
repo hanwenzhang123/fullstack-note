@@ -1,5 +1,5 @@
 ---
-title: Frontend Miscellaneous (Note Part3)
+title: Boilerplate Code (Note Part3)
 ---
 
 ## HTML, CSS, JavaScript (Note Part1)
@@ -8,7 +8,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/01-note/README.md
 ## React, Redux (Note Part2)
 https://github.com/hanwenzhang123/frontend-note/blob/main/02-note/README.md
 
-## Boilerplate Code (Note Part4)
+## Frontend Miscellaneous (Note Part4)
 https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 
 ## Table of Contents
@@ -16,14 +16,17 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 - [Array](#Array)
 - [Object](#Object)
 - [Class](#Class)
-- [API](#API)
-- [Frontend](#frontend)
-- [Backend](#backend)
-- [Miscellaneous](#miscellaneous)
-- [System Design](#system-design)
-- [Authentication](#authentication)
-- [Performance](#performance)
-- [Testing](#testing)
+- [JavaScript Example](#JavaScript-Example)
+- [React Example](#React-Example)
+- [PureComponent vs memo](#PureComponent-vs-memo)
+- [React Context](#React-Context)
+- [Redux Example](#Redux-Example)
+- [React HOC](#React-HOC)
+- [React Counter](#React-Counter)
+- [React To Do List](#React-To-Do-List)
+- [Redux Counter](#Redux-Counter)
+- [Redux To Do List](#Redux-To-Do-List)
+- [Hooks Counter](#Hooks-Counter)
 
 ## String
 
@@ -461,427 +464,1381 @@ user.getName();	 //Jack
 
 [[↑] Back to top](#table-of-contents)
 
-## API
+## JavaScript Example
 
-#### API
-- Application Programming Interface (API) - a connection that allows two applications to talk to each other
-- enabling applications to exchange data and functionality easily and securely
-- Your Server -> Request through API -> Someone Else's Server -> Response through API -> Your Server
-
-#### REST API
-- use/setup http endpoint to allow us access and doing create/read/update/delete data in the database
-- `app.get('/tasks/:id', (req, res) => {}`
-
-#### AJAX
-- Asynchronous JavaScript And XML, making request behind the scene
-- web applications can send and retrieve data from a server asynchronously without interfering with the display and behaviour of the existing page
-1. Read data from a web server - after a web page has loaded
-2. Update a web page without reloading the page
-3. Send data to a web server - in the background
-
-#### JSON
-- JavaScript Object Notation (JSON) - text-based format for representing structured data 
-- commonly used for transmitting data across a network , `{}` object, `[]` array, "key" "value" pairs, seperated by `,`
-- Client Browser -> Request GET -> Your Server -> Request through API (Path, Parameter) -> Someone Else's Server -> Response through API (DATA) -> Your Server -> Response POST -> Client Browser
-
-`JSON.parse()` to convert the string into a JavaScript object
-- `var obj = JSON.parse(jsonData);`
-
-`JSON.stringify()` to convert a JavaScript object into a JSON string
-- `const jsonData = JSON.stringify(obj);`
-
-Limitation: we cannot copy the functions that are available in the target objects
-
-#### Fetch API
+#### Implementing `Array.forEach()`
+- `forEach()` - iterate the array, does not return anything
+- `array.forEach(function(currentValue, index, arr), thisValue)`
 ```js
-fetch('http://example.com/movies.json')
-  .then(response => response.json())
-  .then(data => console.log(data));
-  .catch(error => console.error('There has been a problem with your fetch operation:', error));
+Array.prototype.myForEach = function(callback) {
+   for (let i = 0; i < this.length; i++) { 
+     callback(this[i], i, this)
+   }
+}
 ```
 
-Fetch Data from an API with React
-- Create a React state variable to store data - useState()
-- Make the API request and store the data - fetch data
-- Render the returned data - useEffect()
+#### Implementing `Array.map()`
+- `map()` - iterate the array, return a new array with results from the passing function
+- `array.map(function(currentValue, index, arr), thisValue)`
 ```js
-import { useState, useEffect } from 'react';
-
-function App() {
-  const [books, setBooks] = useState(null);
-
-  useEffect(() => {
-    getData();
-
-    async function getData() {		// we will use async/await to fetch this data
-      const response = await fetch("https://www.anapioficeandfire.com/api/books");
-      const data = await res.json();
-      setBooks(data) ;		// store the data into our books variable
+Array.prototype.myMap = function(callback) {
+    const resultArray = [];
+    for (let index = 0; index < this.length; index++) {
+        resultArray.push(callback(this[index], index, this));
     }
-  }, []); // <- you may need to put the setBooks function in this array
+    return resultArray;
+}
+```
 
-return (
-  <div>
-    <h1>Game of Thrones Books</h1>
-    {books && (		{/* display books from the API */}
-      <div className="books">
-        {books.map((book, index) => (	 {/* loop over the books */}
-          <div key={index}>
-            <h2>{book.name}</h2>
-          </div>
-        ))}
-      </div>
-    )}
-  </div>
-)
+#### Implementing `Array.filter()`
+- `filter()` - returns a new array with the elements that passed the provided test
+- `array.filter(function(currentValue, index, arr), thisValue)`
+```js
+Array.prototype.myFilter = function (callback) {
+  const filterArray = [];
+  for (let index = 0; index < this.length; index++) {
+    let result = callback(this[index], index, this); //result returns boolean through callback for the test
+    if (result) {
+      filterArray.push(this[index]);
+    }
+  }
+  return filterArray;
+};
+```
+
+#### Implementing `Array.reduce()`
+- reduce() - returns a single output value which is the function's accumulated result
+- array.reduce(function(total, currentValue, currentIndex, arr), initialValue) -> initialValue for accumulator
+- reduce(accumulator, currentValue) -> accumulator like sum, currentValue adds to the accumulator
+```js
+Array.prototype.myReduce = function (callback, initialValue) {
+  let value = initialValue;
+  for (let i = 0; i < this.length; i++) {
+    let currentValue = this[i];
+    value = callback(value, currentValue);
+  }
+  return value;
+};
+```
+
+#### Implementing `Array.some()`
+- `some()` - check if any of the elements in the array passes a provided test, return boolean
+- `array.some(function(currentValue, index, arr), thisValue)`
+```js
+Array.prototype.mySome = function (callback) {
+  for (let i = 0; i < this.length; i++) {
+    let result = callback(this[i], i, this);
+    if (result) {
+      return true;
+    }
+  }
+  return false;
+};
+```
+
+#### Implementing `Array.every()`
+- `every()` - check if every element in the array passes a provided test, return boolean
+- `array.every(function(currentValue, index, arr), thisValue)`
+```js
+Array.prototype.myEvery = function (callback) {
+  for (let i = 0; i < this.length; i++) {
+    let result = callback(this[i], i, this);
+    if (!result) {
+      return false;
+    }
+  }
+  return true;
+};
+```
+
+#### Implementing `Array.find()`
+- `find()` - returns the first item that matches the result that passes a test, or undefined if no matches.
+- `array.find(function(currentValue, index, arr),thisValue)`
+```js
+Array.prototype.myFind = function(callback){
+  let result
+  for (let i = 0; i < this.length; i++) {
+    let isFound = callback(this[i], i, this)
+    if(isFound){
+      result = this[i]
+      break //stop the loop if find that item
+    }
+  }
+  return result
+}
+```
+
+#### Implementing `Array.findIndex()`
+- `findIndex()` - return the index of the first element in the array that passes the test, return -1 if no element found
+- `array.findIndex(function(currentValue, index, arr), thisValue)`
+```js
+Array.prototype.myFindIndex = function(array, callback) {
+ for (let index = 0; index < this.length; index += 1) {
+   const value = array[index];
+   if (callback(value, index, array)) {
+     return index;
+   }
+ }
+ return -1;
+}
+```
+
+#### Implementing `Array.includes()`
+-  `includes()` - returns true if an array contains a specified element, otherwise false -> case sensitive
+- `array.includes(element, start)`
+```js
+Array.prototype.myIncludes = function(element){
+   for(let i = 0; i < this.length; i++){
+      const value = this[i];
+      if(element === value){
+         return true;
+      };
+   };
+   return false;
+};
+```
+
+#### implement map using reduce
+```js
+const arr = [1, 2, 3];
+const arr2 = arr.map(item => item * 2); //[2, 4, 6] 
+const arr22 = arr.reduce((acc, cur,) => { //[2, 4, 6] 	//reduce is designed for everything
+  acc.push(cur*2);
+  return acc;
+}, []); 	//initial an array, and push items to this array, [] is trusy
+```
+
+#### Build an Array
+```js
+class NewArray {
+  constructor() {
+    (this.length = 0), (this.data = {});
+  }
+  get(index) {
+    return this.data[index];
+  }
+  push(item) {
+    this.data[this.length] = item;
+    this.length++;
+  }
+  pop() {
+    const lastItem = this.data[this.length - 1];
+    delete this.data[this.length - 1];
+    this.length--;
+    return lastItem;
+  }
+  delete(index) {
+    const item = this.data[index];
+    this.shiftItems(index);
+    return item;
+  }
+  shiftItems(index) {
+    for (let i = index; i < this.length - 1; i++) {
+      this.data[i] = this.data[i + 1];
+    }
+    delete this.data[this.length - 1];
+    this.length--;
+  }
+}
+const newArray = new NewArray();
+console.log(newArray);
+```
+
+#### fizzBuzz
+```js
+let fizzBuzz = (n) => {
+   for(let i = 1; i <= n; i++){
+     if(i % 3 === 0 && i % 5 === 0){  
+     //Then in each iteration we will first check if the number is divisible by both 3 and 5, then print ‘FizzBuzz’.
+        console.log('FizzBuzz');
+	//Else if it is divisible by only 3 then print ‘Fizz’ or If it is only divisible by 5 then print ‘Buzz’
+     }else if(i % 3 === 0){
+        console.log('Fizz'); 
+     }else if(i % 5 === 0){
+        console.log('Buzz');
+     }else{	//Otherwise just print the number.
+        console.log(i);
+     }
+   }
 }
 ```
 
 [[↑] Back to top](#table-of-contents)
 
-## Frontend
+## React Example
 
-#### React 18 New Features
-- Concurrency control with the Transition API (Concurrency is the ability to execute multiple tasks simultaneously)
-- Much faster page loads for server-side rendering with Suspense API
-- Automatic State Batching of function calls and events to improve in-app performance (batching: collects all and then executes them together, avoids unnecessary re-renders)
-- Streaming Server Renderer, converting data from a stream into something visual. 
-
-#### The Different Kind of Frontend Frameworks, Advantage, Limitation
-Pros
-- easy and quick to get started
-- component based reusibility
-- good looking consistent UI design 
-- code is reliable and tested
-- help from strong community
-
-Cons
-- updates can introduce issues
-- easy to get started, but require more time down the road to add features and customizations. 
-
-#### React Angular Vue
-- React data flows only in one way and is easy to debug.
-- Angular data flows both ways and hence debugging is often difficult.
-- Vue mainly uses HTML templates with some JSX, while React only uses JSX that allows you to insert HTML directly into JS code.
-- React alway passes the data to view, and to update the view, you need to use a callback to update it -> different from react and angualr
-
-#### How to Share Components with Others?
-shared component architecture
--  how to develop components independently but avoid the overhead of too many repositories
--  how to version, publish and manage each component individually
--  how to help others discover and adopt the components
-
-build, distribute and collaborate over components to build multiple projects and applications
-- Bit + Bit.dev - develop, build and test individual components in the library in complete isolation - https://github.com/teambit/bit 
-- When you update a single components, Bit “knows” which other components depend on it, and help you update all the component that are impacted by the update.
-- Lerna - manage multi-repository structure inside a single repository - https://github.com/lerna/lerna
-- Multiple packages - create new Git repo for every piece of code you want to reuse
-- A Single library package for many components - put a few dozen shared components in a single repo
-
-[[↑] Back to top](#table-of-contents)
-
-## Backend
-
-#### npm
-- npm init: create a package.json file
-- npm start: start a package, start local server, start the development server environment
-- npm install: install dependencies
-- npm run dev: start off the development server like using nodemon if downloaded
-- npm run build: bundles the app into static files for production, build application, minify all our files and gives us a production version of our application that we are deploy to a server somewhere and access on the internet. Runs the build field from the package.json scripts field.
-- npm test: start the test runner
-- npm run eject: removes this tool and copies build dependencies, configuration files and scripts into the app directory. If you do this, you can not go back.
-
-#### Basic ExpressJS Setup
+#### setTimeout example
 ```js
-var express = require('express');
-var router = express.Router();
-let dbConfig = require('../databaseForClickMap/db');	//Database
-require('dotenv').config();		//Loads environment variables from .env file.
-router.post('/api/analytics/campaign_count', (req, res, next) => {
-  try {
-	let redis = dbConfig.redis();		//redis - caching - improve performance
-	let vertica = dbConfig.vertica();	//SQL database management system
-  } catch(e) {}
-})
-module.exports = router;
+handleClick = () => {
+    const { number } = this.state;
+    setTimeout(() => {     //no good, synchronous
+      this.setState({ number: number + 1 }); // 0: 0 + 1    //always pass the copy, always the number, 0 + 1, closure case
+      this.setState({ number: number + 1 }); // 1: 0 + 1    //change back to 0 + 1, outdated value
+    }, 0)
+
+  //const { number } = this.state;   
+    setTimeout(() => {     //correct value
+      this.setState({ number: this.state.number + 1 }); // 0: 0 + 1
+      this.setState({ number: this.state.number + 1 }); // 2: 1 + 1     //no closure, updated value
+    }, 0)
+  }
+}
 ```
 
-#### Combining Frontend Code with Backend Code or SQL
-1. Setting up the database. 
-2. Setting up the server. 
-3. Setting up the routing. 
-4. Adding data to the database. 
-5. Getting data from the database. 
-6. Updating data on the database.
-
-Node.js
-1. Step 1: Create your Node (Express) backend
-2. Step 2: Create an API Endpoint
-3. Step 3: Create your React frontend
-4. Step 4: Make HTTP Requests from React to Node
-
-#### Database
-- SQL is relational database
-- MongoDB db is nosql database
-- SQL is more for structural data model
-- NoSQL data is more for a flex data model
-
-#### SQL DMS
-- SingleStore - distributed, relational, SQL database management system
-- Vertica - analytic oftware, SQL database management system
-
-#### MongoDB vs MySQL
-- In terms of performance, MongoDB is faster than MySQL due to its ability to handle large amounts of unstructured data when it comes to speed.
-
-#### What is SQL Injection
-- a code injection technique that might destroy your database (used with the goal of retrieving sensitive data)
-- one of the most common web hacking techniques, it is the placement of malicious code in SQL statements via web page input.
-
-#### How to Prevent SQL Injection Attacks
-- stolen credit cards or password lists, happen through SQL injection vulnerabilities
-- approach: controlling and vetting user input to watch for attack patterns
-- input validation
-- sanitize data by limiting special characters
-- enforce prepared statements and parameterization
-- use stored procedures in the database
-- actively manage patches and updates
-- web application firewall, raise virtual or physical firewalls
-
-[[↑] Back to top](#table-of-contents)
-
-## Miscellaneous
-
-#### Client-Side Rendering vs Server-Side Rendering
-Client-side rendering
-- It manages the routing dynamically without refreshing the page every time a user requests a different route. 
-- Your browser downloads a minimal HTML page. It renders the JavaScript and fills the content into it. 
-- React uses client-side rendering.
-
-Server-side rendering
-- convert HTML files on the server into a fully rendered HTML page for the client.
-- When a user makes a request to a webpage, the server prepares an HTML page by fetching user-specific data and sends it to the user’s machine over the internet. The browser then construes the content and displays the page.
-
-#### Object Oriented Programming vs Functional Programming
-Functional Programming
-- attempts to avoid changing state and mutable data (immutable data structure)
-- the output of a function should always be the same given the same exact inputs to the function, relies on arguments of the function
-
-Object Oriented Programming
-- Group related variables and functions in a unit called objects
-- Using objects to represent things you are programming about, variable as properties, function as methods
-- The objects hold data about them in attributes which objects are manipulated through methods that are given to the object.
-
-Examples
-- FP: we use FP when we expect to receive the same output when using the same input, like "functional operations"
-- OOP: A class is an abstract blueprint used to create more specific, concrete objects. 
-- Classes often represent broad categories, like Car or Dog that share attributes.
-
-4 Pillars in OOP: Encapsulation, Abstraction, Inheritance, Polymorphism
-- Encapsulation is the ability to hide variables within the class from outside access
-- Abstraction shows only essential attributes and hides unnecessary information -> hiding the unnecessary details from the users
-- Inheritance
--  reduces redundant code `class Teacher extends Person { constructor(subject, grade) { super(); this.subject = subject; this.grade = grade; } }`
-- Polymorphism means a single action can be performed in many forms, get rid of if else and switch, use `element.render()`
-
-Benefits of OOP
-- Encapsulation: reduce complexity + increase reusibility
-- Abstraction: reduce complexity + isolate impacts of change
-- Inheritance: elimate redundant code
-- Polymorphism: refactor ugly switch case statement
-
-[[↑] Back to top](#table-of-contents)
-
-## System Design
-https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-design-question.js
-
-#### What is Micro-services Architecture?
-- building many individual different services that each do a single task and do one thing well
-- splits large applications into much smaller pieces that exist independently of each other.
-- like one server for chat server, one for caching, one do node.js only, one do Golang for concurrent task, one for message board
-- a flexible and efficient approach to designing software systems that are made up of small independent services that each have a specific and well-defined purpose.
-- consider => what goes into building, deploying, and updating an enterprise application => and break that work into more manageable, efficient batches.
-
-#### What is Docker?
-- Docker scales (structures) your apps very easily, comes with a whole set of tools for deploying across many clusters you can take your instances each micro-services that you have in each container (it contains your app in a certain space), and then allocate many machines to them.
-- You can specify how many of the resources of each machine you want, specify rules about how they should scale, what should happen if they crash, make everything scalable
-
-[[↑] Back to top](#table-of-contents)
-
-## Authentication
-
-#### What is Authentication
-- Authentication is needed if content should be protected, not accessible by everyone. 
-
-#### Authentication is a two-step process: 
-1. Get access/permission 
-- Client (browser) - Request (with user credentials) - 
-- Server - Response (yes/no). 
-2. Send the request to the protected resource 
-- Server-side Sessions: server grants your access, stores unique identifier on server, sends same identifier to the client, client sends identifier along with requests to protected resources. Backend generates the jwt token, then sends the generated token to the client, then all the following requests will contain the token.
-- Authentication Tokens: send credentials to server, and the server validates credentials, comparing the combination to what is stored in the database, if that is valid, then the server creates a permission token, create but not store "permission" token on server (server is stateless), send token to client, client sends token along with requests to protected resources
-
-[[↑] Back to top](#table-of-contents)
-
-## Performance
-
-#### How do you generally improve performance?
-- use uglify and minify to reduce the bundle size
-- use lazy loading to improve the page loading speed.
-- `React.lazy` and `React.suspense` support lazy loading with webpack.
-- use content delivery network to improve the loading speed.
-- use shouldComponentUpdate to improve the component’s rendering performance
-
-React
--HOC
--memo/PureComponent (shouldComponentUpdate) - lifecycle
--reduce unnecessary re-rendering
-  
-Redux
--Thunk
--Re-selector
-  
-JS
--Event Delegation (allows you to avoid adding event listeners to specific nodes)
-
-CSS
--Animation
--image-sprite (reduce requests)
--image compression
-  
-HTML
--Empty HTML
--Style on the top, script down/defer/async
-
-Dynamic Programming (Caching)
-- Cache stores the function for reusibility
-- Redis: in-memory data structure store (server), used as a NoSQL key–value persistent database, cache, and message broker.
-
-#### Minification - Minifier/uglifier 
-- make your code prettier, make it more efficient during compiling phase
-- remove unnecessary code 
-- rename to a more efficient version for machine
-- save time onloading
-
+#### Parent-Child Example
 ```js
-  const aaaaa=1;
-  console.log (aaaaa);
-  // ===>
-  const a=1; console.log(a)
+//Parent.js
+import React, {useState} from 'react';
+improt './Parent.css';
+improt Child from './components/Child';
+
+function Parent() {
+  const [word, setWord] = useState("Parent");
+  
+  return(
+    <div className = "parent">
+      <h1>{Word}</h1>
+      <Child 
+        changeWord={word => setWord(word)}/>    //set the parameter word to word
+    </div>
+    );
+}
+export default Parent;
+
+//Child.js
+import React from 'react';
+improt './Child.css';
+
+function Child(props) {
+  return(
+    <div className = "child">
+      <h1>Child</h1>
+      <button onClick={()=> props.changeWord("Hello World")}>      //onClick then we want something to happen
+        Click to Change the Word      //props.changeWord from parent
+      </button>
+    </div>
+    );
+}
+export default Child;
 ```
 
-#### What is Webpack 
-- A static module bundler for front-end development for JS applications -> bundle your styles (bundle your JavaScript files together)
-— It takes all the code from your application and makes it usable in a web browser.
-- It takes different dependencies, creates modules for them, and bundles the entire network up into manageable output files. 
-- Great for working with Single Page Applications (SPAs)
-- Provide similar functionality: Gulp, Grunt, babel, parcel, browserify, npm, and requireJS.
-
-#### Webpack Examples
-HMR(Hot Module Replacement)
-- Update the page directly without a fully page reload - more efficient dev environment and will not loss the current state
-
-Tree Shaking
-- Get rid of unnecessary code
+#### Class Component Example
 ```js
-if (false) {console.log ("Never Reached")}    //dead code elimination
-const c = x + 1;
-return c;   //=> return x+1
+import React from 'react';
+import "./styles.css";
+
+class App extends React.Component { //extends the component
+  constructor(props) {    //we need the constructor
+    super(props); // we need the super() to enable the use of 'this' in the following part
+    this.state = {      //state holds very important information about "this" in the object
+      name: ""      //empty here so we can update the value, or we can put the hard-coded value
+    }
+    // this.onClickFunc = this.onClickFunc.bind(this);   
+    //bind creates a new function where this is properly referred. so now the onClickFunc below works
+  }
+
+  // class method
+  // onClickFunc() {     //this function has its own this
+  //   console.log(this);   //we should let know which 'this' should I point to (the provided value)
+  // }  //returns undefined without the bind, print out App with the bind function
+
+  onClickFunc = () => {   //arrow function does not have its own this, so this will survive in the whole class field
+    console.log(this);    //this will properly refers to the App due to arrow function, no more binding issue, no needs to bind in the constructor now
+  }
+
+  onChangeHandler = (e) => {        // using the method setState and update the name key
+    this.setState({ name: e.target.value })     //when we type in e.target.value, it overrides the name
+
+  render() {
+    const name = this.state.name
+    console.log(name);
+    return (
+      <div>
+        <div>Hello My { name }</div>
+        <button onClick={this.onClickFunc}>CLICK ME!</button> 
+        <input onChange={this.onChangeHandler} />
+      </div>
+    )   //you will never pass a function of involking form, only the definition form the the function
+  }     //you also need "this" because class method belongs to the App class here; otherwise you look for scope outside of the class
+}
+
+export default App;
 ```
 
-Code Splitting
-- Split your modules properly according to the dependency graph
+[[↑] Back to top](#table-of-contents)
+ 
+ ## PureComponent vs memo
 
-Lazy Loading
-- Load certain part of the component tree only when its in use.
-- Split your code at logical breakpoints, and then loading it once the user has done something that requires a new block of code. 
-- Wrap the component inside with lazy load to delay the loading and improve performance
+#### Class wrap with `React.PureComponent` for class component
+```js
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {  
+      number: 0
+    }
+  }
+   handleClick = () => {
+      const {number} = this.state;
+      this.setState({number: number + 1});
+   }
+  render() {
+    const {number} = this.state;
+    return (
+       <div className ="App">
+         <Title /> 
+         <h3> {number} </h3>
+         <button onClick={this.handleClick}>CCC</button>  
+       </div>
+     )
+  }
+} 
+class Title extends React.PureComponent {  //extends React.PureComponent, always compare the previous props and current props to determine if needs re-render
+//   constructor(props) {
+//     super(props);
+//   }  
+//   shouldComponentUpdate() {...}    //PureComponent works like containing logics with shouldComponentUpdate - compare the props to see if any changes
+  render() {  
+     console.log("Title rendering");    //this title will only render once, considers shouldComponentUpdate, we cut out unnecessary rendering
+     return (
+      <div>
+       <h1>Happy Today</h1>  
+     </div>
+    );
+  }
+}
+export default App;
+```
 
-#### `React.lazy` and `React.suspense` 
-Both support lazy loading with webpack.
-- `.lazy()` - a built-in method that will help us with code splitting.
-- React.lazy(() => import('./pages/NewQuote')) - the function we pass to lazy will be executed by React when this new quote component is needed.
-- `<Suspense> ... </Suspense>` - We need to wrap this around the code, where we use React lazy.
+#### Function wrap with `memo` for functional component
+```js
+function Title() {		//capitalize the first letter for customized component
+  console.log("Title rendering");    //only render once, considers shouldComponentUpdate
+  return (
+     <div>
+       <h1>Happy Today</h1>  
+     </div>
+   );
+}
+const WrapperTitle = memo(Title);      //using memo and change return to the <WrapperTitle /> 
 
-#### loadsh
-Debounce and throttle are techniques to control how many times we allow a function to be executed over time 
-- debounce -> search bar (auto-complete)
-- throttle -> scrolling / resizing page
-- debounce / throtte -> web performance improvement -> control the number of times the function will be called
-
-debounce 
-- setTimeout
-- continuously execute when event change ends, only execute once after event change stop
-- like a search bar, you enter text, once yoou finish, wait for the timer done, it will send the request only one time to UI after the time period
-- “group” multiple sequential calls in a single one, only send the final one
-- `const debouncedFunc = _.debounce(fetchAPI, 100); onUserInput => { debouncedFunc() }` - shorter than a 100 
-
-throtte 
-- setInterval
-- continuously execute when event change happens
-- like resizing page, you send requests to the UI with a timer interval, will be sent no matter how many requests within the time period
-- `_.throttle(fetchAPI, 100)`;
-
-#### Virtual Scrolling
-- While the user is scrolling the table, the Grid requests and displays only the visible pages.
-- Import component. Import VirtualScroll from "react-dynamic-virtual-scroll". Add component as follows in your render method: 
-- `<VirtualScroll className="List" minItemHeight={40} totalLength={100} renderItem={(rowIndex) => { return ( <div className="List-item"> <h3>List item: {rowIndex}</h3> </div> ); }} />`
-
-#### Web Workers
-- JS scripts running in the background threads, which are separate from the main execution thread, without affecting the performance of the page.
-- web content to run scripts in an isolated thread in the browser in parallel, prevent the UI from freezing up
-- `var myWorker = new Worker('worker.js');`, `myWorker.terminate();`
-
-#### Production Build vs Development Build
-- production and development build come into the picture because of performance impact in real life deployed the application.
-- Development build: for development reasons. You have Source Maps, debugging and often times hot reloading ability in those builds.
-- Production build: runs in production mode which means this is the code running on your client machine. 
-- The production build runs uglify and builds your source files into one or multiple minimized files. 
-
-#### Why Production Build
-- Production Build has ugly, minified(compressed) version of your javascript code
-- this makes rendering of file on end user browser very quick and performance enhancing.
-- rendering development build js files on UI will take more time as compared to production version 
-- which production is very crisp, compact, compressed, uglified for better user experience and loading on UI.
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {  
+      number: 0
+    }
+  }
+   handleClick = () => {
+      const {number} = this.state;
+      this.setState({number: number + 1});
+   }
+  render() {
+    const {number} = this.state;
+    return (
+       <div className ="App">
+         <WrapperTitle />     //here we use <WrapperTitle /> 
+         <h3> {number} </h3>
+         <button onClick={this.handleClick}>CCC</button>  
+       </div>
+     )
+  }
+} 
+```
 
 [[↑] Back to top](#table-of-contents)
 
-## Testing
+## React Context
 
-#### Testing
-- UI tests that are always running inside a browser or a browser like environment
-- Purpose: doing testing to ensure correctness of any codebase
-
-#### Different Kinds of Tests
-- unit testing - test individual building blocks in isolation
-- integration testing - test the combination of multiple building blocks
-- end to end (e2e) test - test complete scenarios in your app as the user would experience them
-- automation test (e2e) - simulating user behavior and make sure scenarios work from the point of view of an end user
-
-#### What do you use for Unit Test?
-Jest
-- JS helper functions (logic helper)
-- `x => x+1` -> pure function
-- test any side effect `x => x+1`
-	
-Enzyme: 
-- component test, render our components in a test component
-- then use expect methods that we want to test whatever is rendered
-
-#### Jest - Snapshot Testing
-- useful tool whenever you want to make sure your UI does not change unexpectedly
-- A typical snapshot test case renders a UI component, takes a snapshot, then compares it to a reference snapshot file stored alongside the test.
-- The test will fail if the two snapshots do not match
-- `npm test -- --coverage` for coverage report
-
-#### What is the coverage? 
-How complete your unit test cover all the code
-- 90% coverage (out of 100 lines, at least 90 lines are ran)
-
-#### Unit Test File Example
-- button.js
-- button.test.js
-- npm run test *.test.js
+#### React Context API
+```js
+const MyContext = React.createContext();    //JSX - Capitalize
+class Component
+  state = {
+   value: 1 
+  }
+  contextObj = {    //better performance
+        data: this.state.value,
+        onActionHandle: () => {   //with a function to pass down
+         this.setState({value: 2})
+        }
+  }
+  render() {
+    return(
+      <MyContext.Provider value = {this.contextObj}>    //like store={store}, better to put the object out not inside nested
+        <Child>
+      </MyContext.Provider>
+      )
+  }
+//Child.js
+  return(
+      <MyContext.Consumer>    //function call to get the value that passed in through the provider
+        {({data, onActionHandle}) => {
+        return (
+          <div> 
+            {data} 
+            <button onClick = {onActionHandler}>Click</button>          
+          </div>
+        )
+      }}
+      </MyContext.Consumer>
+    )
+```
 
 [[↑] Back to top](#table-of-contents)
-  
-  
+
+## Redux Example
+	  
+#### index.js - How to setup Redux? How do you create store?
+```js
+import ReactDOM from "react-dom";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import reducer from "./reducer";
+
+import App from "./App";
+
+const store = createStore(reducer);	//the store will be generated based on reducer that analyze behaviors and modify current local state
+
+ReactDOM.render(     //initial render into our App 
+  <Provider store={store}>   //provider to inform the whole structure, for provider layer, everything inside would be props.children
+    <App />         //store is like global state, available to all children, stroe is the values in your redux store, like the data from the database
+  </Provider>,     //provider is like passing down everything to the children, we pass our store down to every level via createStore(reducer)
+  document.getElementById("root")
+);
+```
+
+#### App.js - subscribe to the store (connect)
+`ConnectedApp = connect()(App)`
+```js
+import React from "react";
+import { connect } from "react-redux";      // HOC, connect is a function, the helper function
+import * as counterActions from "./action";   //import all kind of actions we have in the action file
+
+class App extends React.Component {
+  render() {
+    const { numberForApp, incHandler, decHandler } = this.props;    //get from the props, the state and dispatch we defined through connect()
+
+    return (
+      <div className="App">
+        <h3>{numberForApp}</h3>       		//display value from the store
+        <button onClick={incHandler}>+</button>     //using the function as click handler
+        <button onClick={decHandler}>-</button>     //using the function as click handler
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => ({   //build the parameter from connect(), take the state
+  numberForApp: state.counterReducer      //using the value from the store, counterReducer is the specific one from the reducer file
+});
+
+const mapDispatchToProps = (dispatch) => ({   //build the parameter from connect(), take the disptach, pass the function, disptach the action
+  incHandler: () => dispatch(counterActions.incAction()),   //dispatch(actions.incAction()) - containing our action type (a payload as needed)
+  decHandler: () => dispatch(counterActions.decAction())    //call the action, emit the action that we defined in the action.js
+});  // action generator, directly talking to the store, if you do not need a function, just delete it, no worries about props
+
+const ConnectedApp = connect(	//here we use the connection function, connect will create the HOC wrapper that takes the APP
+  mapStateToProps,		// on value - get the value from the store, make sure the component is hook up with the store (display)
+  mapDispatchToProps		// on handler/actions - the action we need (user interaction)
+)(App);				//here is to connect to our App, we do not connect directly
+
+export default ConnectedApp;
+```
+
+#### action.js 
+```js
+const incAction = () => {
+  return {
+    type: "INCREMENT"
+  }
+}
+const decAction = () => { 
+  return {
+    type: "DECREMENT"
+  }
+}
+export {    //export the actions we defined
+  incAction,
+  decAction 
+}
+```
+
+#### reducer.js 
+```js
+import { combineReducers } from "redux";    //import combineReducers for the reducer file, group different reducers 
+
+const INIT_STATE = 1;   //init value from the store
+                                            
+const counterReducer = (state = INIT_STATE, action) => {   //action will be emit from the action.js file, state is the current state with a default value 
+  switch (action.type) {      //judged by the different types of actions
+    case "INCREMENT":       //different cases, make sure matches in the action file
+      return state + 1;       //return the current local state does what
+    case "DECREMENT":       //tell reducer, whenever you see this case, do something
+      return state - 1;       //what to do when we see the case
+    default:            //always end with a default case
+      return state;      //just return itself
+  }
+};
+
+const rootReducer = combineReducers({     //here pass the switch case counterReducer to it, you can pass as many as you need
+  counterReducer
+});
+
+export default rootReducer;
+```
+
+[[↑] Back to top](#table-of-contents)
+
+## React HOC
+ContentContainer.js 
+```js
+import React from "react";
+import "./ContentContainer.css";
+
+const ContentContainer = (OriginalComponent) => {
+  class NewComponent extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        checked: false,
+      };
+    }
+
+    handleVisibility = (e) => {
+      this.setState({
+        checked: !this.state.checked,
+      });
+    };
+
+    render() {
+      const hidden = this.state.checked === true ? "" : "hidden";
+      return (
+        <div>
+          <span>Invisible Checkbox</span>
+          <input type="checkbox" onClick={this.handleVisibility} />
+          {hidden ? <OriginalComponent /> : null}
+        </div>
+      );
+    }
+  }
+  return NewComponent;
+};
+
+export default ContentContainer;
+```
+
+App.js
+```js
+import React, { Component } from "react";
+import "./App.css";
+
+import HOCCounter from "./components/Counter/Counter";
+import HOCTdList from "./components/TdList/TdList";
+class App extends Component {
+  render() {
+    return (
+      <React.Fragment>
+        <HOCCounter />
+        <HOCTdList />
+      </React.Fragment>
+    );
+  }
+}
+
+export default App;
+```
+
+index.js
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+
+import "./index.css";
+import App from "./App";
+
+ReactDOM.render(<App />, document.getElementById("root"));
+```
+
+[[↑] Back to top](#table-of-contents)
+
+## React Counter
+Counter.js
+```js
+import React, { Component } from "react";
+import Count from "./Count";
+import ButtonRow from "./ButtonRow";
+import Card from "../UI/Card";
+import ContentContainer from "../HOC/ContentContainer";
+
+class Counter extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      number: 0,
+      isRunning: false,
+    };
+  }
+
+  increment = () => {
+    this.setState((prevState) => {
+      return { number: prevState.number + 1 };
+    });
+  };
+
+  decrement = () => {
+    this.setState((prevState) => {
+      return { number: prevState.number - 1 };
+    });
+  };
+
+  incIfOdd = () => {
+    if (this.state.number % 2 !== 0) {
+      this.increment();
+    }
+  };
+
+  asyncInc = () => {
+    setTimeout(() => {
+      this.increment();
+    }, 1000);
+  };
+
+  reset = () => {
+    this.setState({ number: 0 });
+  };
+
+  timerHandler = () => {
+    this.setState((prevState) => ({
+      isRunning: !prevState.isRunning,
+    }));
+  };
+
+  componentDidMount() {
+    this.intervalID = setInterval(() => {
+      if (this.state.isRunning) {
+        this.setState((prevState) => ({
+          number: prevState.number + 1,
+        }));
+      }
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+
+  render() {
+    const { number } = this.state;
+    const { increment, decrement, incIfOdd, asyncInc, reset, timerHandler } =
+      this;
+
+    return (
+      <Card>
+        <Count num={number} />
+        <ButtonRow clickHandler={increment} value="Increment +1" />
+        <ButtonRow clickHandler={decrement} value="Decrement -1" />
+        <ButtonRow clickHandler={incIfOdd} value="Increment-If-Odd" />
+        <ButtonRow clickHandler={asyncInc} value="Async-Inc" />
+        <ButtonRow clickHandler={reset} value="Reset" />
+        <ButtonRow
+          clickHandler={timerHandler}
+          value={this.state.isRunning ? "TIMER STOP" : "TIMER START"}
+        />
+      </Card>
+    );
+  }
+}
+
+const HOCCounter = ContentContainer(Counter);
+export default HOCCounter;
+```
+
+ButtonRow.js
+```js
+import React from "react";
+
+function ButtonRow(props) {
+  return (
+    <div className="App">
+      <button onClick={props.clickHandler}>{props.value}</button>
+    </div>
+  );
+}
+
+export default ButtonRow;
+```
+
+Count.js
+```js
+import React from "react";
+
+function Count(props) {
+  const { num } = props;
+  return (
+    <div>
+      <h1>COUNTING</h1>
+      <h2>Current Count: {num}</h2>
+    </div>
+  );
+}
+
+export default Count;
+```
+
+[[↑] Back to top](#table-of-contents)
+
+## React To Do List
+TdList.js
+```js
+import React, { Component } from "react";
+import InputField from "./InputField";
+import ItemList from "./ItemList";
+import Card from "../UI/Card";
+import ContentContainer from "../HOC/ContentContainer";
+
+class TdList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: ["Study React", "Do Homework"],
+    };
+  }
+
+  addItem = (inputText) => {
+    const list = [...this.state.list];
+    list.push(inputText);
+    this.setState({ list });
+  };
+
+  deleteItem = (id) => {
+    const list = [...this.state.list];
+    const updatedList = list.filter((item, index) => index !== id);
+    this.setState({ list: updatedList });
+  };
+
+  sortList = (value) => {
+    const list = [...this.state.list];
+    if (value === "asc") {
+      const ascList = list.sort((a, b) => a.localeCompare(b));
+      this.setState({ list: ascList });
+    } else if (value === "desc") {
+      const descList = list.sort((a, b) => b.localeCompare(a));
+      this.setState({ list: descList });
+    }
+  };
+
+  render() {
+    const { list } = this.state;
+    const { addItem, deleteItem, sortList } = this;
+
+    return (
+      <Card>
+        <InputField onAdd={addItem} onSelect={sortList} />
+        <ItemList onDisplay={list} onDelete={deleteItem} />
+      </Card>
+    );
+  }
+}
+
+const HOCTdList = ContentContainer(TdList);
+export default HOCTdList;
+```
+
+InputField.js
+```js
+import React, { Component } from "react";
+class InputField extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputText: "",
+    };
+  }
+
+  handleClick = () => {
+    if (this.state.inputText.trim().length > 0) {
+      this.props.onAdd(this.state.inputText);
+    }
+    this.setState({
+      inputText: "",
+    });
+  };
+
+  handleChange = (event) => {
+    this.setState({ inputText: event.target.value });
+  };
+
+  handleDropdown = (event) => {
+    this.props.onSelect(event.target.value);
+  };
+
+  render() {
+    const { inputText } = this.state;
+    const { handleChange, handleClick, handleDropdown } = this;
+    return (
+      <div>
+        <h1> TO-DO LIST </h1>
+        <input
+          onChange={handleChange}
+          type="text"
+          placeholder="Enter Task"
+          value={inputText}
+        />
+        <button onClick={handleClick}>ADD</button>
+        <select onChange={handleDropdown}>
+          <option>***sort***</option>
+          <option value="asc">A-Z</option>
+          <option value="desc">Z-A</option>
+        </select>
+      </div>
+    );
+  }
+}
+
+export default InputField;
+```
+
+ItemList.js
+```js
+import React from "react";
+import Item from "./Item";
+
+function ItemList(props) {
+  if (props.onDisplay.length === 0) {
+    return <p>Found No To-do Items.</p>;
+  }
+
+  return (
+    <div className="App">
+      {props.onDisplay.map((item, index) => (
+        <Item id={index} key={index} item={item} onDelete={props.onDelete} />
+      ))}
+    </div>
+  );
+}
+
+export default ItemList;
+```
+
+Item.js
+```js
+import React from "react";
+
+function Item(props) {
+  return (
+    <div>
+      <li>
+        {props.item}
+        <button onClick={() => props.onDelete(props.id)}>x</button>
+      </li>
+    </div>
+  );
+}
+
+export default Item;
+```
+
+[[↑] Back to top](#table-of-contents)
+
+## Redux Store
+index.js
+```js
+import ReactDOM from "react-dom";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
+
+import rootReducer from "./store/reducer";
+import App from "./App";
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
+```
+
+App.js
+```js
+import React, { Component } from "react";
+import HOCCounter from "./components/Counter/Counter";
+import HOCTdList from "./components/TdList/TdList";
+
+class App extends Component {
+  render() {
+    return (
+      <React.Fragment>
+        <HOCCounter />
+        <HOCTdList />
+      </React.Fragment>
+    );
+  }
+}
+
+export default App;
+```
+
+action.js
+```js
+//COUNTER
+const incAction = () => {
+  return {
+    type: "INCREMENT",
+  };
+};
+const decAction = () => {
+  return {
+    type: "DECREMENT",
+  };
+};
+const oddAction = () => {
+  return {
+    type: "ODD",
+  };
+};
+const resetAction = () => {
+  return {
+    type: "RESET",
+  };
+};
+const timerAction = () => {
+  return {
+    type: "TIMER",
+  };
+};
+
+let timer;
+export const timerUpdate = () => (dispatch, getState) => {
+    clearInterval(timer);
+    timer = setInterval(() => {
+        dispatch(incAction());
+    }, 1000);
+  }
+
+export const timerStopUpdate = () => (dispatch, getState) =>
+  clearInterval(timer);
+
+
+//TO-DO LIST
+const textAction = (item) => {
+  return {
+    type: "TEXT",
+    payload: item,
+  };
+};
+
+const addAction = () =>  (dispatch, getState) => {
+  const inputText = getState().tdListReducer.text;
+  dispatch({
+  type: "ADD",
+  payload: inputText, 
+    })
+};
+
+const deleteAction = (id) => {
+  return {
+    type: "DELETE",
+    payload: id
+  };
+};
+
+const sortAction = (value) => {
+  return {
+    type: "SORT",
+    payload: value,
+  };
+};
+
+//Visibility
+const visibilityAction = () => {
+  return {
+    type: "CHECK",
+  };
+};
+
+export {
+  incAction,
+  decAction,
+  oddAction,
+  resetAction,
+  timerAction,
+  textAction,
+  addAction,
+  deleteAction,
+  sortAction,
+  visibilityAction
+};
+```
+reducer.js
+```js
+import { combineReducers } from "redux";
+
+//COUNTER
+const COUNT_INIT_STATE = {
+  counter: 0,
+  isRunning: false,
+};
+
+const counterReducer = (state = COUNT_INIT_STATE, action) => {
+  switch (action.type) {
+    case "INCREMENT":
+      return {
+        ...state,
+        counter: state.counter + 1,
+      };
+    case "DECREMENT":
+      return {
+        ...state,
+        counter: state.counter - 1,
+      };
+    case "ODD":
+      return {
+        ...state,
+        counter: state.counter % 2 !== 0 ? state.counter + 1 : state.counter,
+      };
+    case "RESET":
+      return {
+        ...state,
+        counter: (state.counter = 0),
+      };
+    case "TIMER":
+      return {
+        ...state,
+        isRunning: !state.isRunning,
+      };
+    default:
+      return state;
+  }
+};
+
+//TO-DO LIST
+const TODO_INIT_STATE = {
+  todo: ["Study Redux", "Do Homework"],
+  text: "",
+};
+
+const tdListReducer = (state = TODO_INIT_STATE, action) => {
+  switch (action.type) {
+    case "TEXT":
+      return { ...state, text: action.payload };
+    case "ADD":
+      return {...state, todo: [...state.todo, action.payload], text: ""}; 
+    case "DELETE":
+      return { ...state, todo: state.todo.filter((item, index) => index !== action.payload)}
+    case "SORT":
+      if (action.payload === "asc") {
+        const ascList = state.todo.sort((a, b) => a.localeCompare(b));
+        return { ...state, todo: [...ascList]};
+      } else if (action.payload === "desc") {
+        const descList = state.todo.sort((a, b) => b.localeCompare(a));
+        return { ...state, todo: [...descList]};
+      }
+      break;
+    default:
+      return state;
+  }
+};
+
+//Visibility
+const VISIBILITY_INIT_STATE = {
+  checked: false,
+};
+
+const visibilityReducer = (state = VISIBILITY_INIT_STATE, action) => {
+  switch (action.type) {
+    case "CHECK":
+      return {
+        checked: !state.checked,
+      }
+    default:
+      return state;
+  }
+};
+
+const rootReducer = combineReducers({
+  counterReducer,
+  tdListReducer,
+  visibilityReducer
+});
+
+export default rootReducer;
+```
+
+[[↑] Back to top](#table-of-contents)
+
+## Redux Counter
+Counter.js
+```js
+import React, { Component } from "react";
+
+import Card from "../UI/Card";
+import Count from "./Count";
+import ButtonRow from "./ButtonRow";
+import ContentContainer from "../HOC/ContentContainer";
+
+class Counter extends Component {
+  render() {
+    return (
+      <Card>
+        <Count />
+        <ButtonRow />
+      </Card>
+    );
+  }
+}
+
+const HOCCounter = ContentContainer(Counter);
+export default HOCCounter;
+```
+
+ButtonRow.js
+```js
+import React from "react";
+import { connect } from "react-redux";
+import * as actions from "../../store/action";
+
+function ButtonRow(props) {
+  function async() {
+    setTimeout(() => {
+      props.incHandler();
+    }, 1000);
+  }
+
+  if(props.isRunning) {
+    props.timerUpdate();
+  } else {
+    props.timerStopUpdate();
+  }
+
+  return (
+    <div className="App">
+      <button onClick={props.incHandler}>Increment +1</button> <br />
+      <button onClick={props.decHandler}>Decrement -1</button> <br />
+      <button onClick={props.oddHandler}>Increment-If-Odd</button> <br />
+      <button onClick={async}>Async-Inc</button> <br />
+      <button onClick={props.resetHandler}>Reset</button> <br />
+      <button onClick={props.timerHandler}>
+        {props.isRunning ? "TIMER STOP" : "TIMER START"}
+      </button>
+    </div>
+  );
+}
+
+const mapStateToProps = (state) => ({
+  isRunning: state.counterReducer.isRunning,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  incHandler: () => dispatch(actions.incAction()),
+  decHandler: () => dispatch(actions.decAction()),
+  oddHandler: () => dispatch(actions.oddAction()),
+  resetHandler: () => dispatch(actions.resetAction()),
+  timerHandler: () => dispatch(actions.timerAction()),
+  timerUpdate: () => dispatch(actions.timerUpdate()),
+  timerStopUpdate: () => dispatch(actions.timerStopUpdate()),
+});
+
+const ConnectedCounter = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ButtonRow);
+
+export default ConnectedCounter;
+```
+
+Count.js
+```js
+import React from "react";
+import { connect } from "react-redux";
+
+function Count(props) {
+  return (
+    <div>
+      <h1>COUNTING</h1>
+      <h2>Current Count: {props.counter}</h2>
+    </div>
+  );
+}
+
+const mapStateToProps = (state) => ({
+  counter: state.counterReducer.counter,
+});
+
+export default connect(mapStateToProps)(Count);
+```
+
+[[↑] Back to top](#table-of-contents)
+
+## Redux To Do List
+TdList.js
+```js
+import React, { Component } from "react";
+
+import InputField from "./InputField";
+import ItemList from "./ItemList";
+import Card from "../UI/Card";
+import ContentContainer from "../HOC/ContentContainer";
+
+class TdList extends Component {
+  render() {
+    return (
+      <Card>
+        <InputField />
+        <ItemList />
+      </Card>
+    );
+  }
+}
+
+const HOCTdList = ContentContainer(TdList);
+export default HOCTdList;
+```
+
+InputField.js
+```js
+import React from "react";
+import { connect } from "react-redux";
+import * as actions from "../../store/action";
+
+const InputField = ({ text, textHandler, addHandler, sortHandler }) => {
+  const handleChange = (e) => {
+    textHandler(e.target.value);
+  };
+
+  const handleAdd = (e) => {
+    addHandler(e.target.value);
+  };
+
+  const handleDropdown = (e) => {
+    sortHandler(e.target.value);
+  };
+
+  return (
+    <div>
+      <h1> TO-DO LIST </h1>
+      <input
+        type="text"
+        value={text}
+        placeholder="Enter Task"
+        onChange={handleChange}
+      />
+
+      <button onClick={handleAdd}>ADD</button>
+      <select onChange={handleDropdown}>
+        <option>***sort***</option>
+        <option value="asc">A-Z</option>
+        <option value="desc">Z-A</option>
+      </select>
+    </div>
+  );
+};
+const mapStateToProps = (state) => ({
+  text: state.tdListReducer.text,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  textHandler: (item) => dispatch(actions.textAction(item)),
+  addHandler: (todo) => dispatch(actions.addAction(todo)),
+  sortHandler: (value) => dispatch(actions.sortAction(value)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(InputField);
+```
+
+ItemList.js
+```js
+import React from "react";
+import Item from "./Item";
+import { connect } from "react-redux";
+import * as actions from "../../store/action";
+
+function ItemList(props) {
+  if (props.todo.length === 0) {
+    return <p>Found No To-do Items.</p>;
+  }
+
+  return (
+    <div className="App">
+      {props.todo.map((item, index) => (
+        <Item id={index} key={index} item={item} onDelete={props.deleteHandler}/>
+      ))}
+    </div>
+  );
+}
+
+const mapStateToProps = (state) => ({
+  todo: state.tdListReducer.todo,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  deleteHandler: (id) => dispatch(actions.deleteAction(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemList);
+```
+
+Item.js
+```js
+import React from "react";
+
+function Item(props) {
+  return (
+    <div>
+      <li>
+        {props.item}
+        <button onClick={() => props.onDelete(props.id)}>x</button>
+      </li>
+    </div>
+  );
+}
+
+export default Item;
+```
+
+[[↑] Back to top](#table-of-contents)
+
+
+## Hooks Counter
+```js
+export default function App() {
+  const [time, setTime] = useState(0);
+  const [show, setShow] = useState(() => initValue());
+
+  function changeTime() {
+    setShow(!show); //this.setState - async - batch multiple
+    console.log(show); // show => false (delay because setSate is async)
+  }
+
+  useEffect(() => {
+    let intId; //initiate the intId variable here so we can access it due to the scope if we declare the variable below
+    if (show) {
+      intId = setInterval(() => {
+        //we can use var here if we do not initially declare the varibale
+        setTime((old) => old + 1);
+      }, 1000);
+    }
+    //clean-up the interval we have not finished at previous render before the next render
+    return () => {
+      clearInterval(intId);
+    };
+  }, [show]); //re-render based on the show value
+
+  return (
+    <div>
+      Time: {time}
+      <button onClick={() => changeTime()}>{show ? "Stop" : "Start"}</button>
+    </div>
+  );
+}
+```
+
+[[↑] Back to top](#table-of-contents)
+ 
