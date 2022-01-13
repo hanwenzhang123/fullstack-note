@@ -21,7 +21,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - [OOP](#OOP)
 - [API](#API)
 - [System Design](#system-design)
-- [Socket IO](#Socket-IO)
+- [Sockets](#Sockets)
 - [Authentication](#authentication)
 - [Performance](#performance)
 - [Testing](#testing)
@@ -77,6 +77,7 @@ build, distribute and collaborate over components to build multiple projects and
 - A Single library package for many components - put a few dozen shared components in a single repo
 
 [[↑] Back to top](#table-of-contents)
+
 
 ## Backend
 
@@ -147,6 +148,7 @@ Node.js
 
 [[↑] Back to top](#table-of-contents)
 
+
 ## Clone
 
 #### Shallow Comparison & Deep Comparison
@@ -207,6 +209,7 @@ return res;
 }
 ```
 
+
 ## OOP
 
 #### Object Oriented Programming vs Functional Programming
@@ -238,6 +241,7 @@ Benefits of OOP
 - Polymorphism: refactor ugly switch case statement
 
 [[↑] Back to top](#table-of-contents)
+
 
 ## API
 
@@ -317,6 +321,7 @@ return (
 
 [[↑] Back to top](#table-of-contents)
 
+
 ## System Design
 https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-design-question.js
 
@@ -346,23 +351,101 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 - Docker scales (structures) your apps very easily, comes with a whole set of tools for deploying across many clusters you can take your instances each micro-services that you have in each container (it contains your app in a certain space), and then allocate many machines to them.
 - You can specify how many of the resources of each machine you want, specify rules about how they should scale, what should happen if they crash, make everything scalable
 
-
 [[↑] Back to top](#table-of-contents)
 
-## Socket IO
 
-#### What is Socket.io? 
-- A library built on top of Web Socket for client server communication, receive data as soon as possible
+## Sockets
 
-
-#### Why Socket.io?
-
-WebSocket -  persistent bi-directional connection between a client and server that provides a two-way full-duplex interactive communications channel that operates over HTTP through a single TCP/IP socket connection. Unlike HTTP, where you have to constantly request updates, with websockets, updates are sent immediately when they are available.
+#### What is socket?
 - A socket is one endpoint of a two way communication link between two programs running on the network (think of chat apps)
-- A socket consists of the IP address of a system and the port number of a program within the system. The IP address corresponds to the system and the port number corresponds to the program where the data needs to be sent:
-- Socket.io: enables real time, bi-directional, event-based communication between web clients (runs in the browser) and servers (node.js).
+- A socket consists of the IP address of a system and the port number of a program within the system. 
+- The IP address corresponds to the system and the port number corresponds to the program where the data needs to be sent
 
-Firebase: APIs + server + NoSQL database, connect to WebSocket, we can store and sync the data between our users in real-time
+#### What is WebSockets? 
+- Web Socket, establishing a real time wwo way communication between the client and server (via TCP/IP). 
+- persistent bi-directional connection between a client and server that provides a two-way full-duplex interactive communications channel that operates over HTTP through a single TCP/IP socket connection. 
+- Unlike HTTP, where you have to constantly request updates, with websockets, updates are sent immediately when they are available.
+
+#### Why WebSockets? 
+- For instance, when data is changing constantly, you can refresh the broswer every few minutes to send the HTTP request, or use setInterval every few seconds to pull the server for the new data, but these are not ideal for real-time data, like a chat application.
+
+#### How WebSockets work?
+- Client sends the HTTP request to the server to ask for open the connection, if the server agrees, it will send the 101 switching protocols response, where tcp/ip connection is locked open, allowing bi-directional messages to pass messages between the two parties, the connection stays open until one connection drops. 
+- Full-duplex connection, a tele-communication term that defines how a phone line works that two parties can send messages and talk at the same time. 
+
+#### WebSockets Implementation
+```js
+//server
+const WebSocket = require("ws")
+const server = new WebSocket.Server({port: "8080"})	//implement a server in port 8080
+server.on("connection", socket => {	//connection from the client, then web socket object as a call back
+	socket.on("message", message => {	//incoming messages, callback to listen to the message
+		socket.send(`Hello ${message}`)		//send the message back to the client
+	})
+})
+
+//app
+const server = new WebSocket.Server('ws://localhost:8080');
+socket.onmessage = ({ data }) => {	//listen for messages
+	console.log("Message from server ", data);
+}
+document.querySelector("button").onclick = () => {
+	socket.send("hello")
+}
+```
+
+#### What is socket.io? 
+- A library built on top of Web Socket for client server communication, send and receive data in real time.
+- enables real time, bi-directional, event-based communication between web clients (runs in the browser) and servers (node.js).
+
+#### Why socket.io?
+- WebSockets do not emit to all clients (broadcast the message to multiple users simultaneously)
+- For example, group chat room where multiple users passing messages back and forth
+
+#### Real-time Features
+- Firebase: APIs + server + NoSQL database, connect to WebSocket, we can store and sync the data between our users in real-time
+- Apollo GraphQL: implementation of GraphQL that can transfer data between the cloud (server) to the UI of your app
+- Pusher: real-time bi-directional hosted APIs
+
+#### socket.io Implementation
+```js
+//server
+const http = require('http').createServer();
+
+const io = require('socket.io')(http, {
+    cors: { origin: "*" }
+});
+
+io.on('connection', (socket) => {
+    console.log('a user connected');
+
+    socket.on('message', (message) =>     {
+        console.log(message);
+        io.emit('message', `${socket.id.substr(0,2)} said ${message}` );   
+    });
+});
+
+http.listen(8080, () => console.log('listening on http://localhost:8080') );
+
+//app
+const socket = io('ws://localhost:8080');
+
+socket.on('message', text => {
+
+    const el = document.createElement('li');
+    el.innerHTML = text;
+    document.querySelector('ul').appendChild(el)
+
+});
+
+document.querySelector('button').onclick = () => {
+
+    const text = document.querySelector('input').value;
+    socket.emit('message', text)
+    
+}
+```
+
 
 ## Authentication
 
