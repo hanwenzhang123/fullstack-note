@@ -5,11 +5,14 @@ title: React, Redux (Note Part2)
 ## HTML, CSS, JavaScript (Note Part1)
 https://github.com/hanwenzhang123/frontend-note/blob/main/01-note/README.md
 
-## Frontend Miscellaneous (Note Part3)
+## JS Cheatsheet (Note Part3)
 https://github.com/hanwenzhang123/frontend-note/blob/main/03-note/README.md
 
-## Boilerplate Code (Note Part4)
+## Frontend Miscellaneous (Note Part4)
 https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
+
+## Boilerplate Code (Note Part5)
+https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 
 ## Table of Contents
 - [React](#react)
