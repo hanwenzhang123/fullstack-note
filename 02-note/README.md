@@ -17,8 +17,9 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 ## Table of Contents
 - [React](#react)
 - [Rendering](#rendering)
-- [Lifecycle](#lifecycle)
 - [HOC](#HOC)
+- [Router](#router)
+- [Lifecycle](#lifecycle)
 - [Hooks](#hooks)
 - [Context](#context)
 - [Redux](#redux)
@@ -117,21 +118,6 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - looks cleaner, avoid too many `<div>`
 - `<React.Fragment>...</React.Fragment>`
 
-#### Material UI
-- A simple and customizable component library that allows us to import and use different components to create a user interface in our React application
-- Saves a significant amount of time since the developers do not need to write everything from scratch.
-
-#### Styled Components
-- a package that helps you to build componnets which have certian styles attached to them (CSS-in-JS)
-```js
-import styled from "styled-components";
-export const Button = styled.button`color: white;`	//using tagged template literal
-```
-
-#### CSS Module
-- `import styles from "./Button.module.css";` - import CSS modules, change the css file name as well
-- `<button type={props.type} className={styles.button} onClick={props.onClick}>`
-
 [[↑] Back to top](#table-of-contents)
 
 ## Rendering
@@ -160,6 +146,21 @@ this.setState((prevState) => {     //passing in a callback function instead of s
 - Batching: React groups multiple state updates into a single re-render for better performance.
 - using setState to change a variable inside any function, instead of making a render at each setState, React collects all setStates and then executes them together.
 - no matter how many setState calls you make inside a React event handler or synchronous lifecycle method, it will be batched into a single update.
+
+#### Material UI
+- A simple and customizable component library that allows us to import and use different components to create a user interface in our React application
+- Saves a significant amount of time since the developers do not need to write everything from scratch.
+
+#### Styled Components
+- a package that helps you to build componnets which have certian styles attached to them (CSS-in-JS)
+```js
+import styled from "styled-components";
+export const Button = styled.button`color: white;`	//using tagged template literal
+```
+
+#### CSS Module
+- `import styles from "./Button.module.css";` - import CSS modules, change the css file name as well
+- `<button type={props.type} className={styles.button} onClick={props.onClick}>`
 
 #### Controlled Component vs Uncontrolled Component
 Controlled Component
@@ -209,6 +210,139 @@ export class App2 extends Component {
 ```
 
 [[↑] Back to top](#table-of-contents)
+
+## HOC
+
+#### HOC -> High Order Component
+- HOC is a pattern where a function takes a component as an argument and returns a new component under a certain reusing component logic pattern
+- take in the original component, and add some decoration and modification and props to make it a new component, add more contents
+- example: connect in React-Redux `connect(a, b)(OriginalComp)`
+
+#### Why HOC?
+- use it for reusability to share common functionality between components
+- same pattern but only applies to the one when we need it, and simply removes it when we do not need it
+
+#### HOC Example
+```js
+import React from "react";
+const UpdatedComponent = (OriginalComponent) => {
+  class NewComponent extends React.Component{
+    render() {
+      return <OriginalComponent name="inject props"/>
+    }
+  }
+  return NewComponent
+}
+export default UpdatedComponent;
+
+import ContentContainer from "../HOC/ContentContainer";
+const HOCCounter = UpdatedComponent(Counter);
+export default HOCCounter;
+```
+
+[[↑] Back to top](#table-of-contents)
+
+## Router
+
+#### What is React Router?
+- A great way to build single-page applications because you prevent a page refresh every time a link is clicked. 
+- With client-side rendering, the page doesn't refresh as you navigate through the different links. 
+- Multiple pages in a single page app, URL changes, visible content changes. 
+
+#### Traditional multi-page routing
+- HTML is requested & loaded; Page change = new request + response (Server-side Rendering) . 
+
+#### Single page application 
+- Only one initial HTML request & response, Page (URL) changes are then handled by client-side (React) code -> changes the visible content without fetching a new HTML file (Client-side Rendering).
+- The goal is that we are able to handle different paths on our page, and load (render) different components for the different paths.
+
+### React Router Implementation
+- npm i react-router-dom
+```js
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
+
+export default function App() {
+  return (
+    <Router>
+      <div>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/topics">Topics</Link>
+          </li>
+        </ul>
+
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/topics">
+            <Topics />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
+}
+
+function Home() {
+  return <h2>Home</h2>;
+}
+
+function About() {
+  return <h2>About</h2>;
+}
+
+function Topics() {
+  let match = useRouteMatch();
+
+  return (
+    <div>
+      <h2>Topics</h2>
+
+      <ul>
+        <li>
+          <Link to={`${match.url}/components`}>Components</Link>
+        </li>
+        <li>
+          <Link to={`${match.url}/props-v-state`}>
+            Props v. State
+          </Link>
+        </li>
+      </ul>
+      <Switch>
+        <Route path={`${match.path}/:topicId`}>
+          <Topic />
+        </Route>
+        <Route path={match.path}>
+          <h3>Please select a topic.</h3>
+        </Route>
+      </Switch>
+    </div>
+  );
+}
+
+function Topic() {
+  let { topicId } = useParams();
+  return <h3>Requested topic ID: {topicId}</h3>;
+}
+```
 
 ## Lifecycle
 
@@ -270,37 +404,6 @@ function XXX () {
 #### Error Boundary vs Try...Catch...
 - Try…catch deals with imperative code: how you do something, you can catch errors in your code.
 - Error Boundaries deal with declarative code: what you do, like if there is an error, you can trigger a fallback UI
-
-[[↑] Back to top](#table-of-contents)
-
-## HOC
-
-#### HOC -> High Order Component
-- HOC is a pattern where a function takes a component as an argument and returns a new component under a certain reusing component logic pattern
-- take in the original component, and add some decoration and modification and props to make it a new component, add more contents
-- example: connect in React-Redux `connect(a, b)(OriginalComp)`
-
-#### Why HOC?
-- use it for reusability to share common functionality between components
-- same pattern but only applies to the one when we need it, and simply removes it when we do not need it
-
-#### HOC Example
-```js
-import React from "react";
-const UpdatedComponent = (OriginalComponent) => {
-  class NewComponent extends React.Component{
-    render() {
-      return <OriginalComponent name="inject props"/>
-    }
-  }
-  return NewComponent
-}
-export default UpdatedComponent;
-
-import ContentContainer from "../HOC/ContentContainer";
-const HOCCounter = UpdatedComponent(Counter);
-export default HOCCounter;
-```
 
 [[↑] Back to top](#table-of-contents)
 
