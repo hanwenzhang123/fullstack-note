@@ -25,6 +25,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - [Authentication](#authentication)
 - [Performance](#performance)
 - [Testing](#testing)
+- [SDLC](#SDLC)
 
 ## Frontend
 
@@ -319,7 +320,22 @@ return (
 ## System Design
 https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-design-question.js
 
-#### What is Micro-services Architecture?
+#### Design Patterns
+- Singleton Pattern: ensures only a single instance of an object exists within a system at any given time
+- Micro-services: focuses on building small independent services that perform a single task well.
+- Pipeline design patterns: set of automated processes and tools that allows both developers and operations professionals to work together to build and deploy code to a production environment for CI/CD in a deployable state at any point.
+- Model-View-Controller (MVC): how the code should be organized and how the different parts of an application are separated for proper readability and debugging. Model is the data and the database. View is the user interface and what the user sees. Controller is the main link between Model and View.
+
+#### Component File Structure
+- For the file structure, you can group files and split components by features or routes in the source code, or by the types
+- view components (display information and emit user input via callbacks that forwards data from child to parent)
+- control components (store state related to partial input that keeps track of actions the user has taken, lifecycle, ref to DOM)
+- controllers (business logic doesn’t need to be placed in React components, redux store)
+- container components (HOC, APP, Redux connect)
+- In the source folder, you can have components, assets (pictures), store (context), routes, server (api, socket.io), and more as needed, but try to avoid too much nesting. 
+- In the components folder, you can have sub-components for each feature present in the App like UI, card (props.children), styled components (.style.js) and utils file.
+
+#### Micro-services Architecture
 - building many individual different services that each do a single task and do one thing well
 - splits large applications into much smaller pieces that exist independently of each other.
 - like one server for chat server, one for caching, one do node.js only, one do Golang for concurrent task, one for message board
@@ -330,11 +346,16 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 - Docker scales (structures) your apps very easily, comes with a whole set of tools for deploying across many clusters you can take your instances each micro-services that you have in each container (it contains your app in a certain space), and then allocate many machines to them.
 - You can specify how many of the resources of each machine you want, specify rules about how they should scale, what should happen if they crash, make everything scalable
 
+
 [[↑] Back to top](#table-of-contents)
 
 ## Socket IO
 
-Socket.io is a library built on top of Web Socket for client server communication, receive data as soon as possible
+#### What is Socket.io? 
+- A library built on top of Web Socket for client server communication, receive data as soon as possible
+
+
+#### Why Socket.io?
 
 WebSocket -  persistent bi-directional connection between a client and server that provides a two-way full-duplex interactive communications channel that operates over HTTP through a single TCP/IP socket connection. Unlike HTTP, where you have to constantly request updates, with websockets, updates are sent immediately when they are available.
 - A socket is one endpoint of a two way communication link between two programs running on the network (think of chat apps)
@@ -566,4 +587,29 @@ How complete your unit test cover all the code
 
 [[↑] Back to top](#table-of-contents)
   
-  
+## SDLC
+
+#### What is SDLC?
+- Software Development Lifecycle
+- Requirement Analysis, Planning, Design, Build, Document, Test, Deploy, Maintain.
+
+#### Planning
+- During the planning phase, the team creates personas and determines the cost and resources required for implementing the requirements. 
+- We also take the design plan seriously. Then we follow best practices in software development, code review, code style, good documentation, use automation tools, use linting tools, meaningful variable names, and more.
+
+#### Deployment
+- Before deployment, we would make sure the  application was ready for delivery, and make sure it passed all the required tests. 
+- In terms of how we deliver new features, we have a devops developer dedicated to it with all the CI/CD work, managing the pipeline.
+
+#### Agile
+- We have 8 people in the team including 1 product owner and 1 scrum master. My role is the Frontend Developer focuses on building user interfaces. 
+- The workflow is attending daily stand-ups, weekly sprint planning, working on the ticket that has been assigned to me, as well as attending other scrum meetings like retrospective, review, backlog refinement during an average 2-3 week development sprint cycle, and we generally keep a quarterly release cycle.
+
+#### CI/CD
+- Pipeline design patterns for CI/CD deployable state at any point (.circleci - config.yml)
+- Use an auto CI/CD tool or platform to auto deploy, the library like Jenkins / TravisCI / GitHub actions. 
+- CI - developers integrate code into a shared repository and all tests are passed and compatible with the rest, each change is small and easy to debug. code PR - tests - build - merge - acceptance test - manual/auto - deploy. 
+- CD - keep your code base deployable at any point. Teams produce software in short cycles and in a sustainable way, all types of code changes are automatically prepared for a release to production. 
+
+[[↑] Back to top](#table-of-contents)
+ 
