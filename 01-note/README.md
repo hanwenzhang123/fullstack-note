@@ -5,11 +5,14 @@ title: HTML, CSS, JavaScript (Note Part1)
 ## React, Redux (Note Part2)
 https://github.com/hanwenzhang123/frontend-note/blob/main/02-note/README.md
 
-## Frontend Miscellaneous (Note Part3)
+## JS Cheatsheet (Note Part3)
 https://github.com/hanwenzhang123/frontend-note/blob/main/03-note/README.md
 
-## Boilerplate Code (Note Part4)
+## Frontend Miscellaneous (Note Part4)
 https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
+
+## Boilerplate Code (Note Part5)
+https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 
 ## Table of Contents
 - [HTTP](#http)
@@ -21,7 +24,6 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 - [Promise](#Promise)
 - [This](#this)
 - [JS Funtion](#JS-Function)
-- [Clone](#Clone)
 - [DOM Event](#DOM-event)
 
 ## HTTP
@@ -823,66 +825,6 @@ for (var i = 1; i <= 3; i++) {		//var makes i stays in the function scope
     (function(index) {	//wraps the function call in another function, so inner function gets local copy of outer function arguement
         setTimeout(function() { alert(index); }, i * 1000);	//having a copy of i in it
     })(i);	//using a self-invoking function, IIFE, each iteration created a new scope for each iteration
-}
-```
-
-## Clone
-
-#### Shallow Comparison & Deep Comparison
-- Shallow strategy compares superficially 2 operands equality — 1st level in depth only,
-- Deep strategy compares the equality from all depth levels.
-
-#### Deep Clone vs Shallow Clone
-Deep Clone - no more contact with previous reference, they are not related, any modification would not influence original copy
-
-2 ways to implement deep clone
-1. third party lib => _lodash.cloneDeep()
-2. JSON parse and stringify
-```js
-//1. Lodash
-// var _ = require("lodash");
-import { cloneDeep } from "lodash";
-const obj = { x: 1 };
-const newObj = _.cloneDeep(obj);
-console.log(newObj);  //{x: 1}
-
-//2. JSON parse and stringify 
-//completely convert to a raw string and convert back, so every layer will be completely different
-const newObj2 = JSON.parse(JSON.stringify(obj));
-console.log(newObj2); //{x: 1}
-```
-
-Shallow Clone - reuse previous reference, certain sub-values are still connected to the original variable
-- Destructuring assignment ...
-```js
-// value => primitive type -> Number String Boolean Null Undefined
-const obj = { x: 1 } };
-const newObje = {...obj}; //shallow copy
-newObj.x = 9;
-console.log(newObj);  //{x:9)	
-console.log(obj); //{x:1)   //original object not touched, different addresses in memory
-
-// value => non-primitive -> Object Array
-//assigning everything in a different type but because the value type is different, it is an object
-//there is a reference pointer points to the object
-const obj = { x: { y: 1 } };  //add one more layer
-const newObj = {...obj}; //shallow copy - only restirct to the shallow level
-newObj.x.y = 9;
-console.log(newObj); //{x: { y: 9 } - only direct properties on the object point to different address, nested properties point to the same
-console.log(obj);  //{x: { y: 9 } - also change to 9, both get update
-```
-
-#### Write your own code of deep clone
-```js
-function copy(obj) { 
-  if (!obj) return obj; 
-  let v; 
-  let res = Array.isArray(obj) ? [] : {};   //check if it is array
-  for (const k in obj) { 
-    v = obj[k];   	//iterate each item in object, and store to v
-    res[k] = (typeof v === "object") ? copy(v) : v;   //recursion, if v is object then copy(v), stores in res[k]
-  } 
-return res; 
 }
 ```
 
