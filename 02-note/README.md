@@ -117,6 +117,10 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - looks cleaner, avoid too many `<div>`
 - `<React.Fragment>...</React.Fragment>`
 
+#### Material UI
+- A simple and customizable component library that allows us to import and use different components to create a user interface in our React application
+- Saves a significant amount of time since the developers do not need to write everything from scratch.
+
 #### Styled Components
 - a package that helps you to build componnets which have certian styles attached to them (CSS-in-JS)
 ```js
@@ -585,6 +589,9 @@ const ConnectedApp = connect(	//here we use the connection function, connect wil
 - if we do not use the middleware, we can only do actions when API server is not involved
 - middleware allows you to call the action creators that return a function(thunk) which takes the store dispatch method as the argument
 - which is afterwards used to dispatch the synchronous action after the API or side effects has been finished.
+
+#### What is Redux-saga
+- side effect management library (asynchronous things like data fetching and impure things like access browser cache).
 
 #### How to create middleware in Redux?
 - Using Redux Thunk for Redux Middleware 
