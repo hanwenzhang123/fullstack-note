@@ -17,11 +17,12 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 ## Table of Contents
 - [Frontend](#frontend)
 - [Backend](#backend)
+- [Clone](#Clone)
+- [OOP](#OOP)
 - [API](#API)
 - [System Design](#system-design)
 - [Socket IO](#Socket-IO)
 - [Authentication](#authentication)
-- [OOP](#OOP)
 - [Performance](#performance)
 - [Testing](#testing)
 
@@ -145,6 +146,97 @@ Node.js
 
 [[↑] Back to top](#table-of-contents)
 
+## Clone
+
+#### Shallow Comparison & Deep Comparison
+- Shallow strategy compares superficially 2 operands equality — 1st level in depth only,
+- Deep strategy compares the equality from all depth levels.
+
+#### Deep Clone vs Shallow Clone
+Deep Clone - no more contact with previous reference, they are not related, any modification would not influence original copy
+
+2 ways to implement deep clone
+1. third party lib => _lodash.cloneDeep()
+2. JSON parse and stringify
+```js
+//1. Lodash
+// var _ = require("lodash");
+import { cloneDeep } from "lodash";
+const obj = { x: 1 };
+const newObj = _.cloneDeep(obj);
+console.log(newObj);  //{x: 1}
+
+//2. JSON parse and stringify 
+//completely convert to a raw string and convert back, so every layer will be completely different
+const newObj2 = JSON.parse(JSON.stringify(obj));
+console.log(newObj2); //{x: 1}
+```
+
+Shallow Clone - reuse previous reference, certain sub-values are still connected to the original variable
+- Destructuring assignment ...
+```js
+// value => primitive type -> Number String Boolean Null Undefined
+const obj = { x: 1 } };
+const newObje = {...obj}; //shallow copy
+newObj.x = 9;
+console.log(newObj);  //{x:9)	
+console.log(obj); //{x:1)   //original object not touched, different addresses in memory
+
+// value => non-primitive -> Object Array
+//assigning everything in a different type but because the value type is different, it is an object
+//there is a reference pointer points to the object
+const obj = { x: { y: 1 } };  //add one more layer
+const newObj = {...obj}; //shallow copy - only restirct to the shallow level
+newObj.x.y = 9;
+console.log(newObj); //{x: { y: 9 } - only direct properties on the object point to different address, nested properties point to the same
+console.log(obj);  //{x: { y: 9 } - also change to 9, both get update
+```
+
+#### Write your own code of deep clone
+```js
+function copy(obj) { 
+  if (!obj) return obj; 
+  let v; 
+  let res = Array.isArray(obj) ? [] : {};   //check if it is array
+  for (const k in obj) { 
+    v = obj[k];   	//iterate each item in object, and store to v
+    res[k] = (typeof v === "object") ? copy(v) : v;   //recursion, if v is object then copy(v), stores in res[k]
+  } 
+return res; 
+}
+```
+
+## OOP
+
+#### Object Oriented Programming vs Functional Programming
+Functional Programming
+- attempts to avoid changing state and mutable data (immutable data structure)
+- the output of a function should always be the same given the same exact inputs to the function, relies on arguments of the function
+
+Object Oriented Programming
+- Group related variables and functions in a unit called objects
+- Using objects to represent things you are programming about, variable as properties, function as methods
+- The objects hold data about them in attributes which objects are manipulated through methods that are given to the object.
+
+Examples
+- FP: we use FP when we expect to receive the same output when using the same input, like "functional operations"
+- OOP: A class is an abstract blueprint used to create more specific, concrete objects. 
+- Classes often represent broad categories, like Car or Dog that share attributes.
+
+4 Pillars in OOP: Encapsulation, Abstraction, Inheritance, Polymorphism
+- Encapsulation is the ability to hide variables within the class from outside access
+- Abstraction shows only essential attributes and hides unnecessary information -> hiding the unnecessary details from the users
+- Inheritance
+-  reduces redundant code `class Teacher extends Person { constructor(subject, grade) { super(); this.subject = subject; this.grade = grade; } }`
+- Polymorphism means a single action can be performed in many forms, get rid of if else and switch, use `element.render()`
+
+Benefits of OOP
+- Encapsulation: reduce complexity + increase reusibility
+- Abstraction: reduce complexity + isolate impacts of change
+- Inheritance: elimate redundant code
+- Polymorphism: refactor ugly switch case statement
+
+[[↑] Back to top](#table-of-contents)
 
 ## API
 
@@ -254,38 +346,6 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 2. Send the request to the protected resource 
 - Server-side Sessions: server grants your access, stores unique identifier on server, sends same identifier to the client, client sends identifier along with requests to protected resources. Backend generates the jwt token, then sends the generated token to the client, then all the following requests will contain the token.
 - Authentication Tokens: send credentials to server, and the server validates credentials, comparing the combination to what is stored in the database, if that is valid, then the server creates a permission token, create but not store "permission" token on server (server is stateless), send token to client, client sends token along with requests to protected resources
-
-[[↑] Back to top](#table-of-contents)
-
-## OOP
-
-#### Object Oriented Programming vs Functional Programming
-Functional Programming
-- attempts to avoid changing state and mutable data (immutable data structure)
-- the output of a function should always be the same given the same exact inputs to the function, relies on arguments of the function
-
-Object Oriented Programming
-- Group related variables and functions in a unit called objects
-- Using objects to represent things you are programming about, variable as properties, function as methods
-- The objects hold data about them in attributes which objects are manipulated through methods that are given to the object.
-
-Examples
-- FP: we use FP when we expect to receive the same output when using the same input, like "functional operations"
-- OOP: A class is an abstract blueprint used to create more specific, concrete objects. 
-- Classes often represent broad categories, like Car or Dog that share attributes.
-
-4 Pillars in OOP: Encapsulation, Abstraction, Inheritance, Polymorphism
-- Encapsulation is the ability to hide variables within the class from outside access
-- Abstraction shows only essential attributes and hides unnecessary information -> hiding the unnecessary details from the users
-- Inheritance
--  reduces redundant code `class Teacher extends Person { constructor(subject, grade) { super(); this.subject = subject; this.grade = grade; } }`
-- Polymorphism means a single action can be performed in many forms, get rid of if else and switch, use `element.render()`
-
-Benefits of OOP
-- Encapsulation: reduce complexity + increase reusibility
-- Abstraction: reduce complexity + isolate impacts of change
-- Inheritance: elimate redundant code
-- Polymorphism: refactor ugly switch case statement
 
 [[↑] Back to top](#table-of-contents)
 
