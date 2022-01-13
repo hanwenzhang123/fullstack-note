@@ -334,6 +334,15 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 
 ## Socket IO
 
+Socket.io is a library built on top of Web Socket for client server communication, receive data as soon as possible
+
+WebSocket -  persistent bi-directional connection between a client and server that provides a two-way full-duplex interactive communications channel that operates over HTTP through a single TCP/IP socket connection. Unlike HTTP, where you have to constantly request updates, with websockets, updates are sent immediately when they are available.
+- A socket is one endpoint of a two way communication link between two programs running on the network (think of chat apps)
+- A socket consists of the IP address of a system and the port number of a program within the system. The IP address corresponds to the system and the port number corresponds to the program where the data needs to be sent:
+- Socket.io: enables real time, bi-directional, event-based communication between web clients (runs in the browser) and servers (node.js).
+
+Firebase: APIs + server + NoSQL database, connect to WebSocket, we can store and sync the data between our users in real-time
+
 ## Authentication
 
 #### What is Authentication
@@ -341,11 +350,57 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 
 #### Authentication is a two-step process: 
 1. Get access/permission 
-- Client (browser) - Request (with user credentials) - 
-- Server - Response (yes/no). 
+- Client (browser) - Request (with user credentials) - Server - Response (yes/no). 
+
 2. Send the request to the protected resource 
 - Server-side Sessions: server grants your access, stores unique identifier on server, sends same identifier to the client, client sends identifier along with requests to protected resources. Backend generates the jwt token, then sends the generated token to the client, then all the following requests will contain the token.
 - Authentication Tokens: send credentials to server, and the server validates credentials, comparing the combination to what is stored in the database, if that is valid, then the server creates a permission token, create but not store "permission" token on server (server is stateless), send token to client, client sends token along with requests to protected resources
+
+#### JSON Web Token
+- When working with "Authentication Tokens", tokens are typically created in the "JSON Web Token" format
+- Those "tokens" are just long strings which are constructed by an algorithm that encodes data into a string (with the help of a private key, only known by the server). 
+- You can store tokens in localStorage and sessionStorage. 
+
+#### Cross-domain Issue
+- A security restriction that prevents requests being made from one origin to another, like different protocol, domain, sub-domain, port. 
+- It is possible to make cross-origin requests either using JSONP (if you trust the server!) or using a CORS request (Cross-Origin Resource Sharing) which both client and server must agree to.
+
+#### Cross-Site Request Forgery
+- an attack that forces an end user to execute unwanted actions on a web application in which they're currently authenticated. Anti-CSRF tokens are considered the most effective method of protecting against CSRF.
+
+#### Auth0 
+- React Authentication Library
+- npm install @auth0/auth0-react
+```js
+//Configure the Auth0Provider component
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { Auth0Provider } from "@auth0/auth0-react";
+
+ReactDOM.render(
+  <Auth0Provider
+    domain="YOUR_DOMAIN"
+    clientId="YOUR_CLIENT_ID"
+    redirectUri={window.location.origin}
+  >
+    <App />
+  </Auth0Provider>,
+  document.getElementById("root")
+);
+
+//Login
+import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+
+const LoginButton = () => {
+  const { loginWithRedirect } = useAuth0();
+
+  return <button onClick={() => loginWithRedirect()}>Log In</button>;
+};
+
+export default LoginButton;
+```
 
 [[↑] Back to top](#table-of-contents)
 
