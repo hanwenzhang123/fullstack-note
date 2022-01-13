@@ -427,22 +427,18 @@ io.on('connection', (socket) => {
 
 http.listen(8080, () => console.log('listening on http://localhost:8080') );
 
-//app
+//app - <script src="https://cdn.socket.io/socket.io-3.0.0.js"></script>
 const socket = io('ws://localhost:8080');
 
-socket.on('message', text => {
-
+socket.on('message', text => {	//listen to the incoming message 
     const el = document.createElement('li');
     el.innerHTML = text;
     document.querySelector('ul').appendChild(el)
-
 });
 
-document.querySelector('button').onclick = () => {
-
+document.querySelector('button').onclick = () => {	//send out text
     const text = document.querySelector('input').value;
     socket.emit('message', text)
-    
 }
 ```
 
