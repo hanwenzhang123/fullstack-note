@@ -682,7 +682,8 @@ How complete your unit test cover all the code
 
 #### Agile
 - We have 8 people in the team including 1 product owner and 1 scrum master. My role is the Frontend Developer focuses on building user interfaces. 
-- The workflow is attending daily stand-ups, weekly sprint planning, working on the ticket that has been assigned to me, as well as attending other scrum meetings like retrospective, review, backlog refinement during an average 2-3 week development sprint cycle, and we generally keep a quarterly release cycle.
+- The workflow is attending daily stand-ups, weekly sprint planning, working on the ticket that has been assigned to me, as well as attending other scrum meetings like retrospective, review, backlog refinemen
+- We do an average 2-3 week development sprint cycle, plus 1 week for scoping that looks for feartures we want, and we generally keep a 3 months (quarterly) release cycle.
 
 #### CI/CD
 - Pipeline design patterns for CI/CD deployable state at any point (.circleci - config.yml)
