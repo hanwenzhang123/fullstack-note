@@ -689,10 +689,18 @@ How complete your unit test cover all the code
 - We do an average 2-3 week development sprint cycle, plus 1 week for scoping that looks for feartures we want, and we generally keep a 3 months (quarterly) release cycle.
 
 #### CI/CD
-- Pipeline design patterns for CI/CD deployable state at any point (.circleci - config.yml)
-- Use an auto CI/CD tool or platform to auto deploy, the library like Jenkins / TravisCI / GitHub actions. 
-- CI - developers integrate code into a shared repository and all tests are passed and compatible with the rest, each change is small and easy to debug. code PR - tests - build - merge - acceptance test - manual/auto - deploy. 
+- CI/CD Pipeline design pattern to auto deploy, deployable state at any point, the library platform like Jenkins / Circle CI / TravisCI / Gitlab / GitHub actions 
+- CI - developers integrate code into a shared repository and all tests are passed and compatible with the rest, each change is small and easy to debug. 
 - CD - keep your code base deployable at any point. Teams produce software in short cycles and in a sustainable way, all types of code changes are automatically prepared for a release to production. 
+
+#### CI/CD Workflow
+- code - build - test - release - deploy - operate - monitor - plan (cycle repeats forever)
+- source code management => the build (compile) - add unit test => the release (deploy to server) - add integration test / UI test
+
+#### CI/CD Benefits
+- CI/CD keeps software continuously written, integrated, analyzed and deployed to its customers
+- CI/CD helps test new code to ensure the logic makes sense, code formetted correctly, and fulfills the scope of the project
+- CI/CD allows faster spped in the market place (shorter cycle time)
 
 [[↑] Back to top](#table-of-contents)
  
