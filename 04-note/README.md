@@ -251,8 +251,11 @@ Benefits of OOP
 - Your Server -> Request through API -> Someone Else's Server -> Response through API -> Your Server
 
 #### REST API
-- use/setup http endpoint to allow us access and doing create/read/update/delete data in the database
-- `app.get('/tasks/:id', (req, res) => {}`
+- use/setup http endpoint to allow user access and doing create/read/update/delete data in the database
+- `app.get('/tasks/:id', (req, res) => {})`
+
+#### GraphQL
+- a query language for querying exactly what you want from many resources in a single request.
 
 #### AJAX
 - Asynchronous JavaScript And XML, making request behind the scene
