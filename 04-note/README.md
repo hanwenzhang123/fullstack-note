@@ -403,7 +403,7 @@ document.querySelector("button").onclick = () => {
 - For example, group chat room where multiple users passing messages back and forth
 
 #### Real-time Features
-- Firebase: APIs + server + NoSQL database, connect to WebSocket, we can store and sync the data between our users in real-time
+- Firebase: APIs + server + NoSQL database, connect to WebSocket, we can store and sync the data between our users in real-time, each message is a document in the firebase database along with timestamp and user id
 - Apollo GraphQL: implementation of GraphQL that can transfer data between the cloud (server) to the UI of your app
 - Pusher: real-time bi-directional hosted APIs
 
