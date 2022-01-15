@@ -138,6 +138,13 @@ let doubled = arr.map(num => {
 - Returns the deleted elements as array
 - Used to insert or delete elements to/from array.
 
+#### .reduce()
+```js
+const sum = numbers.reduce((accumulator, currentValue) => {
+	return accumulator + currentValue;
+}, 0);
+```
+
 #### Empty an array in JavaScript
 - Assigning to a variable never changes the object that the variable previously had as value.
 - Objects -- such as arrays -- only change when you mutate them, either through calling a method that does this, or by setting a property.
@@ -595,7 +602,7 @@ Array.prototype.myIncludes = function(element){
 ```js
 const arr = [1, 2, 3];
 const arr2 = arr.map(item => item * 2); //[2, 4, 6] 
-const arr22 = arr.reduce((acc, cur,) => { //[2, 4, 6] 	//reduce is designed for everything
+const arr22 = arr.reduce((acc, cur) => { //[2, 4, 6] 	//reduce is designed for everything
   acc.push(cur*2);
   return acc;
 }, []); 	//initial an array, and push items to this array, [] is trusy
