@@ -11,6 +11,9 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/02-note/README.md
 ## JS Cheatsheet (Note Part3)
 https://github.com/hanwenzhang123/frontend-note/blob/main/03-note/README.md
 
+## Frontend Miscellaneous (Note Part4)
+https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
+
 ## Project Links
 - [React Note](https://github.com/hanwenzhang123/react-note)
 - [Interview Note](https://github.com/hanwenzhang123/interview-note)
