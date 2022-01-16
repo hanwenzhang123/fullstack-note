@@ -313,7 +313,7 @@ fetch('http://example.com/movies.json')
   .then(data => console.log(data));
   .catch(error => console.error('There has been a problem with your fetch operation:', error));
 ```
-Fetch Data from an API with React
+#### Fetch Data with React
 - Create a React state variable to store data - useState()
 - Make the API request and store the data - fetch data
 - Render the returned data - useEffect()
@@ -347,6 +347,41 @@ return (
     )}
   </div>
 )
+}
+```
+#### Send Data - fetch()
+- You can use fetch() to send POST requests
+```js
+const addProductHandler = async (productName, productPrice) => {
+	try {
+		const newProduct = {
+			title: productName,
+			price: +productPrice	//+ to convert string to number
+		}
+		let hasError = false;
+		const response = await fetch("localhost:5000/product", {
+			method: "POST",
+			body: JSON.stringify(newProduct),
+			headers: {		//let server know that it is json data
+				"Content-Type": "application/json"
+			}
+		});
+		if(!response.ok){
+			hasError = true;
+		};
+		const responseData = await response.json();
+		if(hasError){
+			throw new Error(responseData.message);
+		};
+		setLoadedProducts(prevProducts => {
+			return prevProducts.concat({
+				...newProduct,
+				id: responseData.product.id
+			});
+		});
+	} catch (error) {
+		alert(error.message || "Something went wrong")
+	}
 }
 ```
 
