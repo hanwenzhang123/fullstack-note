@@ -358,6 +358,7 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 - consider => what goes into building, deploying, and updating an enterprise application => and break that work into more manageable, efficient batches.
 
 #### What is Docker?
+- Package software so it can run on any hardware (dockerfile, image, container)
 - Docker scales (structures) your apps very easily, comes with a whole set of tools for deploying across many clusters you can take your instances each micro-services that you have in each container (it contains your app in a certain space), and then allocate many machines to them.
 - You can specify how many of the resources of each machine you want, specify rules about how they should scale, what should happen if they crash, make everything scalable
 
