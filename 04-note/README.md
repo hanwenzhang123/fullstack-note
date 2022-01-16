@@ -17,6 +17,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 ## Table of Contents
 - [Frontend](#frontend)
 - [Backend](#backend)
+- [Fullstack](#fullstack)
 - [Clone](#Clone)
 - [OOP](#OOP)
 - [API](#API)
@@ -112,20 +113,6 @@ router.post('/api/analytics/campaign_count', (req, res, next) => {
 module.exports = router;
 ```
 
-#### Combining Frontend Code with Backend Code or SQL
-1. Setting up the database. 
-2. Setting up the server. 
-3. Setting up the routing. 
-4. Adding data to the database. 
-5. Getting data from the database. 
-6. Updating data on the database.
-
-Node.js
-1. Step 1: Create your Node (Express) backend
-2. Step 2: Create an API Endpoint
-3. Step 3: Create your React frontend
-4. Step 4: Make HTTP Requests from React to Node
-
 #### Database
 - SQL is relational database
 - MongoDB db is nosql database
@@ -155,6 +142,49 @@ Node.js
 
 [[↑] Back to top](#table-of-contents)
 
+
+## Fullstack
+
+#### Combining Frontend Code with Backend Code or Database
+1. Setting up the database. 
+2. Setting up the server. 
+3. Setting up the routing. 
+4. Adding data to the database. 
+5. Getting data from the database. 
+6. Updating data on the database.
+
+#### Connecting Node + React
+1. Step 1: Create your Node (Express) backend
+2. Step 2: Create an API Endpoint
+3. Step 3: Create your React frontend
+4. Step 4: Make HTTP Requests from React to Node
+
+#### Two ways of connecting Node + React
+1. Server Hosts Node API + React SPA
+- Node (Express) API handles incoming requests
+- Requests not targeting API routes, return React SPA
+- Data is exchanged between React App and Node API in JSON format
+
+2. Two Separated Servers
+- Node (Express) API handles incoming requests
+- React SPA served from separated static host
+- Data is exchanged between React App and Node API in JSON format
+
+#### How do we connect MongoDB to React?
+- We send a HTTP request to the Node/Express backend which then in turn talks to MongoDB
+
+#### Why do we not establish a direct connection between React.js and MongoDB?
+- Due to security concerns - we would expose database credentials in code that is readable by everyone
+- React.js code is frontend JavaScript code and hence accessible by every user of your website.
+
+#### How does the Node/ Express part communicate with React?
+- Node/Express is used to build a REST API to which React.js sends requests
+- we provide an API to which React.js can send Http requests.
+
+#### How many servers are typically involved in a MERN stack app?
+- 3 servers: one for react.js app, one for Node/Express API, and one for the MongoDB database
+- You can definitely host everything on just one or two machines. 
+- Splitting it across three independent machines, offers the best performance and durability.
 
 ## Clone
 
@@ -216,7 +246,6 @@ return res;
 }
 ```
 
-
 ## OOP
 
 #### Object Oriented Programming vs Functional Programming
@@ -257,27 +286,6 @@ Benefits of OOP
 - enabling applications to exchange data and functionality easily and securely
 - Your Server -> Request through API -> Someone Else's Server -> Response through API -> Your Server
 
-#### REST API
-- use/setup http endpoint to allow user access and doing create/read/update/delete data in the database
-- data entities lives on a bunch of URLs on a server, when a request received, the API responds with the full data payload of that entity
-- `app.get('/tasks/:id', (req, res) => {})`
-- Different URLs + HTTP verbs (= endpoints) for different actions
-
-#### REST API Cons
-- 1. we may need multiple entities at one time, each request does not have enough data for request. 
-- 2. overfetching from api when we only want a small subset of data entity
-
-#### What is GraphQL
-- a query language for reading/mutating data in APIs, querying exactly what you want from many resources in a single request.
-- provides a type system where you can describe a schema for your data, you can explore and requet the exact data you beed
-- One URL + HTTP verb (= one endpoint) that accepts query commands
-
-#### GraphQL Concept
-- Access multiple data sources from a single entry endpoint, data is queried or fetched by describing it with a syntax that mirrors its return shape in JSON
-- query: entry point to read data
-- mutation: entry point to write data
-- resolvers: write code that resolves queries
-
 #### AJAX
 - Asynchronous JavaScript And XML, making request behind the scene
 - web applications can send and retrieve data from a server asynchronously without interfering with the display and behaviour of the existing page
@@ -305,7 +313,6 @@ fetch('http://example.com/movies.json')
   .then(data => console.log(data));
   .catch(error => console.error('There has been a problem with your fetch operation:', error));
 ```
-
 Fetch Data from an API with React
 - Create a React state variable to store data - useState()
 - Make the API request and store the data - fetch data
@@ -342,6 +349,61 @@ return (
 )
 }
 ```
+
+#### REST API
+- use/setup http endpoint to allow user access and doing create/read/update/delete data in the database
+- data entities lives on a bunch of URLs on a server, when a request received, the API responds with the full data payload of that entity
+- `app.get('/tasks/:id', (req, res) => {})`
+- Different URLs + HTTP verbs (= endpoints) for different actions
+
+#### REST API Pros 
+- request path + http method (= endpoints) identify a resource / action on the server
+- API is stateless and seperate from any frontend (reusable)
+- the most common type pf api because it is easy to use
+
+#### REST API Cons
+- 1. we may need multiple entities at one time, each request does not have enough data for request. 
+- 2. overfetching from api when we only want a small subset of data entity
+
+#### REST & HTTP methods
+- GET - get a source from the server
+- POST - post a resource to the server (create or append resource)
+- PUT - put a resource onto the server (create or overwrite a resource)
+- PATCH - update parts of an existing resource on the server
+- DELETE - delete a resource on the sever
+
+#### What is GraphQL
+- a query language for reading/mutating data in APIs, querying exactly what you want from many resources in a single request.
+- provides a type system where you can describe a schema for your data, you can explore and requet the exact data you beed
+- One URL + HTTP verb (= one endpoint) that accepts query commands
+
+#### GraphQL Concept
+- Access multiple data sources from a single entry endpoint, data is queried or fetched by describing it with a syntax that mirrors its return shape in JSON
+- e.g. post request contains query expression (to deine the data that should be returned)
+
+#### GraphQL Pros & Cons
+- query expression identifies a resoure and action
+- api is stateless and decoupled from any frontend (reusable)
+- popular but less common, you need to learn the query language
+
+#### GraphQL Operation Type
+- query: entry point to read data
+- mutation: entry point to write data
+- resolvers: write code that resolves queries
+```js
+{
+	query {		//operation type
+		user {		//operation endpoint
+			name	//requested field
+			age
+		}
+	}
+}
+```
+
+#### Main difference between a REST API and a GraphQL API
+- REST APIs offer multiple endpoints(URL + HTTP methods)
+- GraphQL offers one but expects a query string in the request body
 
 [[↑] Back to top](#table-of-contents)
 
@@ -529,6 +591,7 @@ export default LoginButton;
 
 [[↑] Back to top](#table-of-contents)
 
+
 ## Performance
 
 #### How do you generally improve performance?
@@ -652,6 +715,7 @@ throtte
 
 [[↑] Back to top](#table-of-contents)
 
+
 ## Testing
 
 #### Testing
@@ -690,6 +754,7 @@ How complete your unit test cover all the code
 - npm run test *.test.js
 
 [[↑] Back to top](#table-of-contents)
+  
   
 ## SDLC
 
