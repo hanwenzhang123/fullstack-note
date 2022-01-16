@@ -113,11 +113,21 @@ router.post('/api/analytics/campaign_count', (req, res, next) => {
 module.exports = router;
 ```
 
-#### Database
-- SQL is relational database
-- MongoDB db is nosql database
-- SQL is more for structural data model
-- NoSQL data is more for a flex data model
+#### NoSQL
+- NoSQL database stores documents in collections
+- non-relationship database, more for a flex data model
+- enforces no data schema
+- less focused on relations
+- independent documents
+- great for logs, orders, chat messages
+
+#### SQL
+- SQL database stores records in tables
+- relational database, more for structural data model
+- enforces a strict data schema
+- relations are a core feature
+- records are related
+- great for shopping carts for large ecommerce site, contacts, networks
 
 #### SQL DMS
 - SingleStore - distributed, relational, SQL database management system
@@ -185,6 +195,7 @@ module.exports = router;
 - 3 servers: one for react.js app, one for Node/Express API, and one for the MongoDB database
 - You can definitely host everything on just one or two machines. 
 - Splitting it across three independent machines, offers the best performance and durability.
+
 
 ## Clone
 
