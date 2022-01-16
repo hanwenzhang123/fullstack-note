@@ -90,6 +90,11 @@ build, distribute and collaborate over components to build multiple projects and
 - npm test: start the test runner
 - npm run eject: removes this tool and copies build dependencies, configuration files and scripts into the app directory. If you do this, you can not go back.
 
+#### Server-side Responsibility
+- client: generating web pages
+- server: a gateway to the data, we can provide endpoints that the client can talk to get or save various pieces of data
+- server provides an api to clients, each api like buttons on a remote control, all api we set up represent the interface how we interact with tv
+
 #### Basic ExpressJS Setup
 ```js
 var express = require('express');
@@ -100,7 +105,9 @@ router.post('/api/analytics/campaign_count', (req, res, next) => {
   try {
 	let redis = dbConfig.redis();		//redis - caching - improve performance
 	let vertica = dbConfig.vertica();	//SQL database management system
-  } catch(e) {}
+  } catch(e) {
+  	console.log(e)
+  }
 })
 module.exports = router;
 ```
