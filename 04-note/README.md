@@ -261,6 +261,7 @@ Benefits of OOP
 - use/setup http endpoint to allow user access and doing create/read/update/delete data in the database
 - data entities lives on a bunch of URLs on a server, when a request received, the API responds with the full data payload of that entity
 - `app.get('/tasks/:id', (req, res) => {})`
+- Different URLs + HTTP verbs (= endpoints) for different actions
 
 #### REST API Cons
 - 1. we may need multiple entities at one time, each request does not have enough data for request. 
@@ -269,6 +270,7 @@ Benefits of OOP
 #### What is GraphQL
 - a query language for reading/mutating data in APIs, querying exactly what you want from many resources in a single request.
 - provides a type system where you can describe a schema for your data, you can explore and requet the exact data you beed
+- One URL + HTTP verb (= one endpoint) that accepts query commands
 
 #### GraphQL Concept
 - Access multiple data sources from a single entry endpoint, data is queried or fetched by describing it with a syntax that mirrors its return shape in JSON
