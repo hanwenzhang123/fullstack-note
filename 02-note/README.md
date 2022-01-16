@@ -33,12 +33,13 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - Component Architecture (different functions control different parts of UI)
 - Data Flow in React (one way top to bottom data flow, component to children)
 - Component State (manage its own state and pass down to children)
+- Rendering + updating user interfaces, handling userinput
 
 #### What is Component?
-- React is a component based language.
+- React is a component based language
 - React allows you compose complex UIs from small and independent pieces of code called “components”.
 - Components are like functions that return HTML elements that tells what should be rendered on the screen (via a render() function).
-- Components are reusable, you can use the component across different pages, components are independent.
+- Components are core UI building blocks, reusable, you can use the component across different pages, components are independent.
 
 #### What is JSX?
 - JSX stands for JavaScript XML, it allows us to write HTML in React, and it comes with the full power of JavaScript.
@@ -63,9 +64,12 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - JSX (HTML + JS) - good for dev - efficient context switching is now avoid
 - Focus on the view -> User Interfaces
 
-#### state & props
-- mutable? => both immutable, read only
-- state is an object internally captured by class (in the constructor, this.state)
+#### state 
+- state is data which you can change inside of a component to then force this component to be re-evaluated
+- it is an object internally captured by class (in the constructor, this.state)
+
+#### props 
+- props is data you pass from a parent component to a child component
 - props down, parent talks to child
 - Can child talks back to parent using props too? NO -> using callback 
 
