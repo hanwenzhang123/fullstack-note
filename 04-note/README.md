@@ -768,11 +768,27 @@ throtte
 - UI tests that are always running inside a browser or a browser like environment
 - Purpose: doing testing to ensure correctness of any codebase
 
+#### Why testing?
+- save time
+- create reliable software
+- give flexibility to developers: refactoring, collaborating, profiling (check speed)
+- peace of mind
+
 #### Different Kinds of Tests
 - unit testing - test individual building blocks in isolation
 - integration testing - test the combination of multiple building blocks
 - end to end (e2e) test - test complete scenarios in your app as the user would experience them
 - automation test (e2e) - simulating user behavior and make sure scenarios work from the point of view of an end user
+
+#### What is the coverage? 
+- How complete your unit test cover all the code?
+- 90% coverage (out of 100 lines, at least 90 lines are ran)
+- `npm test -- --coverage` for coverage report
+
+#### Unit Test File Example
+- button.js
+- button.test.js
+- npm run test *.test.js
 
 #### What do you use for Unit Test?
 Jest
@@ -788,16 +804,21 @@ Enzyme:
 - useful tool whenever you want to make sure your UI does not change unexpectedly
 - A typical snapshot test case renders a UI component, takes a snapshot, then compares it to a reference snapshot file stored alongside the test.
 - The test will fail if the two snapshots do not match
-- `npm test -- --coverage` for coverage report
 
-#### What is the coverage? 
-How complete your unit test cover all the code
-- 90% coverage (out of 100 lines, at least 90 lines are ran)
+#### Jest Implementation
+- `test("",()=>{})` - pass in test name and test function
+```js
+test("calculate tip", ()=>{ 
+  const total = calculateTip(10, 0.3)
+  if(total !== 13){
+    throw new Error("Total tip should ne 13, got " + total);
+  }
+})
 
-#### Unit Test File Example
-- button.js
-- button.test.js
-- npm run test *.test.js
+test("This should fail", ()=>{ 
+  throw new Error("Failure!")
+})
+```
 
 [[↑] Back to top](#table-of-contents)
   
