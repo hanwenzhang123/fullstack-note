@@ -810,9 +810,7 @@ Enzyme:
 ```js
 test("calculate tip", ()=>{ 
   const total = calculateTip(10, 0.3)
-  if(total !== 13){
-    throw new Error("Total tip should ne 13, got " + total);
-  }
+  expect(total).toBe(13)
 })
 
 test("This should fail", ()=>{ 
