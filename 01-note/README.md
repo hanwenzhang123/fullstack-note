@@ -441,6 +441,8 @@ console.log()    //undefined
 || or
 && and
 ! not
+? optional chaining
++ numeric representation 
 console.log(1 || 0)    //1
 console.log(1 && 0)    //0
 console.log(1 || 2 || 3) //1 - OR - looking for the first TRUCY value, otherwise return last element
