@@ -55,14 +55,14 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - Browser - Internet - Server - Internet - Broswer
 
 #### HttpRequest & HttpResponse
-- HttpRequest Attributes: HttpVersion, URL, content
-- HttpResponse Attributes: HttpVersion, StatusCode, ReasonPhrase, content
+- HttpRequest Attributes: method, path, version of protocol, headers(content)
+- HttpResponse Attributes: http version of protocol, status code, status message, headers(content)
+- content-type in the headers - what kind of data you are sending/receiving based on this request
 
 #### Google.com
 - once you enter Google.com, send request via http protocol (like agreement based on tcp/ip) which connect to tcp/ip first before reaching to server
 - You type google.com into the address bar of your browser.
-- The browser checks the cache for a DNS record to find the corresponding IP address of google.com.
-- If the requested URL is not in the cache, Internet Service Provider Domain Name System server initiates a DNS query to find the IP address of the server that hosts the website
+- The browser checks the cache for a DNS record to find the corresponding IP address of google.com. If requested URL not exist, DNS request fails, returns nothing
 - The browser initiates a TCP connection with the server.
 - The browser sends an HTTP request to the webserver.
 - The server handles the request and sends back a response.
@@ -75,20 +75,31 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - `cookie` - primarily for server-side, stored data needs to be sent back to server, expiration can be set from either server-side or client-side when manually set, 4KB Max
 
 #### local storage
-- let now = new Date() || new Date().getTime();
-- let userData = JSON.parse(localStorage.getItem('storedData'))
-- localStorage.setItem('key', 'value')
-- localStorage.getItem('key')
-- localStorage.removeItem('key')
-- localStorage.clear()
+```js
+let now = new Date() || new Date().getTime();
+let userData = JSON.parse(localStorage.getItem('storedData'))
+localStorage.setItem('key', 'value')
+localStorage.getItem('key')
+localStorage.removeItem('key')
+localStorage.clear()
+```
 
 Handle expiration of storage on the browser
-- localStorage.setItem(key, JSON.stringify(item))
+```js
+localStorage.setItem(key, JSON.stringify(item))
+```
 
 setWithExpiry and getWithExpiry
-- setWithExpiry("myKey", inputSet.value, 5000)
-- const value = getWithExpiry("myKey")
-- valueDisplay.innerHTML = value
+```js
+setWithExpiry("myKey", inputSet.value, 5000)
+const value = getWithExpiry("myKey")
+valueDisplay.innerHTML = value
+```
+
+#### cookie
+```js
+`document.cookie`
+```
 
 ## HTML
 
