@@ -207,8 +207,8 @@ module.exports = router;
 Deep Clone - no more contact with previous reference, they are not related, any modification would not influence original copy
 
 2 ways to implement deep clone
-1. third party lib => _lodash.cloneDeep()
-2. JSON parse and stringify
+1. third party lib lodash => `_.cloneDeep()`
+2. JSON parse and stringify => `const result = JSON.parse(JSON.stringify(data))`
 ```js
 //1. Lodash
 // var _ = require("lodash");
