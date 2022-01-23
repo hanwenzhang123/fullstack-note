@@ -32,6 +32,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 .substring() - extracts characters between "start" and "end", not including "end" - `substring(indexStart, indexEnd)`
 .includes() - case sensitive, returns true if a string contains a specified string, otherwise false.
 .startsWith() - returns true if a string begins with a specified string, otherwise false.
+.charAt() - eturns the character at a specified index in a string.
 .trim() - removes whitespace from both sides of a string.
 string.length - The length property returns the length of a string.
 ```
@@ -59,6 +60,12 @@ function capitalize(str) {
   return words.join(' ');
 }
 ```
+
+#### Remove Character
+- substring(start, stop)
+- slice(start, stop)
+- substr(start,length)
+- replace(old, new)
 
 #### Sorting
 - `x.sort(function(a, b){return a - b});` -> numeric sort
