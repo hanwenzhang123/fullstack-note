@@ -20,12 +20,12 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - [Database](#database)
 - [Fullstack](#fullstack)
 - [Programming](#programming)
-- [System Design](#system-design)
 - [Sockets](#sockets)
 - [Authentication](#authentication)
 - [Performance](#performance)
 - [Testing](#testing)
 - [SDLC](#SDLC)
+- [System Design](#system-design)
 
 ## Frontend
 
@@ -290,39 +290,6 @@ Object Oriented Programming
 [[↑] Back to top](#table-of-contents)
 
 
-## System Design
-https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-design-question.js
-
-#### Design Patterns
-- Singleton Pattern: ensures only a single instance of an object exists within a system at any given time
-- Micro-services: focuses on building small independent services that perform a single task well.
-- Pipeline design patterns: set of automated processes and tools that allows both developers and operations professionals to work together to build and deploy code to a production environment for CI/CD in a deployable state at any point.
-- Model-View-Controller (MVC): how the code should be organized and how the different parts of an application are separated for proper readability and debugging. Model is the data and the database. View is the user interface and what the user sees. Controller is the main link between Model and View.
-
-#### Component File Structure
-- For the file structure, you can group files and split components by features or routes in the source code, or by the types
-- view components (display information and emit user input via callbacks that forwards data from child to parent)
-- control components (store state related to partial input that keeps track of actions the user has taken, lifecycle, ref to DOM)
-- controllers (business logic doesn’t need to be placed in React components, redux store)
-- container components (HOC, APP, Redux connect)
-- In the source folder, you can have components, assets (pictures), store (context), routes, server (api, socket.io), and more as needed, but try to avoid too much nesting. 
-- In the components folder, you can have sub-components for each feature present in the App like UI, card (props.children), styled components (.style.js) and utils file.
-
-#### Micro-services Architecture
-- building many individual different services that each do a single task and do one thing well
-- splits large applications into much smaller pieces that exist independently of each other.
-- like one server for chat server, one for caching, one do node.js only, one do Golang for concurrent task, one for message board
-- a flexible and efficient approach to designing software systems that are made up of small independent services that each have a specific and well-defined purpose.
-- consider => what goes into building, deploying, and updating an enterprise application => and break that work into more manageable, efficient batches.
-
-#### What is Docker?
-- Package software so it can run on any hardware (dockerfile, image, container)
-- Docker scales (structures) your apps very easily, comes with a whole set of tools for deploying across many clusters you can take your instances each micro-services that you have in each container (it contains your app in a certain space), and then allocate many machines to them.
-- You can specify how many of the resources of each machine you want, specify rules about how they should scale, what should happen if they crash, make everything scalable
-
-[[↑] Back to top](#table-of-contents)
-
-
 ## Sockets
 
 #### What is socket?
@@ -481,34 +448,40 @@ export default LoginButton;
 #### How do you generally improve performance?
 - use uglify and minify to reduce the bundle size
 - use lazy loading to improve the page loading speed.
-- `React.lazy` and `React.suspense` support lazy loading with webpack.
 - use content delivery network to improve the loading speed.
-- use shouldComponentUpdate to improve the component’s rendering performance
+- `React.lazy` and `React.suspense` support lazy loading with webpack.
+- `React.memo`shouldComponentUpdate logic to improve the component’s rendering performance
 
-React
--HOC
--memo/PureComponent (shouldComponentUpdate) - lifecycle
--reduce unnecessary re-rendering
+#### React
+- HOC
+- memo/PureComponent (shouldComponentUpdate) - lifecycle
+- reduce unnecessary re-rendering
   
-Redux
--Thunk
--Re-selector
+#### Redux
+- Thunk
+- Re-selector
   
-JS
+#### JavaScript
 -Event Delegation (allows you to avoid adding event listeners to specific nodes)
 
-CSS
+#### CSS
 -Animation
 -image-sprite (reduce requests)
 -image compression
   
-HTML
+#### HTML
 -Empty HTML
 -Style on the top, script down/defer/async
 
-Dynamic Programming (Caching)
+#### Dynamic Programming (Caching)
 - Cache stores the function for reusibility
 - Redis: in-memory data structure store (server), used as a NoSQL key–value persistent database, cache, and message broker.
+
+#### `React.lazy` and `React.suspense` 
+Both support lazy loading with webpack.
+- `.lazy()` - a built-in method that will help us with code splitting.
+- React.lazy(() => import('./pages/NewQuote')) - the function we pass to lazy will be executed by React when this new quote component is needed.
+- `<Suspense> ... </Suspense>` - We need to wrap this around the code, where we use React lazy.
 
 #### Minification - Minifier/uglifier 
 - make your code prettier, make it more efficient during compiling phase
@@ -549,12 +522,6 @@ Lazy Loading
 - Load certain part of the component tree only when its in use.
 - Split your code at logical breakpoints, and then loading it once the user has done something that requires a new block of code. 
 - Wrap the component inside with lazy load to delay the loading and improve performance
-
-#### `React.lazy` and `React.suspense` 
-Both support lazy loading with webpack.
-- `.lazy()` - a built-in method that will help us with code splitting.
-- React.lazy(() => import('./pages/NewQuote')) - the function we pass to lazy will be executed by React when this new quote component is needed.
-- `<Suspense> ... </Suspense>` - We need to wrap this around the code, where we use React lazy.
 
 #### loadsh
 Debounce and throttle are techniques to control how many times we allow a function to be executed over time 
@@ -673,12 +640,12 @@ test("This should fail", ()=>{
 - In terms of how we deliver new features, we have a devops developer dedicated to it with all the CI/CD work, managing the pipeline.
 
 #### Agile
-- We have 8 people in the team including 1 product owner and 1 scrum master. My role is the Frontend Developer focuses on building user interfaces. 
 - The workflow is attending daily stand-ups, weekly sprint planning, working on the ticket that has been assigned to me, as well as attending other scrum meetings like retrospective, review, backlog refinemen
-- We do an average 2-3 week development sprint cycle, plus 1 week for scoping that looks for feartures we want, and we generally keep a 3 months (quarterly) release cycle.
+- Average 2-3 week development sprint cycle, plus 1 week for scoping that looks for feartures we want, and generally keep a 3 months (quarterly) release cycle.
 
 #### DevOps
-- intersection of development and operation
+- intersection of development and operation (python, node, ruby)
+- source control, operating system (bash, linux), networking, cloud providers, infrastructure as code, container, configuration management, CICD, data analytics log management
 
 #### CI/CD
 - CI/CD Pipeline design pattern to auto deploy, deployable state at any point, the library platform like Jenkins / Circle CI / TravisCI / Gitlab / GitHub actions 
@@ -686,8 +653,9 @@ test("This should fail", ()=>{
 - CD - keep your code base deployable at any point. Teams produce software in short cycles and in a sustainable way, all types of code changes are automatically prepared for a release to production. 
 
 #### CI/CD Workflow
-- code - build - test - release - deploy - operate - monitor - plan (cycle repeats forever)
-- source code management => the build (compile) - add unit test => the release (deploy to server) - add integration test / UI test
+- plan - code - build - test - release - deploy - operate - monitor - plan (cycle repeats forever)
+- source code management => the build (compile) - add unit test => the release (deploy to server) - add integration test / UI test 
+- Jenkins - tool for building and testing
 
 #### CI/CD Benefits
 - CI/CD keeps software continuously written, integrated, analyzed and deployed to its customers
@@ -696,3 +664,112 @@ test("This should fail", ()=>{
 
 [[↑] Back to top](#table-of-contents)
  
+
+## System Design
+https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-design-question.js
+
+#### Design Patterns
+- Singleton Pattern: ensures only a single instance of an object exists within a system at any given time
+- Micro-services: focuses on building small independent services that perform a single task well.
+- Pipeline design patterns: set of automated processes and tools that allows both developers and operations professionals to work together to build and deploy code to a production environment for CI/CD in a deployable state at any point.
+- Model-View-Controller (MVC): how the code should be organized and how the different parts of an application are separated for proper readability and debugging. Model is the data and the database. View is the user interface and what the user sees. Controller is the main link between Model and View.
+
+#### Micro-services Architecture
+- building many individual different services that each do a single task and do one thing well
+- splits large applications into much smaller pieces that exist independently of each other.
+- like one server for chat server, one for caching, one do node.js only, one do Golang for concurrent task, one for message board
+- a flexible and efficient approach to designing software systems that are made up of small independent services that each have a specific and well-defined purpose.
+- consider => what goes into building, deploying, and updating an enterprise application => and break that work into more manageable, efficient batches.
+
+#### Amazon Web Services
+- AWS is a hosting providers that give you a lot of services where you can run your application on the cloud
+- global cloud platform which allows you host and manage services on the internet to host infrastructures 
+- infrastructure as service: they provide their servers as service so you do not need to manage the backup and the power supply of the service
+- platform as service: you can get java, ruby, php as a service so you do not need manage the binaries of these applications
+- software as service: email sending capabilities, message queueing service (exchange data using point-to-point or publish and subscribe patterns)
+- cloud storage platform: storage options like S3 (simple storage service), EBS (elastic block store), EC2 (elastic computer cloud), VPC (virtual private cloud)
+
+#### What is Docker
+- Package software so it can run on any hardware (dockerfile, image, container)
+- Docker scales (structures) your apps very easily, comes with a whole set of tools for deploying across many clusters you can take your instances each micro-services that you have in each container (it contains your app in a certain space), and then allocate many machines to them.
+- You can specify how many of the resources of each machine you want, specify rules about how they should scale, what should happen if they crash, make everything scalable
+
+#### Docker Containers
+- allowing apps to run on multiple different clouds or computing environments with very little effort (light weight)
+- to run a container, you first need to create a docker image and store it somewhere
+- Elastic Container Registry allows you upload an image allowing other tools like Elastic Container Service to pull it back down and run it
+- Elastic Container Service is an API for starting, stopping and allocating virtual machines to your containers, and alllow you to connect them to other products like load balancers
+
+#### Kubernetes Service
+- more control over how their app scales in which case Elastic Kubernetes Service (EKS) is a tool for running kubernetes
+- Fargate: have your containers behave in a more automated way, like serverless functions, allocating EC2 instances for your containers
+- App Runner: point to a container image while it handles all the orchestration and scaling behind the scene
+- Orchestration is the automated configuration, management, and coordination of computer systems, applications, and services.
+
+#### AWS Services
+- Elastic Computer Cloud (EC2): create virtual computer in the cloud, choose OS, memory and computer power, then run in the cloud, use instance as server for web application, but as your app grows, you would need to distribute traffic across multiple instances
+- Load Balancing: allows developers to distribute traffic to multiple instances automatically
+- Cloud Watch: collect logs and metrics from each individual instance
+- Auto Scaling: data collected from cloud watch, then auto sclae in which you define policies that creates instances as they needed based on the traffic and utilization
+- Elastic Beanstalk: additional layer of abstratcion on top of EC2 and other auto scaling by choose a template, deploy your code and auto scaling happens automatically
+- Lightsail: do not care infrastructures, like a wordpress site, just a static server always running in the cloud
+- Lambda: serverless computing, upload code, choose event that decides when that code should run, traffic scaling and networking happen in the background
+- Serverless Repo: find pre-built function that you can deploy with a click of a button, not writing code
+- Outposts: AWS APIs on your own infrastructure without throwing your old servers in garbage
+
+#### Security & Essentials
+- IAM: identity & access management for security, create rules to determine who has access to what on your AWS account
+- Cognito: enables users log in with variety of different authentication methods for security
+- Simple Notification Service (SNS): push notifications
+- Simple Email Service (SES): send emails to users
+- Cloud Formation: organize and provision tools, create templates based on your infrastructure in yaml or json allowing you to enable many different services with a button
+- Amplify: interact with services from a front-end application like IOS, antroid or web that provides SDK (software development kit) from JS frameworks to others
+
+#### Data Storage
+- Simple Storage Service (S3): storage data in the cloud, any type of file or object like videos images, great for general purpose file storage
+- Glacier: archive files which you do not access often for lower cost
+- Block Storage: ideal for intensive data processing requirements, extremely fast and can handle a lot of throughputs, but requires more manual configuration by the developer
+- Elastic File System: highly performant and fully managed, but higher cost
+
+#### Database: structured data for end users
+- Simple DB: a general purpose NoSQL database (too simple)
+- Dynamo DB: document database easy to scale horizontally (no good at modeling relational data)
+- Document DB: like mongodb 
+- Elastic Search: full test search engine
+- Relational DB (RDB): SQL, fully manage things like backup, patching and scale
+- Aurora: SQL, better performance at lower cost, serverless options that make it easier to scale
+- Neptune: graph database on highly connected data sets like social nets and recommendations
+- Elastic Cache: for faster performance, fully managed version of redis, in memory database that delivers data to your end users with low latency
+- Time Stream: time-based data like stock market with additional features for analytics
+- Quantum Ledger: allows you build an immutable set of cryptographically signed transanctions (similar to decentralized blockchain technologies)
+
+#### Analytic: analyze data
+- Redshift: store data, a data warehouse that shift away from oracle
+- Lake Formation: large amount of unstrtuctured data, tool for creating data lakes or repositories that stores a large amount of unstructured data
+- Kinesis: analyze real-time data, capture real-time streams from your infrastructure
+- Map Reduce: run like apache spark for operating massive datasets with a parallel distributed algorithms
+- Managed Apache Kafka (MSK): managed version of the popular open source data streaming service Apache Kafka
+- Glue: serverless product that extract, transform and load your data that can auto connect to other data sources, good for machine learning (predict future)
+- Data Change: purchase and subscribe quality data from third-party sources
+- SageMaker: building machine learning models with tensorflow or pi torch
+- Rekognition: image analysis
+- LEX: build chatbots with conversational AI
+- Deep Racer: for scale race car
+
+#### Robot
+- RoboMaker: simulate and test your robots at scale
+- IOT Core: collect data, update software and manage robot remotely
+- Ground Station: global network of antennas to connect data
+- Bracket: research computing like quantum computer
+- Snow: mini data center that can work remote or entreme hostile environment for scientist
+
+#### Component File Structure
+- For the file structure, you can group files and split components by features or routes in the source code, or by the types
+- view components (display information and emit user input via callbacks that forwards data from child to parent)
+- control components (store state related to partial input that keeps track of actions the user has taken, lifecycle, ref to DOM)
+- controllers (business logic doesn’t need to be placed in React components, redux store)
+- container components (HOC, APP, Redux connect)
+- In the source folder, you can have components, assets (pictures), store (context), routes, server (api, socket.io), and more as needed, but try to avoid too much nesting. 
+- In the components folder, you can have sub-components for each feature present in the App like UI, card (props.children), styled components (.style.js) and utils file.
+
+[[↑] Back to top](#table-of-contents)
