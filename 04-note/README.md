@@ -1,5 +1,5 @@
 ---
-title: Frontend Miscellaneous (Note Part4)
+title: Miscellaneous (Note Part4)
 ---
 
 ## HTML, CSS, JavaScript (Note Part1)
@@ -17,12 +17,13 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 ## Table of Contents
 - [Frontend](#frontend)
 - [Backend](#backend)
+- [Database](#database)
 - [Fullstack](#fullstack)
-- [Clone](#Clone)
-- [OOP](#OOP)
+- [Clone](#clone)
 - [API](#API)
+- [Programming](#programming)
 - [System Design](#system-design)
-- [Sockets](#Sockets)
+- [Sockets](#sockets)
 - [Authentication](#authentication)
 - [Performance](#performance)
 - [Testing](#testing)
@@ -40,10 +41,10 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 Client-side rendering
 - It manages the routing dynamically without refreshing the page every time a user requests a different route. 
 - Your browser downloads a minimal HTML page. It renders the JavaScript and fills the content into it. 
-- React uses client-side rendering.
+- React uses client-side rendering for SPA single page application.
 
 Server-side rendering
-- convert HTML files on the server into a fully rendered HTML page for the client.
+- convert HTML files on the server into a fully rendered HTML page for the client. like Handlebars, EJS
 - When a user makes a request to a webpage, the server prepares an HTML page by fetching user-specific data and sends it to the user’s machine over the internet. The browser then construes the content and displays the page.
 
 #### The Different Kind of Frontend Frameworks, Advantage, Limitation
@@ -64,16 +65,16 @@ Cons
 - Vue mainly uses HTML templates with some JSX, while React only uses JSX that allows you to insert HTML directly into JS code.
 - React alway passes the data to view, and to update the view, you need to use a callback to update it -> different from react and angualr
 
-#### How to Share Components with Others?
-shared component architecture
--  how to develop components independently but avoid the overhead of too many repositories
--  how to version, publish and manage each component individually
--  how to help others discover and adopt the components
+#### Shared Component Architecture
+- build, distribute and collaborate over components to build multiple projects and applications
+- how to develop components independently but avoid the overhead of too many repositories
+- how to version, publish and manage each component individually
+- how to help others discover and adopt the components
 
-build, distribute and collaborate over components to build multiple projects and applications
-- Bit + Bit.dev - develop, build and test individual components in the library in complete isolation - https://github.com/teambit/bit 
+#### How to Share Components with Others?
+- Bit + Bit.dev - develop, build and test individual components in the library in complete isolation
 - When you update a single components, Bit “knows” which other components depend on it, and help you update all the component that are impacted by the update.
-- Lerna - manage multi-repository structure inside a single repository - https://github.com/lerna/lerna
+- Lerna - manage multi-repository structure inside a single repository
 - Multiple packages - create new Git repo for every piece of code you want to reuse
 - A Single library package for many components - put a few dozen shared components in a single repo
 
@@ -94,7 +95,43 @@ build, distribute and collaborate over components to build multiple projects and
 #### Server-side Responsibility
 - client: generating web pages
 - server: a gateway to the data, we can provide endpoints that the client can talk to get or save various pieces of data
-- server provides an api to clients, each api like buttons on a remote control, all api we set up represent the interface how we interact with tv
+- server provides an API to clients, each api like buttons on a remote control, all API we set up represent the interface how we interact with TV
+
+#### sharp #
+- high performance Node.js image processing library
+
+#### Node.js
+- One of Node core stengths: faster processing! 
+- wait for events -> accept event -> dispatch event -> handlers are called
+- Node is non-blocking => rather than waiting for an operation to finish, create a callback that will be invoked when the operation ends
+- Node.js server runs a single threaded event loop that creates async threads that is the nature of the non-blocking IO
+- Node => event driven non-blocking asynchonous code; the main event loop is single-threaded but most of the IO runs on separate threads
+
+#### Blocking vs Non-blocking
+- blocking: read code line by line, read file 1 then read file 2 (we can write multi-threaded code through library to get faster processing)
+- e.g. Java, choose a driver manager connect to a driver, get a connection, open that connection, prepare statement, execute, close the connection => all blocking
+- non-blocking: asynchonously event driven model, you read in both files at the same time => processing code, handling things much faster
+- non-blocking is good for microservices architecture, or standard web application with a node backend
+
+#### High Level Threads
+- Node under the hood is written in C++, The event loop is implemented via libuv (C++).
+- Threads run in processes, one process can have many threads in it, and as they are in same process, they share a memory space
+- Events are pushed to the main thread, then worker threads process the request
+
+#### Stream
+- involve with buffer object (raw data, bits and bytes)
+- Inbound stream of data is a input stream (keyboard). 
+- Write out to a file, use an output stream.
+- A pipe is a destination to write to (flow data from one object to another one). readStream.pipe(writableStream). 
+
+#### Node Modules
+- Event Module - emit (call) / on (listen) / removeListener (unsubscribe) - like addEventListener 
+- FS - file system module, both sync and async, the data returned as a Buffer object, toString() converts the buffer to string.
+- Path - path module, handling and transforming file paths
+- HTTP - for creating HTTP based web applications, createServer (like building endpoints using express)
+- Net - for creating TCP based server and clients (chat app) - slower but less likely to lose data packets
+- dgram – for creating UDP/Datagram sockets (DatagramSockets) - faster, simpler, like for videos audios, you do not care lose data
+- https – for creating TLS/SSL clients and servers
 
 #### Basic ExpressJS Setup
 ```js
@@ -113,28 +150,30 @@ router.post('/api/analytics/campaign_count', (req, res, next) => {
 module.exports = router;
 ```
 
-#### NoSQL
-- NoSQL database stores documents in collections
-- non-relationship database, more for a flex data model
-- enforces no data schema
-- less focused on relations
-- independent documents
-- great for logs, orders, chat messages
+[[↑] Back to top](#table-of-contents)
+
+
+## Database
 
 #### SQL
 - SQL database stores records in tables
 - relational database, more for structural data model
-- enforces a strict data schema
-- relations are a core feature
-- records are related
-- great for shopping carts for large ecommerce site, contacts, networks
+- records are related, enforces a strict data schema, relations are a core feature
 
-#### SQL DMS
-- SingleStore - distributed, relational, SQL database management system
-- Vertica - analytic oftware, SQL database management system
+#### NoSQL
+- NoSQL database stores documents in collections
+- non-relationship database, more for a flex data model
+- independent documents, enforces no data schema, less focused on relations
+
+#### Choose a Database Structure
+- SQL is great for shopping carts for large ecommerce site, contacts, networks
+- NoSQL is great for logs, orders, survey, chat messages
 
 #### MongoDB vs MySQL
-- In terms of performance, MongoDB is faster than MySQL due to its ability to handle large amounts of unstructured data when it comes to speed.
+- MongoDB is faster than MySQL due to its ability to handle large amounts of unstructured data when it comes to performance and speed.
+
+#### Information Architecture
+- structural design of information or content focuses on organizing, structuring, and labeling content in an effective and sustainable way
 
 #### What is SQL Injection
 - a code injection technique that might destroy your database (used with the goal of retrieving sensitive data)
@@ -196,16 +235,17 @@ module.exports = router;
 - You can definitely host everything on just one or two machines. 
 - Splitting it across three independent machines, offers the best performance and durability.
 
+[[↑] Back to top](#table-of-contents)
+
 
 ## Clone
 
 #### Shallow Comparison & Deep Comparison
 - Shallow strategy compares superficially 2 operands equality — 1st level in depth only,
 - Deep strategy compares the equality from all depth levels.
+- Deep Clone - no more contact with previous reference, they are not related, any modification would not influence original copy
 
 #### Deep Clone vs Shallow Clone
-Deep Clone - no more contact with previous reference, they are not related, any modification would not influence original copy
-
 2 ways to implement deep clone
 1. third party lib lodash => `_.cloneDeep()`
 2. JSON parse and stringify => `const result = JSON.parse(JSON.stringify(data))`
@@ -256,36 +296,6 @@ function copy(obj) {
 return res; 
 }
 ```
-
-## OOP
-
-#### Object Oriented Programming vs Functional Programming
-Functional Programming
-- attempts to avoid changing state and mutable data (immutable data structure)
-- the output of a function should always be the same given the same exact inputs to the function, relies on arguments of the function
-
-Object Oriented Programming
-- Group related variables and functions in a unit called objects
-- Using objects to represent things you are programming about, variable as properties, function as methods
-- The objects hold data about them in attributes which objects are manipulated through methods that are given to the object.
-
-Examples
-- FP: we use FP when we expect to receive the same output when using the same input, like "functional operations"
-- OOP: A class is an abstract blueprint used to create more specific, concrete objects. 
-- Classes often represent broad categories, like Car or Dog that share attributes.
-
-4 Pillars in OOP: Encapsulation, Abstraction, Inheritance, Polymorphism
-- Encapsulation is the ability to hide variables within the class from outside access
-- Abstraction shows only essential attributes and hides unnecessary information -> hiding the unnecessary details from the users
-- Inheritance
--  reduces redundant code `class Teacher extends Person { constructor(subject, grade) { super(); this.subject = subject; this.grade = grade; } }`
-- Polymorphism means a single action can be performed in many forms, get rid of if else and switch, use `element.render()`
-
-Benefits of OOP
-- Encapsulation: reduce complexity + increase reusibility
-- Abstraction: reduce complexity + isolate impacts of change
-- Inheritance: elimate redundant code
-- Polymorphism: refactor ugly switch case statement
 
 [[↑] Back to top](#table-of-contents)
 
@@ -454,6 +464,60 @@ const addProductHandler = async (productName, productPrice) => {
 [[↑] Back to top](#table-of-contents)
 
 
+## Programming
+
+#### Functional Programming
+Functional Programming
+- attempts to avoid changing state and mutable data (immutable data structure)
+- the output of a function should always be the same given the same exact inputs to the function, relies on arguments of the function
+
+#### Object Oriented Programming
+Object Oriented Programming
+- Group related variables and functions in a unit called objects
+- Using objects to represent things you are programming about, variable as properties, function as methods
+- The objects hold data about them in attributes which objects are manipulated through methods that are given to the object.
+
+#### OOP vs FP
+- FP: we use FP when we expect to receive the same output when using the same input, like "functional operations"
+- OOP: A class is an abstract blueprint used to create more specific, concrete objects. 
+- Classes often represent broad categories, like Car or Dog that share attributes.
+
+#### 4 Pillars in OOP: Encapsulation, Abstraction, Inheritance, Polymorphism
+- Encapsulation is the ability to hide variables within the class from outside access
+- Abstraction shows only essential attributes and hides unnecessary information -> hiding the unnecessary details from the users
+- Inheritance
+-  reduces redundant code `class Teacher extends Person { constructor(subject, grade) { super(); this.subject = subject; this.grade = grade; } }`
+- Polymorphism means a single action can be performed in many forms, get rid of if else and switch, use `element.render()`
+
+#### Benefits of OOP
+- Encapsulation: reduce complexity + increase reusibility
+- Abstraction: reduce complexity + isolate impacts of change
+- Inheritance: elimate redundant code
+- Polymorphism: refactor ugly switch case statement
+
+#### Programming Languages (C, C++, Java)
+- compiler based
+- fast execution
+- slow compilation time
+- platform dependent
+- secured, complex & lengthy, less frequent
+- computationally intensive algorithms
+- independent software
+- extra preparation time, but then program runs very quickly
+
+#### Scripting Languages (Python, Perl, PowerShell)
+- interpreter based
+- slow execution
+- fast compilation time
+- platform independent
+- not secured, fast & simple, easy & frequent
+- configurable interface
+- prototyping (based on built-in pattern)
+- starts right away, let you see the results, run slowly
+
+[[↑] Back to top](#table-of-contents)
+
+
 ## System Design
 https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-design-question.js
 
@@ -574,6 +638,8 @@ document.querySelector('button').onclick = () => {	//send out text
     socket.emit('message', text)
 }
 ```
+
+[[↑] Back to top](#table-of-contents)
 
 
 ## Authentication
@@ -823,9 +889,11 @@ test("This should fail", ()=>{
   
 ## SDLC
 
-#### What is SDLC?
+#### What is SDLC
 - Software Development Lifecycle
 - Requirement Analysis, Planning, Design, Build, Document, Test, Deploy, Maintain.
+
+#### DevOps
 
 #### Planning
 - During the planning phase, the team creates personas and determines the cost and resources required for implementing the requirements. 
