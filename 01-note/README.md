@@ -101,6 +101,7 @@ valueDisplay.innerHTML = value
 `document.cookie`
 ```
 
+
 ## HTML
 
 #### What does a DOCTYPE do?
@@ -199,6 +200,7 @@ valueDisplay.innerHTML = value
 - `<script defer>` - in parallel to HTML parsing and executed when the page has finished parsing, ensuring that the HTML is fully parsed before executing. There's not much difference in putting a normal `<script>` at the end of `<body>`.
 
 [[↑] Back to top](#table-of-contents)
+
 
 ## CSS
 
@@ -325,6 +327,7 @@ specify sizes or lengths of elements using various units of measure
 - For example, we can check if CSS animation features support equally under various web environments
 
 [[↑] Back to top](#table-of-contents)
+
 
 ## Sass
 
@@ -481,6 +484,7 @@ console.log(1 && 2 && 3) //3 - AND - looking for the first FALSY value, if not a
 
 [[↑] Back to top](#table-of-contents)
 
+
 ## ES6
 
 #### New Features of ES6
@@ -495,17 +499,31 @@ console.log(1 && 2 && 3) //3 - AND - looking for the first FALSY value, if not a
 9. async/await(ES7)
 
 #### var and let/const 
-- var - value hoisting, put things on the top, scope to the function
-- let/const - not accessible before the line we declare them, scope to the block
+- var -issue with value hoisting, put things on the top, scope to the function - old way
+- let/const - not accessible before the line we declare them, scope to the block 
+- let: re-assign value; const: no re-assign allowed, we can not change pointer
 ```js
 console.log(a);    //undefined - variable exist, not able to access to the value
 var a = 1;
 console.log(b);   //ReferenceError - b is not exist, temporal dead zone
 let b = 1;
 ```
-- var - old way, issue with variable hoisting
-- let - we can still re-assign value
-- const - no re-assign value allowed, good with objects because we are not changing pointer
+
+#### Scoping
+```js
+for(var i = 0; i < 5; i++){	//var - function scope
+    setTimeout(()=>{
+        console.log(i)  //5 5 5 5 5
+    }, 500);
+} 
+```
+```js
+for(let i = 0; i < 5; i++){	//let - block scope
+    setTimeout(()=>{
+        console.log(i)  //0 1 2 3 4
+    }, 500);
+}
+```
 
 #### Hoisting
 - Variable hoisting means the JavaScript engine moves the variable declarations to the top of the script. 
@@ -615,6 +633,10 @@ func(1, 2, 3, 4, 5, 6, 7);
 
 ## Promise
 
+#### sync vs async
+- sync code, code that is going to execute right away
+- async code, will not get executed right away, but sometime in the future
+
 #### Promise(event loop, task scheduling)
 - JS is a single-threaded language, use promise to handle async operation
 - avoid callback hell which is a chained nested code - no good
@@ -661,6 +683,7 @@ Promise.all([promise1, promise2, promise3]).then((values) => {
 `main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)`
 
 [[↑] Back to top](#table-of-contents)
+
 
 ## This
 
@@ -731,6 +754,7 @@ a();   //undefined
 ```
 
 [[↑] Back to top](#table-of-contents)
+
 
 ## JS Function
 
@@ -838,13 +862,8 @@ contains two major parts:
 2. immediately invoke the function ()
 
 ```js
-(function() {
-  /* */
-})()
-
-(() => {
-  /* */
-})()
+(function() {  /* */ })()
+(() => {  /* */ })()
 ```
 ```js
 for (var i = 1; i <= 3; i++) {		//var makes i stays in the function scope
