@@ -1,58 +1,59 @@
-/* for(var i = 0; i < 5; i++){
+for(var i = 0; i < 5; i++){
     setTimeout(()=>{
-        console.log(i)
+        console.log(i)  //5 5 5 5 5
     }, 500);
-} */
-/* var i = 0;
+} 
+
+var i = 0;
 for(;i<5;i++){
     setTimeout(()=>{
-        console.log(i)
+        console.log(i)  //5 5 5 5 5
     }, 500);
-} */
+}
+
 //sync code, code that is going to execute right away
-// async code, will not get executed right away, but sometime in the future
+//async code, will not get executed right away, but sometime in the future
 //call stack, message queue
 
-/* var i = 0;
+var i = 0;
 for(;i<5;i++){
-    console.log(i);
-}  */
+    console.log(i);     //0 1 2 3 4
+}
 
-/* var i = 0;
+var i = 0;
 while(i<5){
-
     setTimeout(()=>{
         console.log(i);
     },500);
-
-    i++;//fourth loop, i is going to be 5 in the end
-} */
+    i++; //fourth loop, i is going to be 5 in the end
+} 
 //5,5,5,5,5
 //0,1,2,3,4
 
-/* for(let i = 0; i < 5; i++){
+for(let i = 0; i < 5; i++){
     setTimeout(()=>{
-        console.log(i)
+        console.log(i)  //0 1 2 3 4
     }, 500);
-} */
-/* var i = 0;
+}
+
+var i = 0;
 while(i<5){
     ((i)=>{
         setTimeout(()=>{
-            console.log(i)
+            console.log(i)  //0 1 2 3 4
         },500);
     })(i); //iife, closure. 
     i++;
-} */
+}
 
-/* const foo = (cb) => {
+const foo = (cb) => {
     setTimeout(()=>{
         cb();
     },2000)
 }
-const callback = () => {console.log(1)}; */
+const callback = () => {console.log(1)};
 
-/* foo(
+foo(
     ()=>{
         foo(
             ()=>{
@@ -60,8 +61,8 @@ const callback = () => {console.log(1)}; */
             }
         );
     }
-); */
-/* foo(
+);
+foo(
     ()=>{
         foo(
             ()=>{
@@ -81,9 +82,9 @@ const callback = () => {console.log(1)}; */
             }
         );
     }
-); */ //callback hell, promise
+);  //callback hell, promise
 
-/* var xhttp = new XMLHttpRequest();//xhr
+var xhttp = new XMLHttpRequest();//xhr
 xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         console.log(1,xhttp.response);
@@ -98,24 +99,23 @@ xhttp.onreadystatechange = function () {
     }
 };
 xhttp.open("GET", "https://jsonplaceholder.typicode.com/posts/1", true);
-xhttp.send(); */
+xhttp.send();
 
 /* 
     1, {}
     2, [{},{}....]
 */
 
-/* const foo = () => {
+const foo = () => {
     setTimeout(() => {
        setTimeout(()=>{
            console.log("after 1000ms")
        },500) 
     }, 500);
 }
+foo();      //after 1000ms
 
-foo(); */
-
-/* const promise = 
+const promise = 
 new Promise((resolve, reject)=>{
     setTimeout(()=>{
         console.log("first setTimeout after 500ms")
@@ -125,11 +125,11 @@ new Promise((resolve, reject)=>{
 }).then((res)=>{
     console.log("res",res);
     setTimeout(()=>{
-        console.log("second setTimeout after 1000ms")
+        console.log("second setTimeout after 1000ms")       //rejected, not going to print out
     },500)
 }).catch((err)=>{
     console.log(err)
-}) */
+})
 
 const request = (cb, url) => {
   const xhttp = new XMLHttpRequest();
