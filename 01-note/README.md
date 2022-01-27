@@ -634,23 +634,28 @@ func(1, 2, 3, 4, 5, 6, 7);
 ## Promise
 
 #### sync vs async
-- sync code, code that is going to execute right away
-- async code, will not get executed right away, but sometime in the future
+- sync code, code that is going to execute right away, one expression at a time.
+- async code, will not get executed right away, but sometime in the future, the next expression runs while the previous finishes up.
 
 #### Promise(event loop, task scheduling)
-- JS is a single-threaded language, use promise to handle async operation
-- avoid callback hell which is a chained nested code - no good
+- JS is a single-threaded language, use promise to handle async operation, avoid callback hell which is a chained nested code
+- A Promise is a proxy for a value not necessarily known, when the promise is created, that represents WORK that needs to be done at some point.
 
-3 phrases -> pending, fulfilled, rejected
+#### 3 phrases -> pending, fulfilled, rejected
 - chain .then() to do something, and/or .catch() to catch error
 - we can chain more .then(), return promise, execute only after the main thread is done
 
 ```js
-const promise = new Promise(function(resolve, reject) {
-  return setTimeout(() => resolve("done"), 3000);
+const promise = new Promise((resolve, reject) => {
+  //do a thing, possibly async, then...
+  if(/* everything turned out fine */){
+  	resolve("Stuff worked!")
+  } else {
+  	reject(Error("It broke!"))
+  }
 });
 
-promise.then((resolve) => {console.log(resolve)});
+promise.then((resolve) => { console.log(resolve) });	//Stuff worked!
 ```
 
 #### `Promoise.all([])`
