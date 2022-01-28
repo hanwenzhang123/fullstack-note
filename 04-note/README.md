@@ -167,7 +167,12 @@ module.exports = router;
 - SQL is great for shopping carts for large ecommerce site, contacts, networks
 - NoSQL is great for logs, orders, survey, chat messages
 
-#### MongoDB vs MySQL
+#### SQL vs NoSQL
+- SQL: Table; NoSQL: Collection
+- SQL: Column: NoSQL: Field
+- SQL: Row/Record; NoSQL: Document
+
+#### MySQL vs MongoDB
 - MongoDB is faster than MySQL due to its ability to handle large amounts of unstructured data when it comes to performance and speed.
 
 #### Information Architecture
