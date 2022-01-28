@@ -172,6 +172,12 @@ module.exports = router;
 - SQL: Column: NoSQL: Field
 - SQL: Row/Record; NoSQL: Document
 
+#### MongoDB
+- MongoDB Database can contain one or more collections
+- Collections can contain different types of document (objects)
+- Document with key value pair list of array or nested document 
+- (structure can change over time, field can vary from document to document)
+
 #### MySQL vs MongoDB
 - MongoDB is faster than MySQL due to its ability to handle large amounts of unstructured data when it comes to performance and speed.
 
