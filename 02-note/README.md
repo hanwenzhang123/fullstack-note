@@ -114,7 +114,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - because we run react in different environment, so we want consistency across multiple broswer like a wrapper
 - consistency -> wrapper(basicEvent)
 
-#### Portals
+#### createPortal()
 - render children into a DOM node, behaves like a normal React child, but also includes event bubbling because in the DOM tree
 - `ReactDOM.createPortal(child {any renderable React child}, container {a DOM element})`
 
@@ -252,6 +252,7 @@ export default HOCCounter;
 - A great way to build single-page applications because you prevent a page refresh every time a link is clicked. 
 - With client-side rendering, the page doesn't refresh as you navigate through the different links. 
 - Multiple pages in a single page app, URL changes, visible content changes. 
+- `npm i react-router-dom`
 
 #### Traditional multi-page routing
 - HTML is requested & loaded; Page change = new request + response (Server-side Rendering) . 
@@ -260,8 +261,18 @@ export default HOCCounter;
 - Only one initial HTML request & response, Page (URL) changes are then handled by client-side (React) code -> changes the visible content without fetching a new HTML file (Client-side Rendering).
 - The goal is that we are able to handle different paths on our page, and load (render) different components for the different paths.
 
+#### useParams()
+- Returns an object of the params for the route rendered.
+```js
+import { useParams } from "@reach/router"
+// route: /user/:userName
+const User = () => {
+  const params = useParams();
+  return <h1>{params.userName}</h1>
+)
+```
+
 ### React Router Implementation
-- npm i react-router-dom
 ```js
 import React from "react";
 import {
