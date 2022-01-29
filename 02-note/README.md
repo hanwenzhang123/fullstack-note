@@ -252,7 +252,6 @@ export default HOCCounter;
 - A great way to build single-page applications because you prevent a page refresh every time a link is clicked. 
 - With client-side rendering, the page doesn't refresh as you navigate through the different links. 
 - Multiple pages in a single page app, URL changes, visible content changes. 
-- `npm i react-router-dom`
 
 #### Traditional multi-page routing
 - HTML is requested & loaded; Page change = new request + response (Server-side Rendering) . 
@@ -261,15 +260,24 @@ export default HOCCounter;
 - Only one initial HTML request & response, Page (URL) changes are then handled by client-side (React) code -> changes the visible content without fetching a new HTML file (Client-side Rendering).
 - The goal is that we are able to handle different paths on our page, and load (render) different components for the different paths.
 
+#### Link vs Route
+- Link component is responsible for the transition from state to state (page to page)
+- Route component is responsible to act as a switch to display certain components based on route state.
+
 #### useParams()
 - Returns an object of the params for the route rendered.
 ```js
-import { useParams } from "@reach/router"
 // route: /user/:userName
-const User = () => {
-  const params = useParams();
-  return <h1>{params.userName}</h1>
-)
+const params = useParams();
+return <h1>{params.userName}</h1>
+```
+
+#### useRouteMatch();
+- attempts to match the current URL
+```js
+let match = useRouteMatch();
+<Link to={`${match.url}/components`}>Components</Link>
+<Route path={`${match.path}/:topicId`}>
 ```
 
 ### React Router Implementation
@@ -280,8 +288,6 @@ import {
   Switch,
   Route,
   Link,
-  useRouteMatch,
-  useParams
 } from "react-router-dom";
 
 export default function App() {
@@ -292,20 +298,10 @@ export default function App() {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/topics">Topics</Link>
-          </li>
         </ul>
-
         <Switch>
           <Route path="/about">
             <About />
-          </Route>
-          <Route path="/topics">
-            <Topics />
           </Route>
           <Route path="/">
             <Home />
@@ -314,48 +310,6 @@ export default function App() {
       </div>
     </Router>
   );
-}
-
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Topics() {
-  let match = useRouteMatch();
-
-  return (
-    <div>
-      <h2>Topics</h2>
-
-      <ul>
-        <li>
-          <Link to={`${match.url}/components`}>Components</Link>
-        </li>
-        <li>
-          <Link to={`${match.url}/props-v-state`}>
-            Props v. State
-          </Link>
-        </li>
-      </ul>
-      <Switch>
-        <Route path={`${match.path}/:topicId`}>
-          <Topic />
-        </Route>
-        <Route path={match.path}>
-          <h3>Please select a topic.</h3>
-        </Route>
-      </Switch>
-    </div>
-  );
-}
-
-function Topic() {
-  let { topicId } = useParams();
-  return <h3>Requested topic ID: {topicId}</h3>;
 }
 ```
 
@@ -431,10 +385,7 @@ function XXX () {
 #### useState()
 - `const [state, setState] = useState(initialState)` - value and setter function
 ```js
-const computationInit = () => {
-  console.log("Computing init");
-  return 0;
-};
+const computationInit = () => return 0;
 
 function App() {
   const [count, setCount] = useState(() => computationInit()); //callback function, only called at the initial time
@@ -570,6 +521,7 @@ const getItems = useCallback((incrementor) => {	//return us the entire function
 ```
 
 [[↑] Back to top](#table-of-contents)
+
 
 ## Context 
 
