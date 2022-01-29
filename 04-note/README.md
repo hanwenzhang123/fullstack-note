@@ -63,12 +63,6 @@ Cons
 - Vue mainly uses HTML templates with some JSX, while React only uses JSX that allows you to insert HTML directly into JS code.
 - React alway passes the data to view, and to update the view, you need to use a callback to update it -> different from react and angualr
 
-#### Shared Component Architecture
-- build, distribute and collaborate over components to build multiple projects and applications
-- how to develop components independently but avoid the overhead of too many repositories
-- how to version, publish and manage each component individually
-- how to help others discover and adopt the components
-
 #### How to Share Components with Others?
 - Bit + Bit.dev - develop, build and test individual components in the library in complete isolation
 - When you update a single components, Bit “knows” which other components depend on it, and help you update all the component that are impacted by the update.
@@ -715,14 +709,26 @@ test("This should fail", ()=>{
 ## System Design
 https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-design-question.js
 
-#### Design Patterns
-- Singleton Pattern: ensures only a single instance of an object exists within a system at any given time
-- Micro-services: focuses on building small independent services that perform a single task well.
-- Pipeline design patterns: set of automated processes and tools that allows both developers and operations professionals to work together to build and deploy code to a production environment for CI/CD in a deployable state at any point.
-- Model-View-Controller (MVC): how the code should be organized and how the different parts of an application are separated for proper readability and debugging. Model is the data and the database. View is the user interface and what the user sees. Controller is the main link between Model and View.
+#### Singleton Pattern
+- ensures only a single instance of an object exists within a system at any given time
+
+#### Pipeline Design Patterns
+- set of automated processes and tools that allows both developers and operations professionals to work together to build and deploy code to a production environment for CI/CD in a deployable state at any point.
+
+#### Shared Component Architecture
+- build, distribute and collaborate over components to build multiple projects and applications
+- how to develop components independently but avoid the overhead of too many repositories
+- how to version, publish and manage each component individually
+- how to help others discover and adopt the components
+
+#### MVC Architecture for Node
+- Model-View-Controller (MVC): how the code should be organized and how the different parts of an application are separated for proper readability and debugging.
+- Model: the data and the database, the structure of data, the format and the constraints with which it is stored
+- View: the user interface, what is presented to the user, and what the user sees
+- Controller: request-response handler, controls the requests of the user and then generates appropriate response which is fed to the viewer. (main link between Model and View.)
 
 #### Micro-services Architecture
-- building many individual different services that each do a single task and do one thing well
+- focuses on building many different small independen services that each do a single task and do one thing well
 - splits large applications into much smaller pieces that exist independently of each other.
 - like one server for chat server, one for caching, one do node.js only, one do Golang for concurrent task, one for message board
 - a flexible and efficient approach to designing software systems that are made up of small independent services that each have a specific and well-defined purpose.
