@@ -722,10 +722,13 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 - how to help others discover and adopt the components
 
 #### MVC Architecture for Node
-- Model-View-Controller (MVC): how the code should be organized and how the different parts of an application are separated for proper readability and debugging.
 - Model: the data and the database, the structure of data, the format and the constraints with which it is stored
 - View: the user interface, what is presented to the user, and what the user sees
-- Controller: request-response handler, controls the requests of the user and then generates appropriate response which is fed to the viewer. (main link between Model and View.)
+- Controller: request-response handler, controls the requests of the user and then generates appropriate response to the viewer
+- Model displays View
+- Controller manipulates Model
+- View sends requests to Controller, Controller renders on the Views
+- Purpose: how the code should be organized and how the different parts of an application are separated for proper readability and debugging.
 
 #### Micro-services Architecture
 - focuses on building many different small independen services that each do a single task and do one thing well
