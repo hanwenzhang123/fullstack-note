@@ -95,8 +95,16 @@ Cons
 - server: a gateway to the data, we can provide endpoints that the client can talk to get or save various pieces of data
 - server provides an API to clients, each api like buttons on a remote control, all API we set up represent the interface how we interact with TV
 
-#### sharp #
-- high performance Node.js image processing library
+#### import & export
+```js
+//commonjs - default - sync
+const express = require('express');
+module.exports = Task;
+
+//es6 - async
+import process from "process";
+export default App;
+```
 
 #### Node.js
 - One of Node core stengths: faster processing! 
@@ -133,19 +141,28 @@ Cons
 
 #### Basic ExpressJS Setup
 ```js
-var express = require('express');
-var router = express.Router();
-let dbConfig = require('../databaseForClickMap/db');	//Database
-require('dotenv').config();		//Loads environment variables from .env file.
-router.post('/api/analytics/campaign_count', (req, res, next) => {
-  try {
-	let redis = dbConfig.redis();		//redis - caching - improve performance
-	let vertica = dbConfig.vertica();	//SQL database management system
-  } catch(e) {
-  	console.log(e)
-  }
-})
-module.exports = router;
+const ModelDB = require("../dbconnection.js").model;
+const express = require("express");
+const bodyParser = require('body-parser');
+const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(__dirname + '/public'));	// static resources
+
+app.get("/", (req, res) => {
+  let currentData = await ModelDB.find({});
+  res.render("homeView", { data: currentData });
+});
+
+app.use((req, res) => {
+  res.status(404);
+  res.render("404");
+});
+
+app.listen(3000, () => {
+  console.log("http://localhost:3000");
+});
 ```
 
 [[↑] Back to top](#table-of-contents)
@@ -197,6 +214,25 @@ module.exports = router;
 - use stored procedures in the database
 - actively manage patches and updates
 - web application firewall, raise virtual or physical firewalls
+
+#### Basic Mongoose Setup
+```js
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const newSchema = new Schema({
+    firstName: String,
+    lastName: String,
+  },{
+    collection: "name",
+  }
+);
+
+const connection = mongoose.createConnection("mongodb://localhost:27017", { useNewUrlParser: true, useUnifiedTopology: true });
+const model = connection.model("NewModel", newSchema);
+
+module.exports = model;
+```
 
 [[↑] Back to top](#table-of-contents)
 
