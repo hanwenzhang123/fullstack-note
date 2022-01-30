@@ -679,9 +679,25 @@ Promise.all([promise1, promise2, promise3]).then((values) => {
 #### `fetch()`
 - fetching a resource from the network, returning a promise which is fulfilled once the response is available
 - `const response = fetch("url").then((res) => res.json())` -> return body with json content
+```js
+async function fetchMovies() {
+  const response = await fetch('/movies');
+  if (!response.ok) {
+    const message = `An error has occured: ${response.status}`;	//404
+    throw new Error(message);
+  }
+  const movies = await response.json();
+  return movies;
+}
+fetchMovies().then(movies => {
+  movies; // fetched movies
+}).catch(error => {
+  error.message; // 'An error has occurred: 404'
+});
+```
 
 #### async/await
-- cleaner style handling asynchonous tasks, return promise, await takes a pause, returns its result -> must with async keyword
+- cleaner style handling asynchonous tasks, return promise, await takes a pause, then returns its result -> must with async keyword
 - easier for promise chaining (not faster), better for accessing value in the scope with assigned variable, and output of function2 is dependent on the output of function1
 - start with async function, replace .then() with await, use try catch for error handling, async function can be dynamic like mongodb update/delete endpoints
 
