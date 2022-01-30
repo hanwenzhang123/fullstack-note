@@ -136,13 +136,14 @@ export default App;
 #### Basic ExpressJS Setup
 ```js
 const NewModel = require("../models/example");
-const express = require("express");
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+const express = require("express");
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));	// static resources
 
 app.get("/", (req, res) => {
@@ -155,8 +156,10 @@ app.use((req, res) => {
   res.render("404");
 });
 
-mongoose.connect('url').then(() => {app.listen(3000);}).catch(err => {console.log(err);});
-//app.listen(3000, () => {console.log("http://localhost:3000");});
+app.listen(port, () => { console.info(`Application Started.  Port: ${port}`); });
+
+//const mongoose = require('mongoose');
+//mongoose.connect('url').then(() => {app.listen(3000);}).catch(err => {console.log(err);});
 
 ```
 
@@ -223,11 +226,9 @@ const newSchema = new Schema({
   }
 );
 
-module.exports = mongoose.model("NewModel", newSchema);
-
-//const connection = mongoose.createConnection("mongodb://localhost:27017", { useNewUrlParser: true, useUnifiedTopology: true });
-//const model = connection.model("NewModel", newSchema);
-//module.exports = model;
+mongoose.createConnection("mongodb://localhost:27017/database", { useNewUrlParser: true, useUnifiedTopology: true });
+const Model = mongoose.model("NewModel", newSchema);
+module.exports = Model;
 ```
 
 [[↑] Back to top](#table-of-contents)
