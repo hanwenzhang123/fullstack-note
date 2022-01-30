@@ -831,7 +831,7 @@ processUserInput(greeting);
 - `const firstOrder = () => console.log ('I am a first order function!');`
 
 #### Higher Order Function
-Higher-order function is a function that accepts another function as an argument or returns a function as a return value or both.
+- a function that accepts another function as an argument or returns a function as a return value or both.
 ```js
 const firstOrderFunc = () => console.log ('Hello, I am a First order function');
 const higherOrder = (ReturnFirstOrderFunc) => ReturnFirstOrderFunc();
