@@ -291,6 +291,13 @@ const obj = { "you what":1 }; //with space
 console.log(obj["you what"])  //1
 ```
 
+#### Looking for key by value
+```js
+const key = Object.keys(obj).find(key => obj[key] === value);
+const getKeyByValue = (obj, value) => 
+        Object.keys(obj).find(key => obj[key] === value);
+```
+
 #### Check if JavaScript Object is empty
 - if `Object.keys(obj).length` returns 0, object is null
  
