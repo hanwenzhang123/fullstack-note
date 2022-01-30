@@ -116,6 +116,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 
 #### createPortal()
 - render children into a DOM node, behaves like a normal React child, but also includes event bubbling because in the DOM tree
+- building modals, dialogs, hovercards, and tooltip. with portals, you can render a parallel react tree onto another DOM node when needed.
 - `ReactDOM.createPortal(child {any renderable React child}, container {a DOM element})`
 
 #### React.Fragment 
@@ -155,16 +156,16 @@ this.setState((prevState) => {     //passing in a callback function instead of s
 - A simple and customizable component library that allows us to import and use different components to create a user interface in our React application
 - Saves a significant amount of time since the developers do not need to write everything from scratch.
 
+#### CSS Module
+- `import styles from "./Button.module.css";` - import CSS modules, change the css file name as well
+- `<button type={props.type} className={styles.button} onClick={props.onClick}>`
+
 #### Styled Components
 - a package that helps you to build componnets which have certian styles attached to them (CSS-in-JS)
 ```js
 import styled from "styled-components";
 export const Button = styled.button`color: white;`	//using tagged template literal
 ```
-
-#### CSS Module
-- `import styles from "./Button.module.css";` - import CSS modules, change the css file name as well
-- `<button type={props.type} className={styles.button} onClick={props.onClick}>`
 
 #### Controlled Component vs Uncontrolled Component
 Controlled Component
