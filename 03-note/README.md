@@ -291,9 +291,16 @@ const obj = { "you what":1 }; //with space
 console.log(obj["you what"])  //1
 ```
 
+#### Count how many keys in map
+```js
+let count = Object.keys(each).length;
+```
+
 #### Looking for key by value
 ```js
 const key = Object.keys(obj).find(key => obj[key] === value);
+```
+```js
 const getKeyByValue = (obj, value) => 
         Object.keys(obj).find(key => obj[key] === value);
 ```
