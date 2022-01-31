@@ -118,8 +118,11 @@ if (index > -1) {
 #### Check if it is an array
 `Array.isArray()` -  return boolean, check whether an object (or a variable) is an array or not. 
 
+#### Get Unique Value from Array
+- `const array3 = array1.filter((obj) => { return array2.indexOf(obj) == -1; });`
+
 #### Eliminate duplicate item in Array
-- `const uniqueNames = Array.from(new Set(names));` Array.from() returns an Array object, Set returns a collection of unique items
+- `const uniqueNames = Array.from(new Set(names));` - Array.from() returns an Array object, Set returns a collection of unique items
 - `const uniqueNames = names.filter((elem, pos) => names.indexOf(elem) == pos);`
 
 #### .map() vs .forEach()
