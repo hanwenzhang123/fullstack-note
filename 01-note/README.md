@@ -60,13 +60,10 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - content-type in the headers - what kind of data you are sending/receiving based on this request
 
 #### Google.com
-- once you enter Google.com, send request via http protocol (like agreement based on tcp/ip) which connect to tcp/ip first before reaching to server
-- You type google.com into the address bar of your browser.
+- once you enter Google.com, the browser extracts the domain name from the URL, sends request via http protocol (like agreement based on TCP/IP) which connect to TCP/IP first before reaching to server
 - The browser checks the cache for a DNS record to find the corresponding IP address of google.com. If requested URL not exist, DNS request fails, returns nothing
-- The browser initiates a TCP connection with the server.
-- The browser sends an HTTP request to the webserver.
-- The server handles the request and sends back a response.
-- The server sends out an HTTP response.
+- The browser initiates a TCP connection with the server, and sends an HTTP request to the web server.
+- The server handles the request and sends back a HTTP response.
 - The browser displays the HTML content (for HTML responses, which is the most common).
 
 #### cookie, sessionStorage and localStorage
@@ -100,7 +97,6 @@ valueDisplay.innerHTML = value
 ```js
 `document.cookie`
 ```
-
 
 ## HTML
 
