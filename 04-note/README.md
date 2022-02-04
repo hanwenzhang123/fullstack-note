@@ -183,12 +183,14 @@ app.listen(port, () => { console.info(`Application Started.  Port: ${port}`); })
 - NoSQL is great for logs, orders, survey, chat messages
 
 #### SQL vs NoSQL
-- SQL: Table; NoSQL: Collection
-- SQL: Column: NoSQL: Field
-- SQL: Row/Record; NoSQL: Document
+- MongoDB : MySQL
+- Database : Database
+- Collection : Table
+- Document : Row
+- Field: Column
 
 #### MongoDB
-- MongoDB Database contains one or more collections (A collection of JSON documents)
+- MongoDB Database contains one or more collections (A collection of BSON documents)
 - Collections can contain different types of document (objects)
 - Document with key value pair list of array or nested document 
 - (structure can change over time, field can vary from document to document)
