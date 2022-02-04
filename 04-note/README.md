@@ -188,7 +188,7 @@ app.listen(port, () => { console.info(`Application Started.  Port: ${port}`); })
 - SQL: Row/Record; NoSQL: Document
 
 #### MongoDB
-- MongoDB Database can contain one or more collections
+- MongoDB Database contains one or more collections (A collection of JSON documents)
 - Collections can contain different types of document (objects)
 - Document with key value pair list of array or nested document 
 - (structure can change over time, field can vary from document to document)
