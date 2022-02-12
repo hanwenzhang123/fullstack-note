@@ -427,7 +427,7 @@ console.log(filteredArr);
 #### What is class?
 - help us do some patterns, for reusability, declare with a "class" keyword and constructor function (ES6)
 
-#### what is prototype
+#### what is prototype?
 - All JavaScript objects inherit the properties and methods from their prototype, like a reference to another object 
 - Objects created using the `new` keyword inherit from a prototype called `Object.prototype`.
 
@@ -435,25 +435,32 @@ console.log(filteredArr);
 - Prototype chaining is used to build new types of objects based on existing ones
 - to do inheritance, like hasOwnProperty(), toString(), isPropertyOf()
 
-#### check type of an object
-- `object instanceof constructor` -  return boolean
-- `auto instanceof Car` - true/false
-- `const p = new Person("patrick", 18);` - datatype of p is object, datatype of Person is function
-
+#### What is instance?
+- instance is when you create something based on that class
+- 
 #### `new` keyword
 - The `new` operator to create an instance of the class based on the prototype. 
 - `new` makes the this variable point to the newly created object and returning a reference to that memory.
 
-#### getter and setter
-- data encapsulation, used to protect your data, particularly when creating classes. 
+#### constructor
 - The constructors are used to initialize the instance variable of a class or, create objects. 
-- The setter/getter methods are used to assign/change and retrieve values of the instance variables of a class
-- When we have a private instance, we do not wanna excpose the innter variables out, we set up the getter/setter for the value access and update method. 
-- Protect private values field, data safety
+
+#### getter and setter
+- Data encapsulation, used to protect your data, particularly when creating classes (Protect private values, for data safety)
+- Setter/Getter methods are used to assign/change and retrieve values of the instance variables of a class
+- When we have a private instance, we do not wanna excpose the inner variables out, we set up the getter/setter for the value access and update method. 
+
+#### this
+- it refers to the current object within its current scope
 
 #### overriding vs overloading
 - overriding: with same function name, the newly created one overriding the previous one
 - overloading: depends on how many parameter set in the function, only takes the number of that arguments pass into the function
+
+#### check type of an object
+- `object instanceof constructor` -  return boolean
+- `auto instanceof Car` - true/false
+- `const p = new Person("patrick", 18);` - datatype of p is object, datatype of Person is function
 
 #### ES5 Class Syntax
 ```js
