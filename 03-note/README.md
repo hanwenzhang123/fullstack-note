@@ -465,9 +465,9 @@ console.log(filteredArr);
 - `const p = new Person("patrick", 18);` - datatype of p is object, datatype of Person is function
 
 #### access modifier
-- public - can be accessed by other classes
-- private - limited the class in which it is declared
-- protected - only accessible to declared class and in class that extend to that class (sub-class)
+- public - (seen anywhere) can be accessed by other classes
+- private - (class itself) limited the class in which it is declared
+- protected - (class & subclasses) only accessible to declared class and classes that extend to that class (sub-classes)
 - final - can not be overridden by a subclass
 - abstract - prohibit a class from being created directly, must be extended in order to be utilized
 
