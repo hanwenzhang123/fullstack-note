@@ -464,6 +464,19 @@ console.log(filteredArr);
 - `auto instanceof Car` - true/false
 - `const p = new Person("patrick", 18);` - datatype of p is object, datatype of Person is function
 
+#### access modifier
+- public - can be accessed by other classes
+- private - limited the class in which it is declared
+- protected - only accessible to declared class and in class that extend to that class (sub-class)
+- final - can not be overridden by a subclass
+- abstract - prohibit a class from being created directly, must be extended in order to be utilized
+
+#### static
+- static can only access to static, you have to create static function to access to the static
+- static is not for instance variables, can not be changed through non-static
+- static is good for constances
+- static belongs to the no instance of the class, , belong to the entire ecosystem, shares along with all instances
+
 #### ES5 Class Syntax
 ```js
 function Person(name,age){
