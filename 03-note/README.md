@@ -603,6 +603,15 @@ return res;
 
 Limitation: we cannot copy the functions that are available in the target objects
 
+#### axios
+- simple one step process in response handling
+- `axios.get(url).then(response => console.log(response));`
+
+#### `fetch()`
+- Window Object (available from any scope), fetch used for data retrieval that uses the Promise API
+- fetching a resource from the network, returning a promise which is fulfilled once the response is available
+- 2-step process handing JSON data, return body with JSON content
+
 #### Fetch API
 ```js
 fetch('http://example.com/movies.json')
@@ -610,6 +619,25 @@ fetch('http://example.com/movies.json')
   .then(data => console.log(data));
   .catch(error => console.error('There has been a problem with your fetch operation:', error));
 ```
+
+#### `fetch()` Example
+```js
+async function fetchMovies() {
+  const response = await fetch('/movies');
+  if (!response.ok) {
+    const message = `An error has occured: ${response.status}`;	//404
+    throw new Error(message);
+  }
+  const movies = await response.json();
+  return movies;
+}
+fetchMovies().then(movies => {
+  movies; // fetched movies
+}).catch(error => {
+  error.message; // 'An error has occurred: 404'
+});
+```
+
 #### Fetch Data with React
 - Create a React state variable to store data - useState()
 - Make the API request and store the data - fetch data
@@ -646,6 +674,7 @@ return (
 )
 }
 ```
+
 #### Send Data - fetch()
 - You can use fetch() to send POST requests
 ```js
