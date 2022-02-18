@@ -22,6 +22,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - [JavaScript](#javascript)
 - [ES6](#ES6)
 - [Promise](#Promise)
+- [Fetch Axios] (#Fetch-Axios)
 - [This](#this)
 - [JS Funtion](#JS-Function)
 - [DOM Event](#DOM-event)
@@ -657,7 +658,7 @@ promise.then((resolve) => { console.log(resolve) });	//Stuff worked!
 #### `Promoise.all([])`
 - run promises in parallel, create an array of promises and then use `Promise.all(promisesArray)`.
 - send all promises, returns a single Promise that resolves to an array of the results of the input promises
-- will reject immediately upon any of the input promises rejecting
+- will reject immediately upon any of the input promises rejecting => if one fails, all fail
 - `Promise.racce()` works similar as `Promoise.all()` but return a single value whichever return the first
 
 ```js
@@ -672,9 +673,26 @@ Promise.all([promise1, promise2, promise3]).then((values) => {
 });
 ```
 
+#### async/await
+- cleaner style handling asynchonous tasks, return promise, await takes a pause, then returns its result -> must with async keyword
+- easier for promise chaining (not faster), better for accessing value in the scope with assigned variable, and output of function2 is dependent on the output of function1
+- start with async function, replace .then() with await, use try catch for error handling, async function can be dynamic like mongodb update/delete endpoints
+
+`main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)`
+
+[[↑] Back to top](#table-of-contents)
+
+#### Fetch Axios
+
 #### `fetch()`
+- Window Object (available from any scope), fetch used for data retrieval that uses the Promise API
 - fetching a resource from the network, returning a promise which is fulfilled once the response is available
-- `const response = fetch("url").then((res) => res.json())` -> return body with json content
+
+#### `fetch()` API
+- `const response = fetch("url").then((res) => res.json()).then((data) => console.log(data))` 
+- 2-step process handing JSON data, return body with JSON content
+
+#### `fetch()` Example
 ```js
 async function fetchMovies() {
   const response = await fetch('/movies');
@@ -692,14 +710,9 @@ fetchMovies().then(movies => {
 });
 ```
 
-#### async/await
-- cleaner style handling asynchonous tasks, return promise, await takes a pause, then returns its result -> must with async keyword
-- easier for promise chaining (not faster), better for accessing value in the scope with assigned variable, and output of function2 is dependent on the output of function1
-- start with async function, replace .then() with await, use try catch for error handling, async function can be dynamic like mongodb update/delete endpoints
-
-`main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)`
-
-[[↑] Back to top](#table-of-contents)
+#### axios
+- simple one step process in response handling
+- `axios.get(url).then(response => console.log(response));`
 
 
 ## This
