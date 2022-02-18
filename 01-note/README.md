@@ -22,7 +22,6 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - [JavaScript](#javascript)
 - [ES6](#ES6)
 - [Promise](#Promise)
-- [Fetch Axios] (#Fetch-Axios)
 - [This](#this)
 - [JS Funtion](#JS-Function)
 - [DOM Event](#DOM-event)
@@ -681,38 +680,6 @@ Promise.all([promise1, promise2, promise3]).then((values) => {
 `main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)`
 
 [[↑] Back to top](#table-of-contents)
-
-#### Fetch Axios
-
-#### `fetch()`
-- Window Object (available from any scope), fetch used for data retrieval that uses the Promise API
-- fetching a resource from the network, returning a promise which is fulfilled once the response is available
-
-#### `fetch()` API
-- `const response = fetch("url").then((res) => res.json()).then((data) => console.log(data))` 
-- 2-step process handing JSON data, return body with JSON content
-
-#### `fetch()` Example
-```js
-async function fetchMovies() {
-  const response = await fetch('/movies');
-  if (!response.ok) {
-    const message = `An error has occured: ${response.status}`;	//404
-    throw new Error(message);
-  }
-  const movies = await response.json();
-  return movies;
-}
-fetchMovies().then(movies => {
-  movies; // fetched movies
-}).catch(error => {
-  error.message; // 'An error has occurred: 404'
-});
-```
-
-#### axios
-- simple one step process in response handling
-- `axios.get(url).then(response => console.log(response));`
 
 
 ## This
