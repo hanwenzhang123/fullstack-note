@@ -196,21 +196,17 @@ app.listen(port, () => { console.info(`Application Started.  Port: ${port}`); })
 - (structure can change over time, field can vary from document to document)
 
 #### MySQL vs MongoDB
-- MongoDB is faster than MySQL due to its ability to handle large amounts of unstructured data when it comes to performance and speed.
+- MongoDB is faster than MySQL due to its ability to handle large amounts of unstructured data when it comes to performance and speed
 
 #### Information Architecture
 - structural design of information or content focuses on organizing, structuring, and labeling content in an effective and sustainable way
 
 #### What is SQL Injection
-- a code injection technique that might destroy your database (used with the goal of retrieving sensitive data)
-- one of the most common web hacking techniques, it is the placement of malicious code in SQL statements via web page input.
+- a type of attack where malicious user can inject (insert) SQL commands into existing SQL statement via their input to a web form or other method to send data to database
 
 #### How to Prevent SQL Injection Attacks
-- stolen credit cards or password lists, happen through SQL injection vulnerabilities
-- approach: controlling and vetting user input to watch for attack patterns
-- input validation
+- input validation on your front end that does not allow sequel to be to be typed in.
 - sanitize data by limiting special characters
-- enforce prepared statements and parameterization
 - use stored procedures in the database
 - actively manage patches and updates
 - web application firewall, raise virtual or physical firewalls
