@@ -211,6 +211,11 @@ app.listen(port, () => { console.info(`Application Started.  Port: ${port}`); })
 - actively manage patches and updates
 - web application firewall, raise virtual or physical firewalls
 
+#### session hijacking
+- your session becomes their session
+- session needs to expires
+- solution: encryption, JWT (encrypted)
+
 #### Basic Mongoose Setup
 ```js
 const mongoose = require("mongoose");
