@@ -604,13 +604,13 @@ return res;
 Limitation: we cannot copy the functions that are available in the target objects
 
 #### axios
-- simple one step process in response handling
+- simple one step process in response handling - only 1 promise
 - `axios.get(url).then(response => console.log(response));`
 
 #### `fetch()`
 - Window Object (available from any scope), fetch used for data retrieval that uses the Promise API
 - fetching a resource from the network, returning a promise which is fulfilled once the response is available
-- 2-step process handing JSON data, return body with JSON content
+- 2-step process handing JSON data, return body with JSON content - need 2 promise
 
 #### Fetch API
 ```js
