@@ -66,6 +66,9 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - The server handles the request and sends back a HTTP response.
 - The browser displays the HTML content (for HTML responses, which is the most common).
 
+#### application/x-www-form-urlencoded 
+- The content type describes form data that is sent in a single block in the HTTP message body (in the headers)
+
 #### cookie, sessionStorage and localStorage
 - `sessionStorage` - client side, use when you need to store somthing temporary, will only be accessible while the window is open, expires when tab closes, 5MB Min
 - `localStorage` - client side, store data on the client computer, save key/value pairs in web browser, store data with no expiration date, last until the user deletes it, 5MB Min
@@ -81,12 +84,12 @@ localStorage.removeItem('key')
 localStorage.clear()
 ```
 
-Handle expiration of storage on the browser
+- Handle expiration of storage on the browser
 ```js
 localStorage.setItem(key, JSON.stringify(item))
 ```
 
-setWithExpiry and getWithExpiry
+- setWithExpiry and getWithExpiry
 ```js
 setWithExpiry("myKey", inputSet.value, 5000)
 const value = getWithExpiry("myKey")
@@ -97,6 +100,7 @@ valueDisplay.innerHTML = value
 ```js
 `document.cookie`
 ```
+
 
 ## HTML
 
