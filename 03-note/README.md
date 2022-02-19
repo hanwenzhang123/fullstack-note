@@ -712,8 +712,11 @@ const addProductHandler = async (productName, productPrice) => {
 ```
 
 #### REST API
-- use/setup http endpoint to allow user access and doing create/read/update/delete data in the database
+- A type of web services, URL is indicative of the request itself.
+- setup http endpoint to allow user access and doing create/read/update/delete data in the database
 - data entities lives on a bunch of URLs on a server, when a request received, the API responds with the full data payload of that entity
+
+#### REST API Example
 - `app.get('/tasks/:id', (req, res) => {})`
 - Different URLs + HTTP verbs (= endpoints) for different actions
 
