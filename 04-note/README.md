@@ -204,7 +204,7 @@ app.listen(port, () => { console.info(`Application Started.  Port: ${port}`); })
 #### What is SQL Injection
 - a type of attack where malicious user can inject (insert) SQL commands into existing SQL statement via their input to a web form or other method to send data to database
 
-#### How to Prevent SQL Injection Attacks
+#### Prevent SQL Injection Attacks
 - input validation on your front end that does not allow sequel to be to be typed in.
 - sanitize data by limiting special characters
 - use stored procedures in the database
@@ -215,6 +215,9 @@ app.listen(port, () => { console.info(`Application Started.  Port: ${port}`); })
 - your session becomes their session
 - session needs to expires
 - solution: encryption, JWT (encrypted)
+
+#### captchas
+- ways to make sure if a user is an actual human
 
 #### Basic Mongoose Setup
 ```js
