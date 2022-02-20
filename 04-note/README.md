@@ -452,12 +452,13 @@ document.querySelector('button').onclick = () => {	//send out text
 - They can ask the web server to do anything that the OS can do via the command line.
 - PHP has two functions to help us prevent remote system execution attempts: escapeshellcmd(), escapeshellarg()
 
-#### session hijacking
-- your session becomes their session
+#### Session Hijacking
+- if you include session ID in URL, you do not expire it, it can be passed around
+- your session becomes their session, they become you
 - session needs to expires
 - solution: encryption, JWT (encrypted)
 
-#### captchas
+#### CAPTCHAS
 - ways to make sure if a user is an actual human
 
 #### Cross-domain Issue
