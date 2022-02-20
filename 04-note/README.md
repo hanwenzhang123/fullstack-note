@@ -178,10 +178,6 @@ app.listen(port, () => { console.info(`Application Started.  Port: ${port}`); })
 - non-relationship database, more for a flex data model
 - independent documents, enforces no data schema, less focused on relations
 
-#### Choose a Database Structure
-- SQL is great for shopping carts for large ecommerce site, contacts, networks
-- NoSQL is great for logs, orders, survey, chat messages
-
 #### SQL vs NoSQL
 - MongoDB : MySQL
 - Database : Database
@@ -198,26 +194,12 @@ app.listen(port, () => { console.info(`Application Started.  Port: ${port}`); })
 #### MySQL vs MongoDB
 - MongoDB is faster than MySQL due to its ability to handle large amounts of unstructured data when it comes to performance and speed
 
+#### Choose a Database
+- SQL is great for shopping carts for large ecommerce site, contacts, networks
+- NoSQL is great for logs, orders, survey, chat messages
+
 #### Information Architecture
 - structural design of information or content focuses on organizing, structuring, and labeling content in an effective and sustainable way
-
-#### What is SQL Injection
-- a type of attack where malicious user can inject (insert) SQL commands into existing SQL statement via their input to a web form or other method to send data to database
-
-#### Prevent SQL Injection Attacks
-- input validation on your front end that does not allow sequel to be to be typed in.
-- sanitize data by limiting special characters
-- use stored procedures in the database
-- actively manage patches and updates
-- web application firewall, raise virtual or physical firewalls
-
-#### session hijacking
-- your session becomes their session
-- session needs to expires
-- solution: encryption, JWT (encrypted)
-
-#### captchas
-- ways to make sure if a user is an actual human
 
 #### Basic Mongoose Setup
 ```js
@@ -446,6 +428,38 @@ document.querySelector('button').onclick = () => {	//send out text
 - Those "tokens" are just long strings which are constructed by an algorithm that encodes data into a string (with the help of a private key, only known by the server). 
 - You can store tokens in localStorage and sessionStorage. 
 
+#### SQL Injection
+- a type of attack where malicious user can inject (insert) SQL commands into existing SQL statement via their input to a web form or other method to send data to database
+
+#### Prevent SQL Injection Attacks
+- input validation on your front end that does not allow sequel to be to be typed in.
+- sanitize data by limiting special characters
+- use stored procedures in the database
+- actively manage patches and updates
+- web application firewall, raise virtual or physical firewalls
+
+#### Cross Site Scripting (XXS)
+- when you're trying to get act like another website, send in javascript it harms to the clients computer.
+- injection attack where malicious scripts can be inserted into trusted websites. 
+- The attacker is able to use a web application to send the malicious code to another web visitor. 
+
+#### Prevent XXS Attacks
+- Filter user input, do not let user put in script or sql
+- Do not using innerHTML for user information (session id), instead, using innerText
+
+#### Remote System Execution
+- The ability of an attacker to remotely run operating system commands on a web server. 
+- They can ask the web server to do anything that the OS can do via the command line.
+- PHP has two functions to help us prevent remote system execution attempts: escapeshellcmd(), escapeshellarg()
+
+#### session hijacking
+- your session becomes their session
+- session needs to expires
+- solution: encryption, JWT (encrypted)
+
+#### captchas
+- ways to make sure if a user is an actual human
+
 #### Cross-domain Issue
 - A security restriction that prevents requests being made from one origin to another, like different protocol, domain, sub-domain, port. 
 - It is possible to make cross-origin requests either using JSONP (if you trust the server!) or using a CORS request (Cross-Origin Resource Sharing) which both client and server must agree to.
@@ -456,36 +470,6 @@ document.querySelector('button').onclick = () => {	//send out text
 #### Auth0 
 - React Authentication Library
 - npm install @auth0/auth0-react
-```js
-//Configure the Auth0Provider component
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import { Auth0Provider } from "@auth0/auth0-react";
-
-ReactDOM.render(
-  <Auth0Provider
-    domain="YOUR_DOMAIN"
-    clientId="YOUR_CLIENT_ID"
-    redirectUri={window.location.origin}
-  >
-    <App />
-  </Auth0Provider>,
-  document.getElementById("root")
-);
-
-//Login
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-
-const LoginButton = () => {
-  const { loginWithRedirect } = useAuth0();
-
-  return <button onClick={() => loginWithRedirect()}>Log In</button>;
-};
-
-export default LoginButton;
-```
 
 [[↑] Back to top](#table-of-contents)
 
