@@ -435,7 +435,7 @@ document.querySelector('button').onclick = () => {	//send out text
 
 #### JSON Web Token
 - long strings which are constructed by an algorithm that encodes data into a string (with the help of a private key, only known by the server). 
-- you can store tokens in the client like localStorage and sessionStorage
+- you can store tokens in the client like localStorage and sessionStorage, all the servers can recognize the token as long as same secret key on server
 - jwt does not store user in the server, jwt has all the information about the user built into it
 - decoded jwt: header (algorithm & token type), payload (data), verify signature
 
