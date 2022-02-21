@@ -424,19 +424,20 @@ document.querySelector('button').onclick = () => {	//send out text
 - `Authentication Tokens`: send credentials to server, and the server validates credentials, comparing the combination to what is stored in the database, if that is valid, then the server creates a permission token, create but not store "permission" token on server (server is stateless), send token to client, client sends token along with requests to protected resources
 
 #### Login Process
-- `cookie-based server-side session`: user login -> server store a unique identifier session (after validation) -> server response session ID back client -> browser puts session in cookie, save cookie on client -> browser sends requests with cookie -> check session on server -> response back client
-- `token-based auth`: user login -> server creates a jwt (json web token) -> browser puts jwt in local storage -> signed jwt header (authorization: Bearer token) validated on future requests -> server only needs to validate the signature (more efficient with distributed system in cloud)
+- `cookie-based server-side session`: user login -> server stores user in an unique identifier session (after validation) -> server response session ID back client -> browser puts session in cookie, save cookie on client -> browser sends requests with cookie -> check session on server -> response back client
+- `token-based auth`: user login -> server creates a jwt (json web token) for user with secret -> server sends jwt back to browser -> browser puts jwt in local storage -> signed jwt header (authorization: Bearer token) validated on future requests -> server only needs to validate the jwt signature (more efficient with distributed system in cloud) -> server sends response back
 - sessions managed by server, tokens managed by client
 
 #### Cookie
 - session stored in the cookie, cookie http header
-- browsers will automatically send any cookies associted with a website
+- browsers will automatically send requests with session id cookies associted with a website
 - cookie can be modified by the client, they can not be trusted by the server
 
 #### JSON Web Token
-- When working with "Authentication Tokens", tokens are typically created in the "JSON Web Token" format
-- Those "tokens" are just long strings which are constructed by an algorithm that encodes data into a string (with the help of a private key, only known by the server). 
-- You can store tokens in localStorage and sessionStorage. 
+- long strings which are constructed by an algorithm that encodes data into a string (with the help of a private key, only known by the server). 
+- you can store tokens in the client like localStorage and sessionStorage
+- jwt does not store user in the server, jwt has all the information about the user built into it
+- decoded jwt: header (algorithm & token type), payload (data), verify signature
 
 #### SQL Injection
 - a type of attack where malicious user can inject (insert) SQL commands into existing SQL statement via their input to a web form or other method to send data to database
@@ -489,31 +490,17 @@ document.querySelector('button').onclick = () => {	//send out text
 
 #### How do you generally improve performance?
 - use uglify and minify to reduce the bundle size
-- use lazy loading to improve the page loading speed.
+- use lazy loading to improve the page loading speed. 
 - use content delivery network to improve the loading speed.
 - `React.lazy` and `React.suspense` support lazy loading with webpack.
-- `React.memo`shouldComponentUpdate logic to improve the component’s rendering performance
+- `React.memo` shouldComponentUpdate logic to reduce unnecessary re-rendering, improve the component rendering performance
+- Lazy Load images and videos — Use `<img loading="lazy"/>` or libraries like lazysizes;
+- Cache - Use CDN (content delivery network) for distributing static data;
 
-#### React
-- HOC
-- memo/PureComponent (shouldComponentUpdate) - lifecycle
-- reduce unnecessary re-rendering
-  
-#### Redux
-- Thunk
-- Re-selector
-  
-#### JavaScript
--Event Delegation (allows you to avoid adding event listeners to specific nodes)
-
-#### CSS
--Animation
--image-sprite (reduce requests)
--image compression
-  
-#### HTML
--Empty HTML
--Style on the top, script down/defer/async
+#### CSS JS
+- image-sprite (reduce requests), image compression
+- SVG, Remove metadata attributes from SVG tag;
+- Event Delegation (allows you to avoid adding event listeners to specific nodes)
 
 #### Dynamic Programming (Caching)
 - Cache stores the function for reusibility
@@ -530,13 +517,6 @@ Both support lazy loading with webpack.
 - remove unnecessary code 
 - rename to a more efficient version for machine
 - save time onloading
-
-```js
-  const aaaaa=1;
-  console.log (aaaaa);
-  // ===>
-  const a=1; console.log(a)
-```
 
 #### What is Webpack 
 - A static module bundler for front-end development for JS applications -> bundle your styles (bundle your JavaScript files together)
