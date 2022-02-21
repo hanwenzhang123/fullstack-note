@@ -648,6 +648,9 @@ func(1, 2, 3, 4, 5, 6, 7);
 - sync code, code that is going to execute right away, one expression at a time.
 - async code, will not get executed right away, but sometime in the future, the next expression runs while the previous finishes up.
 
+####  Asynchronous JS
+- JS uses callback, promise, async-await to implement asynchronous patterns.
+
 #### Promise(event loop, task scheduling)
 - JS is a single-threaded language, use promise to handle async operation, avoid callback hell which is a chained nested code
 - A Promise is a proxy for a value not necessarily known, when the promise is created, that represents WORK that needs to be done at some point.
@@ -772,8 +775,8 @@ a();   //undefined
 
 #### Closure 
 - a function retured by another function that still has access to its outer scope variable
-- used to enable data privacy.
-- cons: cause memory leak
+- used to enable data privacy, but cons -> may cause memory leak
+- ability to remember and access scope even if was called from another scope (function return function/block scope in block scope)
 ```js
 function makeCounter(){
     let count = 0;      //private variable for keeping data private and safe
@@ -807,12 +810,6 @@ function processUserInput(callback) {
 processUserInput(greeting);
 ```
 
-#### Currying
-- a function that takes multiple arguments one at a time, the last function returns the result based on all the argument
-- useful in the context of function composition - a function called in another function
-- we do not change the functionality of a function, we just change the way it is invoked
-- `const addNumber = (a) => (b) => (c) => a+b+c;`
-
 #### Unary Function
 - a function that accepts exactly one argument. It stands for a single argument accepted by a function.
 - `const unaryFunction = a => console.log (a + 10); // Add 10 to the given argument and display the value`
@@ -823,11 +820,22 @@ processUserInput(greeting);
 
 #### Higher Order Function
 - a function that accepts another function as an argument or returns a function as a return value or both.
+- map, reduce, filter, find, etc
 ```js
 const firstOrderFunc = () => console.log ('Hello, I am a First order function');
 const higherOrder = (ReturnFirstOrderFunc) => ReturnFirstOrderFunc();
 higherOrder(firstOrderFunc);
 ```
+
+#### Currying
+- a nested function that takes multiple arguments one at a time, the last function returns the result based on all the argument
+- we do not change the functionality of a function, we just change the way it is invoked
+- - useful in the context of function composition 
+- `const addNumber = (a) => (b) => (c) => a+b+c;`
+
+#### Composition
+- a function called in another function
+- You can chain higher-order functions into composition
 
 #### Page Redirection
 - `function redirect() { window.location="{URL}" };`
@@ -893,7 +901,11 @@ for (var i = 1; i <= 3; i++) {		//var makes i stays in the function scope
 - DOM is the HTML but represent in JS => if we change DOM, HTML changes; if we change HTML, DOM will change too (broswer keeps in sync)
 
 #### JS mechanism (how to handle the sync and async code)
-The event loops behind the browser handles the sync and async JavaScript code, like when JS engine that built in the browser (for chrome is V8) runs JS code, because JS is a single threaded language, the code will be read line by line, and stores the memory in the heap, and push the function call to the callstack. If it is async function code, it will be then pushed to the web API instead to wait for the condition to be met while the call stack keeps running as first in last out, and garbage collects the variables that are no longer in use. Once the async code in the web API is ready to run, it will then be pushed to the Message Queue. When there are no functions to run in the call stack, the Event Loop will take the first event from the Queue and will push it to the Call Stack to run.
+- The event loops behind the browser handles the sync and async JavaScript code, like when JS engine that built in the browser (for chrome is V8) runs JS code, because JS is a single threaded language, the code will be read line by line, and stores the memory in the heap, and push the function call to the callstack. If it is async function code, it will be then pushed to the web API instead to wait for the condition to be met while the call stack keeps running as first in last out, and garbage collects the variables that are no longer in use. Once the async code in the web API is ready to run, it will then be pushed to the Message Queue. When there are no functions to run in the call stack, the Event Loop will take the first event from the Queue and will push it to the Call Stack to run.
+
+#### Event loop: 
+- In JS there are 3 types of memory: `stack` used for functions call, `heap` for each of the objects, `queue` — setTimeout. 
+- JS engine executes the function stack first. If the stack is empty, it pops the event from queue. If the event queue has another function call, it pushes it to stack and executes it again until it is empty. This is called event loop;
 
 #### DOM Methods
 - Adding Elements: `body.append("Hello World")`; `body.append(div)`; `.appendChild(div)`;
