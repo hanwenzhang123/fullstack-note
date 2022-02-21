@@ -428,6 +428,7 @@ console.log(filteredArr);
 - help us do some patterns, for reusability, declare with a "class" keyword and constructor function (ES6)
 
 #### what is prototype?
+- JS uses prototype inheritance
 - All JavaScript objects inherit the properties and methods from their prototype, like a reference to another object 
 - Objects created using the `new` keyword inherit from a prototype called `Object.prototype`.
 
