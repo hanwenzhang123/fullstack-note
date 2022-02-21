@@ -423,6 +423,11 @@ document.querySelector('button').onclick = () => {	//send out text
 - Server-side Sessions: server grants your access, stores unique identifier on server, sends same identifier to the client, client sends identifier along with requests to protected resources. Backend generates the jwt token, then sends the generated token to the client, then all the following requests will contain the token.
 - Authentication Tokens: send credentials to server, and the server validates credentials, comparing the combination to what is stored in the database, if that is valid, then the server creates a permission token, create but not store "permission" token on server (server is stateless), send token to client, client sends token along with requests to protected resources
 
+#### Login Process
+- cookie-based server-side session: user login -> server store a session (after validation) -> server response session ID back client -> browser puts session in cookie, save cookie on client -> browser sends requests with cookie -> check session on server -> response back client
+- token-based auth: user login -> server creates a jwt (json web token) -> browser puts jwt in local storage -> signed jwt header (authorization: Bearer token) validated on future requests -> server only needs to validate the signature (more efficient with distributed system in cloud)
+- sessions managed by server, tokens managed by client
+
 #### JSON Web Token
 - When working with "Authentication Tokens", tokens are typically created in the "JSON Web Token" format
 - Those "tokens" are just long strings which are constructed by an algorithm that encodes data into a string (with the help of a private key, only known by the server). 
