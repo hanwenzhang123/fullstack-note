@@ -560,17 +560,37 @@ console.log(newObj); //{x: { y: 9 } - only direct properties on the object point
 console.log(obj);  //{x: { y: 9 } - also change to 9, both get update
 ```
 
+#### Deep Clone Implementation
+- Use lodash or write a deepclone function by ourself
+- JSON way cannot deep clone complex object like function, Date. Only works for simple data structure
+
 #### Write your own code of deep clone
 ```js
-function copy(obj) { 
+const deepClone = (obj) => { 
   if (!obj) return obj; 
-  let v; 
-  let res = Array.isArray(obj) ? [] : {};   //check if it is array
-  for (const k in obj) { 
-    v = obj[k];   	//iterate each item in object, and store to v
-    res[k] = (typeof v === "object") ? copy(v) : v;   //recursion, if v is object then copy(v), stores in res[k]
+  let value; 
+  let result = Array.isArray(obj) ? [] : {};   //check if it is array
+  for (const key in obj) { 
+    value = obj[key];   	//iterate each item in object, and store to v
+    result[key] = (typeof value === "object") ? deepClone(v) : value;   //recursion, if v is object then copy(v), stores in res[k]
   } 
-return res; 
+return result; 
+}
+```
+```js
+//deep clone
+const deepClone = (obj) => {
+	if(Array.isArray(obj) || typeof obj === "object"){
+		let result;
+		result = Array.isArray(obj) ? [] : {};
+		for(let key in obj) {
+			let value = obj[key];
+			result[key] = typeof value === "object" ? deepClone(value) : value;
+		}
+		return result;
+	} else {
+		return obj;
+	}
 }
 ```
 
