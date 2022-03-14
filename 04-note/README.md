@@ -26,6 +26,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - [Testing](#testing)
 - [SDLC](#SDLC)
 - [System Design](#system-design)
+- [AWS](#aws)
 
 ## Frontend
 
@@ -690,8 +691,45 @@ test("This should fail", ()=>{
 ## System Design
 https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-design-question.js
 
+#### Design Pattern
+- creational: singleton, prototype, builder, factory
+- structural: facade, proxy
+- behavioral: iterator, observer, mediator, state
+
 #### Singleton Pattern
+- an object that can only be instantiated once
 - ensures only a single instance of an object exists within a system at any given time
+
+#### Prototype Pattern
+- for clone - inheritance - comes from an object that is already been created, share functionality between objects
+
+#### Builder Pattern
+- create object step by step using methods rather than constructor, return this which is a referfence to the object instance
+- allows us to implement method chaining where we instantiate an object then chain methods to it, but always get the object as the return value
+
+#### Factory Pattern
+- using a subclass, function or method that determine which object to instantiate instead of the new keyword (more maintainable)
+
+#### Facade Pattern
+- A simplified API to hide other low-level details in your code
+
+#### Proxy Pattern
+- Substitute that replaces the real thing, replace a target object with a proxy
+- getter setter, setter changes data, and re-render, use reflect to updated the date on the original object
+- work with a proxy just like the original object but it can trigger these side effects behind the scenes
+
+#### Iterator Pattern
+- allows you to traverse through a collection of objects (like for loop, iterating through), a pull-based system
+
+#### Observer Pattern
+- allows many objects to subscribe to events that are broadcast by another object, one to many relationship, a push-based system
+
+#### Mediator Pattern
+- like a middleman or broker, objects communicate to each other, many-to-many relationship, like middleware in express
+
+#### State Pattern
+- object behaves differently based on a finite number of states in your code (object behavior predictable based on its underlying state)
+- use conditional logic or switch statements to handle a bunch of different possibilities based on the state or data in your application
 
 #### Pipeline Design Patterns
 - set of automated processes and tools that allows both developers and operations professionals to work together to build and deploy code to a production environment for CI/CD in a deployable state at any point.
@@ -718,14 +756,6 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 - a flexible and efficient approach to designing software systems that are made up of small independent services that each have a specific and well-defined purpose.
 - consider => what goes into building, deploying, and updating an enterprise application => and break that work into more manageable, efficient batches.
 
-#### Amazon Web Services
-- AWS is a hosting providers that give you a lot of services where you can run your application on the cloud
-- global cloud platform which allows you host and manage services on the internet to host infrastructures 
-- infrastructure as service: they provide their servers as service so you do not need to manage the backup and the power supply of the service
-- platform as service: you can get java, ruby, php as a service so you do not need manage the binaries of these applications
-- software as service: email sending capabilities, message queueing service (exchange data using point-to-point or publish and subscribe patterns)
-- cloud storage platform: storage options like S3 (simple storage service), EBS (elastic block store), EC2 (elastic computer cloud), VPC (virtual private cloud)
-
 #### What is Docker
 - Package software so it can run on any hardware (dockerfile, image, container)
 - Docker scales (structures) your apps very easily, comes with a whole set of tools for deploying across many clusters you can take your instances each micro-services that you have in each container (it contains your app in a certain space), and then allocate many machines to them.
@@ -742,6 +772,19 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 - Fargate: have your containers behave in a more automated way, like serverless functions, allocating EC2 instances for your containers
 - App Runner: point to a container image while it handles all the orchestration and scaling behind the scene
 - Orchestration is the automated configuration, management, and coordination of computer systems, applications, and services.
+
+[[↑] Back to top](#table-of-contents)
+
+
+## AWS
+
+#### Amazon Web Services
+- AWS is a hosting providers that give you a lot of services where you can run your application on the cloud
+- global cloud platform which allows you host and manage services on the internet to host infrastructures 
+- infrastructure as service: they provide their servers as service so you do not need to manage the backup and the power supply of the service
+- platform as service: you can get java, ruby, php as a service so you do not need manage the binaries of these applications
+- software as service: email sending capabilities, message queueing service (exchange data using point-to-point or publish and subscribe patterns)
+- cloud storage platform: storage options like S3 (simple storage service), EBS (elastic block store), EC2 (elastic computer cloud), VPC (virtual private cloud)
 
 #### AWS Services
 - Elastic Computer Cloud (EC2): create virtual computer in the cloud, choose OS, memory and computer power, then run in the cloud, use instance as server for web application, but as your app grows, you would need to distribute traffic across multiple instances
