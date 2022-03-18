@@ -896,9 +896,10 @@ for (var i = 1; i <= 3; i++) {		//var makes i stays in the function scope
 ## DOM Event
 
 #### What is DOM?
-- DOM stands for Document Object Model, it represents a document with a logical tree of objects, and it is the render path of elements in a website
+- DOM stands for Document Object Model, it represents an independent document with a logical tree of objects, and it is the render path of elements in a website
 - DOM dynamically access and update the content, structure, and style of a document.
-- DOM is the HTML but represent in JS => if we change DOM, HTML changes; if we change HTML, DOM will change too (broswer keeps in sync)
+- DOM is the HTML (describes the document and its content) but represent in JS (interacts with DOM to makes changes/add features to the HTML 
+- => if we change DOM, HTML changes; if we change HTML, DOM will change too (broswer keeps in sync)
 
 #### JS mechanism (how to handle the sync and async code)
 - The event loops behind the browser handles the sync and async JavaScript code, like when JS engine that built in the browser (for chrome is V8) runs JS code, because JS is a single threaded language, the code will be read line by line, and stores the memory in the heap, and push the function call to the callstack. If it is async function code, it will be then pushed to the web API instead to wait for the condition to be met while the call stack keeps running as first in last out, and garbage collects the variables that are no longer in use. Once the async code in the web API is ready to run, it will then be pushed to the Message Queue. When there are no functions to run in the call stack, the Event Loop will take the first event from the Queue and will push it to the Call Stack to run.
@@ -920,6 +921,13 @@ for (var i = 1; i <= 3; i++) {		//var makes i stays in the function scope
 - Select: `document.querySelector("div")`;
 - Make Interactive: `btn.addEventListener()`;
 - Change CSS: Style Property
+
+#### Event Handling
+- Events are triggered by the user, the browser, or something else to make changes to HTML, CSS and JavaScript
+- Detect and Respond to an event using JavaScript
+- identify a DOM node to monitor
+- identify the event you want to respond to
+- create a function to run when the event is triggered
 
 #### addEventListener()
 - `element.addEventListener(event, function, useCapture)`
