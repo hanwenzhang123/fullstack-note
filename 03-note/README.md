@@ -19,8 +19,8 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - [Array](#Array)
 - [Object](#Object)
 - [Class](#Class)
-- [Clone](#clone)
 - [Compare](#compare)
+- [Clone](#clone)
 - [API](#API)
 - [Implementation](#Implementation)
 
@@ -462,12 +462,82 @@ user.getName();	 //Jack
 [[↑] Back to top](#table-of-contents)
 
 
-## Clone
+## Compare
 
 #### Shallow Comparison & Deep Comparison
-- Shallow strategy compares superficially 2 operands equality — 1st level in depth only,
-- Deep strategy compares the equality from all depth levels.
-- Deep Clone - no more contact with previous reference, they are not related, any modification would not influence original copy
+- Shallow compares superficially 2 operands equality — 1st level in depth only
+- Deep compares the equality from all depth levels.
+
+#### Manual comparison
+```js
+function isEqual(object1, object2) {
+  return object1.key === object2.key;
+}
+```
+
+#### Shallow equality
+```js
+function shallowEqual(object1, object2) {
+  const keys1 = Object.keys(object1);
+  const keys2 = Object.keys(object2);
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+  for (let key of keys1) {
+    if (object1[key] !== object2[key]) {
+      return false;
+    }
+  }
+  return true;
+}
+```
+
+#### Deep equality
+- `JSON.stringify(obj1) === JSON.stringify(obj2);` => stringify
+- `_.isEqual(object1, object2)` => using lodash library
+- `isDeepStrictEqual(object1, object2)` of Node built-in util module
+
+```js
+function deepEqual(object1, object2) {
+  const keys1 = Object.keys(object1);
+  const keys2 = Object.keys(object2);
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+  for (const key of keys1) {
+    const val1 = object1[key];
+    const val2 = object2[key];
+    const areObjects = isObject(val1) && isObject(val2);
+    if (
+      areObjects && !deepEqual(val1, val2) ||
+      !areObjects && val1 !== val2
+    ) {
+      return false;
+    }
+  }
+  return true;
+}
+function isObject(object) {
+  return object != null && typeof object === 'object';
+}
+```
+
+[[↑] Back to top](#table-of-contents)
+
+
+## Clone
+
+#### Shallow Clone
+- points to the same location in memory as source does. 
+- duplicate as little as possible. 
+- a copy of the collection structure, still share the individual elements
+- limiting the depth of the history that is cloned from an original object
+
+#### Deep Clone 
+- points to a different location in memory, but the contents are the same.
+- duplicate everything.
+- no more contact with previous reference, they are not related
+- any modification would not influence original copy
 
 #### Deep Clone vs Shallow Clone
 2 ways to implement deep clone
@@ -538,65 +608,6 @@ const deepClone = (obj) => {
 	} else {
 		return obj;
 	}
-}
-```
-
-[[↑] Back to top](#table-of-contents)
-
-
-## Compare
-
-#### Manual comparison
-```js
-function isEqual(object1, object2) {
-  return object1.key === object2.key;
-}
-```
-
-#### Shallow equality
-```js
-function shallowEqual(object1, object2) {
-  const keys1 = Object.keys(object1);
-  const keys2 = Object.keys(object2);
-  if (keys1.length !== keys2.length) {
-    return false;
-  }
-  for (let key of keys1) {
-    if (object1[key] !== object2[key]) {
-      return false;
-    }
-  }
-  return true;
-}
-```
-
-#### Deep equality
-- `JSON.stringify(obj1) === JSON.stringify(obj2);` => stringify
-- `_.isEqual(object1, object2)` => using lodash library
-- `isDeepStrictEqual(object1, object2)` of Node built-in util module
-
-```js
-function deepEqual(object1, object2) {
-  const keys1 = Object.keys(object1);
-  const keys2 = Object.keys(object2);
-  if (keys1.length !== keys2.length) {
-    return false;
-  }
-  for (const key of keys1) {
-    const val1 = object1[key];
-    const val2 = object2[key];
-    const areObjects = isObject(val1) && isObject(val2);
-    if (
-      areObjects && !deepEqual(val1, val2) ||
-      !areObjects && val1 !== val2
-    ) {
-      return false;
-    }
-  }
-  return true;
-}
-function isObject(object) {
-  return object != null && typeof object === 'object';
 }
 ```
 
