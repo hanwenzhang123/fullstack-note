@@ -317,6 +317,17 @@ module.exports = Model;
 - prototyping (based on built-in pattern)
 - starts right away, let you see the results, run slowly
 
+#### Compiled vs. Interpreted 
+- Compilation - transforms your program into machine-understandable instructions. 
+- Interpretation - the source code is transformed line by line; each line or statement is executed before immediately proceeding to process the next line of the source code. 
+- JS is typically classified as an interpreted scripting language, so it is in a single, top-down pass. 
+
+#### JavaScript Engine
+- Engine: responsible for start-to-finish compilation and execution of our JavaScript program. 
+- Compiler: handles all the dirty work of parsing and code-generation. 
+- Scope Manager: collects and maintains a lookup list of all the declared variables/identifiers, and enforces a set of rules as to how these are accessible to currently executing code. 
+- JS engine first parses the entire program before any of it is executed, code must first be fully parsed before any execution occurs. 
+
 [[↑] Back to top](#table-of-contents)
 
 
