@@ -588,9 +588,9 @@ throtte
 - `<VirtualScroll className="List" minItemHeight={40} totalLength={100} renderItem={(rowIndex) => { return ( <div className="List-item"> <h3>List item: {rowIndex}</h3> </div> ); }} />`
 
 #### Web Workers
-- JS scripts running in the background threads, which are separate from the main execution thread, without affecting the performance of the page.
-- web content to run scripts in an isolated thread in the browser in parallel, prevent the UI from freezing up
-- `var myWorker = new Worker('worker.js');`, `myWorker.terminate();`
+- Allows JS scripts running in the background threads, which are separate from the main execution thread, without affecting the performance of the page.
+- web content to run scripts in an isolated thread in the browser in parallel, completely separate thread from the thread that's running the main JS program, prevent the UI from freezing up
+- Web Workers are a web platform extension, `const myWorker = new Worker('worker.js');`, `myWorker.terminate();`
 
 #### Production Build vs Development Build
 - production and development build come into the picture because of performance impact in real life deployed the application.
