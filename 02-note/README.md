@@ -26,6 +26,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - [Middleware](#middleware)
 - [Re-selectors](#re-selectors)
 
+
 ## React
 
 #### What is React?
@@ -96,10 +97,9 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - React Component is a function or class that accepts an input and returns a React element.
 
 #### Lists and Keys
-- Keys help React identify which items have changed (added/removed/re-ordered). 
-- To give a unique identity to every element inside the array, a key is required.
-- key is unique item for iterating through sub-components, always add the key! 
-- we do not add key to individual component.
+- key helps React identify which items have changed (added/removed/re-ordered) in order to render
+- give a unique identitier in string to every element inside the array, a key is required.
+- key is unique item for iterating through sub-components, always add the key to the up level! 
 - `{ this.state.numArr.map((num, index) => ( <Child key={index} num={num} /> ))}`
 
 #### Key not using indexes
@@ -108,7 +108,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - The component state can get mixed up and may use the old key for a different component instance.
 - Also, iterating over the list when it is large causes poor performance.
 - `[a:0, b:1, c:2]` -> `[d:0, a:1, b:2, c:3]` - bad
-- `[d:unique key, a:0, b:1, c:2]` - good
+- `[d:unique key, a:unique key, b:unique key]` - good
 
 #### SyntheticEvent 
 - because we run react in different environment, so we want consistency across multiple broswer like a wrapper
@@ -124,6 +124,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - `<React.Fragment>...</React.Fragment>`
 
 [[↑] Back to top](#table-of-contents)
+
 
 ## Rendering
 
@@ -216,6 +217,7 @@ export class App2 extends Component {
 
 [[↑] Back to top](#table-of-contents)
 
+
 ## HOC
 
 #### HOC -> High Order Component
@@ -246,6 +248,7 @@ export default HOCCounter;
 ```
 
 [[↑] Back to top](#table-of-contents)
+
 
 ## Router
 
