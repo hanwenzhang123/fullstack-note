@@ -20,6 +20,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - [Object](#Object)
 - [Class](#Class)
 - [Clone](#clone)
+- [Compare](#compare)
 - [API](#API)
 - [Implementation](#Implementation)
 
@@ -272,10 +273,11 @@ JSON.parse() & JSON.stringify() - deep copy
 - function constructor and apply new operator to create object instances - `function Person(name){this.name=name;} var object = new Person("Sudheer");`
 - Class - class Person {constructor(name) { this.name = name;} } var object = new Person("Sudheer");`
 
-#### 3 ways to clone objects:
+#### 4 ways to clone objects:
 - Spread Operator - `{ ...food }`
 - Object.assign - `Object.assign({}, food)`
-- JSON - `JSON.parse(JSON.stringify(food))`
+- JSON - `JSON.parse(JSON.stringify(food))` - (cannot clone function)
+- lodash - `_.cloneDeep(obj)`
 
 #### Check if it is an object
 `typeof yourVariable === 'object'`
@@ -335,68 +337,13 @@ for (const prop of Object.getOwnPropertyNames(obj)) {
 }
 ```
 
-#### Compare Objects
-Manual comparison
-```js
-function isEqual(object1, object2) {
-  return object1.key === object2.key;
-}
-```
-
-Shallow equality
-```js
-function shallowEqual(object1, object2) {
-  const keys1 = Object.keys(object1);
-  const keys2 = Object.keys(object2);
-  if (keys1.length !== keys2.length) {
-    return false;
-  }
-  for (let key of keys1) {
-    if (object1[key] !== object2[key]) {
-      return false;
-    }
-  }
-  return true;
-}
-```
-
-Deep equality
-- `JSON.stringify(obj1) === JSON.stringify(obj2);` => stringify
-- `_.isEqual(object1, object2)` => using lodash library
-- `isDeepStrictEqual(object1, object2)` of Node built-in util module
-
-```js
-function deepEqual(object1, object2) {
-  const keys1 = Object.keys(object1);
-  const keys2 = Object.keys(object2);
-  if (keys1.length !== keys2.length) {
-    return false;
-  }
-  for (const key of keys1) {
-    const val1 = object1[key];
-    const val2 = object2[key];
-    const areObjects = isObject(val1) && isObject(val2);
-    if (
-      areObjects && !deepEqual(val1, val2) ||
-      !areObjects && val1 !== val2
-    ) {
-      return false;
-    }
-  }
-  return true;
-}
-function isObject(object) {
-  return object != null && typeof object === 'object';
-}
-```
-
 #### Eliminate duplicate keys in Object
 ```js
 let map = {};
 array.map(element => {
- if(!map(element.id)){
-  map[element.id] = element;
-}
+  if(!map(element.id)){
+    map[element.id] = element;
+  }
 })
 ```
 ```js
@@ -562,7 +509,7 @@ console.log(obj);  //{x: { y: 9 } - also change to 9, both get update
 
 #### Deep Clone Implementation
 - Use lodash or write a deepclone function by ourself
-- JSON way cannot deep clone complex object like function, Date. Only works for simple data structure
+- JSON way cannot deep clone complex object like function, Date. Only works for simple data structure.
 
 #### Write your own code of deep clone
 ```js
@@ -591,6 +538,65 @@ const deepClone = (obj) => {
 	} else {
 		return obj;
 	}
+}
+```
+
+[[↑] Back to top](#table-of-contents)
+
+
+## Compare
+
+#### Manual comparison
+```js
+function isEqual(object1, object2) {
+  return object1.key === object2.key;
+}
+```
+
+#### Shallow equality
+```js
+function shallowEqual(object1, object2) {
+  const keys1 = Object.keys(object1);
+  const keys2 = Object.keys(object2);
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+  for (let key of keys1) {
+    if (object1[key] !== object2[key]) {
+      return false;
+    }
+  }
+  return true;
+}
+```
+
+#### Deep equality
+- `JSON.stringify(obj1) === JSON.stringify(obj2);` => stringify
+- `_.isEqual(object1, object2)` => using lodash library
+- `isDeepStrictEqual(object1, object2)` of Node built-in util module
+
+```js
+function deepEqual(object1, object2) {
+  const keys1 = Object.keys(object1);
+  const keys2 = Object.keys(object2);
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+  for (const key of keys1) {
+    const val1 = object1[key];
+    const val2 = object2[key];
+    const areObjects = isObject(val1) && isObject(val2);
+    if (
+      areObjects && !deepEqual(val1, val2) ||
+      !areObjects && val1 !== val2
+    ) {
+      return false;
+    }
+  }
+  return true;
+}
+function isObject(object) {
+  return object != null && typeof object === 'object';
 }
 ```
 
