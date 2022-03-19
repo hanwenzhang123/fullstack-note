@@ -487,11 +487,11 @@ console.log(1 || 2 || 3) //1 - OR - looking for the first TRUCY value, otherwise
 console.log(1 && 2 && 3) //3 - AND - looking for the first FALSY value, if not any, return last element
 ```
 
-#### error handling
-- The try statement lets you test a block of code for errors.
-- The catch statement lets you handle the error.
-- The throw statement lets you create custom errors. (execution of the current function will stop, the statements after throw won't be executed, and control will be passed to the first catch block in the call stack. If no catch block exists, the program will terminate.)
-- The finally statement lets you execute code, after try and catch, regardless of the result.
+#### Error Handling
+- `try` lets you test a block of code for errors.
+- `catch` lets you handle the error.
+- `throw` lets you create custom errors. (execution of the current function will stop, the statements after throw won't be executed, and control will be passed to the first catch block in the call stack. If no catch block exists, the program will terminate.)
+- `finally` lets you execute code, after try and catch, regardless of the result.
 
 [[↑] Back to top](#table-of-contents)
 
