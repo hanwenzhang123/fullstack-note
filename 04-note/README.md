@@ -489,6 +489,12 @@ document.querySelector('button').onclick = () => {	//send out text
 
 ## Performance
 
+#### The PRPL Pattern
+- Push (or preload) the most important resources
+- Render the initial route as soon as possible
+- Pre-cache remaining assets
+- Lazy load other routes and non-critical assets
+
 #### How do you generally improve performance?
 - use uglify and minify to reduce the bundle size
 - use lazy loading to improve the page loading speed. 
