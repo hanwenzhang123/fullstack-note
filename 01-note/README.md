@@ -487,6 +487,11 @@ console.log(1 || 2 || 3) //1 - OR - looking for the first TRUCY value, otherwise
 console.log(1 && 2 && 3) //3 - AND - looking for the first FALSY value, if not any, return last element
 ```
 
+#### Error
+- ReferenceError occurs when you try to use a variable that doesn't exist at all.
+- TypeError occurs when the variable exists, but the operation you're trying to perform is not appropriate for the type of value it contains
+- SyntaxError occurs when trying to interpret syntactically invalid code.
+
 #### Error Handling
 - `try` lets you test a block of code for errors.
 - `catch` lets you handle the error.
@@ -838,8 +843,8 @@ higherOrder(firstOrderFunc);
 - You can chain higher-order functions into composition
 
 #### Page Redirection
-- `function redirect() { window.location="{URL}" };`
-- `setTimeout(redirect, 1000)`
+- `window.open('{url}','_blank');` - open in a new window
+- `function redirect() { window.location='{URL}' };` - `setTimeout(redirect, 1000);`
 
 #### Popup Boxes
 - alert: `window.alert("sometext");`
