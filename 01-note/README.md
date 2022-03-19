@@ -487,6 +487,14 @@ console.log(1 || 2 || 3) //1 - OR - looking for the first TRUCY value, otherwise
 console.log(1 && 2 && 3) //3 - AND - looking for the first FALSY value, if not any, return last element
 ```
 
+#### Scope
+- Lexical Scope: a variable defined outside a function can be accessible inside another function defined after the variable declaration.
+- Global Scope: contains, and is visible in, all other scopes
+- Block Scope: variables declared inside a { } block cannot be accessed from outside the block, let/const
+- Function Scope: each function creates a new scope, var
+- Shadowing: a variable is declared in a certain scope having the same name defined on its outer scope
+- Illegal Shadowing: we can shadow var variable by let variable, but cannot do shadow let variable by var variable
+
 #### Error
 - ReferenceError occurs when you try to use a variable that doesn't exist at all.
 - TypeError occurs when the variable exists, but the operation you're trying to perform is not appropriate for the type of value it contains
