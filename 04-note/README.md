@@ -92,11 +92,11 @@ Cons
 
 #### import & export
 ```js
-//commonjs - default - sync
+//CommonJS - loads modules synchronously
 const express = require('express');
 module.exports = Task;
 
-//es6 - async
+//Modern ES Modules (ESM) - loads modules asynchronous
 import process from "process";
 export default App;
 ```
