@@ -22,8 +22,10 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - [JavaScript](#javascript)
 - [ES6](#ES6)
 - [Promise](#Promise)
+- [Funtion](#Function)
+- [Scope](#Scope)
+- [Closure](#Closure)
 - [This](#this)
-- [JS Funtion](#JS-Function)
 - [DOM Event](#DOM-event)
 
 ## HTTP
@@ -487,47 +489,6 @@ console.log(1 || 2 || 3) //1 - OR - looking for the first TRUCY value, otherwise
 console.log(1 && 2 && 3) //3 - AND - looking for the first FALSY value, if not any, return last element
 ```
 
-#### scope
-- Lexical Scope: a variable defined outside a function can be accessible inside another function defined after the variable declaration.
-- Global Scope: contains, and is visible in, all other scopes
-
-#### block vs function
-- `var` is function scope.
-- Function scope is within the function, each function creates a new scope
-- `let` and `const` are block scope.
-- Block scope is within curly brackets, variables declared inside a { } block cannot be accessed from outside the block
-
-#### least exposure
-- "The Principle of Least Privilege" (POLP) encourages us to use block (and function) scoping to limit the scope exposure of variables. This helps keep code understandable and maintainable, and helps avoid many scoping pitfalls.
-
-#### scoping pitfalls
-- name collision: the identifier comes from one shared scope (like the global scope)
-- unexpected behavior: expose variables/functions whose usage is otherwise private to a piece of the program
-- unintended dependency: expose variables/functions unnecessarily which invites other developers to use and depend on those otherwise private pieces
-
-#### Shadowing
-- Shadowing: a variable is declared in a certain scope having the same name defined on its outer scope
-- Illegal Shadowing: we can shadow var variable by let variable, but cannot do shadow let variable by var variable
-```js
-let a = 10;
-{ 
-  var a = 20;	//SyntaxError: Identifier 'a' has already been declared
-}
-//var is not scoped to the block it's in, it's scoped to the containing function. 
-//if there is no containing function, it ends up in the global scope. 
-//it conflicts with the let a declaration which is also in the global scope.
-```
-```js
-var a = 99;                                                                                                             
-{
-    let a = 10;		//let is block scope
-    let b = 11;
-    const c = 200;
-    console.log(a);	//10
-}
-console.log(a);	//99
-```
-
 #### error
 - ReferenceError occurs when you try to use a variable that doesn't exist at all.
 - TypeError occurs when the variable exists, but the operation you're trying to perform is not appropriate for the type of value it contains
@@ -568,18 +529,31 @@ let b = 1;
 
 #### Scoping
 ```js
+for(let i = 0; i < 5; i++){	//let - block scope, let i gives us a new i for each iteration, 
+    setTimeout(()=>{
+        console.log(i)  //0 1 2 3 4
+    }, 500);
+}
+```
+```js
 for(var i = 0; i < 5; i++){	//var - function scope
     setTimeout(()=>{
         console.log(i)  //5 5 5 5 5
     }, 500);
 } 
 ```
+new `j` created each iteration, which gets a copy of the value of `i` at this moment 
 ```js
-for(let i = 0; i < 5; i++){	//let - block scope
-    setTimeout(()=>{
-        console.log(i)  //0 1 2 3 4
-    }, 500);
-}
+var keeps = [];
+for (var i = 0; i < 3; i++) {
+    let j = i;
+    keeps[i] = function keepEachJ(){
+        return j; 
+    };
+ } 
+keeps[0](); //0 
+keeps[1](); //1 
+keeps[2](); //2
 ```
 
 #### Hoisting
@@ -694,7 +668,7 @@ func(1, 2, 3, 4, 5, 6, 7);
 - sync code, code that is going to execute right away, one expression at a time.
 - async code, will not get executed right away, but sometime in the future, the next expression runs while the previous finishes up.
 
-####  Asynchronous JS
+#### Asynchronous JS
 - JS uses callback, promise, async-await to implement asynchronous patterns.
 
 #### Promise(event loop, task scheduling)
@@ -742,6 +716,188 @@ Promise.all([promise1, promise2, promise3]).then((values) => {
 - start with async function, replace .then() with await, use try catch for error handling, async function can be dynamic like mongodb update/delete endpoints
 
 `main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)`
+
+[[↑] Back to top](#table-of-contents)
+
+
+## Function
+
+#### Callbacks
+- a function passed into another function as an argument 
+- this function will be executed later only after this another function has finished executing
+- great for async calls, handle something after something else has been completed, enforce the order of operation that we want. 
+
+```js
+function greeting(name) {
+  alert('Hello ' + name);
+}
+function processUserInput(callback) {
+  var name = prompt('Please enter your name.');
+  callback(name);
+}
+processUserInput(greeting);
+```
+
+#### Unary Function
+- a function that accepts exactly one argument. It stands for a single argument accepted by a function.
+- `const unaryFunction = a => console.log (a + 10); // Add 10 to the given argument and display the value`
+
+#### First Order Function
+- a function that doesn’t accept another function as an argument and doesn’t return a function as its return value.
+- `const firstOrder = () => console.log ('I am a first order function!');`
+
+#### Higher Order Function
+- a function that accepts another function as an argument or returns a function as a return value or both.
+- map, reduce, filter, find, etc
+```js
+const firstOrderFunc = () => console.log ('Hello, I am a First order function');
+const higherOrder = (ReturnFirstOrderFunc) => ReturnFirstOrderFunc();
+higherOrder(firstOrderFunc);
+```
+
+#### Currying
+- a nested function that takes multiple arguments one at a time, the last function returns the result based on all the argument
+- we do not change the functionality of a function, we just change the way it is invoked
+- - useful in the context of function composition 
+- `const addNumber = (a) => (b) => (c) => a+b+c;`
+
+#### Composition
+- a function called in another function
+- You can chain higher-order functions into composition
+
+#### Page Redirection
+- `window.open('{url}','_blank');` - open in a new window
+- `function redirect() { window.location='{URL}' };` - `setTimeout(redirect, 1000);`
+
+#### Popup Boxes
+- alert: `window.alert("sometext");`
+- prompt: `window.prompt("sometext","defaultText");`
+- confirm: `window.confirm("somtext")` ok and cancel -> return boolean
+
+#### Function Declaration vs Expression
+- Function declarations load before any code is executed 
+- Similar to the var statement, function declarations are hoisted to the top of other code. 
+- Function expressions load only when the interpreter reaches that line of code. 
+- Function expressions aren’t hoisted, which allows them to retain a copy of the local variables from the scope where they were defined.
+```js
+myF()
+function myF(){
+	console.log("My Function")    //it is okay to under the function declaration using keyword function
+}
+myF()
+const myF = function(){
+	console.log("My Function")  //ReferenceError, no good with function expression, can not access function initialization, myF() failed directly
+}
+myF()
+var myF = function(){
+	console.log("My Function")  //TypeError, no good, myF is not a function, var myF = undefined;
+	//when you try to execute myF, it is good, it is there, but it triggers the function which is undefined, that it breaks the rule. 
+}
+```
+
+Benefits of Function Expressions:
+- As closures
+- As arguments to other functions
+- As Immediately Invoked Function Expressions (IIFE)
+
+#### IIFE - immediate invoked function expression 
+- runs as soon as it is defined, invoke immediately
+- variables declared in the function expression will not be available outside the function
+- primary purpose: data privacy because any variables declared within the IIFE cannot be accessed by the outside world.
+
+contains two major parts: 
+1. function expression within the Grouping Operator () 
+2. immediately invoke the function ()
+
+```js
+(function() {  /* */ })()
+(() => {  /* */ })()
+```
+```js
+for (var i = 1; i <= 3; i++) {		//var makes i stays in the function scope
+    (function(index) {	//wraps the function call in another function, so inner function gets local copy of outer function arguement
+        setTimeout(function() { alert(index); }, i * 1000);	//having a copy of i in it
+    })(i);	//using a self-invoking function, IIFE, each iteration created a new scope for each iteration
+}
+```
+
+## Scope
+
+#### lexical & global
+- Lexical Scope: a variable defined outside a function can be accessible inside another function defined after the variable declaration.
+- Global Scope: contains, and is visible in, all other scopes
+
+#### block vs function
+- `var` is function scope.
+- Function scope is within the function, each function creates a new scope
+- `let` and `const` are block scope.
+- Block scope is within curly brackets, variables declared inside a { } block cannot be accessed from outside the block
+
+#### "The Principle of Least Privilege" (POLP) 
+- encourages us to use block (and function) scoping to limit the scope exposure of variables. 
+- least exposure helps keep code understandable and maintainable, and helps avoid many scoping pitfalls.
+
+#### scoping pitfalls
+- name collision: the identifier comes from one shared scope (like the global scope)
+- unexpected behavior: expose variables/functions whose usage is otherwise private to a piece of the program
+- unintended dependency: expose variables/functions unnecessarily which invites other developers to use and depend on those otherwise private pieces
+
+#### Shadowing
+- Shadowing: a variable is declared in a certain scope having the same name defined on its outer scope
+- Illegal Shadowing: we can shadow var variable by let variable, but cannot do shadow let variable by var variable
+```js
+let a = 10;
+{ 
+  var a = 20;	//SyntaxError: Identifier 'a' has already been declared
+}
+//var is not scoped to the block it's in, it's scoped to the containing function. 
+//if there is no containing function, it ends up in the global scope. 
+//it conflicts with the let a declaration which is also in the global scope.
+```
+```js
+var a = 99;                                                                                                             
+{
+    let a = 10;		//let is block scope
+    let b = 11;
+    const c = 200;
+    console.log(a);	//10
+}
+console.log(a);	//99
+```
+[[↑] Back to top](#table-of-contents)
+
+
+## Closure
+
+#### what is closure
+- a function retured by another function that still has access to its outer scope variable
+- ability to remember and access scope even if was called from another scope
+- used to enable data privacy, but cons -> may cause memory leak
+```js
+function makeCounter(){
+    let count = 0;      //private variable for keeping data private and safe
+    			//value by the function will be saved as it will be needed by the inner function, not for garbage collection
+    return function(){
+        count++
+        return count;
+    };
+}
+const counterFunc = makeCounter();
+console.log(counterFunc()); //1
+console.log(counterFunc()); //2
+const newFunc = makeCounter();  //a new function, variabel value start over
+console.log(newFunc());  //1
+console.log(newFunc());  //2
+```
+
+#### Closure Definition
+- Closure is observed when a function uses variable(s) from outer scope(s) even while running in a scope where those variable(s) wouldn't be accessible.
+- Closure encapsulates the body of code together with the lexical scope. 
+
+#### Closure Requirements
+- Must be a function involved
+- Must reference at least one variable from an outer scope
+- Must be invoked in a different branch of the scope chain from the variable(s)
 
 [[↑] Back to top](#table-of-contents)
 
@@ -816,128 +972,6 @@ a();   //undefined
 
 [[↑] Back to top](#table-of-contents)
 
-
-## JS Function
-
-#### Closure 
-- a function retured by another function that still has access to its outer scope variable
-- used to enable data privacy, but cons -> may cause memory leak
-- ability to remember and access scope even if was called from another scope (function return function/block scope in block scope)
-```js
-function makeCounter(){
-    let count = 0;      //private variable for keeping data private and safe
-    			//value by the function will be saved as it will be needed by the inner function, not for garbage collection
-    return function(){
-        count++
-        return count;
-    };
-}
-const counterFunc = makeCounter();
-console.log(counterFunc()); //1
-console.log(counterFunc()); //2
-const newFunc = makeCounter();  //a new function, variabel value start over
-console.log(newFunc());  //1
-console.log(newFunc());  //2
-```
-
-#### Callbacks
-- a function passed into another function as an argument 
-- this function will be executed later only after this another function has finished executing
-- great for async calls, handle something after something else has been completed, enforce the order of operation that we want. 
-
-```js
-function greeting(name) {
-  alert('Hello ' + name);
-}
-function processUserInput(callback) {
-  var name = prompt('Please enter your name.');
-  callback(name);
-}
-processUserInput(greeting);
-```
-
-#### Unary Function
-- a function that accepts exactly one argument. It stands for a single argument accepted by a function.
-- `const unaryFunction = a => console.log (a + 10); // Add 10 to the given argument and display the value`
-
-#### First Order Function
-- a function that doesn’t accept another function as an argument and doesn’t return a function as its return value.
-- `const firstOrder = () => console.log ('I am a first order function!');`
-
-#### Higher Order Function
-- a function that accepts another function as an argument or returns a function as a return value or both.
-- map, reduce, filter, find, etc
-```js
-const firstOrderFunc = () => console.log ('Hello, I am a First order function');
-const higherOrder = (ReturnFirstOrderFunc) => ReturnFirstOrderFunc();
-higherOrder(firstOrderFunc);
-```
-
-#### Currying
-- a nested function that takes multiple arguments one at a time, the last function returns the result based on all the argument
-- we do not change the functionality of a function, we just change the way it is invoked
-- - useful in the context of function composition 
-- `const addNumber = (a) => (b) => (c) => a+b+c;`
-
-#### Composition
-- a function called in another function
-- You can chain higher-order functions into composition
-
-#### Page Redirection
-- `window.open('{url}','_blank');` - open in a new window
-- `function redirect() { window.location='{URL}' };` - `setTimeout(redirect, 1000);`
-
-#### Popup Boxes
-- alert: `window.alert("sometext");`
-- prompt: `window.prompt("sometext","defaultText");`
-- confirm: `window.confirm("somtext")` ok and cancel -> return boolean
-
-#### Function Declaration vs Function Expression
-- Function declarations load before any code is executed 
-- Similar to the var statement, function declarations are hoisted to the top of other code. 
-- Function expressions load only when the interpreter reaches that line of code. 
-- Function expressions aren’t hoisted, which allows them to retain a copy of the local variables from the scope where they were defined.
-```js
-myF()
-function myF(){
-	console.log("My Function")    //it is okay to under the function declaration using keyword function
-}
-myF()
-const myF = function(){
-	console.log("My Function")  //ReferenceError, no good with function expression, can not access function initialization, myF() failed directly
-}
-myF()
-var myF = function(){
-	console.log("My Function")  //TypeError, no good, myF is not a function, var myF = undefined;
-	//when you try to execute myF, it is good, it is there, but it triggers the function which is undefined, that it breaks the rule. 
-}
-```
-
-Benefits of Function Expressions:
-- As closures
-- As arguments to other functions
-- As Immediately Invoked Function Expressions (IIFE)
-
-#### IIFE - immediate invoked function expression 
-- runs as soon as it is defined, invoke immediately
-- variables declared in the function expression will not be available outside the function
-- primary purpose: data privacy because any variables declared within the IIFE cannot be accessed by the outside world.
-
-contains two major parts: 
-1. function expression within the Grouping Operator () 
-2. immediately invoke the function ()
-
-```js
-(function() {  /* */ })()
-(() => {  /* */ })()
-```
-```js
-for (var i = 1; i <= 3; i++) {		//var makes i stays in the function scope
-    (function(index) {	//wraps the function call in another function, so inner function gets local copy of outer function arguement
-        setTimeout(function() { alert(index); }, i * 1000);	//having a copy of i in it
-    })(i);	//using a self-invoking function, IIFE, each iteration created a new scope for each iteration
-}
-```
 
 ## DOM Event
 
