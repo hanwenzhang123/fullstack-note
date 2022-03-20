@@ -487,20 +487,53 @@ console.log(1 || 2 || 3) //1 - OR - looking for the first TRUCY value, otherwise
 console.log(1 && 2 && 3) //3 - AND - looking for the first FALSY value, if not any, return last element
 ```
 
-#### Scope
+#### scope
 - Lexical Scope: a variable defined outside a function can be accessible inside another function defined after the variable declaration.
 - Global Scope: contains, and is visible in, all other scopes
-- Block Scope: variables declared inside a { } block cannot be accessed from outside the block, let/const
-- Function Scope: each function creates a new scope, var
+
+#### block vs function
+- `var` is function scope.
+- Function scope is within the function, each function creates a new scope
+- `let` and `const` are block scope.
+- Block scope is within curly brackets, variables declared inside a { } block cannot be accessed from outside the block
+
+#### least exposure
+- "The Principle of Least Privilege" (POLP) encourages us to use block (and function) scoping to limit the scope exposure of variables. This helps keep code understandable and maintainable, and helps avoid many scoping pitfalls.
+
+#### scoping pitfalls
+- name collision: the identifier comes from one shared scope (like the global scope)
+- unexpected behavior: expose variables/functions whose usage is otherwise private to a piece of the program
+- unintended dependency: expose variables/functions unnecessarily which invites other developers to use and depend on those otherwise private pieces
+
+#### Shadowing
 - Shadowing: a variable is declared in a certain scope having the same name defined on its outer scope
 - Illegal Shadowing: we can shadow var variable by let variable, but cannot do shadow let variable by var variable
+```js
+let a = 10;
+{ 
+  var a = 20;	//SyntaxError: Identifier 'a' has already been declared
+}
+//var is not scoped to the block it's in, it's scoped to the containing function. 
+//if there is no containing function, it ends up in the global scope. 
+//it conflicts with the let a declaration which is also in the global scope.
+```
+```js
+var a = 99;                                                                                                             
+{
+    let a = 10;		//let is block scope
+    let b = 11;
+    const c = 200;
+    console.log(a);	//10
+}
+console.log(a);	//99
+```
 
-#### Error
+#### error
 - ReferenceError occurs when you try to use a variable that doesn't exist at all.
 - TypeError occurs when the variable exists, but the operation you're trying to perform is not appropriate for the type of value it contains
 - SyntaxError occurs when trying to interpret syntactically invalid code.
 
-#### Error Handling
+#### error handling
 - `try` lets you test a block of code for errors.
 - `catch` lets you handle the error.
 - `throw` lets you create custom errors. (execution of the current function will stop, the statements after throw won't be executed, and control will be passed to the first catch block in the call stack. If no catch block exists, the program will terminate.)
@@ -876,7 +909,7 @@ const myF = function(){
 myF()
 var myF = function(){
 	console.log("My Function")  //TypeError, no good, myF is not a function, var myF = undefined;
-	//when you try to execute myF(), it is good, it is there, but it triggers the function which is undefined, that it breaks the rule. 
+	//when you try to execute myF, it is good, it is there, but it triggers the function which is undefined, that it breaks the rule. 
 }
 ```
 
