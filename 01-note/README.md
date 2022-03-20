@@ -422,23 +422,22 @@ Internal JavaScript engine built in Chrome.
 It gives you less tolerate to errors, put on top of your program
 
 #### data type
-primitive data types, variable stores the values, refer by value
+- `primitive` variable stores the values, refer by value
+- `non-primitive` object points to a reference (memory location of the value), not the value itself
 ```js
-let a = 1; //number
-a = "hello" //string
-a = true // boolean
-a = undefined // undefined
-a = null; // object (js built-in error)
+typeof 42 	//number
+typeof "abc"	//string
+typeof true	//boolean
+typeof Boolean(1) //boolean
+typeof undefined  //undefined
+typeof null 	//object (js built-in error)
+typeof {"a": 1}	//object
+typeof [1, 2, 3] //object
+typeof function hello(){} //function
 ```
 
-non-primitive, object points to a reference (memory location of the value), not the value itself
-```js
-a = {} // object
-arr = [] // object (array)
-function(){}  //function (object)
-```
-
-false values: false, 0, -0, 0n, "", null, undefined, and NaN
+#### false values
+false, 0, -0, 0n, "", null, undefined, and NaN
 
 #### =, ==, ===
 - `=` - assignment operator, which sets the variable on the left of the = to the value of the expression that is on its right
@@ -458,9 +457,21 @@ console.log(5-"2")  //3
 console.log(5-"a") //NaN - Not a number, invalid operation, no ascii code in JS
 ```
 
+#### coercion comparison
+```js
+42 == "42"; // true 
+1 == true; // true
+
+var x = "10"; 
+var y = "9";
+x < y;      // true
+```
+
 #### dynamic casting
 ```js
-console.log(typeof Boolean(1)) //boolean
+typeof 42 	//number
+typeof "abc"	//string
+typeof Boolean(1) //boolean
 let a = 1
 console.log(typeof !a) //boolean, check the 2nd value
 console.log(!1) //false
