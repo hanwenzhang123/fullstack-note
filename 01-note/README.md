@@ -733,10 +733,20 @@ Promise.all([promise1, promise2, promise3]).then((values) => {
 
 ## Function
 
+#### Parameters vs Arguments
+```js
+function counter(x, y){ //x & y are parameter console.log(x+y);
+	//do something
+}
+var a = 10, b = 2;
+counter(a, b); //a & b are argument
+```
+
 #### Callbacks
 - a function passed into another function as an argument 
 - this function will be executed later only after this another function has finished executing
-- great for async calls, handle something after something else has been completed, enforce the order of operation that we want. 
+- JS is synchronous single threaded language but through use of Callback functions we can perform async task.
+- great for async calls, handle something after something else has been completed, enforce the order of operation that we want (Eg, Event listeners make use of this.)
 
 ```js
 function greeting(name) {
@@ -748,6 +758,14 @@ function processUserInput(callback) {
 }
 processUserInput(greeting);
 ```
+
+#### First class function
+- In JS, is called first class function, aka, first class citizens.
+- Callback is also a first class function going by this definition because it is also passed as an argument. 
+- The ability of functions to be: 
+1. Assigned to variable
+2. Passed as argument to another function
+3. Returned from another function
 
 #### Unary Function
 - a function that accepts exactly one argument. It stands for a single argument accepted by a function.
@@ -768,8 +786,9 @@ higherOrder(firstOrderFunc);
 
 #### Currying
 - a nested function that takes multiple arguments one at a time, the last function returns the result based on all the argument
+- convert a function with multiple arguments into several functions of a single arguments in sequence.
 - we do not change the functionality of a function, we just change the way it is invoked
-- - useful in the context of function composition 
+- useful in the context of function composition 
 - `const addNumber = (a) => (b) => (c) => a+b+c;`
 
 #### Composition
@@ -835,8 +854,8 @@ for (var i = 1; i <= 3; i++) {		//var makes i stays in the function scope
 ## Scope
 
 #### lexical & global
-- Lexical Scope: a variable defined outside a function can be accessible inside another function defined after the variable declaration.
-- Global Scope: contains, and is visible in, all other scopes
+- Lexical Scope: a variable defined outside a function can be accessible inside another function defined after the variable declaration (Whenever execution context is created, a lexical environment is also created)
+- Global Scope: contains, and is visible in, all other scopes (Global object (in browsers, it is called window) which is referenced by ‘this’.)
 
 #### block vs function
 - `var` is function scope.
@@ -853,9 +872,23 @@ for (var i = 1; i <= 3; i++) {		//var makes i stays in the function scope
 - unexpected behavior: expose variables/functions whose usage is otherwise private to a piece of the program
 - unintended dependency: expose variables/functions unnecessarily which invites other developers to use and depend on those otherwise private pieces
 
-#### Shadowing
+#### shadowing
 - Shadowing: a variable is declared in a certain scope having the same name defined on its outer scope
+
+```js
+var a = 99; 
+{
+    let a = 10;		//let is block scope
+    let b = 11;
+    const c = 200;
+    console.log(a);	//10
+}
+console.log(a);	//99
+```
+
+#### illegal shadowing
 - Illegal Shadowing: we can shadow var variable by let variable, but cannot do shadow let variable by var variable
+
 ```js
 let a = 10;
 { 
@@ -865,16 +898,7 @@ let a = 10;
 //if there is no containing function, it ends up in the global scope. 
 //it conflicts with the let a declaration which is also in the global scope.
 ```
-```js
-var a = 99;                                                                                                             
-{
-    let a = 10;		//let is block scope
-    let b = 11;
-    const c = 200;
-    console.log(a);	//10
-}
-console.log(a);	//99
-```
+
 [[↑] Back to top](#table-of-contents)
 
 
@@ -910,6 +934,12 @@ console.log(newFunc());  //2
 - Must be a function involved
 - Must reference at least one variable from an outer scope
 - Must be invoked in a different branch of the scope chain from the variable(s)
+
+#### Disadvantages of Closures
+Closure is associated directly with memory consumption. Hence, it leads to high consumption of memory, if lot of closures are created, since the allocated memory are not garbage collected till program expires.
+
+#### Garbage Collector
+It is a program in the browser/JS Engine which is responsible for freeing up the memory which are unutilised.
 
 [[↑] Back to top](#table-of-contents)
 
@@ -1038,18 +1068,30 @@ a();   //undefined
 - Clicking on a "Submit" button, prevent it from submitting a form
 - Clicking on a link, prevent the link from following the URL
 
+#### Event.stopPropagation() 
+- prevents further propagation of the current event in the capturing and bubbling phases. 
+- By default, events are bubbled. These propagation of event is expensive and we can stop it by calling, .stopPropagation() method.
+
 #### Event Propagation
 - like a deeper ocean goes to the layer one by one travel through the DOM tree to arrive at its target and what happens to it afterward
-- Event.stopPropagation() - prevents further propagation of the current event in the capturing and bubbling phases. 
 
 Three phases in order are:
-1. the event capturing phase - top to the botton - outermost to inner - click outter which will trigger the inner one. 
-2. the target phase - all the listeners registered on the event target will be invoked
-3. the event bubbling phase - buttom to the top - innermost to outer - click the inner one, the outter one will also be clicked
+1. the `event capturing phase` - top to the botton - outermost to inner - click outter which will trigger the inner one. 
+2. the `target phase` - all the listeners registered on the event target will be invoked
+3. the `event bubbling phase` - buttom to the top - innermost to outer - click the inner one, the outter one will also be clicked
 
 #### Event Delegation
 - Allow you to avoid adding event listeners to specific nodes; instead, the event listener is added to one parent. 
 - Instead of attaching the event listeners directly to the buttons, you delegate listening to the parent `<div id="buttons">`. 
 - When a button is clicked, the listener of the parent element analyzes the bubbling event and catches on a matched child element (recall the event propagation).
+
+#### pros & cons
+PROS of event delegation:
+1. Improves Memory
+2. Write less code
+3. DOM manipulation
+
+CONS of event delegation:
+1. All events are not bubbled up, like, blur, resize, etc.
 
 [[↑] Back to top](#table-of-contents)
