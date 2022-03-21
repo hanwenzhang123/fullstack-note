@@ -30,6 +30,9 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 
 ## Frontend
 
+#### Polyfills
+A polyfill is a piece of code (usually JavaScript on the Web) used to provide modern functionality on older browsers that do not natively support it.
+
 #### React 18 New Features
 - Concurrency control with the Transition API (Concurrency is the ability to execute multiple tasks simultaneously)
 - Much faster page loads for server-side rendering with Suspense API
