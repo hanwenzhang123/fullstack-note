@@ -418,6 +418,16 @@ A structured data in a hierarchical way and not just a bunch of variables, helps
 #### what is V8?
 Internal JavaScript engine built in Chrome.
 
+#### JS Engine
+takes code as input and undergoes 3 major phases: PARSING, COMPILATION and EXECUTION.
+1. Parsing - code is broken down into array of tokens and convert it into AST (Abstract Syntax Tree).
+2. Compilation - decides whether JS is interpreted or compiled language, can use interpreter along with compiler to make it JIT (Just in time) compiled language.
+3. Execution - Interpreter and compiler are in sync with execution phase making use of Memory heap and Call stack.
+
+#### compilation
+- JIT compilation: Generating machine code during runtime.
+- AOT compilation: In this compiler takes piece of code (which is supposed to be executed later) and tries to optimize it.
+
 #### "use strict" Mode
 It gives you less tolerate to errors, put on top of your program
 
@@ -1033,6 +1043,20 @@ a();   //undefined
 #### Event loop: 
 - In JS there are 3 types of memory: `stack` used for functions call, `heap` for each of the objects, `queue` — setTimeout. 
 - JS engine executes the function stack first. If the stack is empty, it pops the event from queue. If the event queue has another function call, it pushes it to stack and executes it again until it is empty. This is called event loop;
+
+#### Web API
+- All the code execution is done inside callstack, which is present in JS engine, which in turn is in browser.
+- Browser has some added functionalities like, Local storage, Timer, Address field, etc.
+1. SetTimeout()
+3. DOM APIs
+4. Fetch()
+5. LocalStorage
+6. Console
+7. Location
+ 
+#### Asynchronous web API
+- Q. Are only asynchronous web API callbacks, registered in the web API environment?
+- A. YES, the synchronous callback functions like what we pass inside map, filter, and reduce aren't registered in the Web API environment. It's just those async callback function that are registered.
 
 #### DOM Methods
 - Adding Elements: `body.append("Hello World")`; `body.append(div)`; `.appendChild(div)`;
