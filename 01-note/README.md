@@ -904,6 +904,7 @@ console.log(newFunc());  //2
 #### Closure Definition
 - Closure is observed when a function uses variable(s) from outer scope(s) even while running in a scope where those variable(s) wouldn't be accessible.
 - Closure encapsulates the body of code together with the lexical scope. 
+- Closure is most common when working with asynchronous code, such as with callbacks.
 
 #### Closure Requirements
 - Must be a function involved
@@ -915,6 +916,11 @@ console.log(newFunc());  //2
 
 ## This
 
+#### "this" keyword
+- entirely dependent on how it is called
+- refers to the object that the function is a property of. 
+- the value will always depend on the object that is invoking the function.
+
 #### bind vs apply vs call
 `bind()`
 - The bind() method creates a new function used to provide a proper "this" reference to the function
@@ -924,13 +930,12 @@ console.log(newFunc());  //2
 - same, just the different way to put in the parameter: call => comma; apply => array
 - directly triggers itself, call it right now, unlike bind, not yet to call
 
-#### "this" keyword
-- refers to the object that the function is a property of. 
-- the value will always depend on the object that is invoking the function.
+#### this in functions
+- "this" behaves differently in arrow functions compared to a regular function.
+- `this` in `regular function`, `this` belongs to function, it binds its own value, like person.fullName(), "this" refers to the left to the '.' 
+- `this` in `arrow function`, `this` DOES NOT belong to arrFunc, it is outside of the function, arrow functions don't bind their own this value
 
-the key word "this" behaves differently in arrow functions compared to a regular function.
-- "this" in function, this belongs to function, it binds its own value, like person.fullName(), "this" refers to the left to the '.' 
-- "this" in arrow function, "this" DOES NOT belong to arrFunc, it is outside of the function, arrow functions don't bind their own this value
+#### this examples
 ```js
 //1. this IN method, this -> object owner
 const person = {
