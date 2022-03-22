@@ -346,9 +346,8 @@ specify sizes or lengths of elements using various units of measure
 
 #### What is Sass?
 - CSS can get messy when the code gets large, Sass is an extension of CSS3 that does things CSS do not
-- for exmple, adding nested rules, mixins, variables, selector inheritance, etc.
+- for exmple, adding nesting rules, mixins, variables, selector inheritance, functions etc.
 - Broswer reads CSS but Sass, we write Sass code to Sass file and compile the code to css code using npm or Watch Sass in VS Code.
-- We link the regular CSS file in the HTML file; `<link ref:"stylesheet" href="./style.css">`
 
 #### Syntax
 - Sass syntax: no curly braces, no semicolons
@@ -357,7 +356,6 @@ specify sizes or lengths of elements using various units of measure
 - naming for the sub-file: _heaader.scss
 
 #### Key Features for Sass
-Full CSS3-compatible along with language extensions and useful functions, well-formatted, customizable output
 - Variables: `$primaryBtm` for reusable values; `&:hover``&&:after` for psuedo
 - Nesting: to nest selectors inside of one another, allowing us to write less code
 - Operators: for mathematical operations right inside of CSS `100%-20%`
@@ -386,7 +384,6 @@ header{
 - SASS: the single line comments `//` and the multiline CSS comments with `/* */`.
 
 #### Data Types that SassScript supports
-SassScript supports seven main data types
 1. Numbers ( eg; 1,5 ,10px)
 2. Strings of texts ( g., “foo”, ‘bar’, etc.)
 3. Colors (blue, #04a3f9)
@@ -412,6 +409,7 @@ A structured data in a hierarchical way and not just a bunch of variables, helps
 - Unlike other programming libraries, Sass map will consist only of code that is going to be used
 
 [[↑] Back to top](#table-of-contents)
+
 
 ## JavaScript
 
