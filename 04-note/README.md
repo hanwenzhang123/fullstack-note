@@ -79,9 +79,10 @@ Cons
 
 #### Key Features & Benefits
 - server-side rendering (initial load rendered by the server, great for SEO & performance)
-- File-based Routing (define pages and routes with files and folders instead of code)
+- file-based routing (define pages and routes with files and folders instead of code)
 - fullstack capabilities (backend api code using nodeJS)
 - static-site generation (pre-generate a html file)
+- API routes (build your own API endpoints)
 - Typescript/Sass support
 - smart bundling
 - route pre-fetching
