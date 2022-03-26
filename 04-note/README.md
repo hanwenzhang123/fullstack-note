@@ -31,7 +31,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 ## Frontend
 
 #### Polyfills
-A polyfill is a piece of code (usually JavaScript on the Web) used to provide modern functionality on older browsers that do not natively support it.
+- A polyfill is a piece of code (usually JavaScript on the Web) used to provide modern functionality on older browsers that do not natively support it.
 
 #### React 18 New Features
 - Concurrency control with the Transition API (Concurrency is the ability to execute multiple tasks simultaneously)
@@ -61,18 +61,27 @@ Cons
 - updates can introduce issues
 - easy to get started, but require more time down the road to add features and customizations. 
 
-#### React Angular Vue
-- React data flows only in one way and is easy to debug.
-- Angular data flows both ways and hence debugging is often difficult.
-- Vue mainly uses HTML templates with some JSX, while React only uses JSX that allows you to insert HTML directly into JS code.
-- React alway passes the data to view, and to update the view, you need to use a callback to update it -> different from react and angualr
-
 #### How to Share Components with Others?
 - Bit + Bit.dev - develop, build and test individual components in the library in complete isolation
 - When you update a single components, Bit “knows” which other components depend on it, and help you update all the component that are impacted by the update.
 - Lerna - manage multi-repository structure inside a single repository
 - Multiple packages - create new Git repo for every piece of code you want to reuse
 - A Single library package for many components - put a few dozen shared components in a single repo
+
+#### React Angular Vue
+- React data flows only in one way and is easy to debug.
+- Angular data flows both ways and hence debugging is often difficult.
+- Vue mainly uses HTML templates with some JSX, while React only uses JSX that allows you to insert HTML directly into JS code.
+- React alway passes the data to view, and to update the view, you need to use a callback to update it -> different from react and angualr
+
+#### What is Next.js
+- Next.js is a React framework for production created by Vercel (A fullstack framework for ReactJS)
+- Features you need for production: server-side rendering, static-site generation, API Routes, Typescript/Sass support, smart bundling, route pre-fetching, and more
+
+#### Server-side Rendering Next.js
+- NextJS allows the first page load to be rendered by the server, which is great for SEO & performance
+- unlike traditional React App where the entire application is loaded and rendered on the client
+
 
 [[↑] Back to top](#table-of-contents)
 
