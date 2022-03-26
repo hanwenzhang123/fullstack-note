@@ -78,18 +78,26 @@ Cons
 - Next.js is a React framework for production created by Vercel (A fullstack framework for ReactJS)
 
 #### Key Features & Benefits
-- server-side rendering (initial load rendered by the server, pre-render React components on server which is great for SEO & performance, then SPA handled by React for fast interactive UI, regenerated everytime for incoming reuqest)
+- server-side rendering (initial load rendered by the server, great for SEO & performance)
 - File-based Routing (define pages and routes with files and folders instead of code)
 - fullstack capabilities (backend api code using nodeJS)
-- static-site generation (pre-generate a html file that can be stored that served by a CDN which is faster, can be cached and reused)
+- static-site generation (pre-generate a html file)
 - Typescript/Sass support
 - smart bundling
 - route pre-fetching
 
+#### server-side rendering
+- initial load rendered by the server
+- pre-render React components on server which is great for SEO & performance
+- then SPA handled by React for fast interactive UI, regenerated everytime for incoming reuqest
+
+#### static-site generation
+- pre-generate a html file that can be stored that can be served by a CDN which is faster, can be cached and reused)
+
 #### data fetching for pre-rendering
 two forms of pre-rendering: contain full html code that is good for seo during the build process
-- static-site generation: getStaticProps(): static-site generation, faster when data not change all the time and no needs access to request object
-- server-side rendering: getServerSideProps(): regenerating and fetching data for every incoming request
+- static-site generation: `getStaticProps()` - static-site generation, faster when data not change all the time and no needs access to request object
+- server-side rendering: `getServerSideProps()` - regenerating and fetching data for every incoming request
 
 [[↑] Back to top](#table-of-contents)
 
