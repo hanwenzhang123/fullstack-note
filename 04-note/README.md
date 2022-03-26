@@ -81,7 +81,7 @@ Cons
 - server-side rendering (initial load rendered by the server, pre-render React components on server which is great for SEO & performance, then SPA handled by React for fast interactive UI)
 - File-based Routing (define pages and routes with files and folders instead of code)
 - fullstack capabilities (backend api code using nodeJS)
-- static-site generation (page pre-rendering via function getStaticProps for production )
+- static-site generation (data fetching for pre-rendering via function getStaticProps for production, contain full html code that is good for seo during the build process)
 - Typescript/Sass support
 - smart bundling
 - route pre-fetching
