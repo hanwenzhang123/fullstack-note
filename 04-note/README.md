@@ -93,11 +93,13 @@ Cons
 - then SPA handled by React for fast interactive UI, regenerated everytime for incoming reuqest
 
 #### static-site generation
-- pre-generate a html file that can be stored that can be served by a CDN which is faster, can be cached and reused)
+- contain full html code that is good for seo during the build process
+- pre-generate a html file that can be stored that can be served by a CDN which is faster, can be cached and reused
 
 #### data fetching for pre-rendering
-two forms of pre-rendering: contain full html code that is good for seo during the build process
-- static-site generation: `getStaticProps()` - static-site generation, faster when data not change all the time and no needs access to request object
+two forms of pre-rendering: 
+- static-site generation: `getStaticProps()` - fetch data during build time, faster when data not change all the time and no needs access to request object
+- `getStaticPaths()` - dynamically generate paths based on the data we are fetching, can only be used with getStaticProps
 - server-side rendering: `getServerSideProps()` - regenerating and fetching data for every incoming request
 
 [[↑] Back to top](#table-of-contents)
