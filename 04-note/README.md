@@ -97,10 +97,14 @@ Cons
 - pre-generate a html file that can be stored that can be served by a CDN which is faster, can be cached and reused
 
 #### data fetching for pre-rendering
-two forms of pre-rendering: 
-- static-site generation: `getStaticProps()` - fetch data during build time, faster when data not change all the time and no needs access to request object
+Two forms of pre-rendering: 
+- static-site generation
+- server-side rendering
+
+Functions:
+- `getStaticProps()` - static-site generation, fetch data during build time, faster when data not change all the time and no needs access to request object
 - `getStaticPaths()` - dynamically generate paths based on the data we are fetching, can only be used with getStaticProps
-- server-side rendering: `getServerSideProps()` - regenerating and fetching data for every incoming request
+- `getServerSideProps()` - server-side rendering, regenerating and fetching data for every incoming request
 
 [[↑] Back to top](#table-of-contents)
 
