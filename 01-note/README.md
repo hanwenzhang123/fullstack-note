@@ -710,6 +710,19 @@ const promise = new Promise((resolve, reject) => {
 
 promise.then((resolve) => { console.log(resolve) });	//Stuff worked!
 ```
+```js
+const myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('foo');
+  }, 300);
+});
+
+myPromise
+.then(handleResolvedA)
+.then(handleResolvedB)
+.then(handleResolvedC)
+.catch(handleRejectedAny);
+```
 
 #### `Promoise.all([])`
 - run promises in parallel, create an array of promises and then use `Promise.all(promisesArray)`.
