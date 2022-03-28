@@ -15,6 +15,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/03-note/README.md
 https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 
 ## Table of Contents
+- [NextJS](#nextjs)
 - [Frontend](#frontend)
 - [Backend](#backend)
 - [Database](#database)
@@ -27,6 +28,54 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - [SDLC](#SDLC)
 - [System Design](#system-design)
 - [AWS](#aws)
+
+## NextJS
+#### What is Next.js
+- Next.js is a React framework for production created by Vercel (A fullstack framework for ReactJS)
+
+#### Key Features & Benefits
+- server-side rendering (initial load rendered by the server, great for SEO & performance)
+- file-based routing (define pages and routes with files and folders instead of code)
+- fullstack capabilities (backend api code using nodeJS)
+- static-site generation (pre-generate a html file)
+- API routes (build your own API endpoints)
+- Typescript/Sass support
+- smart bundling
+- route pre-fetching
+
+#### server-side rendering
+- initial load rendered by the server
+- pre-render React components on server which is great for SEO & performance
+- then SPA handled by React for fast interactive UI, regenerated everytime for incoming reuqest
+
+#### static-site generation
+- contain full html code that is good for seo during the build process
+- pre-generate a html file that can be stored that can be served by a CDN which is faster, can be cached and reused
+
+#### data fetching for pre-rendering
+Two forms of pre-rendering: 
+- static-site generation
+- server-side rendering
+
+Functions:
+- `getStaticProps()` - static-site generation, fetch data during build time, faster when data not change all the time and no needs access to request object
+- `getStaticPaths()` - dynamically generate paths based on the data we are fetching, can only be used with getStaticProps
+- `getServerSideProps()` - server-side rendering, regenerating and fetching data for every incoming request
+
+#### Next.js Overview
+- Routing `next/router`
+- Image Optimization `next/image`
+- Fast Refresh
+- Static Assets `public/`
+- Built-in CSS Support
+- API Routes `pages/api/user.js`
+- Internationalized Routing
+- File-System Routing
+- TypeScript Supporting
+- Code Splitting & Bundling
+
+[[↑] Back to top](#table-of-contents)
+
 
 ## Frontend
 
@@ -73,38 +122,6 @@ Cons
 - Angular data flows both ways and hence debugging is often difficult.
 - Vue mainly uses HTML templates with some JSX, while React only uses JSX that allows you to insert HTML directly into JS code.
 - React alway passes the data to view, and to update the view, you need to use a callback to update it -> different from react and angualr
-
-#### What is Next.js
-- Next.js is a React framework for production created by Vercel (A fullstack framework for ReactJS)
-
-#### Key Features & Benefits
-- server-side rendering (initial load rendered by the server, great for SEO & performance)
-- file-based routing (define pages and routes with files and folders instead of code)
-- fullstack capabilities (backend api code using nodeJS)
-- static-site generation (pre-generate a html file)
-- API routes (build your own API endpoints)
-- Typescript/Sass support
-- smart bundling
-- route pre-fetching
-
-#### server-side rendering
-- initial load rendered by the server
-- pre-render React components on server which is great for SEO & performance
-- then SPA handled by React for fast interactive UI, regenerated everytime for incoming reuqest
-
-#### static-site generation
-- contain full html code that is good for seo during the build process
-- pre-generate a html file that can be stored that can be served by a CDN which is faster, can be cached and reused
-
-#### data fetching for pre-rendering
-Two forms of pre-rendering: 
-- static-site generation
-- server-side rendering
-
-Functions:
-- `getStaticProps()` - static-site generation, fetch data during build time, faster when data not change all the time and no needs access to request object
-- `getStaticPaths()` - dynamically generate paths based on the data we are fetching, can only be used with getStaticProps
-- `getServerSideProps()` - server-side rendering, regenerating and fetching data for every incoming request
 
 [[↑] Back to top](#table-of-contents)
 
