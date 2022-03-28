@@ -508,12 +508,13 @@ console.log(1 || 2 || 3) //1 - OR - looking for the first TRUCY value, otherwise
 console.log(1 && 2 && 3) //3 - AND - looking for the first FALSY value, if not any, return last element
 ```
 
-#### error
+#### Error
 - ReferenceError occurs when you try to use a variable that doesn't exist at all.
 - TypeError occurs when the variable exists, but the operation you're trying to perform is not appropriate for the type of value it contains
 - SyntaxError occurs when trying to interpret syntactically invalid code.
 
-#### error handling
+#### Error Handling (exception catching)
+- when you do something that may break your program
 - `try` lets you test a block of code for errors.
 - `catch` lets you handle the error.
 - `throw` lets you create custom errors. (execution of the current function will stop, the statements after throw won't be executed, and control will be passed to the first catch block in the call stack. If no catch block exists, the program will terminate.)
