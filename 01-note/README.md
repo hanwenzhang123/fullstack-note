@@ -717,11 +717,11 @@ const myPromise = new Promise((resolve, reject) => {
   }, 300);
 });
 
-myPromise
-.then(handleResolvedA)
-.then(handleResolvedB)
-.then(handleResolvedC)
-.catch(handleRejectedAny);
+myPromise.then((resolve) => {
+  console.log(resolve);
+}).catch((err) => {
+  console.log(err);
+})
 ```
 
 #### `Promoise.all([])`
