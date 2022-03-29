@@ -62,6 +62,19 @@ Functions:
 - `getStaticPaths()` - dynamically generate paths based on the data we are fetching, can only be used with getStaticProps
 - `getServerSideProps()` - server-side rendering, regenerating and fetching data for every incoming request
 
+#### helper function
+- render your page with WordPress data, retrieve all the data you need beforehand
+- `getNextStaticProps` and `getNextServerSideProps`
+
+```js
+export async function getStaticProps(context: GetStaticPropsContext) {
+  return getNextStaticProps(context, {
+    Page,
+    client
+  });
+}
+```
+
 #### Next.js Overview
 - Routing `next/router`
 - Image Optimization `next/image`
