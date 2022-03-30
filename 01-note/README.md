@@ -509,9 +509,12 @@ console.log(1 && 2 && 3) //3 - AND - looking for the first FALSY value, if not a
 ```
 
 #### Error
-- ReferenceError occurs when you try to use a variable that doesn't exist at all.
-- TypeError occurs when the variable exists, but the operation you're trying to perform is not appropriate for the type of value it contains
-- SyntaxError occurs when trying to interpret syntactically invalid code.
+- `ReferenceError` occurs when you try to use a variable that doesn't exist at all.
+- `TypeError` occurs when the variable exists, but the operation you're trying to perform is not appropriate for the type of value it contains
+- `SyntaxError` occurs when trying to interpret syntactically invalid code.
+- `RangeError` occurs when a number "out of range" has occurred.
+- `Runtime Error` is an error that occurs during the running of the program, also known as the exceptions - "bugs"
+- `Complier Error` occurs before any part of your code runs, interpreter can not understand at any point in your program,
 
 #### Error Handling (exception catching)
 - when you do something that may break your program
