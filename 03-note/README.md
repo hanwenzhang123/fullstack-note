@@ -23,6 +23,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - [Clone](#clone)
 - [API](#API)
 - [Implementation](#Implementation)
+- [Utilities](#Utilities)
 
 ## String
 
@@ -1011,35 +1012,60 @@ let fizzBuzz = (n) => {
 
 [[↑] Back to top](#table-of-contents)
  
+ 
+## Utilities
 
+#### Array
 ```js
-import { randomNumberBetween } from "../other.js"
-
-export function first(array, n = 1) {
+function first(array, n = 1) {
   if (n === 1) return array[0]
   return array.filter((_, index) => index < n)
 }
 
-export function last(array, n = 1) {
+function last(array, n = 1) {
   if (n === 1) return array[array.length - 1]
   return array.filter((_, index) => array.length - index <= n)
 }
 
-export function sample(array) {
+function sample(array) {
   return array[randomNumberBetween(0, array.length - 1)]
 }
 
-export function pluck(array, key) {
+function pluck(array, key) {
   return array.map(element => element[key])
 }
 
-export function groupBy(array, key) {
+function groupBy(array, key) {
   return array.reduce((group, element) => {
     const keyValue = element[key]
     return { ...group, [keyValue]: [...(group[keyValue] ?? []), element] }
   }, {})
 }
+```
 
+#### Other
+```js
+function randomNumberBetween(min, max) {   //return a random integer
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+function sleep(duration) {   //wait a specific time to do a task - sleep(200).then(() => {});
+  return new Promise(resolve => {
+    setTimeout(resolve, duration)
+  })
+}
+
+function memoize(cb) {   //saving data and use it later on
+  const cache = new Map()
+  return (...args) => {
+    const key = JSON.stringify(args) 
+    if (cache.has(key)) return cache.get(key) //check if the cache has the data, if so, return it
+    
+    const result = cb(...args)
+    cache.set(key, result)
+    return result
+  }
+}
 ```
 
 [[↑] Back to top](#table-of-contents)
