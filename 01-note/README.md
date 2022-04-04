@@ -521,35 +521,38 @@ console.log(1 && 2 && 3) //3 - AND - looking for the first FALSY value, if not a
 #### Loops
 Array
 ```js
-const colors=["red","blue","green"];
-for (let i = 0; i < colors.length; i++) { 
-  console.log(colors[i]);	//red, blue, green
+const array = [1, 2, 3, 4, 5];
+
+for (let i = 0; i < array.length; i++) { 
+  console.log(array[i]);
 }
-for (const color of colors) {
-  console.log(item);	//red, blue, green
+
+for (const item of array) {
+  console.log(item);
 }
 ```
 
 Object
 ```js
+const obj = { a: 1, b: 2 };
+
 Object.entries(obj).forEach(
     ([key, value]) => console.log(key, value)
 );
 
-const obj = { a: 1, b: 2 };
 Object.keys(obj).forEach(key => {
 	console.log("key: ", key);
   	console.log("Value: ", obj[key]);
 } );
 
-const keys = Object.keys(fruits)
-for (const key in keys) {
+const keys = Object.keys(obj)
+for (const key in obj) {
   console.log(key)
 }
 
-const values = Object.values(fruits)
-for (const key in keys) {
-  console.log(keys[key])
+const values = Object.values(obj)
+for (const key in obj) {
+  console.log(obj[key])
 }
 ```
 
