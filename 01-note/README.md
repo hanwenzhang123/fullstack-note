@@ -500,7 +500,8 @@ console.log()    //undefined
 || or
 && and
 ! not
-? optional chaining
+? optional chaining	//if not null or undefined, read the value deep within a chain, or check if function exists, return undefined
+?? nullish coalescing, nor  //replace || for falsy values, only if null or undefined, then use second value
 + numeric representation 
 console.log(1 || 0)    //1
 console.log(1 && 0)    //0
