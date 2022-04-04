@@ -208,9 +208,18 @@ valueDisplay.innerHTML = value
 - `<iframe src="https://www.w3schools.com"></iframe>`
 
 #### Difference between `<script>`, `<script async>` and `<script defer>`.
-- `<script>` - HTML parsing is blocked, the script is fetched and executed immediately, HTML parsing resumes after the script is executed.
-- `<script async>` - in parallel to HTML parsing and executed as soon as it is available (potentially before HTML parsing completes)
-- `<script defer>` - in parallel to HTML parsing and executed when the page has finished parsing, ensuring that the HTML is fully parsed before executing. There's not much difference in putting a normal `<script>` at the end of `<body>`.
+`<script>` 
+- HTML parsing is blocked when script is read.
+- the script is fetched and executed immediately, HTML parsing resumes after the script is executed. 
+- If put the script tag in the end, the JS script is not able to be downloaded until the broswer reads it
+
+`<script async>` 
+- in parallel to HTML parsing and executed as soon as it is available (potentially before HTML parsing completes)
+
+`<script defer>` 
+- ensures entire body loads before running JavaScript
+- in parallel to HTML parsing and executed when the page has finished parsing, ensuring that the HTML is fully parsed before executing. 
+- There's not much difference in putting a normal `<script>` at the end of `<body>`.
 
 [[↑] Back to top](#table-of-contents)
 
