@@ -1112,6 +1112,14 @@ a();   //undefined
 - function: Specifies the function to run when the event occurs
 - useCapture: Optional. A Boolean specifies whether the event should be executed in the capturing (true) or bubbling phase (false).
 
+#### DOMContentLoaded
+- run the callback function when DOM loads
+```js
+document.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
+});
+```
+
 #### Event.preventDefault()
 - prevent the browser from executing the default action of the selected element. 
 - Clicking on a "Submit" button, prevent it from submitting a form
