@@ -380,6 +380,7 @@ function XXX () {
 
 [[↑] Back to top](#table-of-contents)
 
+
 ## Hooks
 
 #### What is Hooks?
@@ -432,6 +433,7 @@ function App() {
 ```
 #### useEffect() 
 - create a side effect when something happens or dependencies change, "If some variable changes, do this". 
+- useEffect runs after DOM is parsed due to JS asynchronous nature
 - `useEffect(...,[])`: componentDidMount() - called once component mounted (was evaluated and rendered)
 - `useEffect(..., [someValue])`: componentDidUpdate() - called once component updated (was evaluated and rendered)
 - `useEffect(() => {return () => {...}}, [])`: componentWillUnmount() - called right before component is unmounted (removed from DOM)
