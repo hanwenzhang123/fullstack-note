@@ -518,6 +518,41 @@ console.log(1 || 2 || 3) //1 - OR - looking for the first TRUCY value, otherwise
 console.log(1 && 2 && 3) //3 - AND - looking for the first FALSY value, if not any, return last element
 ```
 
+#### Loops
+Array
+```js
+const colors=["red","blue","green"];
+for (let i = 0; i < colors.length; i++) { 
+  console.log(colors[i]);	//red, blue, green
+}
+for (const color of colors) {
+  console.log(item);	//red, blue, green
+}
+```
+
+Object
+```js
+Object.entries(obj).forEach(
+    ([key, value]) => console.log(key, value)
+);
+
+const obj = { a: 1, b: 2 };
+Object.keys(obj).forEach(key => {
+	console.log("key: ", key);
+  	console.log("Value: ", obj[key]);
+} );
+
+const keys = Object.keys(fruits)
+for (const key in keys) {
+  console.log(key)
+}
+
+const values = Object.values(fruits)
+for (const key in keys) {
+  console.log(keys[key])
+}
+```
+
 #### Error
 - `ReferenceError` occurs when you try to use a variable that doesn't exist at all.
 - `TypeError` occurs when the variable exists, but the operation you're trying to perform is not appropriate for the type of value it contains
