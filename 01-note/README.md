@@ -751,6 +751,19 @@ func(1, 2, 3, 4, 5, 6, 7);
 - we can chain more .then(), return promise, execute only after the main thread is done
 
 ```js
+let promise = new Promise((resolve , reject) => {
+  fetch("https://myAPI")
+    .then((res) => {
+      // successfully got data
+      resolve(res);
+    })
+    .catch((err) => {
+      // an error occured
+      reject(err);
+    });          
+});
+```
+```js
 const promise = new Promise((resolve, reject) => {
   //do a thing, possibly async, then...
   if(/* everything turned out fine */){
