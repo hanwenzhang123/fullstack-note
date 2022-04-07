@@ -65,9 +65,15 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - JSX (HTML + JS) - good for dev - efficient context switching is now avoid
 - Focus on the view -> User Interfaces
 
+#### What Problems does React solve?
+- better handling of dynamic data for faster response times
+- responds to data changes instantly
+- renders the right components for a smooth user experience.
+
 #### state 
 - state is data which you can change inside of a component to then force this component to be re-evaluated
 - it is an object internally captured by class (in the constructor, this.state)
+- an object that controls the behavior of the component, may change over the lifetime of the component.
 
 #### props 
 - props is data you pass from a parent component to a child component
