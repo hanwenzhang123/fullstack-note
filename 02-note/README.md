@@ -116,6 +116,11 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - `[a:0, b:1, c:2]` -> `[d:0, a:1, b:2, c:3]` - bad
 - `[d:unique key, a:unique key, b:unique key]` - good
 
+#### Attributes
+- `defaultChecked` - sets whether the component is checked when it is first mounted in `<input>`
+- `dangerouslySetInnerHTML` - React’s replacement for using innerHTML in the browser DOM, it is risky because it’s easy to inadvertently expose your users to a cross-site scripting (XSS) attack - `<div dangerouslySetInnerHTML={__html: description} />`
+- `className`, `onChange`, `htmlFor`, `selected`, `value`, `style`, `tabIndex`, `readOnly`
+
 #### SyntheticEvent 
 - because we run react in different environment, so we want consistency across multiple broswer like a wrapper
 - consistency -> wrapper(basicEvent)
