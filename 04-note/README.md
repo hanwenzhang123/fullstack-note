@@ -184,6 +184,11 @@ export default App;
 - Threads run in processes, one process can have many threads in it, and as they are in same process, they share a memory space
 - Events are pushed to the main thread, then worker threads process the request
 
+#### Ruby
+- Ruby is written in C, which means it ties closely with c compiler that comes with your laptop, which is sensitive to CPU command
+- x86 and arm64 has different CPU command set, can compling is directly tied with your local env. variables and system libs 
+- unlike java based, you have all libs in JRE (java runtime env)
+
 #### Stream
 - involve with buffer object (raw data, bits and bytes)
 - Inbound stream of data is a input stream (keyboard). 
