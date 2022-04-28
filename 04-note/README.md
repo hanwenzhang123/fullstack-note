@@ -827,14 +827,21 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 - how to version, publish and manage each component individually
 - how to help others discover and adopt the components
 
-#### MVC Architecture for Node
-- Model: the data and the database, the structure of data, the format and the constraints with which it is stored
-- View: the user interface, what is presented to the user, and what the user sees
-- Controller: request-response handler, controls the requests of the user and then generates appropriate response to the viewer
+#### MVC Architecture
+- Browser communicate with Controller (involve with making decision)
+- Controller talks to Model (data/database related)
+- Model will return the result back to Controller, Controller decides when it is ready to return the result to the browser via View
+
+- Model (ActiveRecord): the data and the database, the structure of data, the format and the constraints with which it is stored
+- View (ActionView): the user interface, what is presented to the user, and what the user sees (ActionPack with Controller)
+- Controller (ActionController): request-response handler, controls the requests of the user and then generates appropriate response to the viewer 
+
 - Model displays View
-- Controller manipulates Model
 - View sends requests to Controller, Controller renders on the Views
-- Purpose: how the code should be organized and how the different parts of an application are separated for proper readability and debugging.
+- Controller manipulates Model
+
+- Purpose: how the code should be organized and how the different parts of an application are separated for proper readability and debugging => designed to not repeat yourself
+
 
 #### Micro-services Architecture
 - focuses on building many different small independen services that each do a single task and do one thing well
