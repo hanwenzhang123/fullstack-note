@@ -894,17 +894,21 @@ const typeDefinitions = gql`	//what in our data we are going to defined, how our
   }
 `
 const resolvers = {	//functioning return the data defined in our typeDefinitions
-  Query {
+  Query: {
     hello: () => "World!",
     products: () => products,
     product: (parent, args, context) =>	return products.find(prod => prod.id === args.id);
+  },
+  Category: {	//relating data - pseducode
+    products: (parent, args, context) => {	//using parent for the category that we call with
+      const categoryId = parent.id;
+      return products.find(prod => prod.categoryId === categoryId);
+    }
   }
 }
 const server = new ApolloServer({
   typeDefinitions,
-  resolvers: {
-    Query,
-  }
+  resolvers
 });
 server.listen().then(({ url }) => {
   console.log("Server is ready at" + url)
