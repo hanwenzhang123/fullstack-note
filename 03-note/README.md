@@ -796,19 +796,17 @@ const addProductHandler = async (productName, productPrice) => {
 - Fetching nested data in a single request
 - Prevent over fetching and under fetching
 
+#### GraphQL Operation Type
+- query: entry point to read data, specify which endpoints we want to call, how we want the response to look
+- mutation: entry point to write data, causes changes to the data available on the backend
+- resolvers: write code that resolves queries
+
 #### GraphQL Concepts
 - Declaration - A GraphQL query begins with the Declaration ("query")
 - Endpoint - A section of a GraphQL backend responsible for returning a specific piece of all the data available ("user")
 - Fields - Properties that comprise the shape of a response ("name" and "age")
-
-- Query - Queries specify which endpoints we want to call, how we want the response to look
-- Mutation - A special kind of GraphQL query that causes changes to the data available on the backend
 - Type - A collection of fields that make up a specific queryable object.
 
-#### GraphQL Operation Type
-- query: entry point to read data
-- mutation: entry point to write data
-- resolvers: write code that resolves queries
 ```js
 query {		//operation type
 	user {		//operation endpoint
@@ -885,8 +883,8 @@ fragment movieDetails on Movie{
 const { ApolloServer, gpl } = require("apollo-server");
 const typeDefinitions = gql`	//what in our data we are going to defined, how our data is going to look
   type Query {
-    hello: String!,	//without !, it can be string or null, can include null without !
-    products: [Product!]	//array of object in Product type
+    hello: String	//can include null without !, it can be string or null without !
+    products: [Product!]!	//array of object in Product type
     product(id: ID!): Product	//query with variable, with !, you have to include something
   }
   
