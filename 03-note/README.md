@@ -908,7 +908,14 @@ const resolvers = {	//functioning return the data defined in our typeDefinitions
 }
 const server = new ApolloServer({
   typeDefinitions,
-  resolvers
+  resolvers: {		//no needs for the object if in the same file
+    Query,
+    Category
+  },
+  context: {	//globally available
+    categories,
+    products
+  }
 });
 server.listen().then(({ url }) => {
   console.log("Server is ready at" + url)
