@@ -799,7 +799,7 @@ const addProductHandler = async (productName, productPrice) => {
 #### GraphQL Operation Type
 - query: entry point to read data, specify which endpoints we want to call, how we want the response to look
 - mutation: entry point to write data, causes changes to the data available on the backend
-- resolvers: write code that resolves queries
+- resolvers: write code that resolves queries, can optionally accept four positional arguments: (parent, args, context, info)
 
 #### GraphQL Concepts
 - Declaration - A GraphQL query begins with the Declaration ("query")
