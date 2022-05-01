@@ -79,6 +79,7 @@ function capitalize(str) {
 
 [[↑] Back to top](#table-of-contents)
 
+
 ## Array
 
 #### Array Methods
@@ -252,6 +253,7 @@ Math.max(...nums)    // 3
 ```
 
 [[↑] Back to top](#table-of-contents)
+
 
 ## Object
 
@@ -781,36 +783,26 @@ const addProductHandler = async (productName, productPrice) => {
 
 #### What is GraphQL
 - a query language for reading/mutating data in APIs
-- querying exactly what you want from many resources in a single request.
-- you can describe a schema for your data, explore and requet the exact data you beed
-- One URL + HTTP verb (= one endpoint) that accepts query commands
-
-#### GraphQL Concept
-- Access multiple data sources from a single entry endpoint
-- data is queried or fetched by describing it with a syntax that mirrors its return shape in JSON
-- e.g. post request contains query expression (to deine the data that should be returned)
-
-#### GraphQL Pros & Cons
-- query expression identifies a resoure and action
-- api is stateless and decoupled from any frontend (reusable)
-- popular but less common, you need to learn the query language
+- querying exactly what you want from many resources in a single entry endpoint (request).
+- you can describe a schema for your data, requet the exact data you need, return shape in JSON
 
 #### difference between REST API and GraphQL API
 - REST APIs offer multiple endpoints(URL + HTTP methods)
 - GraphQL offers one but expects a query string in the request body
 
 #### benefit of using GraphQL over REST
-- Self-documenting APIs
+- Self-documenting APIs (just by reading its schema)
 - Fetching nested data in a single request
+- Prevent over fetching and under fetching
 
 #### GraphQL Concepts
 - Declaration - A GraphQL query begins with the Declaration ("query")
 - Endpoint - A section of a GraphQL backend responsible for returning a specific piece of all the data available ("user")
 - Fields - Properties that comprise the shape of a response ("name" and "age")
-- Type - A collection of fields that make up a specific queryable object.
 
 - Query - Queries specify which endpoints we want to call, how we want the response to look
 - Mutation - A special kind of GraphQL query that causes changes to the data available on the backend
+- Type - A collection of fields that make up a specific queryable object.
 
 #### GraphQL Operation Type
 - query: entry point to read data
@@ -882,7 +874,6 @@ fragment movieDetails on Movie{
     tagline
     revenue
 }
-
 ```
 
 [[↑] Back to top](#table-of-contents)
