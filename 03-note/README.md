@@ -22,6 +22,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - [Compare](#compare)
 - [Clone](#clone)
 - [API](#API)
+- [GraphQL](#GraphQL)
 - [Implementation](#Implementation)
 - [Utilities](#Utilities)
 
@@ -775,13 +776,18 @@ const addProductHandler = async (productName, productPrice) => {
 - PATCH - update parts of an existing resource on the server
 - DELETE - delete a resource on the sever
 
+
+## GraphQL
+
 #### What is GraphQL
-- a query language for reading/mutating data in APIs, querying exactly what you want from many resources in a single request.
-- provides a type system where you can describe a schema for your data, you can explore and requet the exact data you beed
+- a query language for reading/mutating data in APIs
+- querying exactly what you want from many resources in a single request.
+- you can describe a schema for your data, explore and requet the exact data you beed
 - One URL + HTTP verb (= one endpoint) that accepts query commands
 
 #### GraphQL Concept
-- Access multiple data sources from a single entry endpoint, data is queried or fetched by describing it with a syntax that mirrors its return shape in JSON
+- Access multiple data sources from a single entry endpoint
+- data is queried or fetched by describing it with a syntax that mirrors its return shape in JSON
 - e.g. post request contains query expression (to deine the data that should be returned)
 
 #### GraphQL Pros & Cons
@@ -789,10 +795,23 @@ const addProductHandler = async (productName, productPrice) => {
 - api is stateless and decoupled from any frontend (reusable)
 - popular but less common, you need to learn the query language
 
+#### difference between REST API and GraphQL API
+- REST APIs offer multiple endpoints(URL + HTTP methods)
+- GraphQL offers one but expects a query string in the request body
+
+#### benefit of using GraphQL over REST
+- Self-documenting APIs
+- Fetching nested data in a single request
+
 #### GraphQL Operation Type
 - query: entry point to read data
 - mutation: entry point to write data
 - resolvers: write code that resolves queries
+
+- Query - Queries specify which endpoints we want to call, how we want the response to look
+- Fields - Properties that comprise the shape of a response (name and age here)
+- Type - A collection of fields that make up a specific queryable object.
+
 ```js
 {
 	query {		//operation type
@@ -803,10 +822,6 @@ const addProductHandler = async (productName, productPrice) => {
 	}
 }
 ```
-
-#### Main difference between a REST API and a GraphQL API
-- REST APIs offer multiple endpoints(URL + HTTP methods)
-- GraphQL offers one but expects a query string in the request body
 
 [[↑] Back to top](#table-of-contents)
 
