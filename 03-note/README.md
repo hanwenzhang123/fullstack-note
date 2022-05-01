@@ -817,15 +817,23 @@ const addProductHandler = async (productName, productPrice) => {
 - mutation: entry point to write data
 - resolvers: write code that resolves queries
 ```js
-{
-	query {		//operation type
-		user {		//operation endpoint
-			name	//requested field
-			age!	//an argument is required with exclamation point
-		}
+query {		//operation type
+	user {		//operation endpoint
+		name	//requested field
+		age!	//an argument is required with exclamation point
 	}
 }
-
+```
+```js
+query($year: Int = 2000) {	//default value 2000
+	randomMovieByYear(
+		year: $year
+		){
+		id
+		title
+		releaseYear
+	}
+}
 ```
 ```js
 type Mutation {
@@ -854,9 +862,28 @@ mutation($directorToAdd: DirectorInput!){
   }
 }
 ```
+```js
+query {
+  movieOne: movieById(  //Alias
+    movieId: "movie_0"
+    ){
+    ...movieDetails //fragment
+  }
+  movieTwo: movieById(  //Alias
+    movieId: "movie_1"
+  ){
+   ...movieDetails  //fragment
+  }
+}
 
-####  
+fragment movieDetails on Movie{
+    id
+    title
+    tagline
+    revenue
+}
 
+```
 
 [[↑] Back to top](#table-of-contents)
 
