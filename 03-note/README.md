@@ -792,6 +792,7 @@ const addProductHandler = async (productName, productPrice) => {
 
 #### benefit of using GraphQL over REST
 - Self-documenting APIs (just by reading its schema)
+- Heavily typed (schema based)
 - Fetching nested data in a single request
 - Prevent over fetching and under fetching
 
@@ -874,6 +875,42 @@ fragment movieDetails on Movie{
     tagline
     revenue
 }
+```
+
+#### Apollo Server
+- npm install apollo-server graphql
+- String, Int, Float, Boolean, ID (input something inside property)	//scalar type, null included
+
+```js
+const { ApolloServer, gpl } = require("apollo-server");
+const typeDefinitions = gql`	//what in our data we are going to defined, how our data is going to look
+  type Query {
+    hello: String!,	//without !, it can be string or null, can include null without !
+    products: [Product!]	//array of object in Product type
+    product(id: ID!): Product	//query with variable, with !, you have to include something
+  }
+  
+  type Product {	//object type
+    id: ID!,
+    price: Float!
+  }
+`
+const resolvers = {	//functioning return the data defined in our typeDefinitions
+  Query {
+    hello: () => "World!",
+    products: () => products,
+    product: (parent, args, context) =>	return products.find(prod => prod.id === args.id);
+  }
+}
+const server = new ApolloServer({
+  typeDefinitions,
+  resolvers: {
+    Query,
+  }
+});
+server.listen().then(({ url }) => {
+  console.log("Server is ready at" + url)
+})
 ```
 
 [[↑] Back to top](#table-of-contents)
