@@ -809,15 +809,13 @@ const addProductHandler = async (productName, productPrice) => {
 - Fields - Properties that comprise the shape of a response ("name" and "age")
 - Type - A collection of fields that make up a specific queryable object.
 
-
 - Query - Queries specify which endpoints we want to call, how we want the response to look
 - Mutation - A special kind of GraphQL query that causes changes to the data available on the backend
 
-
+#### GraphQL Operation Type
 - query: entry point to read data
 - mutation: entry point to write data
 - resolvers: write code that resolves queries
-
 ```js
 {
 	query {		//operation type
@@ -830,7 +828,7 @@ const addProductHandler = async (productName, productPrice) => {
 
 ```
 ```js
-  type Mutation {
+type Mutation {
     createMovie (
       title: String!
       tagline: String
@@ -840,7 +838,7 @@ const addProductHandler = async (productName, productPrice) => {
       movieId: ID!
       director: DirectorInput
     ): Movie
-  }
+}
   
 mutation($directorToAdd: DirectorInput!){
   addDirectorToMovie(
