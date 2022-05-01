@@ -803,14 +803,17 @@ const addProductHandler = async (productName, productPrice) => {
 - Self-documenting APIs
 - Fetching nested data in a single request
 
-#### GraphQL Operation Type
+#### GraphQL Concepts
+- Query - Queries specify which endpoints we want to call, how we want the response to look
+- Declaration - A GraphQL query begins with the Declaration ("query")
+- Endpoint - A section of a GraphQL backend responsible for returning a specific piece of all the data available ("user")
+- Fields - Properties that comprise the shape of a response ("name" and "age")
+- Type - A collection of fields that make up a specific queryable object.
+
+
 - query: entry point to read data
 - mutation: entry point to write data
 - resolvers: write code that resolves queries
-
-- Query - Queries specify which endpoints we want to call, how we want the response to look
-- Fields - Properties that comprise the shape of a response (name and age here)
-- Type - A collection of fields that make up a specific queryable object.
 
 ```js
 {
@@ -822,6 +825,9 @@ const addProductHandler = async (productName, productPrice) => {
 	}
 }
 ```
+
+####  
+
 
 [[↑] Back to top](#table-of-contents)
 
