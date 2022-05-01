@@ -809,10 +809,10 @@ const addProductHandler = async (productName, productPrice) => {
 
 ```js
 query {		//operation type
-	user {		//operation endpoint
-		name	//requested field
-		age!	//an argument is required with exclamation point
-	}
+  user {	//operation endpoint
+    name	//requested field
+     age!	//an argument is required with exclamation point
+  }
 }
 ```
 ```js
@@ -880,9 +880,9 @@ mutation($directorToAdd: DirectorInput!){
 ```js
 exports.typeDefs = gql`
   type Mutation {
-    addCategory(input: AddCategoryInput!): Category!
+    addCategory(input: AddCategoryInput!): Category!	//Category! is the type of what we return
   }
-  input AddCategoryInput {
+  input AddCategoryInput {	//type for the input
     name: String!
   }
 `
@@ -890,7 +890,7 @@ exports.Mutation = {
   addCategory: (parent, { input }, { db }) => {
     const { name } = input;
     const newCategory = {
-      id: uuid(),
+      id: uuid(),	//const { v4: uuid } = require("uuid");
       name,
     };
     db.categories.push(newCategory);
