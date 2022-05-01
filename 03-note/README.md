@@ -804,11 +804,14 @@ const addProductHandler = async (productName, productPrice) => {
 - Fetching nested data in a single request
 
 #### GraphQL Concepts
-- Query - Queries specify which endpoints we want to call, how we want the response to look
 - Declaration - A GraphQL query begins with the Declaration ("query")
 - Endpoint - A section of a GraphQL backend responsible for returning a specific piece of all the data available ("user")
 - Fields - Properties that comprise the shape of a response ("name" and "age")
 - Type - A collection of fields that make up a specific queryable object.
+
+
+- Query - Queries specify which endpoints we want to call, how we want the response to look
+- Mutation - A special kind of GraphQL query that causes changes to the data available on the backend
 
 
 - query: entry point to read data
@@ -820,9 +823,37 @@ const addProductHandler = async (productName, productPrice) => {
 	query {		//operation type
 		user {		//operation endpoint
 			name	//requested field
-			age
+			age!	//an argument is required with exclamation point
 		}
 	}
+}
+
+```
+```js
+  type Mutation {
+    createMovie (
+      title: String!
+      tagline: String
+      revenue: Int
+    ): Movie
+    addDirectorToMovie (
+      movieId: ID!
+      director: DirectorInput
+    ): Movie
+  }
+  
+mutation($directorToAdd: DirectorInput!){
+  addDirectorToMovie(
+    movieId: "movie_0"
+    director: $directorToAdd    //using the query variable with $, identify variables inside of a query
+    ){			//the field we want to return followed by the endpoint
+    title
+    tagline
+    directors{
+      id
+      name
+    }
+  }
 }
 ```
 
