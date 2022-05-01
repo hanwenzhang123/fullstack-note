@@ -817,15 +817,40 @@ query {		//operation type
 ```
 ```js
 query($year: Int = 2000) {	//default value 2000
-	randomMovieByYear(
-		year: $year
-		){
-		id
-		title
-		releaseYear
-	}
+  randomMovieByYear( year: $year ){
+    id
+    title
+    releaseYear
+  }
+}
+//JSON
+{
+  "year": 2001		//use this one, overwrite the 2000 one
 }
 ```
+```js
+query {
+  movieOne: movieById(  //Alias
+    movieId: "movie_0"
+    ){
+    ...movieDetails //fragment
+  }
+  movieTwo: movieById(  //Alias
+    movieId: "movie_1"
+  ){
+   ...movieDetails  //fragment
+  }
+}
+
+fragment movieDetails on Movie{
+    id
+    title
+    tagline
+    revenue
+}
+```
+
+#### Mutation
 ```js
 type Mutation {
     createMovie (
@@ -852,29 +877,27 @@ mutation($directorToAdd: DirectorInput!){
     }
   }
 }
-```
 ```js
-query {
-  movieOne: movieById(  //Alias
-    movieId: "movie_0"
-    ){
-    ...movieDetails //fragment
+exports.typeDefs = gql`
+  type Mutation {
+    addCategory(input: AddCategoryInput!): Category!
   }
-  movieTwo: movieById(  //Alias
-    movieId: "movie_1"
-  ){
-   ...movieDetails  //fragment
+  input AddCategoryInput {
+    name: String!
   }
-}
-
-fragment movieDetails on Movie{
-    id
-    title
-    tagline
-    revenue
+`
+exports.Mutation = {
+  addCategory: (parent, { input }, { db }) => {
+    const { name } = input;
+    const newCategory = {
+      id: uuid(),
+      name,
+    };
+    db.categories.push(newCategory);
+    return newCategory;
+  }
 }
 ```
-
 #### Apollo Server
 - npm install apollo-server graphql
 - String, Int, Float, Boolean, ID (input something inside property)	//scalar type, null included
@@ -884,7 +907,7 @@ const { ApolloServer, gpl } = require("apollo-server");
 const typeDefinitions = gql`	//what in our data we are going to defined, how our data is going to look
   type Query {
     hello: String	//can include null without !, it can be string or null without !
-    products: [Product!]!	//array of object in Product type
+    products(filter: ProductsFilterInput): [Product!]!	//array of object in Product type
     product(id: ID!): Product	//query with variable, with !, you have to include something
   }
   
@@ -892,11 +915,23 @@ const typeDefinitions = gql`	//what in our data we are going to defined, how our
     id: ID!,
     price: Float!
   }
+  
+  input ProductsFilterInput {
+    onSale: Boolean
+  }
 `
 const resolvers = {	//functioning return the data defined in our typeDefinitions
   Query: {
     hello: () => "World!",
-    products: () => products,
+    products: (parent, {filter}, {products}) => {	//when we do filter
+      let filteredProducts = products;
+        if(filter){
+          if(filter.onSale === true){
+            filteredProducts = filteredProducts.filter(prod => prod.onSale;)
+           }
+        }
+      return filteredProducts;
+    },
     product: (parent, args, context) =>	return products.find(prod => prod.id === args.id);
   },
   Category: {	//relating data - pseducode
