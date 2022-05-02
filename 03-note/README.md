@@ -785,17 +785,17 @@ const addProductHandler = async (productName, productPrice) => {
 - a query language allows frontend communicates with backend through API calls
 - querying (reading/mutating data) exactly what you want from many resources in a single entry endpoint (request).
 - you can describe a schema for your data, requet the exact data you need
-- the query have the same shape that you expect to receive back the API as JSON
-
-#### difference between REST API and GraphQL API
-- REST APIs offer multiple endpoints(URL + HTTP methods)
-- GraphQL offers one but expects a query string in the request body
+- the query have the same shape that you expect to return back from the API in JSON
 
 #### benefit of using GraphQL over REST
 - Self-documenting APIs (just by reading its schema)
 - Heavily typed (schema based)
 - Fetching nested data in a single request
 - Prevent over fetching and under fetching
+
+#### difference between REST API and GraphQL API
+- REST APIs offer multiple endpoints(URL + HTTP methods), you have one endpoint that does one task when the api call got hit , it is an architectural concept for network-based software
+- GraphQL provides the full capabilities of the exposed service, offers a single endpoint but expects a query string in the request body
 
 #### GraphQL Operation Type
 - query: entry point to read data, specify which endpoints we want to call, how we want the response to look
@@ -900,6 +900,7 @@ exports.Mutation = {
 }
 ```
 #### Apollo Server
+- A state management library that allows you to write graphql queries then see the results automatically updated in your UI
 - npm install apollo-server graphql
 - String, Int, Float, Boolean, ID (input something inside property)	//scalar type, null included
 
