@@ -782,9 +782,10 @@ const addProductHandler = async (productName, productPrice) => {
 ## GraphQL
 
 #### What is GraphQL
-- a query language for reading/mutating data in making API calls
-- querying exactly what you want from many resources in a single entry endpoint (request).
-- you can describe a schema for your data, requet the exact data you need, return shape in JSON
+- a query language allows frontend communicates with backend through API calls
+- querying (reading/mutating data) exactly what you want from many resources in a single entry endpoint (request).
+- you can describe a schema for your data, requet the exact data you need
+- the query have the same shape that you expect to receive back the API as JSON
 
 #### difference between REST API and GraphQL API
 - REST APIs offer multiple endpoints(URL + HTTP methods)
@@ -799,13 +800,13 @@ const addProductHandler = async (productName, productPrice) => {
 #### GraphQL Operation Type
 - query: entry point to read data, specify which endpoints we want to call, how we want the response to look
 - mutation: entry point to write data, causes changes to the data available on the backend
-- resolvers: write code that resolves queries, can optionally accept four positional arguments: (parent, args, context, info)
+- resolvers: write code that resolves queries, fetch the data from database, can optionally accept four positional arguments: (parent, args, context, info)
 
 #### GraphQL Concepts
 - Declaration - A GraphQL query begins with the Declaration ("query")
 - Endpoint - A section of a GraphQL backend responsible for returning a specific piece of all the data available ("user")
 - Fields - Properties that comprise the shape of a response ("name" and "age")
-- Type - A collection of fields that make up a specific queryable object.
+- Type - A collection of fields that make up a specific queryable object, the data that is available there
 
 ```js
 query {		//operation type
