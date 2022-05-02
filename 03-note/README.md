@@ -395,7 +395,7 @@ console.log(filteredArr);
 - `new` makes the this variable point to the newly created object and returning a reference to that memory.
 
 #### constructor
-- The constructors are used to initialize the instance variable of a class or, create objects
+- gets called when we create an instance of a class, used to initialize the instance variable of a class or create objects
 - things you want to assign to your attributes within your class
 - no setter just getter for immutability
 
