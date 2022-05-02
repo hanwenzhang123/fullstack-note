@@ -782,7 +782,7 @@ const addProductHandler = async (productName, productPrice) => {
 ## GraphQL
 
 #### What is GraphQL
-- a query language for reading/mutating data in APIs
+- a query language for reading/mutating data in making API calls
 - querying exactly what you want from many resources in a single entry endpoint (request).
 - you can describe a schema for your data, requet the exact data you need, return shape in JSON
 
