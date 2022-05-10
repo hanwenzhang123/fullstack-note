@@ -17,11 +17,10 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 
 ## Table of Contents
 - [System Design](#system-design)
+- [CICD](#CICD)
 - [SDLC](#SDLC)
-- [Sockets](#sockets)
 - [Docker](#Docker)
 - [AWS](#aws)
-- 
 
   
 ## System Design
@@ -125,6 +124,11 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 #### DevOps
 - intersection of development and operation (python, node, ruby)
 - source control, operating system (bash, linux), networking, cloud providers, infrastructure as code, container, configuration management, CICD, data analytics log management
+
+[[↑] Back to top](#table-of-contents)
+
+
+## CICD
 
 #### CI/CD
 - CI/CD Pipeline design pattern to auto deploy, deployable state at any point, the library platform like Jenkins / Circle CI / TravisCI / Gitlab / GitHub actions 
