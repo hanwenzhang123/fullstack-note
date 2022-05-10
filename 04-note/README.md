@@ -875,16 +875,46 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 - You can specify how many of the resources of each machine you want, specify rules about how they should scale, what should happen if they crash, make everything scalable
 
 #### Docker Containers
-- allowing apps to run on multiple different clouds or computing environments with very little effort (light weight)
-- to run a container, you first need to create a docker image and store it somewhere
+- Allowing apps to run on multiple different clouds or computing environments with very little effort (light weight)
+- To run a container, you first need to create a docker image and store it somewhere
 - Elastic Container Registry allows you upload an image allowing other tools like Elastic Container Service to pull it back down and run it
 - Elastic Container Service is an API for starting, stopping and allocating virtual machines to your containers, and alllow you to connect them to other products like load balancers
 
-#### Kubernetes Service
+#### Swarm
+- Tool installed and enabled by default with docker
+- Allows to cluster, manage and schedule containers (manage one big cluster of containers)
+- The machines in the swarm can be physical or virtual, referred to as node, in each node you have your containers (multiple containers in a node)
+- In Swarm manager, you define and manage the entire cluster of node, which contains own containers and could do load balancing across all nodes
+- `docker swarm init`
+
+#### Kubernetes
+- similar to swarm but the industry standard, offers similar tools like clustering, scaling, scheduling, deployment
+- use same concept of nodes for ending multiple containers, but the size of your network can build in thousands of nodes
+- schedule and deploy large cluster
+
+#### Kubernetes Services
 - more control over how their app scales in which case Elastic Kubernetes Service (EKS) is a tool for running kubernetes
 - Fargate: have your containers behave in a more automated way, like serverless functions, allocating EC2 instances for your containers
 - App Runner: point to a container image while it handles all the orchestration and scaling behind the scene
 - Orchestration is the automated configuration, management, and coordination of computer systems, applications, and services.
+
+#### Swarm vs Kubernetes
+- swarm: a tool that is tightly with docker
+- kubernetes: industry standard, more customized tool
+
+[[↑] Back to top](#table-of-contents)
+
+
+## Ansible
+
+#### 
+
+[[↑] Back to top](#table-of-contents)
+
+
+## Jenkin
+
+#### 
 
 [[↑] Back to top](#table-of-contents)
 
