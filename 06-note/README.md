@@ -11,6 +11,9 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/02-note/README.md
 ## JS Cheatsheet (Note Part3)
 https://github.com/hanwenzhang123/frontend-note/blob/main/03-note/README.md
 
+## Miscellaneous (Note Part4)
+https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
+
 ## Boilerplate Code (Note Part5)
 https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 
@@ -131,14 +134,19 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 ## CICD
 
 #### CI/CD
-- CI/CD Pipeline design pattern to auto deploy, deployable state at any point, the library platform like Jenkins / Circle CI / TravisCI / Gitlab / GitHub actions 
+- CI/CD Pipeline design pattern to auto deploy, deployable state at any point, the library platform like Jenkins / TravisCI / CircleCI / Gitlab / GitHub actions 
 - CI - developers integrate code into a shared repository and all tests are passed and compatible with the rest, each change is small and easy to debug. 
 - CD - keep your code base deployable at any point. Teams produce software in short cycles and in a sustainable way, all types of code changes are automatically prepared for a release to production. 
 
 #### CI/CD Workflow
+- Develop new function (Local Dev) 
+- Commit changes to repo (like GitHub) 
+- CI provider tests the build (like Travis CI) 
+- Deploy the code (like Docker Hub)
+
+#### CI/CD Workflow More
 - plan - code - build - test - release - deploy - operate - monitor - plan (cycle repeats forever)
 - source code management => the build (compile) - add unit test => the release (deploy to server) - add integration test / UI test 
-- Jenkins - tool for building and testing
 
 #### CI/CD Benefits
 - CI/CD keeps software continuously written, integrated, analyzed and deployed to its customers
@@ -205,7 +213,9 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 
 ## Jenkin
 
-#### 
+#### Jenkins
+- tool for building and testing
+
 
 [[↑] Back to top](#table-of-contents)
 
