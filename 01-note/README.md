@@ -14,6 +14,9 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/04-note/README.md
 ## Boilerplate Code (Note Part5)
 https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 
+## System Design (Note Part6)
+https://github.com/hanwenzhang123/frontend-note/blob/main/06-note/README.md
+
 ## Table of Contents
 - [HTTP](#http)
 - [HTML](#html)
