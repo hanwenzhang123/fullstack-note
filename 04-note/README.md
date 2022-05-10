@@ -25,8 +25,9 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - [Authentication](#authentication)
 - [Performance](#performance)
 - [Testing](#testing)
-- [SDLC](#SDLC)
 - [System Design](#system-design)
+- [SDLC](#SDLC)
+- [Docker](#Docker)
 - [AWS](#aws)
 
 ## NextJS
@@ -736,50 +737,6 @@ test("This should fail", ()=>{
 [[↑] Back to top](#table-of-contents)
   
   
-## SDLC
-
-#### Software Development Lifecycle
-- Requirement Analysis, Planning, Design, Build, Document, Test, Deploy, Maintain.
-
-#### Planning
-- During the planning phase, the team creates personas and determines the cost and resources required for implementing the requirements. 
-- We also take the design plan seriously. Then we follow best practices in software development, code review, code style, good documentation, use automation tools, use linting tools, meaningful variable names, and more.
-
-#### Deployment
-- Before deployment, we would make sure the  application was ready for delivery, and make sure it passed all the required tests. 
-- In terms of how we deliver new features, we have a devops developer dedicated to it with all the CI/CD work, managing the pipeline.
-
-#### Agile PM
-- The workflow is attending daily stand-ups, weekly sprint planning, working on the ticket that has been assigned to me, as well as attending other scrum meetings like review, backlog refinement, retrospective
-- We have 2 weeks long sprints. There are 6 sprints in each quarter. We keep a 3 months (quarterly) release cycle.
-- Sprint 1 to Sprint 5: should be dedicated to development
-- Sprint 6: final testing and release + investigation of new features for next quarter
-- during Sprint 6 last 3 days we have PI Planning
-- SAFe is our framework of scrum
-
-
-#### DevOps
-- intersection of development and operation (python, node, ruby)
-- source control, operating system (bash, linux), networking, cloud providers, infrastructure as code, container, configuration management, CICD, data analytics log management
-
-#### CI/CD
-- CI/CD Pipeline design pattern to auto deploy, deployable state at any point, the library platform like Jenkins / Circle CI / TravisCI / Gitlab / GitHub actions 
-- CI - developers integrate code into a shared repository and all tests are passed and compatible with the rest, each change is small and easy to debug. 
-- CD - keep your code base deployable at any point. Teams produce software in short cycles and in a sustainable way, all types of code changes are automatically prepared for a release to production. 
-
-#### CI/CD Workflow
-- plan - code - build - test - release - deploy - operate - monitor - plan (cycle repeats forever)
-- source code management => the build (compile) - add unit test => the release (deploy to server) - add integration test / UI test 
-- Jenkins - tool for building and testing
-
-#### CI/CD Benefits
-- CI/CD keeps software continuously written, integrated, analyzed and deployed to its customers
-- CI/CD helps test new code to ensure the logic makes sense, code formetted correctly, and fulfills the scope of the project
-- CI/CD allows faster spped in the market place (shorter cycle time)
-
-[[↑] Back to top](#table-of-contents)
- 
-
 ## System Design
 https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-design-question.js
 
@@ -847,13 +804,60 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 
 - Purpose: how the code should be organized and how the different parts of an application are separated for proper readability and debugging => designed to not repeat yourself
 
-
 #### Micro-services Architecture
 - focuses on building many different small independen services that each do a single task and do one thing well
 - splits large applications into much smaller pieces that exist independently of each other.
 - like one server for chat server, one for caching, one do node.js only, one do Golang for concurrent task, one for message board
 - a flexible and efficient approach to designing software systems that are made up of small independent services that each have a specific and well-defined purpose.
 - consider => what goes into building, deploying, and updating an enterprise application => and break that work into more manageable, efficient batches.
+
+[[↑] Back to top](#table-of-contents)
+
+
+## SDLC
+
+#### Software Development Lifecycle
+- Requirement Analysis, Planning, Design, Build, Document, Test, Deploy, Maintain.
+
+#### Planning
+- During the planning phase, the team creates personas and determines the cost and resources required for implementing the requirements. 
+- We also take the design plan seriously. Then we follow best practices in software development, code review, code style, good documentation, use automation tools, use linting tools, meaningful variable names, and more.
+
+#### Deployment
+- Before deployment, we would make sure the  application was ready for delivery, and make sure it passed all the required tests. 
+- In terms of how we deliver new features, we have a devops developer dedicated to it with all the CI/CD work, managing the pipeline.
+
+#### Agile PM
+- The workflow is attending daily stand-ups, weekly sprint planning, working on the ticket that has been assigned to me, as well as attending other scrum meetings like review, backlog refinement, retrospective
+- We have 2 weeks long sprints. There are 6 sprints in each quarter. We keep a 3 months (quarterly) release cycle.
+- Sprint 1 to Sprint 5: should be dedicated to development
+- Sprint 6: final testing and release + investigation of new features for next quarter
+- during Sprint 6 last 3 days we have PI Planning
+- SAFe is our framework of scrum
+
+#### DevOps
+- intersection of development and operation (python, node, ruby)
+- source control, operating system (bash, linux), networking, cloud providers, infrastructure as code, container, configuration management, CICD, data analytics log management
+
+#### CI/CD
+- CI/CD Pipeline design pattern to auto deploy, deployable state at any point, the library platform like Jenkins / Circle CI / TravisCI / Gitlab / GitHub actions 
+- CI - developers integrate code into a shared repository and all tests are passed and compatible with the rest, each change is small and easy to debug. 
+- CD - keep your code base deployable at any point. Teams produce software in short cycles and in a sustainable way, all types of code changes are automatically prepared for a release to production. 
+
+#### CI/CD Workflow
+- plan - code - build - test - release - deploy - operate - monitor - plan (cycle repeats forever)
+- source code management => the build (compile) - add unit test => the release (deploy to server) - add integration test / UI test 
+- Jenkins - tool for building and testing
+
+#### CI/CD Benefits
+- CI/CD keeps software continuously written, integrated, analyzed and deployed to its customers
+- CI/CD helps test new code to ensure the logic makes sense, code formetted correctly, and fulfills the scope of the project
+- CI/CD allows faster spped in the market place (shorter cycle time)
+
+[[↑] Back to top](#table-of-contents)
+ 
+ 
+## Docker
 
 #### What is Docker
 - Package software so it can run on any hardware (dockerfile, image, container)
