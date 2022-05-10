@@ -861,6 +861,16 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 
 #### What is Docker
 - Package software so it can run on any hardware (dockerfile, image, container)
+- Dockerfile: create an image based on the instructions of your Dnockerfile
+- Scenarios: set up a new project, same setup across different systems, same setup across different projects or developers
+
+#### Docker Components
+- docker container: mongodb in a container, react frontend in a container, node express server in a container
+- image: blueprint - contains all the information that our container needs to build a container exactly the same way across all systems
+- volumn: holds the data of your containers, data that changes is on the volumns if your app are on containers that are static
+- networking: allow all the items above to communicate with each other 
+
+#### Why Docker
 - Docker scales (structures) your apps very easily, comes with a whole set of tools for deploying across many clusters you can take your instances each micro-services that you have in each container (it contains your app in a certain space), and then allocate many machines to them.
 - You can specify how many of the resources of each machine you want, specify rules about how they should scale, what should happen if they crash, make everything scalable
 
