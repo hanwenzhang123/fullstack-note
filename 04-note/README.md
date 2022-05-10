@@ -749,9 +749,14 @@ test("This should fail", ()=>{
 - Before deployment, we would make sure the  application was ready for delivery, and make sure it passed all the required tests. 
 - In terms of how we deliver new features, we have a devops developer dedicated to it with all the CI/CD work, managing the pipeline.
 
-#### Agile
-- The workflow is attending daily stand-ups, weekly sprint planning, working on the ticket that has been assigned to me, as well as attending other scrum meetings like retrospective, review, backlog refinemen
-- Average 2-3 week development sprint cycle, plus 1 week for scoping that looks for feartures we want, and generally keep a 3 months (quarterly) release cycle.
+#### Agile PM
+- The workflow is attending daily stand-ups, weekly sprint planning, working on the ticket that has been assigned to me, as well as attending other scrum meetings like review, backlog refinement, retrospective
+- We have 2 weeks long sprints. There are 6 sprints in each quarter. We keep a 3 months (quarterly) release cycle.
+- Sprint 1 to Sprint 5: should be dedicated to development
+- Sprint 6: final testing and release + investigation of new features for next quarter
+- during Sprint 6 last 3 days we have PI Planning
+- SAFe is our framework of scrum
+
 
 #### DevOps
 - intersection of development and operation (python, node, ruby)
