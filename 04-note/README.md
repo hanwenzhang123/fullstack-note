@@ -346,9 +346,8 @@ module.exports = Model;
 - the output of a function should always be the same given the same exact inputs to the function, relies on arguments of the function
 
 #### Object Oriented Programming
-- Group related variables and functions in a unit called objects
+- Group related variables and functions in a unit called Class(Objects)
 - Using objects to represent things you are programming about, variable as properties, function as methods
-- The objects hold data about them in attributes which objects are manipulated through methods that are given to the object.
 
 #### OOP vs FP
 - FP: we use FP when we expect to receive the same output when using the same input, like "functional operations"
@@ -356,16 +355,20 @@ module.exports = Model;
 - Classes often represent broad categories, like Car or Dog that share attributes.
 
 #### 4 Pillars in OOP: Encapsulation, Abstraction, Inheritance, Polymorphism
-- Encapsulation is the ability to hide variables within the class from outside access (not effective outside of the class, not public exposed)
+- Encapsulation is the ability to hide variables within the class from outside access (not effective outside of the class, not public exposed), we use getter and setter methods to access class variables
 - Abstraction shows only essential attributes and hides unnecessary detail information from the users (model something, further refine/generalize the concept)
-- Inheritance reduces redundant code `class Teacher extends Person { constructor(subject, grade) { super(); this.subject = subject; this.grade = grade; } }`
-- Polymorphism means a single action can be performed in many forms, get rid of if else and switch, use `element.render()`
+- Inheritance: a subclass inherits everything, but can provide a new definition to a method call overriding, which reduces redundant code `class Teacher extends Person { constructor(subject, grade) { super(); this.subject = subject; this.grade = grade; } }`, 
+- Polymorphism means a single action can be performed in many forms, hiding the details in communication, and a class that can pass "is a" test is considered to be polymorphic
 
 #### Benefits of OOP
 - Encapsulation: reduce complexity + increase reusibility
 - Abstraction: reduce complexity + isolate impacts of change
 - Inheritance: elimate redundant code
-- Polymorphism: refactor if else, switch case statement
+- Polymorphism: take many forms, refactor if else, switch case statement (get rid of if else and switch, use `element.render()`)
+
+#### Overriding vs Overloading
+- The method has exactly the same notation as the parents that is called overriding.
+- The methods have the same name but different input parameter that is called overloading
 
 #### Programming Languages (C, C++, Java)
 - compiler based
