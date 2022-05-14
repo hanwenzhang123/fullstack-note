@@ -355,9 +355,9 @@ module.exports = Model;
 - Classes often represent broad categories, like Car or Dog that share attributes.
 
 #### 4 Pillars in OOP: Encapsulation, Abstraction, Inheritance, Polymorphism
-- Encapsulation is the ability to hide variables within the class from outside access (not effective outside of the class, not public exposed), we use getter and setter methods to access class variables
+- Encapsulation is the ability to hide variables within the class from outside access (not effective outside of the class, not public exposed), we use getter and setter methods to access class variables, 
 - Abstraction shows only essential attributes and hides unnecessary detail information from the users (model something, further refine/generalize the concept)
-- Inheritance: a subclass inherits everything, but can provide a new definition to a method call overriding, which reduces redundant code `class Teacher extends Person { constructor(subject, grade) { super(); this.subject = subject; this.grade = grade; } }`, 
+- Inheritance: a subclass inherits from invariant code to variant code using `extends`, but can provide a new definition to a method called `overriding`, call `super()` first line in constructor, which reduces redundant code, and good for reusibility
 - Polymorphism means a single action can be performed in many forms, hiding the details in communication, and a class that can pass "is a" test is considered to be polymorphic
 
 #### Benefits of OOP
