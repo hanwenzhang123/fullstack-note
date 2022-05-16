@@ -1133,7 +1133,7 @@ a();   //undefined
 6. Console
 7. Location
  
-#### Asynchronous web API
+#### Asynchronous Web API
 - Q. Are only asynchronous web API callbacks, registered in the web API environment?
 - A. YES, the synchronous callback functions like what we pass inside map, filter, and reduce aren't registered in the Web API environment. It's just those async callback function that are registered.
 
@@ -1150,6 +1150,10 @@ a();   //undefined
 - Select: `document.querySelector("div")`;
 - Make Interactive: `btn.addEventListener()`;
 - Change CSS: Style Property
+
+#### Event
+- defined action or occurrence
+- we can write code that run specifically when one of these actions or occurrences happen
 
 #### Event Handling
 - Events are triggered by the user, the browser, or something else to make changes to HTML, CSS and JavaScript
