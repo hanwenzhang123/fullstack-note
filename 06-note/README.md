@@ -125,8 +125,11 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 - SAFe is our framework of scrum
 
 #### DevOps
-- intersection of development and operation (python, node, ruby)
-- source control, operating system (bash, linux), networking, cloud providers, infrastructure as code, container, configuration management, CICD, data analytics log management
+- intersection of development and operation
+- source control, operating system (bash, linux), networking, cloud providers, infrastructure as code, container, configuration management, CI/CD, data analytics log management
+
+#### Infrastructure as Code
+- the management of infrastructure (networks, virtual machines, load balancers, and connection topology) through code instead of through manual processes
 
 [[↑] Back to top](#table-of-contents)
 
