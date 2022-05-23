@@ -600,8 +600,8 @@ document.querySelector('button').onclick = () => {	//send out text
 
 #### `React.lazy` and `React.suspense` 
 - `.lazy()` - a built-in method that will help us with code splitting, lazyloading components based on scrolling
-- React.lazy(() => import('./pages/NewQuote')) - the function we pass to lazy will be executed when this new quote component is needed
-- `<Suspense> ... </Suspense>` - We need to wrap this around the code, where we use React lazy
+- React.lazy(() => import('./pages/NewQuote')) - dynamically import the function we pass to lazy will be executed when this new quote component is needed
+- `<Suspense fallback={<Spinner />}> ... </Suspense>` - We need to wrap this around the code, where we use React lazy with a payload
 - you could have suspense in individual components, having a global one is good for error handling with an ErrorBoundary.
 
 ```js
