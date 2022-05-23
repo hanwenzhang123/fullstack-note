@@ -599,10 +599,20 @@ document.querySelector('button').onclick = () => {	//send out text
 - Redis: in-memory data structure store (server), used as a NoSQL key–value persistent database, cache, and message broker.
 
 #### `React.lazy` and `React.suspense` 
-Both support lazy loading with webpack.
-- `.lazy()` - a built-in method that will help us with code splitting.
-- React.lazy(() => import('./pages/NewQuote')) - the function we pass to lazy will be executed by React when this new quote component is needed.
-- `<Suspense> ... </Suspense>` - We need to wrap this around the code, where we use React lazy.
+- `.lazy()` - a built-in method that will help us with code splitting, lazyloading components based on scrolling
+- React.lazy(() => import('./pages/NewQuote')) - the function we pass to lazy will be executed when this new quote component is needed
+- `<Suspense> ... </Suspense>` - We need to wrap this around the code, where we use React lazy
+- you could have suspense in individual components, having a global one is good for error handling with an ErrorBoundary.
+
+```js
+import React, {Suspense} from 'react;
+const ProfilePage = React.lazy(() => import('./ProfilePage')); // Lazy-loaded
+
+// Show a spinner while the profile [data fetching] is loading
+<Suspense fallback={<Spinner />}>
+  <ProfilePage />
+</Suspense>
+```
 
 #### Minification - Minifier/uglifier 
 - make your code prettier, make it more efficient during compiling phase
