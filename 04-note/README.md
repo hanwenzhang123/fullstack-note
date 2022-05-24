@@ -101,15 +101,20 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 - Automatic State Batching of function calls and events to improve in-app performance (batching: collects all and then executes them together, avoids unnecessary re-renders)
 - Streaming Server Renderer, converting data from a stream into something visual. 
 
-#### Client-Side Rendering vs Server-Side Rendering
-Client-side rendering
+#### Client-side rendering
 - It manages the routing dynamically without refreshing the page every time a user requests a different route. 
 - Your browser downloads a minimal HTML page. It renders the JavaScript and fills the content into it. 
 - React uses client-side rendering for SPA single page application.
+- Benefit: response is faster (except for homepage) and the document size for SSR is always bigger
 
-Server-side rendering
-- convert HTML files on the server into a fully rendered HTML page for the client. like Handlebars, EJS
+#### Server-side rendering
+- convert HTML files on the server into a fully rendered HTML page for the client.
 - When a user makes a request to a webpage, the server prepares an HTML page by fetching user-specific data and sends it to the user’s machine over the internet. The browser then construes the content and displays the page.
+- Benefit: Performance benefit (render initial views faster while CSR loads) and Consistent SEO performance
+
+#### CSR vs SSR
+- SSR: server sending ready to be rendered HTML response to broswer -> browser renders the page, now viewable and browser downloads JS -> broswer execute React -> Page now interactable
+- CSR: Server sending response to browser -> browser downloads JS -> browser executes React -> Page now viewable and interactable
 
 #### The Different Kind of Frontend Frameworks, Advantage, Limitation
 Pros
