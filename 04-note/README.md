@@ -614,8 +614,8 @@ document.querySelector('button').onclick = () => {	//send out text
 import React, {Suspense} from 'react;
 const ProfilePage = React.lazy(() => import('./ProfilePage')); // Lazy-loaded
 
-// Show a spinner while the profile [data fetching] is loading
-<Suspense fallback={<Spinner />}>
+// Spinner component will render if any child components of <Suspense> are suspended. Show a spinner while the profile [data fetching] is loading
+<Suspense fallback={<Spinner />}> 
   <ProfilePage />
 </Suspense>
 ```
