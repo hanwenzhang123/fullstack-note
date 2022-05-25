@@ -1117,6 +1117,17 @@ a();   //undefined
 
 ## DOM Event
 
+#### Critical Rendering Path — steps browser makes to paint the page.
+- DOM — browser compiles the Document Object Model;
+- CSSOM — browser compiles the CSS Object Model;
+- Render Tree — browser combines DOM and CSSOM to render the tree;
+- Layout — browser computes the size and position of each of the objects;
+- Paint — browser converts the tree into the pixels in the screen;
+
+#### Optimize CRP
+- Optimize the order of sources — load critical resources as soon as possible;
+- Minimize the number of sources — reduce the number, load async;
+
 #### What is DOM?
 - DOM stands for Document Object Model, it represents an independent document with a logical tree of objects, and it is the render path of elements in a website
 - DOM dynamically access and update the content, structure, and style of a document.
