@@ -36,7 +36,11 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 
 #### Singleton Pattern
 - an object that can only be instantiated once
+- class which you can call the method directly, without creating an object
 - ensures only a single instance of an object exists within a system at any given time
+
+#### Minin Pattern
+- extend the functionality of an object with the list of methods
 
 #### Prototype Pattern
 - for clone - inheritance - comes from an object that is already been created, share functionality between objects
@@ -47,9 +51,11 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 
 #### Factory Pattern
 - using a subclass, function or method that determine which object to instantiate instead of the new keyword (more maintainable)
+- a class that create one or many different objects, useful if you want to generate different mock data in unit tests
 
 #### Facade Pattern
 - A simplified API to hide other low-level details in your code
+- abstract more complex logic and wrap it in class, like service that stays between component and API layer
 
 #### Proxy Pattern
 - Substitute that replaces the real thing, replace a target object with a proxy
@@ -92,6 +98,11 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 - Controller manipulates Model
 
 - Purpose: how the code should be organized and how the different parts of an application are separated for proper readability and debugging => designed to not repeat yourself
+
+#### React MVC
+- Model - state
+- View - JSX
+- Controller - action (can be mixed with a view)
 
 #### Micro-services Architecture
 - focuses on building many different small independen services that each do a single task and do one thing well
