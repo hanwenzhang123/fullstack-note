@@ -1155,7 +1155,12 @@ a();   //undefined
 - Q. Are only asynchronous web API callbacks, registered in the web API environment?
 - A. YES, the synchronous callback functions like what we pass inside map, filter, and reduce aren't registered in the Web API environment. It's just those async callback function that are registered.
 
-#### DOM Methods
+#### DOM Elements
+- selector: getElementById, getElementByTagName, querySelector, querySelectorAll;
+- navigation: children (elements): childNodes (nodes) , firstElementChild, lastElementChild, parentElement, previousElementSibling, nextElementSibling;
+- attributes: classList, clientHeight, clientWidth, childElementCount, setAttribute(attrName, value) removeAttribute(attrName) removeAttribute(attrName) ;
+
+#### DOM Manipulation
 - Adding Elements: `body.append("Hello World")`; `body.append(div)`; `.appendChild(div)`;
 - Creating Elements: `document.createElement("div")`; 
 - Modifying Element Text: `div.innerText="Hello World"` (how HTML works, and looks at CSS like invisible); `div.textContent="Hello World"` (exact text content copy pasted in HTML);
