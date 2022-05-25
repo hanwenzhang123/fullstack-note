@@ -107,10 +107,20 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 - React uses client-side rendering for SPA single page application.
 - Benefit: response is faster (except for homepage) and the document size for SSR is always bigger
 
+#### CSR Pros & Cons
+- CSR: use CSR if site under development, dynamic
+- pro: faster render after initial load, best for web apps
+- cons: the initial load can require more time
+
 #### Server-side rendering
 - convert HTML files on the server into a fully rendered HTML page for the client.
 - When a user makes a request to a webpage, the server prepares an HTML page by fetching user-specific data and sends it to the user’s machine over the internet. The browser then construes the content and displays the page.
 - Benefit: Performance benefit (render initial views faster while CSR loads) and Consistent SEO performance
+
+#### SSR Pros & Cons
+- SSR: use SSR if a site is stable, static, SEO focused, can pay for additional services
+- pros: faster page load (viewable but not interactable), better for search engines (faster indexing), better with sites that have a lot of static content (blogs)
+- cons: more server requests, slower render to interact, full page reloads
 
 #### CSR vs SSR
 - SSR: server sending ready to be rendered HTML response to broswer -> browser renders the page, now viewable and browser downloads JS -> broswer execute React -> Page now interactable
