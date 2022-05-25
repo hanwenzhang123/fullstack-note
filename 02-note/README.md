@@ -46,9 +46,13 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/06-note/README.md
 - Components are like functions that return HTML elements that tells what should be rendered on the screen (via a render() function).
 - Components are core UI building blocks, reusable, you can use the component across different pages, components are independent.
 
+#### In React, everything is a component.
+- React as UI (user interface) library depends on components as an independent and reusable chunk of code that you can use anywhere in your application.
+
 #### What is JSX?
 - JSX stands for JavaScript XML, it allows us to write HTML in React, and it comes with the full power of JavaScript.
 - JSX makes it easier to write and add HTML in React, and easily create user interfaces for your web applications.
+- Old browers are not compatible with JSX and React uses babel to transpile the code into older JS syntax to work with the browser
 
 #### What is Virtual DOM?
 - Updating the virtual DOM is comparatively faster than updating the actual DOM (Real DOM manipulation is very expensive)
@@ -74,10 +78,19 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/06-note/README.md
 - responds to data changes instantly
 - renders the right components for a smooth user experience.
 
+#### render()
+- it renders the HTML elements that the component contains into the DOM.
+
 #### state 
+- state is an object that contains data that lives inside of the current component as local or instance variables.
 - state is data which you can change inside of a component to then force this component to be re-evaluated
 - it is an object internally captured by class (in the constructor, this.state)
 - an object that controls the behavior of the component, may change over the lifetime of the component.
+
+#### state purpose
+- It is used to render data to the DOM
+- It is used to be passed down as props to a child component
+- It is used to be integrated with a method or a function
 
 #### props 
 - props is data you pass from a parent component to a child component
@@ -137,6 +150,13 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/06-note/README.md
 #### React.Fragment 
 - looks cleaner, avoid too many `<div>`
 - `<React.Fragment>...</React.Fragment>`
+
+#### Naming Convention
+- `[Domain]|[Page/Context]|ComponentName|[Type]`
+- The Domain: Which product owns this component?
+- The Page or Context: what is the parent component? which product subpart/page this component belongs?
+- The Component: what this component do? e.g. side bar, short list, chat conversation
+- Component types: view, button, connect, input, upload
 
 [[↑] Back to top](#table-of-contents)
 
@@ -588,6 +608,7 @@ const getItems = useCallback((incrementor) => {	//return us the entire function
 
 [[↑] Back to top](#table-of-contents)
 
+
 ## Redux
 
 #### What is Redux?
@@ -651,6 +672,10 @@ const ConnectedApp = connect(	//here we use the connection function, connect wil
 )(App);
 ```
 
+#### store
+- As the single source of truth, the store is the most important part of Redux because it is where your application state lives.
+- There is only one single store where all of the application’s state lives in. You can only change the state by dispatching an action to the store.
+
 #### Action
 - define actions -> like an action generator
 - An object include the action type and/or payload => the content you gonna use to make the change and dispatch action
@@ -659,6 +684,8 @@ const ConnectedApp = connect(	//here we use the connection function, connect wil
 - the action is going through to the reducer which analyzes the action
 
 #### Reducer
+- an event (action) listener, it is a function that is connected to the store.
+- whenever you dispatch an action to the store, All the reducers “listen” to see if this action type is what they are looking for.
 - Expecting all types of action as defined. 
 - reply on the input and the local state at the moment 
 - => analyze behavior and modify current local state
@@ -685,6 +712,7 @@ const ConnectedApp = connect(	//here we use the connection function, connect wil
 - ReactRedux -> emit an action (dispatch an action) -> Reducer will calculate next state (analyze action) -> Component subscribing to the store data re-rendering
 	  
 [[↑] Back to top](#table-of-contents)
+
 
 ## Middleware
 
