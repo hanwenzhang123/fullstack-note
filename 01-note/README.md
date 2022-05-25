@@ -328,11 +328,6 @@ specify sizes or lengths of elements using various units of measure
 - flex: for alignment -> small design to implement, align elements, content-first design
 - grid: for layout -> complex design to implement, a gap between block elements, overlap elements, layout-first design
 
-#### media queries
-- for responsive design, change the styling once the size reaches a certain value
-- `<source srcset="img_smallflower.jpg" media="(max-width: 600px)">`
-- `@media only screen and (max-width: 600px) {}`
-
 #### what is image sprite?
 - a collection of images put into a single image (by combining images in a single file) -> reduce the number of HTTP server requests for image resources
 - A web page with many images can take a long time to load and generates multiple server requests, using image sprites will reduce the number of server requests
@@ -345,6 +340,18 @@ specify sizes or lengths of elements using various units of measure
 - Block: describes its purpose ("What is it?" — menu or button) - it doesn't depend on other page components
 - Element: describes its purpose ("What is this?" — item, text, input) `block-name__element-name` with a double underscore `(__)` - can't be used separately without the parent entity (the block)
 - Modifier: describes its appearance ("What size?" or "Which theme?"), its state ("How is it different from the others?"), and its behavior ("How does it behave?"), like `directions_left-top` with a single underscore `(_)`
+
+#### Responsive Web
+- `<meta viewport name=”viewport” content=”width=device-width, initial-scale=1.0">` to give browser direction to scale
+- Use `<img max-width=”100%”>` and the image will not scale more than its size;
+- Use `<picture> <source srcset=”” media=”” >` to specify images for different screen sizes;
+- Responsive font sizes: em and rem ;
+- Use media queries;
+
+#### media queries
+- for responsive design, change the styling once the size reaches a certain value
+- `<source srcset="img_smallflower.jpg" media="(max-width: 600px)">`
+- `@media only screen and (max-width: 600px) {}`
 
 #### Cross Browser Compatibility
 - check browser support: `caniuse.com` or use `CrossBrowserTesting` for testing
