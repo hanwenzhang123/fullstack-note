@@ -473,6 +473,25 @@ function XXX () {
 }
 ```
 
+#### useEffect() + Axios
+- In useEffect make a request if there is a network error or not and set a timeout to avoid the fetch time to be infinite.
+```js
+React.useEffect(() => {
+    (async () => {
+      try {
+        const result = await Axios.get(
+          "http://media.xiph.org/mango/tears_of_steel_1080p.webm",
+          { timeout: 5000}
+        );
+        // Do something here
+      } catch (e) {
+        console.log("The link is not avaible", e.message);
+        // Do something here
+      }
+    })();
+  }, []);
+```
+
 #### useRef()
 - request the DOM using a ref to find its current value when you need it (use ref to referennce element inside of your HTML)
 - ref stores value persistent but does not cause your component to re-update when it is changed, whereas setState triggers re-render
