@@ -55,23 +55,30 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/06-note/README.md
 - Old browers are not compatible with JSX and React uses babel to transpile the code into older JS syntax to work with the browser
 
 #### What is Virtual DOM?
-- Updating the virtual DOM is comparatively faster than updating the actual DOM (Real DOM manipulation is very expensive)
-- When you try to update the DOM in React, The entire virtual DOM gets updated.
+- The DOM is a tree of nodes that is constructed by the browser after parsing the HTML during the critical rendering path process. React takes a copy of this DOM and saves it in the memory => virtual DOM.
+- When you make any changes or trigger any action that will eventually update the view, React makes a new copy of the virtual DOM and apply the updates to the new copy
+- React will make a comparison using the diffing algorithm between the trees and will find the differences and batch the updates to the real DOM, in simple words, replace the old nodes with the new nodes.
 
-#### How the Virtual DOM gets updated?
+#### How Virtual DOM updated?
 - When you change something, the virtual DOM gets compared to the real DOM before any updates on the page. 
 - React will figure out which objects have changed.
 - Only the changed objects get updated on the real DOM. 
 - Changes on the real DOM cause the screen to change.
+- When you try to update the DOM in React, The entire virtual DOM gets updated.
+
+#### Virtual DOM Benefit
+- It doesn’t re-render the entire DOM, only the changed nodes
+- It doesn’t cause a performance drop
+- Updating the virtual DOM is comparatively faster than updating the actual DOM (Real DOM manipulation is very expensive)
 
 #### Pros of React
 - Easy to learn -> Strong communityt supporting
 - Component-based framework -> Reusability
-- VirtualDOM - Real DOM manipulation is very expensive
-- Diff Algorithms (outputs the set of differences between two inputs) 
-- -> reconciliation (“virtual” representation of a UI is kept in memory and synced with the “real” DOM by a library such as ReactDOM)
-- JSX (HTML + JS) - good for dev - efficient context switching is now avoid
+- VirtualDOM -> avoid unnecessary re-rendering, Real DOM manipulation is very expensive
+- Diff Algorithms (outputs the set of differences between two inputs) -> reconciliation (“virtual” representation of a UI is kept in memory and synced with the “real” DOM by a library such as ReactDOM)
+- JSX (HTML + JS) -> write HTML inside of JavaScript, good for dev - efficient context switching is now avoid
 - Focus on the view -> User Interfaces
+- hooks and component lifecycle -> allows us to control how our component should behave during its lifetime using various hooks.
 
 #### What Problems does React solve?
 - better handling of dynamic data for faster response times
@@ -110,6 +117,10 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/06-note/README.md
 - Lifting State Up: enable children components to have better smooth communication among each other
 - Composition: {props.children} - pass down as property children, contains any child elements defined within the component
 - Inheritance: not a good model to use in React
+
+#### Functional Component
+- pure function is a function that doesn’t have any side effects, doesn’t change data outside of function scope, and doesn’t depend on any external state but only the inputs given to it
+- will render the same output for the same input (state and props)
 
 #### Stateful Component vs Stateless Component
 - stateful components are keeping track of changing data
