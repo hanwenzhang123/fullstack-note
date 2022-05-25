@@ -188,6 +188,11 @@ export default App;
 - Node.js server runs a single threaded event loop that creates async threads that is the nature of the non-blocking IO
 - Node => event driven non-blocking asynchonous code; the main event loop is single-threaded but most of the IO runs on separate threads
 
+#### why node?
+- asynchronous I/O, event-driven architecture, light-weightedness, speed, scalability, use popular language JavaScript, NPM library
+- most popular for its asynchronous event-driven, non-blocking I/O processing.
+- it gets most of this concurrency and asynchronism from Javascript’s single-threaded event loop model.
+
 #### Blocking vs Non-blocking
 - blocking: read code line by line, read file 1 then read file 2 (we can write multi-threaded code through library to get faster processing)
 - e.g. Java, choose a driver manager connect to a driver, get a connection, open that connection, prepare statement, execute, close the connection => all blocking
