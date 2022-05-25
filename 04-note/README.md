@@ -577,12 +577,16 @@ document.querySelector('button').onclick = () => {	//send out text
 - A security restriction that prevents requests being made from one origin to another, like different protocol, domain, sub-domain, port. 
 - It is possible to make cross-origin requests either using JSONP (if you trust the server!) or using a CORS request (Cross-Origin Resource Sharing) which both client and server must agree to.
 
-#### Cross-Site Request Forgery
+#### Cross-Site Request Forgery (CSRF)
 - an attack that forces an end user to execute unwanted actions on a web application in which they're currently authenticated. Anti-CSRF tokens are considered the most effective method of protecting against CSRF.
 
 #### Auth0 
 - React Authentication Library
 - npm install @auth0/auth0-react
+
+#### Overall
+- Don't allow the user to input any HTML innerHtml ;
+- Use UI frameworks, keep node_modules updated, and limit of usage 3rd party services;
 
 [[↑] Back to top](#table-of-contents)
 
@@ -601,16 +605,24 @@ document.querySelector('button').onclick = () => {	//send out text
 - use content delivery network to improve the loading speed.
 - `React.lazy` and `React.suspense` support lazy loading with webpack.
 - `React.memo` shouldComponentUpdate logic to reduce unnecessary re-rendering, improve the component rendering performance
-- Lazy Load images and videos — Use `<img loading="lazy"/>` or libraries like lazysizes;
-- Cache - Use CDN (content delivery network) for distributing static data;
-
-#### CSS JS
-- image-sprite (reduce requests), image compression
-- SVG, Remove metadata attributes from SVG tag;
 - Event Delegation (allows you to avoid adding event listeners to specific nodes)
+
+#### Images
+- format: if animation — use `<video>` instead gif, if high details and resolution — PNG, if geometry shapes — SVG, if text logo — use font text, if photo — JPEG
+- Compression: SVG (Remove metadata attributes from SVG tag), image-sprite (reduce requests), Remove metadata attributes from SVG tag, WebP — use optimized image format for Web;
+- Cache: Use CDN (content delivery network) for distributing static data;
+- Lazy Load images and videos — Use `<img loading="lazy"/>` or libraries like lazysizes;
+
+#### Link: preload, preconnect, prefetch, prerender
+- preload — loads high prior sources that need to be loaded faster<link rel="preload"> ;
+- preconnect — If some resources are required to accelerate handshake, use<link rel="preconnect">to reduce latency;
+- prefetch — loads low prior resources and cache <link rel="prefetch">;
+- dns-prefetch—reduce latency of resolving domain names before resources get requested <link rel="dns-prefetch">;
+- prerender — similar to prefetch + caches whole the page <link rel="prerender"> ;
 
 #### Dynamic Programming (Caching)
 - Cache stores the function for reusibility
+- Cache-Control: instruction of request and response cache;
 - Redis: in-memory data structure store (server), used as a NoSQL key–value persistent database, cache, and message broker.
 
 #### `React.lazy` and `React.suspense` 
@@ -691,9 +703,9 @@ throtte
 - `<VirtualScroll className="List" minItemHeight={40} totalLength={100} renderItem={(rowIndex) => { return ( <div className="List-item"> <h3>List item: {rowIndex}</h3> </div> ); }} />`
 
 #### Web Workers
-- JS is single threaded language, but web worker allows JS running in the background threads, which are separate from the main execution thread, without affecting the performance of the page.
-- web content to run scripts in an isolated thread in the browser in parallel, completely separate thread from the thread that's running the main JS program, prevent the UI from freezing up
-- Web Workers are a web platform extension, `if(window.Worker){}`, `const myWorker = new Worker('worker.js');`, `myWorker.terminate();`
+- JS is single threaded language, but web worker allows JS running in the background threads, which are separate from the main execution thread, without affecting the performance of the page. 
+- web content to run scripts in an isolated thread in the browser in parallel, completely separate thread from the thread that's running the main JS program, prevent the UI from freezing up 
+- Web Workers are a web platform extension, perform heavy tasks on background - `if(window.Worker){}`, `const myWorker = new Worker('worker.js');`, `myWorker.terminate();`
 
 #### Production Build vs Development Build
 - production and development build come into the picture because of performance impact in real life deployed the application.
