@@ -1141,6 +1141,21 @@ a();   //undefined
 - In JS there are 3 types of memory: `stack` used for functions call, `heap` for each of the objects, `queue` — setTimeout. 
 - JS engine executes the function stack first. If the stack is empty, it pops the event from queue. If the event queue has another function call, it pushes it to stack and executes it again until it is empty. This is called event loop;
 
+#### Garbage Collection
+- JavaScript has automatic memory management, it automatically performs garbage collection
+- garbage collection automatically cleans things up in your memory
+- garbage means class objects which are instantiated but not in use anymore, they occupy memory, and compiler should remove them
+
+#### Stack vs Heap 
+- When the Heap becomes full, garbage is collected. 
+- Stack is last in first out, so there is no need to garbage collect. 
+- => Stack memory is collected automatically when the execution path reaches the end of the scope
+
+#### GC Process
+- obj, var, func allocation -> obj, var, func read/write location -> process is continued until the program ends -> memory is released when program ends
+- as long as references exist, there will not be any cleaning or garbage collecting
+- if a location is unreachable then that will be collected/released the memory as garbage
+
 #### Web API
 - All the code execution is done inside callstack, which is present in JS engine, which in turn is in browser.
 - Browser has some added functionalities like, Local storage, Timer, Address field, etc.
