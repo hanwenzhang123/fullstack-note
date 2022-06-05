@@ -24,6 +24,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 - [SDLC](#SDLC)
 - [Docker](#Docker)
 - [AWS](#aws)
+- [Cloud Computing](#Cloud-Computing)
 
   
 ## System Design
@@ -311,3 +312,48 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 - In the components folder, you can have sub-components for each feature present in the App like UI, card (props.children), styled components (.style.js) and utils file.
 
 [[↑] Back to top](#table-of-contents)
+
+## Cloud Computing
+#### Infrastructure
+- instead of companies purchasing their own computers to run webs, they rent computers from a cloud computing company
+- like a giant computer, inside its software is running smaller computers, we are renting one of these smaller computers
+- these smaller computer only exist in the software - which called virtual machine
+- we rent a vm from AWS to run backend, another vm to run database
+
+#### Load Balancer 
+- good to handle internet traffic
+- set up multiple vm running same back-end code
+- set up a special vm in front of these backend vms called load balancer
+- load balancer will distribute requests evenly across our vms
+- we can shut off the vms that we do not need once the internet traffic slows down
+
+#### Iaas (Infrastructure as a Service)
+- AWS (Amazon Web Services)
+- GCP (Google Cloud Platform)
+- Microsoft Azure
+
+#### PaaS (Platform as a Service)
+- upload our backend code which will setup all our vms including load balancer and integrate everything for us
+- AWS Elastic Beanstalk
+- GCP App Engine
+- Zure App Service
+
+#### Microservices
+- split a big feature to multiple smaller code bases like save orders, charge credit cards and send emails
+- each of these code bases will have their own backend, each with the load balancer, and sometimes their own database
+- each code base can use different programming language and database
+- benefit: keep our code base smaller and more focused
+
+#### SaaS (Software as a Service)
+- Twillio - providing email servies with build-in backend and api code
+- use existing service instead of building your own service
+
+#### Additional Technologies 
+- Primary Database - MySQL, PostgreSQL, MongoQB
+- Blob Storage - binary large object - a collection of binary data stored as a single entity
+- AWS S3 - for images upload
+- Elasticsearch - search database
+- Redis - cache, improve performance
+- Snowflake - analytical database
+- RabbitMQ - schedule tasks for later
+ 
