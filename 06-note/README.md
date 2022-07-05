@@ -86,24 +86,32 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 - how to help others discover and adopt the components
 
 #### MVC Architecture
-- Browser communicate with Controller (involve with making decision)
+- Browser communicate with Controller (involve with making decision), View sends requests to Controller
 - Controller talks to Model (data/database related)
-- Model will return the result back to Controller, Controller decides when it is ready to return the result to the browser via View
+- Model will return the result back to Controller, Controller decides when it is ready to return the result to the browser (Controller renders on the Views)
 
-- Model (ActiveRecord): the data and the database, the structure of data, the format and the constraints with which it is stored
-- View (ActionView): the user interface, what is presented to the user, and what the user sees (ActionPack with Controller)
-- Controller (ActionController): request-response handler, controls the requests of the user and then generates appropriate response to the viewer 
-
-- Model displays View
-- View sends requests to Controller, Controller renders on the Views
-- Controller manipulates Model
-
-- Purpose: how the code should be organized and how the different parts of an application are separated for proper readability and debugging => designed to not repeat yourself
+#### Purpose of MVC
+- how the code should be organized and how the different parts of an application are separated for proper readability and debugging 
+- => designed to not repeat yourself
 
 #### React MVC
 - Model - state
 - View - JSX
 - Controller - action (can be mixed with a view)
+
+#### Ruby-on-Rails MVC
+- Model (ActiveRecord): the data and the database, the structure of data, the format and the constraints with which it is stored
+- View (ActionView): the user interface, what is presented to the user, and what the user sees (ActionPack with Controller)
+- Controller (ActionController): request-response handler, controls the requests of the user and then generates appropriate response to the viewer 
+
+#### General flow of Rails application
+- Request made at browser
+- Request received at router of rails application
+- Request routed to appropriate action in a controller
+- Controller#action either renders a view template or communicates with model
+- Model communicates with database
+- Model sends back information to controller
+- Controller renders view
 
 #### Micro-services Architecture
 - focuses on building many different small independen services that each do a single task and do one thing well
