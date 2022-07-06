@@ -149,14 +149,15 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/06-note/README.md
 - `dangerouslySetInnerHTML` - React’s replacement for using innerHTML in the browser DOM, it is risky because it’s easy to inadvertently expose your users to a cross-site scripting (XSS) attack - `<div dangerouslySetInnerHTML={__html: description} />`
 - `className`, `onChange`, `htmlFor`, `selected`, `value`, `style`, `tabIndex`, `readOnly`
 
-#### SyntheticEvent 
-- because we run react in different environment, so we want consistency across multiple broswer like a wrapper
-- consistency -> wrapper(basicEvent)
-
 #### createPortal()
 - render children into a DOM node, behaves like a normal React child, but also includes event bubbling because in the DOM tree
 - building modals, dialogs, hovercards, and tooltip. with portals, you can render a parallel react tree onto another DOM node when needed.
 - `ReactDOM.createPortal(child {any renderable React child}, container {a DOM element})`
+
+#### SyntheticEvent 
+- entire wrapper over the DOM event system, can be a lot of weights into react code base not using broswer's baruce addEventListener for event handling internally
+- because we run react in different environment, so we want consistency across multiple broswer like a wrapper
+- consistency -> wrapper(basicEvent) => a cross-browser wrapper around the browser native event
 
 #### React.Fragment 
 - looks cleaner, avoid too many `<div>`
