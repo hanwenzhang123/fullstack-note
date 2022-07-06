@@ -761,6 +761,9 @@ func(1, 2, 3, 4, 5, 6, 7);
 - we can chain more .then(), return promise, execute only after the main thread is done
 
 ```js
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+```
+```js
 let promise = new Promise((resolve , reject) => {
   fetch("https://myAPI")
     .then((res) => {
