@@ -181,7 +181,14 @@ import process from "process";
 export default App;
 ```
 
+#### How do you run JavaScript?
+You need JS engine (V8) that implements JS runtime
+
+#### Is Web Browser a JavaScript runtime?
+A browser contains a Javascript engine (for example Chrome v8). The engine implements a Javascript runtime, which includes the call stack, heap and event loop. The browser also usually includes a set of APIs that augment the Javascript runtime and make asynchronous code execution possible. NodeJS also implements a Javascript runtime using Chrome's v8 engine as well as the Libuv library (event loop and worker threads).
+
 #### Node.js
+- JavaScript runtime environment (not programming language or a framework) built on top of libnv - a cross platform asynchronous I/O based on event loop
 - One of Node core stengths: faster processing! 
 - wait for events -> accept event -> dispatch event -> handlers are called
 - Node is non-blocking => rather than waiting for an operation to finish, create a callback that will be invoked when the operation ends
