@@ -200,6 +200,12 @@ A browser contains a Javascript engine (for example Chrome v8). The engine imple
 - most popular for its asynchronous event-driven, non-blocking I/O processing.
 - it gets most of this concurrency and asynchronism from Javascript’s single-threaded event loop model.
 
+#### global in node
+- like `window` in the broswer, but we use `global` in node repl, that has a bunch of global objects that we can use
+- `global.process.argv` - return an array containing the command line arguments passed when the node process was launched
+- `process.argv[2]` - when we pass `node hello.js learn` - here we get learn
+- `global.console.log("Hello")`
+
 #### Blocking vs Non-blocking
 - blocking: read code line by line, read file 1 then read file 2 (we can write multi-threaded code through library to get faster processing)
 - e.g. Java, choose a driver manager connect to a driver, get a connection, open that connection, prepare statement, execute, close the connection => all blocking
@@ -207,7 +213,7 @@ A browser contains a Javascript engine (for example Chrome v8). The engine imple
 - non-blocking is good for microservices architecture, or standard web application with a node backend
 
 #### High Level Threads
-- Node under the hood is written in C++, The event loop is implemented via libuv (C++).
+- Node under the hood is written in C++, The event loop is implemented via libuv (using C++).
 - Threads run in processes, one process can have many threads in it, and as they are in same process, they share a memory space
 - Events are pushed to the main thread, then worker threads process the request
 
