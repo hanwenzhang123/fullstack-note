@@ -787,14 +787,23 @@ const addProductHandler = async (productName, productPrice) => {
 #### What is GraphQL
 - a query language allows frontend communicates with backend through API calls
 - querying (reading/mutating data) exactly what you want from many resources in a single entry endpoint (request).
-- you can describe a schema for your data, requet the exact data you need
+- you can describe your data, describe a schema for your data, requet the exact data you need
 - the query have the same shape that you expect to return back from the API in JSON
 
 #### benefit of using GraphQL over REST
 - Self-documenting APIs (just by reading its schema)
 - Heavily typed (schema based)
 - Fetching nested data in a single request
-- Prevent over fetching and under fetching
+- Prevent over fetching and under fetching 
+
+#### Overfetching vs Underfetching
+- under fetching: only single endpoint not contain enough data to load the information we look for, then we need to make multiple round trips to the server and back before the page is fully loaded => we lose time making extra unnecessary round trips between the server and clients, we have to do more work querying multiple collections which slows down our page load time. 
+- over fetching: we are sending unnecessary data over the network, from the server to the browser, and our front end then needs to filter the response from the server to get only the data that matters. 
+- GraphQL solves solves over-fetching: We get exactly the data that we need and nothing more. This saves our bandwidth because we minimize the amount of data that we are returning from the server, and it saves us from doing extra processing work to filter this data
+- GraphQL solves solves under-fetching: We no longer have to make extra round trips to the server and back, so all that time waiting for our network connection is kept to a minimum.
+
+#### GraphQL Architecture
+Regardless of what page we are loading, in graphql, we ask for all the data that we need in a query, and we pass it off to the single graphql endpoint. our graphql code then goes ahead and wraps up all the data that we need in the back end using functions that graphql calls resolvers. When all our graphical resolvers have gathered all the data that we need to respond to our query, our server sends everything back to the front end.
 
 #### difference between REST API and GraphQL API
 - REST APIs offer multiple endpoints(URL + HTTP methods), you have one endpoint that does one task when the api call got hit , it is an architectural concept for network-based software
