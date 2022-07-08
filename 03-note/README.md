@@ -807,12 +807,18 @@ const addProductHandler = async (productName, productPrice) => {
 - GraphQL solves solves over-fetching: We get exactly the data that we need and nothing more. This saves our bandwidth because we minimize the amount of data that we are returning from the server, and it saves us from doing extra processing work to filter this data
 - GraphQL solves solves under-fetching: We no longer have to make extra round trips to the server and back, so all that time waiting for our network connection is kept to a minimum.
 
+#### Difference between REST API and GraphQL API
+- REST APIs offer multiple endpoints(URL + HTTP methods), you have one endpoint that does one task when the api call got hit , it is an architectural concept for network-based software
+- GraphQL provides the full capabilities of the exposed service, offers a single endpoint but expects a query string in the request body
+
 #### GraphQL Architecture
 Regardless of what page we are loading, in graphql, we ask for all the data that we need in a query, and we pass it off to the single graphql endpoint. our graphql code then goes ahead and wraps up all the data that we need in the back end using functions that graphql calls resolvers. When all our graphical resolvers have gathered all the data that we need to respond to our query, our server sends everything back to the front end.
 
-#### difference between REST API and GraphQL API
-- REST APIs offer multiple endpoints(URL + HTTP methods), you have one endpoint that does one task when the api call got hit , it is an architectural concept for network-based software
-- GraphQL provides the full capabilities of the exposed service, offers a single endpoint but expects a query string in the request body
+#### GraphQL Server
+- Every GraphQL server has two main components - the schemas and the resolvers => what happens when we make a query
+- GraphQL always first determines if the query is valid by looking at our schemas and then it executes that query when executing a query => The value of each field is determined by calling a function called a resolver.
+- When a field is included in our query, the corresponding resolver is called to provide the value for that field. 
+- When the server has called all the resolver functions found in the query, it then wraps all those values up and sends them back to the frontend => back to the client that asked for the data in the first place.
 
 #### GraphQL Operation Type
 - query: entry point to read data, specify which endpoints we want to call, how we want the response to look
@@ -824,6 +830,7 @@ Regardless of what page we are loading, in graphql, we ask for all the data that
 - Endpoint - A section of a GraphQL backend responsible for returning a specific piece of all the data available ("user")
 - Fields - Properties that comprise the shape of a response ("name" and "age")
 - Type - A collection of fields that make up a specific queryable object, the data that is available there
+
 
 ```js
 query {		//operation type
