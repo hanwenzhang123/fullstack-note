@@ -799,7 +799,7 @@ const addProductHandler = async (productName, productPrice) => {
 #### Disadvantage of using GraphQL over REST
 - Flexibility adds complexity: more time to do the initial setup, defind all your schemas and types for small apps may not worthy the efforts. 
 - Difficult to cache: restful server can save response with expired time and return that data without having to fetch it from our database, Instead, it is just sent from the cache, which is faster and which decreases the load on our server
-- Not RESTful: One endpoint return all your data
+- Not RESTful: Not the vast majority of APIs that exist in the internet today, so many tools may not support GraphQL, it is smaller and more niche player when it comes to APIs. However, you can have both in your application, use graphql as an endpoint return all your data
 
 #### Overfetching vs Underfetching
 - under fetching: only single endpoint not contain enough data to load the information we look for, then we need to make multiple round trips to the server and back before the page is fully loaded => we lose time making extra unnecessary round trips between the server and clients, we have to do more work querying multiple collections which slows down our page load time. 
