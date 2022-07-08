@@ -790,11 +790,16 @@ const addProductHandler = async (productName, productPrice) => {
 - you can describe your data, describe a schema for your data, requet the exact data you need
 - the query have the same shape that you expect to return back from the API in JSON
 
-#### benefit of using GraphQL over REST
-- Self-documenting APIs (just by reading its schema)
-- Heavily typed (schema based)
-- Fetching nested data in a single request
+#### Advantage of using GraphQL over REST
+- Self-documenting APIs (just by reading its schema), Fetching nested data in a single request
 - Prevent over fetching and under fetching 
+- Schemas and Types: Describe our data and make it easy to discover, to understand what data is available in our API, and types ensure that the data that's being passed back and forth in our queries is valid => Heavily typed (schema based)
+- Speeds up development for larger projects: As long as your data exists on the backend, you save yourself time waiting for new endpoints be created and exposed on the backend
+
+#### Disadvantage of using GraphQL over REST
+- Flexibility adds complexity: more time to do the initial setup, defind all your schemas and types for small apps may not worthy the efforts. 
+- Difficult to cache: restful server can save response with expired time and return that data without having to fetch it from our database, Instead, it is just sent from the cache, which is faster and which decreases the load on our server
+- Not RESTful: One endpoint return all your data
 
 #### Overfetching vs Underfetching
 - under fetching: only single endpoint not contain enough data to load the information we look for, then we need to make multiple round trips to the server and back before the page is fully loaded => we lose time making extra unnecessary round trips between the server and clients, we have to do more work querying multiple collections which slows down our page load time. 
