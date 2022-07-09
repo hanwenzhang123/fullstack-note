@@ -158,8 +158,15 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 
 #### CI/CD
 - CI/CD Pipeline design pattern to auto deploy, deployable state at any point, the library platform like Jenkins / TravisCI / CircleCI / Gitlab / GitHub actions 
-- CI - developers integrate code into a shared repository and all tests are passed and compatible with the rest, each change is small and easy to debug. 
-- CD - keep your code base deployable at any point. Teams produce software in short cycles and in a sustainable way, all types of code changes are automatically prepared for a release to production. 
+- Best Practice
+
+#### CI
+- make sure codes work across the team, can use GitHub, frequently commit code to a shared repository
+- developers integrate code into a shared repository and all tests are passed and compatible with the rest, each change is small and easy to debug. 
+
+#### CD
+- make sure your code will work in production, that your code is in a state that could be released to your users at any point in time.
+- keep your code base deployable at any point. Teams produce software in short cycles and in a sustainable way, all types of code changes are automatically prepared for a release to production. 
 
 #### CI/CD Workflow
 - Develop new function (Local Dev) 
