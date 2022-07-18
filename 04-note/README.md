@@ -758,6 +758,17 @@ throtte
 - end to end (e2e) test - test complete scenarios in your app as the user would experience them
 - automation test (e2e) - simulating user behavior and make sure scenarios work from the point of view of an end user
 
+#### script
+- With the watch command, our test will get rerun any time the app gets updated. 
+- This allows us to get instant feedback on whether our tests are passing or feeling, which makes it
+```js
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "jest",
+    "test:watch": "jest --watch" 
+  }
+```
+
 #### What is the coverage? 
 - How complete your unit test cover all the code?
 - 90% coverage (out of 100 lines, at least 90 lines are ran)
