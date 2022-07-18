@@ -797,6 +797,13 @@ Enzyme:
 #### Jest Implementation
 - `test("",()=>{})` - pass in test name and test function
 ```js
+describe("Test GET", () => {
+  test("It should respond with 200 success", () => {
+    const response = 200;
+    expect(response).toBe(200);
+  });
+});
+
 test("calculate tip", ()=>{ 
   const total = calculateTip(10, 0.3)
   expect(total).toBe(13)
@@ -805,6 +812,21 @@ test("calculate tip", ()=>{
 test("This should fail", ()=>{ 
   throw new Error("Failure!")
 })
+```
+
+
+#### API Test Implementation
+- npm install supertest
+- need `module.exports = app;` in app.js
+```js
+describe("Test GET", () => {
+  test("It should respond with 200 success", async () => {
+    const response = await request(app)
+      .get('/reviews/ChIJN1t_tDeuEmsRUsoyG83frY4')
+      .expect("Content-Type", /json/);
+    expect(response.statusCode).toBe(200);
+  });
+});
 ```
 
 [[↑] Back to top](#table-of-contents)
