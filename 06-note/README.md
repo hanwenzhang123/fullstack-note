@@ -136,6 +136,21 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 - Before deployment, we would make sure the  application was ready for delivery, and make sure it passed all the required tests. 
 - In terms of how we deliver new features, we have a devops developer dedicated to it with all the CI/CD work, managing the pipeline.
 
+#### Project Management
+Standup
+The purpose of a daily standup meeting is to learn the current progress of every team member that works on Scrum tasks. 
+Occurs daily. 
+- What did you do yesterday?
+- What will you do today?
+- Are there any blockers in your way?
+
+Retrospective
+Retrospective meetings occur at the end of a project to help teams pause and think about improving future performance. 
+Occurs bi-weekly.
+- What went well
+- What went bad
+- What can be improved
+
 #### Agile PM
 - The workflow is attending daily stand-ups, weekly sprint planning, working on the ticket that has been assigned to me, as well as attending other scrum meetings like review, backlog refinement, retrospective
 - We have 2 weeks long sprints. There are 6 sprints in each quarter. We keep a 3 months (quarterly) release cycle.
