@@ -641,9 +641,9 @@ const getItems = useCallback((incrementor) => {	//return us the entire function
 ## Redux
 
 #### What is Redux?
-- redux is a library for state management, it controls in a single object - store; no matter how deep you are, no needs for lifting state up
-- react uses component tree talks to each other through layers, local state pass down to props
-- redux creates a store, like a database, so sub-components can directly access values through store instead of relying parents(grandparents)
+- redux is a library for state management, it controls in a single object - store; no matter how deep you are, no needs for lifting state up 
+- redux creates a store, like a database, so sub-components can directly access values through store instead of relying parents(grandparents), whereas react uses component tree talks to each other through layers, local state pass down to props
+- only one central data (state) store which can be used inside our components
 - subscribe to the store for retrieving information, dispatch actions if you need to change anything
 
 #### Why we use Redux? Advantages?
@@ -657,6 +657,12 @@ const getItems = useCallback((incrementor) => {	//return us the entire function
 1. Single source of truth - keep all data to the store
 2. State is read-only - immutable, persistent data structure, the only way to change the state is to emit an action
 3. Changes are made with pure function (reducer) -  changes need actions
+
+#### How Redux works
+- components NEVER directly manipulate the store data, we have to setup a reducer for mutating
+- reducer functions take input and transform that input, reduce it like reduce a list of numbers to the sum, output a new result
+- components dispatch actions which trigger certain actions, then forwards actions to reducers
+- when the state in that data store is updated, subscribing components are notified, so that they can update their UI
 
 #### Redux Data Flow
 - store is the place we save the state
@@ -721,7 +727,7 @@ const ConnectedApp = connect(	//here we use the connection function, connect wil
 - Pure function, A input -> A output a + b = c (same input with consistant output)
 - Pure function is static, when we do not perform the render.
 - only has one reducer function: the "root reducer" function that you will pass to createStore later on
-- no side-effect, output will be predictable
+- no side-effect, output will be predictable (pure function)
 
 #### How do you group different reducers? 
 - `combineReducers({ , , , })`
@@ -739,6 +745,17 @@ const ConnectedApp = connect(	//here we use the connection function, connect wil
 #### Redux Flow
 - ReactJS -> setState() -> local state update -> UI re-rendering -> Done
 - ReactRedux -> emit an action (dispatch an action) -> Reducer will calculate next state (analyze action) -> Component subscribing to the store data re-rendering
+	  
+#### useSelector & useDispatch
+- useSelector - get state data
+- useDispactch - dispatch actions
+```js
+const { useSelector, useDispatch } from "react-redux";
+const dispatch = useDispatch();
+const counter = useSelector((state) => state.counter)
+const incrementHandler = () => dispatch({type: "increment" });
+const increaseHandler = () => dispatch({type: "increase", amount: 10 });  //with a payload
+```
 	  
 [[↑] Back to top](#table-of-contents)
 
