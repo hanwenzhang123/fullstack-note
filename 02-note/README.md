@@ -631,6 +631,10 @@ const getItems = useCallback((incrementor) => {	//return us the entire function
 - Redux - Larger scale application
 - Context - Smaller scale application
 
+#### Disadvantages over Redux
+- complex setup/management, can lead to deeply nested JSX code and/or huge context provider component
+- performance, react context is not optimized for high-frequency state changes
+
 [[↑] Back to top](#table-of-contents)
 
 
