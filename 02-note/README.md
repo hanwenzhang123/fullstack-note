@@ -548,6 +548,8 @@ const prevName = useRef('')
 function focus(){
   inputRef.current.focus()	//inputRef.current refers to <input value>
 }
+if (name === inputRef.current.value) {
+}
 useEffect(() => {
   prevName.current = name
 }, [name])
@@ -572,36 +574,75 @@ return (
 #### useReducer()
 - handling complex state interaction management, alternative to useState
 - reducer takes 2 parameters, a function and an initial value, and returns a single value
+- `function reducer(state, action) { return {} }` - usually be switch cases with the action.type that dispatched to reducer for changes
 - `const [state, dispatch] = useReducer(reducer, initialState)`	- initialState always object like `[]` `{count:0}`
 - `function increment() { dispatch({ type: "increment" }) }` - dispatch the action type to reducer
-- `function reducer(state, action) { return {} }` - usually be switch cases with the action.type that dispatched to reducer for changes
+```js
+const ingredientReducer = (currentIngredients, action) => {
+  switch (action.type) {
+    case 'SET':
+      return action.ingredients;
+    case 'ADD':
+      return [...currentIngredients, action.ingredient];
+    case 'DELETE':
+      return currentIngredients.filter(ing => ing.id !== action.id);
+    default:
+      throw new Error('Should not get there!');
+  }
+};
+const httpReducer = (curHttpState, action) => {
+  switch (action.type) {
+    case 'SEND':
+      return { loading: true, error: null };
+    case 'RESPONSE':
+      return { ...curHttpState, loading: false };
+    case 'ERROR':
+      return { loading: false, error: action.errorMessage };
+    case 'CLEAR':
+      return { ...curHttpState, error: null };
+    default:
+      throw new Error('Should not be reached!');
+  }
+};
+const [userIngredients, dispatch] = useReducer(ingredientReducer, []);
+const [httpState, dispatchHttp] = useReducer(httpReducer, { loading: false, error: null });
+const filteredIngredientsHandler = useCallback(filteredIngredients => {
+    dispatch({ type: 'SET', ingredients: filteredIngredients });
+    dispatchHttp({ type: 'SEND' });
+    dispatchHttp({ type: 'RESPONSE' });
+    dispatch({ type: 'DELETE', id: ingredientId });
+  }, []);
+const clearError = () => {
+    dispatchHttp({ type: 'CLEAR' });
+  };
+```
 
 #### React Performance - useMemo() & useCallback()
 - both to prevent unnecessary re-renders and make your code more efficient
 - cache the function in functional component with a dependency array
  
-###### `.useMemo()` 
-- run on every render but with cached values, will only use new values when certain dependencies change.
-- useMemo accepts two arguments: a function and a list of dependencies
-- every time useMemo will first check if any dependencies have changed
-- If not, it will return the cached return value, not calling the function. (memoize, cache, no needs to re-compute)
-- If they have changed, useMemo will call the provided function again and repeat the process.
-- Returns a memoized value. useMemo will remember the returned value from your function. 
-```js
-const doubleNumber = useMemo(() => {	//only return the value of the function
-  return slowerFunction(number)
-}, [number])
-```
-
-###### `.useCallback()` 
+###### `.useCallback()` - memorize actual function
 - avoiding unnecessary renders from the child, change the reference only when dependencies change
 - use it when a function is a dependency of a side effect 
+- save a function that does not change so that no new function is generated 
 - just like useMemo, not going to re-run the code inside of it unless certain parameter has changed
 - take a function which is useCallback returned, stores to an variable and later you can use it like `getItems(1)`
 - Returns a memoized callback. useCallback will remember your actual function.
 ```js
 const getItems = useCallback((incrementor) => {	//return us the entire function
   return [number + incrementor, number + incrementor + 1, number + incrementor + 2]
+}, [number])
+```
+
+###### `.useMemo()` - memorize the value from the function
+- run on every render but with cached values, will only use new values when certain dependencies change.
+- useMemo accepts two arguments: a function and a list of dependencies, every time useMemo will first check if any dependencies have changed
+- If not, it will return the cached return value, not calling the function. (memoize, cache, no needs to re-compute)
+- If they have changed, useMemo will call the provided function again and repeat the process.
+- Returns a memoized value. useMemo will remember the returned value from your function. 
+```js
+const doubleNumber = useMemo(() => {	//only return the value of the function
+  return slowerFunction(number)
 }, [number])
 ```
 
