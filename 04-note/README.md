@@ -746,6 +746,16 @@ throtte
 - UI tests that are always running inside a browser or a browser like environment
 - Purpose: doing testing to ensure correctness of any codebase
 
+#### Testing Process
+A dev writes codes that go for code review and when it is passed it moves to QA where the tester tests the changes by deploying that branch on EOD if no issues are found we move ahead to merge the branch and prepare for release.
+
+#### EOD
+- For testing, we need EODs (Environment on Demand) to check the scenarios are working as expected.
+
+#### Jenkins
+- Jenkin is for testing - Go to clusters like QA, and UAT, and then select env.up to deploy a fresh EOD based on the branch we need to test.
+- Suppose we have a branch on git with the latest changes and you need that branch to be tested so we deploy that branch on Jenkins and test that branch whether it has all the changes or not, if not then we fix the branch and redeploy EOD and test again if everything is working we move ahead.
+
 #### Why testing?
 - save time
 - create reliable software
