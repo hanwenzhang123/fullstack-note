@@ -842,10 +842,10 @@ counter(a, b); //a & b are argument
 ```
 
 #### Callbacks
-- a function passed into another function as an argument 
+- a function passed into another function as an argument, and run after another function has finished.
 - this function will be executed later only after this another function has finished executing
-- JS is synchronous single threaded language but through use of Callback functions we can perform async task.
-- great for async calls, handle something after something else has been completed, enforce the order of operation that we want (Eg, Event listeners make use of this.)
+- JS is synchronous single threaded language, but with callback functions, we can perform async task.
+- great for async calls, handle something after something else has been completed, enforce the order of operation that we want (e.g., Event listeners make use of this)
 
 ```js
 function greeting(name) {
