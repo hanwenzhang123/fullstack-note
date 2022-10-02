@@ -198,13 +198,16 @@ useEffect(() => {
 - setState will trigger re-rendering, and update/modify local state correctly 
 - when invole previous value, we should always use a callback function to properly handle it base on the current value
 ```js
-//react will batch several setStates together into a single update for performing the state change due to performance
-//use callback function to setState to make it correctly rendered previous value instead of just assigning the new object
-
 this.setState((prevState) => {     //passing in a callback function instead of setState directly
-	return { number: prevState.number + 1 };
+  return { number: prevState.number + 1 };
 })
 ```
+
+#### Why do we need a callback? 
+- useState and setState both are asynchronous. 
+- They do not update the state immediately but have queues that are used to update the state object. 
+- Use callback function to setState to make it correctly rendered previous value instead of just assigning the new object.
+- React will batch several setStates together into a single update for performing the state change due to performance of rendering of React components.
 
 #### setState() behind the scene
 - setState are asynchronous and are batched for performance gains -> react fiber -> then render
