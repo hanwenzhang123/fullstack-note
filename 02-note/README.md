@@ -36,9 +36,9 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/06-note/README.md
 #### What is React?
 - A User Interface Library (for building user interfaces)
 - Component Architecture (different functions control different parts of UI)
-- Data Flow in React (one way top to bottom data flow, component to children)
+- Data Flow in React (top to bottom one-way data flow, component to children)
 - Component State (manage its own state and pass down to children)
-- Rendering + updating user interfaces, handling userinput
+- Rendering + updating user interfaces, handling user input
 
 #### What is Component?
 - React is a component based language
