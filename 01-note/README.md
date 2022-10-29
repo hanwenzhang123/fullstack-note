@@ -22,6 +22,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/06-note/README.md
 - [HTML](#html)
 - [CSS](#css)
 - [Sass](#sass)
+- [JS Mechanism](#JS-Mechanism)
 - [JavaScript](#javascript)
 - [ES6](#ES6)
 - [Promise](#Promise)
@@ -430,7 +431,43 @@ A structured data in a hierarchical way and not just a bunch of variables, helps
 [[↑] Back to top](#table-of-contents)
 
 
-## JavaScript
+## JS Mechanism
+
+#### JS mechanism (how to handle the sync and async code)
+- The event loops behind the browser handles the sync and async JavaScript code, like when JS engine that built in the browser (for chrome is V8) runs JS code, because JS is a single threaded language, the code will be read line by line, and stores the memory in the heap, and push the function call to the callstack. If it is async function code, it will be then pushed to the web API instead to wait for the condition to be met while the call stack keeps running as first in last out, and garbage collects the variables that are no longer in use. Once the async code in the web API is ready to run, it will then be pushed to the Message Queue. When there are no functions to run in the call stack, the Event Loop will take the first event from the Queue and will push it to the Call Stack to run.
+
+#### Event loop: 
+- In JS there are 3 types of memory: `stack` used for functions call, `heap` for each of the objects, `queue` — setTimeout. 
+- JS engine executes the function stack first. If the stack is empty, it pops the event from queue. If the event queue has another function call, it pushes it to stack and executes it again until it is empty. This is called event loop;
+
+#### Garbage Collection
+- JavaScript has automatic memory management, it automatically performs garbage collection
+- garbage collection automatically cleans things up in your memory
+- garbage means class objects which are instantiated but not in use anymore, they occupy memory, and compiler should remove them
+
+#### Stack vs Heap 
+- When the Heap becomes full, garbage is collected. 
+- Stack is last in first out, so there is no need to garbage collect. 
+- => Stack memory is collected automatically when the execution path reaches the end of the scope
+
+#### GC Process
+- obj, var, func allocation -> obj, var, func read/write location -> process is continued until the program ends -> memory is released when program ends
+- as long as references exist, there will not be any cleaning or garbage collecting
+- if a location is unreachable then that will be collected/released the memory as garbage
+
+#### Web API
+- All the code execution is done inside callstack, which is present in JS engine, which in turn is in browser.
+- Browser has some added functionalities like, Local storage, Timer, Address field, etc.
+1. SetTimeout()
+3. DOM APIs
+4. Fetch()
+5. LocalStorage
+6. Console
+7. Location
+ 
+#### Asynchronous Web API
+- Q. Are only asynchronous web API callbacks, registered in the web API environment?
+- A. YES, the synchronous callback functions like what we pass inside map, filter, and reduce aren't registered in the Web API environment. It's just those async callback function that are registered.
 
 #### what is V8?
 Internal JavaScript engine built in Chrome.
@@ -445,8 +482,10 @@ takes code as input and undergoes 3 major phases: PARSING, COMPILATION and EXECU
 - JIT compilation: Generating machine code during runtime.
 - AOT compilation: In this compiler takes piece of code (which is supposed to be executed later) and tries to optimize it.
 
-#### "use strict" Mode
-It gives you less tolerate to errors, put on top of your program
+[[↑] Back to top](#table-of-contents)
+
+
+## JavaScript
 
 #### data type
 - `primitive` variable stores the values, refer by value
@@ -565,6 +604,9 @@ for (const key in obj) {
   console.log(obj[key])
 }
 ```
+
+#### "use strict" Mode
+It gives you less tolerate to errors, put on top of your program
 
 #### Error
 - `ReferenceError` occurs when you try to use a variable that doesn't exist at all.
@@ -1136,42 +1178,6 @@ a();   //undefined
 - DOM dynamically access and update the content, structure, and style of a document.
 - DOM is the HTML (describes the document and its content) but represent in JS (interacts with DOM to makes changes/add features to the HTML 
 - => if we change DOM, HTML changes; if we change HTML, DOM will change too (broswer keeps in sync)
-
-#### JS mechanism (how to handle the sync and async code)
-- The event loops behind the browser handles the sync and async JavaScript code, like when JS engine that built in the browser (for chrome is V8) runs JS code, because JS is a single threaded language, the code will be read line by line, and stores the memory in the heap, and push the function call to the callstack. If it is async function code, it will be then pushed to the web API instead to wait for the condition to be met while the call stack keeps running as first in last out, and garbage collects the variables that are no longer in use. Once the async code in the web API is ready to run, it will then be pushed to the Message Queue. When there are no functions to run in the call stack, the Event Loop will take the first event from the Queue and will push it to the Call Stack to run.
-
-#### Event loop: 
-- In JS there are 3 types of memory: `stack` used for functions call, `heap` for each of the objects, `queue` — setTimeout. 
-- JS engine executes the function stack first. If the stack is empty, it pops the event from queue. If the event queue has another function call, it pushes it to stack and executes it again until it is empty. This is called event loop;
-
-#### Garbage Collection
-- JavaScript has automatic memory management, it automatically performs garbage collection
-- garbage collection automatically cleans things up in your memory
-- garbage means class objects which are instantiated but not in use anymore, they occupy memory, and compiler should remove them
-
-#### Stack vs Heap 
-- When the Heap becomes full, garbage is collected. 
-- Stack is last in first out, so there is no need to garbage collect. 
-- => Stack memory is collected automatically when the execution path reaches the end of the scope
-
-#### GC Process
-- obj, var, func allocation -> obj, var, func read/write location -> process is continued until the program ends -> memory is released when program ends
-- as long as references exist, there will not be any cleaning or garbage collecting
-- if a location is unreachable then that will be collected/released the memory as garbage
-
-#### Web API
-- All the code execution is done inside callstack, which is present in JS engine, which in turn is in browser.
-- Browser has some added functionalities like, Local storage, Timer, Address field, etc.
-1. SetTimeout()
-3. DOM APIs
-4. Fetch()
-5. LocalStorage
-6. Console
-7. Location
- 
-#### Asynchronous Web API
-- Q. Are only asynchronous web API callbacks, registered in the web API environment?
-- A. YES, the synchronous callback functions like what we pass inside map, filter, and reduce aren't registered in the Web API environment. It's just those async callback function that are registered.
 
 #### DOM Elements
 - selector: getElementById, getElementByTagName, querySelector, querySelectorAll;
