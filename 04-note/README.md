@@ -737,6 +737,9 @@ throtte
 - rendering development build js files on UI will take more time as compared to production version 
 - which production is very crisp, compact, compressed, uglified for better user experience and loading on UI.
 
+#### Web Performance Check
+- We have been using google page insights, gtmetrix, lighthouse or the performance tool in chrome.
+
 [[↑] Back to top](#table-of-contents)
 
 
