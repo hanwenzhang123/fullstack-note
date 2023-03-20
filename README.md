@@ -1,4 +1,4 @@
-## HTML, CSS, JavaScript (Note Part1)
+## HTML, CSS, JavaScript (Note Part1) 
 https://github.com/hanwenzhang123/frontend-note/blob/main/01-note/README.md
 
 ## React, Redux (Note Part2)
