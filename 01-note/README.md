@@ -353,6 +353,7 @@ specify sizes or lengths of elements using various units of measure
 - for responsive design, change the styling once the size reaches a certain value
 - `<source srcset="img_smallflower.jpg" media="(max-width: 600px)">`
 - `@media only screen and (max-width: 600px) {}`
+- `@media (prefers-reduced-motion) {}` - styles to apply if the user settings are set to reduced motion
 
 #### Cross Browser Compatibility
 - check browser support: `caniuse.com` or use `CrossBrowserTesting` for testing
@@ -555,12 +556,12 @@ null == undefined   //true
 null === undefined  //false
 console.log()    //undefined
 
-|| or
-&& and
+|| or	//Logical OR
+&& and	//Logical AND
 ! not
 ? optional chaining	//if not null or undefined, read the value deep within a chain, or check if function exists, return undefined
-?? nullish coalescing, nor  //replace || for falsy values, only if null or undefined, then use second value
-+ numeric representation 
+?? nullish coalescing, nor  //replace || && for falsy values, only if null or undefined, then use second value, 0 ?? 42 => 0
++ numeric representation //convert to a number
 console.log(1 || 0)    //1
 console.log(1 && 0)    //0
 console.log(1 || 2 || 3) //1 - OR - looking for the first TRUCY value, otherwise return last element
