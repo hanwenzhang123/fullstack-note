@@ -749,20 +749,6 @@ throtte
 - UI tests that are always running inside a browser or a browser like environment
 - Purpose: doing testing to ensure correctness of any codebase
 
-#### Testing Process
-A dev writes codes that go for code review and when it is passed it moves to QA where the tester tests the changes by deploying that branch on EOD if no issues are found we move ahead to merge the branch and prepare for release.
-
-#### EOD
-- For testing, we need EODs (Environment on Demand) to check the scenarios are working as expected.
-
-#### Jenkins
-- Jenkin is for testing 
-- Go to clusters like QA, and UAT, and then select env.up to deploy a fresh EOD based on the branch we need to test.
-- Suppose we have a branch on git with the latest changes and you need that branch to be tested so we deploy that branch on Jenkins and test that branch whether it has all the changes or not, if not then we fix the branch and redeploy EOD and test again if everything is working we move ahead.
-
-#### High-level Process
-- A dev write a code it goes for code review and when it is passed it moves to QA where tester test the changes by deploying that branch on EOD and if no issues are found we move ahead where we merge the branch and prepare for release 
-
 #### Why testing?
 - save time
 - create reliable software
@@ -774,6 +760,23 @@ A dev writes codes that go for code review and when it is passed it moves to QA 
 - integration testing - test the combination of multiple building blocks
 - end to end (e2e) test - test complete scenarios in your app as the user would experience them
 - automation test (e2e) - simulating user behavior and make sure scenarios work from the point of view of an end user
+
+#### Unit testing / integration testing / functional testing
+- Unit testing: just test a small chunk, like a method
+- Integration testing: certain workflow (entire work flow all working together)
+- Functional testing: manual, spot check, deploy your code in staging, testing manually that things are working
+- Code coverage 
+
+#### High-level Testing Process
+- A dev write a code it goes for code review and when it is passed it moves to QA where tester test the changes by deploying that branch on EOD, and if no issues are found we move ahead where we merge the branch and prepare for release 
+
+#### EOD
+- For testing, we need EODs (Environment on Demand) to check the scenarios are working as expected.
+
+#### Jenkins
+- Jenkin is for testing 
+- Go to clusters like QA, and UAT, and then select env.up to deploy a fresh EOD based on the branch we need to test.
+- Suppose we have a branch on git with the latest changes and you need that branch to be tested so we deploy that branch on Jenkins and test that branch whether it has all the changes or not, if not then we fix the branch and redeploy EOD and test again if everything is working we move ahead.
 
 #### script
 - With the watch command, our test will get rerun any time the app gets updated. 
@@ -830,7 +833,6 @@ test("This should fail", ()=>{
   throw new Error("Failure!")
 })
 ```
-
 
 #### API Test Implementation
 - npm install supertest
