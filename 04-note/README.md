@@ -721,9 +721,11 @@ throtte
 - `<VirtualScroll className="List" minItemHeight={40} totalLength={100} renderItem={(rowIndex) => { return ( <div className="List-item"> <h3>List item: {rowIndex}</h3> </div> ); }} />`
 
 #### Web Workers
+- Perform heavy tasks on the background of a web page => offload heavy work to a worker
 - JS is single threaded language, but web worker allows JS running in the background threads, which are separate from the main execution thread, without affecting the performance of the page. 
-- web content to run scripts in an isolated thread in the browser in parallel, completely separate thread from the thread that's running the main JS program, prevent the UI from freezing up 
-- Web Workers are a web platform extension, perform heavy tasks on background - `if(window.Worker){}`, `const myWorker = new Worker('worker.js');`, `myWorker.terminate();`
+- web content to run scripts in an isolated thread in the browser in parallel, completely separate thread from the thread that is running the main JS program, prevent the UI from freezing up 
+- Web Workers are a web platform extension `if(window.Worker){}`, `const worker = new Worker('worker.js');`, `worker.terminate();`
+- postMessage API raises an event from one script that another script can catch and listen to `worker.postMessage("hello, worker")`
 
 #### Production Build vs Development Build
 - production and development build come into the picture because of performance impact in real life deployed the application.
