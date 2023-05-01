@@ -543,7 +543,7 @@ React.useEffect(() => {
 #### useRef()
 - request the DOM using a ref to find its current value when you need it (use ref to referennce element inside of your HTML)
 - ref stores value persistent but does not cause your component to re-update when it is changed, whereas setState triggers re-render
-- when you need to change any value, still use setState()
+- when you need to change any value, still use setState() since useRef() does not cause re-rendering
 ```js
 const [name, setName] = useState('')
 const inputRef = useRef()
