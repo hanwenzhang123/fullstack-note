@@ -759,11 +759,17 @@ throtte
 
 #### Different Kinds of Tests
 - unit testing: test individual building blocks in isolation, just test a small chunk, like a method
-- integration testing: test the combination of multiple building blocks, a certain workflow (entire work flow all working together)
-- functional testing: manual, spot check, deploy your code in staging, test manually that things are working
+- integration testing: test the combination of a certain workflow (multiple building blocks, entire work flow all working together), can query the database 
+- functional testing: manual, spot check, deploy your code in staging, focus on the business requirements, expect to get a specific value from the database
 - end to end test (e2e): test complete scenarios in your app as the user would experience them
 - automation test (e2e): simulate user behavior and make sure scenarios work from the point of view of an end user
-- smoke testing: post verification testing, check if the application up and running.
+- acceptance testing: verify if a system satisfies business requirements
+- performance testing: evaluate how a system performs, measure the reliability, speed, scalability, and responsiveness
+- smoke testing: post verification testing, check the basic functionality of an app
+
+#### Different  between NOC and QA in testing? 			
+- NOC: standard smoke test, for base cases are working, not deployment specific
+- QA: specific release/feature in that release
 
 #### High-level Testing Process
 - A dev write a code it goes for code review and when it is passed it moves to QA where tester test the changes by deploying that branch on EOD, and if no issues are found we move ahead where we merge the branch and prepare for release
