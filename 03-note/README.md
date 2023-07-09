@@ -373,6 +373,91 @@ const filteredArr = arr.filter((obj) => {
 console.log(filteredArr);
 ```
 
+
+#### Remove Object Duplicates from Array - filter()
+```js
+function removeDuplicates(array, key) {
+  return array.filter((obj, index, self) =>
+    index === self.findIndex((el) => el[key] === obj[key])
+  );
+}
+```
+```js
+const result = array.filter((item, index) => {
+	return index === array.findIndex((obj) => {
+		return item.id === obj.id;	//JSON.stringify(item)===JSON.stringify(obj);
+	});
+});
+```
+
+#### Remove Object Duplicates from Array - reduce();
+```
+function removeDuplicates(array, key) {
+  return array.reduce((uniqueArrayObject, currentObject) => {
+    // Check if the key property of the current object already exists in the unique array
+    const found = uniqueArrayObject.some((element) => element[key] === currentObject[key]);
+
+    // Add the current object to the unique array if it's not a duplicate
+    if (!found) {
+      uniqueArrayObject.push(currentObject);
+    }
+
+    return uniqueArrayObject;	//go to next reduce function
+  }, []);
+}
+```
+```js
+const result = array.reduce((accumulatedArray, currentArray) => {
+	let objectExist = accumulatedArray.find((item) => item.id === currentArray.id);
+	if (objectExist) {
+		return accumulatedArray;
+	}
+	return accumulatedArray.concat([current]);
+}, []);
+```
+
+#### Removing duplicate objects from an array of objects
+```js
+function removeDuplicates(array) {
+  var uniqueArray = [];
+
+  // Iterate over each object in the original array
+  for (var i = 0; i < array.length; i++) {
+    var currentObject = array[i];
+    var isDuplicate = false;
+
+    // Check if the current object already exists in the unique array
+    for (var j = 0; j < uniqueArray.length; j++) {
+      var existingObject = uniqueArray[j];
+
+      // Compare properties of the current object and existing objects
+      if (JSON.stringify(currentObject) === JSON.stringify(existingObject)) {
+        isDuplicate = true;
+        break;
+      }
+    }
+
+    // Add the current object to the unique array if it's not a duplicate
+    if (!isDuplicate) {
+      uniqueArray.push(currentObject);
+    }
+  }
+
+  return uniqueArray;
+}
+
+// Example usage
+var objects = [
+  { id: 1, name: 'John' },
+  { id: 2, name: 'Jane' },
+  { id: 1, name: 'John' },
+  { id: 3, name: 'Jim' },
+  { id: 2, name: 'Jane' }
+];
+
+var uniqueObjects = removeDuplicates(objects);
+```
+
 [[↑] Back to top](#table-of-contents)
 
 
