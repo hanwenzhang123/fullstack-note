@@ -192,6 +192,11 @@ valueDisplay.innerHTML = value
 - Use alt tags describe imagines.
 - Improve title tags.
 
+#### tabindex 0 vs tabindex -1
+- tabindex= "0" allows elements besides links and form elements to receive keyboard focus. It does not change the tab order, but places the element in the logical navigation flow, as if it were a link on the page.
+- tabindex= "-1" removes the element from the navigation sequence, but can be made focusable using javascript. 
+
+
 #### Character Encoding
 - To display an HTML page correctly, a web browser must know which character set to use.
 - Charset a table of unique numbers assigned to different characters like letters, numbers and other symbols like ASCII 128 different characters
