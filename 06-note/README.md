@@ -20,6 +20,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/05-note/README.md
 
 ## Table of Contents
 - [System Design](#system-design)
+- [MVC](#mvc)
 - [CICD](#CICD)
 - [SDLC](#SDLC)
 - [Docker](#Docker)
@@ -76,10 +77,31 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 - object behaves differently based on a finite number of states in your code (object behavior predictable based on its underlying state)
 - use conditional logic or switch statements to handle a bunch of different possibilities based on the state or data in your application
 
+#### Pipeline Design Patterns
+- set of automated processes and tools that allows both developers and operations professionals to work together to build and deploy code to a production environment for CI/CD in a deployable state at any point.
+
+#### Shared Component Architecture
+- build, distribute and collaborate over components to build multiple projects and applications
+- how to develop components independently but avoid the overhead of too many repositories
+- how to version, publish and manage each component individually
+- how to help others discover and adopt the components
+
+#### Micro-services Architecture
+- focuses on building many different small independen services that each do a single task and do one thing well
+- splits large applications into much smaller pieces that exist independently of each other.
+- like one server for chat server, one for caching, one do node.js only, one do Golang for concurrent task, one for message board
+- a flexible and efficient approach to designing software systems that are made up of small independent services that each have a specific and well-defined purpose.
+- consider => what goes into building, deploying, and updating an enterprise application => and break that work into more manageable, efficient batches.
+
+[[↑] Back to top](#table-of-contents)
+
+
+## MVC
+
 #### MVC Architecture
-- Browser communicate with Controller (involve with making decision), View sends requests to Controller
+- Browser communicates with Controller (involve with making decision), View sends requests to Controller
 - Controller talks to Model (data/database related)
-- Model will return the result back to Controller, Controller decides when it is ready to return the result to the browser (Controller renders on the Views)
+- Model will return the result back to Controller, and Controller decides when it is ready to return the result to the browser (Controller renders on the Views)
 
 #### Purpose of MVC
 - how the code should be organized and how the different parts of an application are separated for proper readability and debugging 
@@ -103,22 +125,6 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 - Model communicates with database
 - Model sends back information to controller
 - Controller renders view
-- 
-#### Pipeline Design Patterns
-- set of automated processes and tools that allows both developers and operations professionals to work together to build and deploy code to a production environment for CI/CD in a deployable state at any point.
-
-#### Shared Component Architecture
-- build, distribute and collaborate over components to build multiple projects and applications
-- how to develop components independently but avoid the overhead of too many repositories
-- how to version, publish and manage each component individually
-- how to help others discover and adopt the components
-
-#### Micro-services Architecture
-- focuses on building many different small independen services that each do a single task and do one thing well
-- splits large applications into much smaller pieces that exist independently of each other.
-- like one server for chat server, one for caching, one do node.js only, one do Golang for concurrent task, one for message board
-- a flexible and efficient approach to designing software systems that are made up of small independent services that each have a specific and well-defined purpose.
-- consider => what goes into building, deploying, and updating an enterprise application => and break that work into more manageable, efficient batches.
 
 [[↑] Back to top](#table-of-contents)
 
