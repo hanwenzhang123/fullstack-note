@@ -76,15 +76,6 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 - object behaves differently based on a finite number of states in your code (object behavior predictable based on its underlying state)
 - use conditional logic or switch statements to handle a bunch of different possibilities based on the state or data in your application
 
-#### Pipeline Design Patterns
-- set of automated processes and tools that allows both developers and operations professionals to work together to build and deploy code to a production environment for CI/CD in a deployable state at any point.
-
-#### Shared Component Architecture
-- build, distribute and collaborate over components to build multiple projects and applications
-- how to develop components independently but avoid the overhead of too many repositories
-- how to version, publish and manage each component individually
-- how to help others discover and adopt the components
-
 #### MVC Architecture
 - Browser communicate with Controller (involve with making decision), View sends requests to Controller
 - Controller talks to Model (data/database related)
@@ -112,6 +103,15 @@ https://github.com/hanwenzhang123/interview-note/blob/main/coding-interview/28-d
 - Model communicates with database
 - Model sends back information to controller
 - Controller renders view
+- 
+#### Pipeline Design Patterns
+- set of automated processes and tools that allows both developers and operations professionals to work together to build and deploy code to a production environment for CI/CD in a deployable state at any point.
+
+#### Shared Component Architecture
+- build, distribute and collaborate over components to build multiple projects and applications
+- how to develop components independently but avoid the overhead of too many repositories
+- how to version, publish and manage each component individually
+- how to help others discover and adopt the components
 
 #### Micro-services Architecture
 - focuses on building many different small independen services that each do a single task and do one thing well
