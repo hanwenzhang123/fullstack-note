@@ -42,6 +42,8 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/06-note/README.md
 .startsWith() - returns true if a string begins with a specified string, otherwise false.
 .charAt() - eturns the character at a specified index in a string.
 .trim() - removes whitespace from both sides of a string.
+.at(-1) - get the last element - like arr[arr.length - 1]
+.at(-2) - get the second last element
 string.length - The length property returns the length of a string.
 ```
 #### Reverse String
