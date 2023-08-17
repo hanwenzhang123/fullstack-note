@@ -632,9 +632,10 @@ function isObject(object) {
 - any modification would not influence original copy
 
 #### Deep Clone vs Shallow Clone
-2 ways to implement deep clone
+3 ways to implement deep clone
 1. third party lib lodash => `_.cloneDeep()`
 2. JSON parse and stringify => `const result = JSON.parse(JSON.stringify(data))`
+3. stucturedClone => `const copy = stucturedClone(obj)`
 ```js
 //1. Lodash
 // var _ = require("lodash");
@@ -672,6 +673,7 @@ console.log(obj);  //{x: { y: 9 } - also change to 9, both get update
 #### Deep Clone Implementation
 - Use lodash or write a deepclone function by ourself
 - JSON way cannot deep clone complex object like function, Date. Only works for simple data structure.
+- `structuredClone()` method creates a deep clone of a given value
 
 #### Write your own code of deep clone
 ```js
