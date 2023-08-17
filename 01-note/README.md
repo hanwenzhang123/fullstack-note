@@ -1052,8 +1052,9 @@ let a = 10;
 ## Closure
 
 #### what is closure
-- a function retured by another function that still has access to its outer scope variable
-- ability to remember and access scope even if was called from another scope
+- like Encapsulation in OOP (and data hiding)
+- a function returned by another function that still has access to its outer scope variable
+- the ability to remember and access scope even if was called from another scope
 - used to enable data privacy, but cons -> may cause memory leak
 ```js
 function makeCounter(){
