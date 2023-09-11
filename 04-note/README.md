@@ -663,6 +663,7 @@ document.querySelector('button').onclick = () => {	//send out text
 - Cache reduces the need for repetitive database queries.
 - Pagination allows limiting the number of entities fetched at once.
 - Database Indexes allow the database engine to find and retrieve data more efficiently.
+- Add `.includes()` for ruby-on-rails
 
 #### `React.lazy` and `React.suspense` 
 - `.lazy()` - a built-in method that will help us with code splitting, lazyloading components based on scrolling
