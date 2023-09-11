@@ -792,7 +792,6 @@ throtte
 - EODs to check the scenarios are working as expected, which built through Jenkin
 
 #### Jenkins
-- Jenkin is for testing 
 - Go to clusters like QA, and UAT, and then select env.up to deploy a fresh EOD based on the branch we need to test.
 - Suppose we have a branch on git with the latest changes and you need that branch to be tested so we deploy that branch on Jenkins and test that branch whether it has all the changes or not, if not, then we fix the branch and redeploy EOD and test again if everything is working we move ahead.
 
