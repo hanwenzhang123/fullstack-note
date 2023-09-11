@@ -25,6 +25,7 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/06-note/README.md
 - [Fullstack](#fullstack)
 - [Programming](#programming)
 - [Sockets](#sockets)
+- [Security](#security)
 - [Authentication](#authentication)
 - [Performance](#performance)
 - [Testing](#testing)
@@ -395,24 +396,24 @@ module.exports = Model;
 - Polymorphism means a single action can be performed in many forms without requiring more info, hiding the details in communication, and can pass “is a” test => `overloading`: methods share the same name with different parameters (occurs during compile time), `overriding`: override method in superclass by method of child class (occurs during run time)
 
 #### Benefits of OOP
-- Encapsulation: reduce complexity + increase reusibility
+- Encapsulation: reduce complexity + increase reusability
 - Abstraction: reduce complexity + isolate impacts of change
 - Inheritance: eliminate redundant code, good for reusability
-- Polymorphism: code can be extended, more dynamic, refactor if else, switch case statement
+- Polymorphism: code can be extended, more dynamic, refactored if else, switch case statement
 
 #### Overriding vs Overloading
-- The method has exactly the same notation as the parents that is called overriding.
-- The methods have the same name but different input parameter that is called overloading
+- The method has exactly the same notation as the parents and is called overriding.
+- The methods have the same name but different input parameters that is called overloading
 
 #### Programming Languages (C, C++, Java)
-- compiler based
+- compiler-based
 - fast execution
-- slow compilation time
+- Slow compilation time
 - platform dependent
 - secured, complex & lengthy, less frequent
 - computationally intensive algorithms
 - independent software
-- extra preparation time, but then program runs very quickly
+- extra preparation time, but then the program runs very quickly
 
 #### Scripting Languages (Python, Perl, PowerShell)
 - interpreter based
@@ -422,7 +423,7 @@ module.exports = Model;
 - not secured, fast & simple, easy & frequent
 - configurable interface
 - prototyping (based on built-in pattern)
-- starts right away, let you see the results, run slowly
+- starts right away, lets you see the results, runs slowly
 
 #### Compiled vs. Interpreted 
 - Compilation - transforms your program into machine-understandable instructions. 
@@ -431,7 +432,7 @@ module.exports = Model;
 
 #### JavaScript Engine
 - Engine: responsible for start-to-finish compilation and execution of our JavaScript program. 
-- Compiler: handles all the dirty work of parsing and code-generation. 
+- Compiler: handles all the dirty work of parsing and code generation. 
 - Scope Manager: collects and maintains a lookup list of all the declared variables/identifiers, and enforces a set of rules as to how these are accessible to currently executing code. 
 - JS engine first parses the entire program before any of it is executed, code must first be fully parsed before any execution occurs. 
 
@@ -446,16 +447,16 @@ module.exports = Model;
 - The IP address corresponds to the system and the port number corresponds to the program where the data needs to be sent
 
 #### What is WebSockets? 
-- Web Socket, establishing a real time wwo way communication between the client and server (via TCP/IP). 
+- Web Socket, establishing a real-time two-way communication between the client and server (via TCP/IP). 
 - persistent bi-directional connection between a client and server that provides a two-way full-duplex interactive communications channel that operates over HTTP through a single TCP/IP socket connection. 
-- Unlike HTTP, where you have to constantly request updates, with websockets, updates are sent immediately when they are available.
+- Unlike HTTP, where you have to constantly request updates, with WebSockets, updates are sent immediately when they are available.
 
 #### Why WebSockets? 
-- For instance, when data is changing constantly, you can refresh the broswer every few minutes to send the HTTP request, or use setInterval every few seconds to pull the server for the new data, but these are not ideal for real-time data, like a chat application.
+- For instance, when data is changing constantly, you can refresh the browser every few minutes to send the HTTP request or use setInterval every few seconds to pull the server for the new data, but these are not ideal for real-time data, like a chat application.
 
 #### How WebSockets work?
-- Client sends the HTTP request to the server to ask for open the connection, if the server agrees, it will send the 101 switching protocols response, where tcp/ip connection is locked open, allowing bi-directional messages to pass messages between the two parties, the connection stays open until one connection drops. 
-- Full-duplex connection, a tele-communication term that defines how a phone line works that two parties can send messages and talk at the same time. 
+The client sends the HTTP request to the server to ask to open the connection, if the server agrees, it will send the 101 switching protocols response, where tcp/ip connection is locked open, allowing bi-directional messages to pass messages between the two parties, the connection stays open until one connection drops. 
+- Full-duplex connection, a telecommunications term that defines how a phone line works so that two parties can send messages and talk at the same time. 
 
 #### WebSockets Implementation
 ```js
@@ -529,10 +530,61 @@ document.querySelector('button').onclick = () => {	//send out text
 [[↑] Back to top](#table-of-contents)
 
 
+## Security
+
+#### SQL Injection
+- a type of attack where a malicious user can inject (insert) SQL commands into existing SQL statements via their input to a web form or other method to send data to a database
+
+#### Prevent SQL Injection Attacks
+- input validation on your front end that does not allow a sql to be typed in.
+- Sanitize data by limiting special characters
+- Use stored procedures in the database
+- actively manage patches and updates
+- web application firewall, raise virtual or physical firewalls
+
+#### Cross Site Scripting (XXS)
+- When you are trying to act like another website, send in javascript it harms the client computer.
+- injection attack where malicious scripts can be inserted into trusted websites. 
+- The attacker is able to use a web application to send the malicious code to another web visitor. 
+
+#### Prevent XXS Attacks
+- Filter user input, do not let the user put in script or SQL
+- Do not use innerHTML for user information (session-id), instead, use innerText
+
+#### Remote System Execution
+- The ability of an attacker to remotely run operating system commands on a web server. 
+- They can ask the webserver to do anything that the OS can do via the command line.
+- PHP has two functions to help us prevent remote system execution attempts: escapeshellcmd(), escapeshellarg()
+
+#### Session Hijacking
+- If you include the session ID in the URL, you do not expire it, it can be passed around
+- your session becomes their session, they become you
+- session needs to expire
+- solution: encryption, JWT (encrypted)
+
+#### CAPTCHAS
+- ways to make sure if a user is an actual human
+
+#### Cross-domain Issue
+- A security restriction that prevents requests from being made from one origin to another, like different protocols, domains, sub-domains, and ports. 
+- It is possible to make cross-origin requests either using JSONP (if you trust the server!) or using a CORS request (Cross-Origin Resource Sharing) which both client and server must agree to.
+
+#### Cross-Site Request Forgery (CSRF)
+- an attack that forces an end user to execute unwanted actions on a web application in which they are currently authenticated.
+- Attacker logged-on victim’s browser to send forged HTTP requests that include the session cookie or other authentication info to a vulnerable web application, which thinks the request is legitimate from the victim.
+- Anti-CSRF tokens are considered the most effective method of protecting against CSRF.
+
+#### Overall
+- Do not allow the user to input any innerHTML or SQL query;
+- When use UI frameworks, keep node_modules updated, and limit of usage 3rd party services;
+
+[[↑] Back to top](#table-of-contents)
+
+
 ## Authentication
 
 #### What is Authentication
-- Authentication is needed if content should be protected, not accessible by everyone. 
+- Authentication is needed if content should be protected, and not accessible by everyone. 
 
 #### Authentication is a two-step process: 
 1. Get access/permission 
@@ -558,55 +610,9 @@ document.querySelector('button').onclick = () => {	//send out text
 - jwt does not store user in the server, jwt has all the information about the user built into it
 - decoded jwt: header (algorithm & token type), payload (data), verify signature
 
-#### SQL Injection
-- a type of attack where malicious user can inject (insert) SQL commands into existing SQL statement via their input to a web form or other method to send data to database
-
-#### Prevent SQL Injection Attacks
-- input validation on your front end that does not allow sequel to be to be typed in.
-- sanitize data by limiting special characters
-- use stored procedures in the database
-- actively manage patches and updates
-- web application firewall, raise virtual or physical firewalls
-
-#### Cross Site Scripting (XXS)
-- when you're trying to get act like another website, send in javascript it harms to the clients computer.
-- injection attack where malicious scripts can be inserted into trusted websites. 
-- The attacker is able to use a web application to send the malicious code to another web visitor. 
-
-#### Prevent XXS Attacks
-- Filter user input, do not let user put in script or sql
-- Do not using innerHTML for user information (session id), instead, using innerText
-
-#### Remote System Execution
-- The ability of an attacker to remotely run operating system commands on a web server. 
-- They can ask the web server to do anything that the OS can do via the command line.
-- PHP has two functions to help us prevent remote system execution attempts: escapeshellcmd(), escapeshellarg()
-
-#### Session Hijacking
-- if you include session ID in URL, you do not expire it, it can be passed around
-- your session becomes their session, they become you
-- session needs to expires
-- solution: encryption, JWT (encrypted)
-
-#### CAPTCHAS
-- ways to make sure if a user is an actual human
-
-#### Cross-domain Issue
-- A security restriction that prevents requests being made from one origin to another, like different protocol, domain, sub-domain, port. 
-- It is possible to make cross-origin requests either using JSONP (if you trust the server!) or using a CORS request (Cross-Origin Resource Sharing) which both client and server must agree to.
-
-#### Cross-Site Request Forgery (CSRF)
-- an attack that forces an end user to execute unwanted actions on a web application in which they're currently authenticated. Anti-CSRF tokens are considered the most effective method of protecting against CSRF.
-
 #### Auth0 
 - React Authentication Library
 - npm install @auth0/auth0-react
-
-#### Overall
-- Don't allow the user to input any HTML innerHtml ;
-- Use UI frameworks, keep node_modules updated, and limit of usage 3rd party services;
-
-[[↑] Back to top](#table-of-contents)
 
 
 ## Performance
@@ -615,7 +621,7 @@ document.querySelector('button').onclick = () => {	//send out text
 - Push (or preload) the most important resources
 - Render the initial route as soon as possible
 - Pre-cache remaining assets
-- Lazy load other routes and non-critical assets
+- Lazy load of other routes and non-critical assets
 
 #### How do you generally improve performance?
 - use uglify and minify to reduce the bundle size
@@ -642,6 +648,21 @@ document.querySelector('button').onclick = () => {	//send out text
 - Cache stores the function for reusibility
 - Cache-Control: instruction of request and response cache;
 - Redis: in-memory data structure store (server), used as a NoSQL key–value persistent database, cache, and message broker.
+
+#### Web Workers
+- Perform heavy tasks on the background of a web page => offload heavy work to a worker
+- JS is a single-threaded language, but web worker allows JS to run in the background threads, which are separate from the main execution thread, without affecting the performance of the page. 
+- web content to run scripts in an isolated thread in the browser in parallel, a completely separate thread from the thread that is running the main JS program, to prevent the UI from freezing up 
+- Web Workers are a web platform extension `if(window.Worker){}`, `const worker = new Worker('worker.js');`, `worker.terminate();`
+- PostMessage API raises an event from one script that another script can catch and listen to `worker.postMessage("hello, worker")`
+
+#### Avoid N+1 Query Problem
+- The N+1 issue creates significant performance problems when an additional query is performed to fetch related data. 
+- Eager loading is the most common solution to the N+1 query problem by fetching related data along with the main data in a single query. In SQL, use JOIN clauses to fetch related data in a single query.
+- Batch Loading involves fetching related data in batches instead of one item at a time.
+- Cache reduces the need for repetitive database queries.
+- Pagination allows limiting the number of entities fetched at once.
+- Database Indexes allow the database engine to find and retrieve data more efficiently.
 
 #### `React.lazy` and `React.suspense` 
 - `.lazy()` - a built-in method that will help us with code splitting, lazyloading components based on scrolling
@@ -719,13 +740,6 @@ throtte
 - While the user is scrolling the table, the Grid requests and displays only the visible pages.
 - Import component. Import VirtualScroll from "react-dynamic-virtual-scroll". Add component as follows in your render method: 
 - `<VirtualScroll className="List" minItemHeight={40} totalLength={100} renderItem={(rowIndex) => { return ( <div className="List-item"> <h3>List item: {rowIndex}</h3> </div> ); }} />`
-
-#### Web Workers
-- Perform heavy tasks on the background of a web page => offload heavy work to a worker
-- JS is single threaded language, but web worker allows JS running in the background threads, which are separate from the main execution thread, without affecting the performance of the page. 
-- web content to run scripts in an isolated thread in the browser in parallel, completely separate thread from the thread that is running the main JS program, prevent the UI from freezing up 
-- Web Workers are a web platform extension `if(window.Worker){}`, `const worker = new Worker('worker.js');`, `worker.terminate();`
-- postMessage API raises an event from one script that another script can catch and listen to `worker.postMessage("hello, worker")`
 
 #### Production Build vs Development Build
 - production and development build come into the picture because of performance impact in real life deployed the application.
