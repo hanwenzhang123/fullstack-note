@@ -438,9 +438,10 @@ A structured data in a hierarchical way and not just a bunch of variables, helps
 
 
 ## JS Mechanism
+JavaScript is an interpreted language, it needs an interpreter in the environment to read the source code and execute it, whereas languages like Java and C are compiled languages, that statically analyze all your code in advance, and compile it down to binary which you can run in the machine.
 
 #### JS mechanism (how to handle the sync and async code)
-- The event loops behind the browser handles the sync and async JavaScript code, like when JS engine that built in the browser (for chrome is V8) runs JS code, because JS is a single threaded language, the code will be read line by line, and stores the memory in the heap, and push the function call to the callstack. If it is async function code, it will be then pushed to the web API instead to wait for the condition to be met while the call stack keeps running as first in last out, and garbage collects the variables that are no longer in use. Once the async code in the web API is ready to run, it will then be pushed to the Message Queue. When there are no functions to run in the call stack, the Event Loop will take the first event from the Queue and will push it to the Call Stack to run.
+- The event loops behind the browser handle the sync and async JavaScript code, like when the JS engine that is built in the browser (for Chrome is V8) runs JS code because JS is a single-threaded language, the code will be read line by line, and stores the memory in the heap, and push the function call to the call stack. If it is an async function code, it will be then pushed to the web API instead to wait for the condition to be met while the call stack keeps running as first in last out, and garbage collects the variables that are no longer in use. Once the async code in the web API is ready to run, it will then be pushed to the Message Queue. When there are no functions to run in the call stack, the Event Loop will take the first event from the Queue and push it to the Call Stack to run.
 
 #### Event loop: 
 - In JS there are 3 types of memory: `stack` used for functions call, `heap` for each of the objects, `queue` — setTimeout. 
