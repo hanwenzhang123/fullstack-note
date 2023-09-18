@@ -255,22 +255,6 @@ Occurs bi-weekly.
 [[↑] Back to top](#table-of-contents)
 
 
-## Ansible
-
-#### 
-
-[[↑] Back to top](#table-of-contents)
-
-
-## Jenkin
-
-#### Jenkins
-- tool for building and testing
-
-
-[[↑] Back to top](#table-of-contents)
-
-
 ## AWS
 
 #### Amazon Web Services
