@@ -731,7 +731,7 @@ debounce
 - “group” multiple sequential calls in a single one, only send the final one
 - `const debouncedFunc = _.debounce(fetchAPI, 100); onUserInput => { debouncedFunc() }` - shorter than a 100 
 
-throtte 
+throttle 
 - setInterval
 - continuously execute when event change happens
 - like resizing page, you send requests to the UI with a timer interval, will be sent no matter how many requests within the time period
