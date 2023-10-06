@@ -824,6 +824,19 @@ let promise = new Promise((resolve , reject) => {
       reject(err);
     });          
 });
+
+fetch(this.props.url, {
+  method: 'GET',
+  headers: {
+    'Accept': 'application/json',
+    'authorization': 'BaseAuth W1lcmxsa='
+  },
+}).then (function (response) {
+    if(response.ok) {
+        return response.json();
+    }
+}).then(function (json) {/* Here is your json */})
+  .catch(function (error) {/*Handle error*/});
 ```
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -876,32 +889,7 @@ Promise.all([promise1, promise2, promise3]).then((values) => {
 
 `main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)`
 
-#### fetch with header
-```
-fetch(`https://httpbin.org/get`,{
-    method: `GET`,
-    headers: {
-        'authorization': 'BaseAuth W1lcmxsa='
-    }
-}).then((res)=>{
-    if(res.ok) {
-        return res.json();
-    }
-}).then((res)=>{
-    console.log(res); // It is like final answer of XHR or jQuery Ajax
-})
-
-fetch(this.props.url, {
-  method: 'GET',
-  headers: {
-    'Accept': 'application/json',
-  },
-}).then (function (response) {return response.json()})
-  .then(function (json) {/* Here is your json */})
-  .catch(function (error) {/*Handle error*/});
-```
-```
-//async/await
+```js
 (async function fetchAsync () {
     let data = await (await fetch(`https://httpbin.org/get`,{
 		method: `GET`,
@@ -931,7 +919,7 @@ counter(a, b); //a & b are argument
 - a function passed into another function as an argument, and run after another function has finished.
 - this function will be executed later only after this another function has finished executing
 - JS is synchronous single threaded language, but with callback functions, we can perform async task.
-- great for async calls, handle something after something else has been completed, enforce the order of operation that we want (e.g., Event listeners make use of this)
+- great for async calls, handle something after something else has been completed, enforcing the order of operation that we want (e.g., Event listeners make use of this)
 
 ```js
 function greeting(name) {
