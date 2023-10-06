@@ -876,6 +876,43 @@ Promise.all([promise1, promise2, promise3]).then((values) => {
 
 `main thread (console.log) > micro (promise, async/await-pauses) > macro (timeout, interval)`
 
+#### fetch with header
+```
+fetch(`https://httpbin.org/get`,{
+    method: `GET`,
+    headers: {
+        'authorization': 'BaseAuth W1lcmxsa='
+    }
+}).then((res)=>{
+    if(res.ok) {
+        return res.json();
+    }
+}).then((res)=>{
+    console.log(res); // It is like final answer of XHR or jQuery Ajax
+})
+
+fetch(this.props.url, {
+  method: 'GET',
+  headers: {
+    'Accept': 'application/json',
+  },
+}).then (function (response) {return response.json()})
+  .then(function (json) {/* Here is your json */})
+  .catch(function (error) {/*Handle error*/});
+```
+```
+//async/await
+(async function fetchAsync () {
+    let data = await (await fetch(`https://httpbin.org/get`,{
+		method: `GET`,
+		headers: {
+		    'authorization': 'BaseAuth W1lcmxsa='
+		}
+	    })).json();
+      console.log(data);
+})();
+```
+
 [[↑] Back to top](#table-of-contents)
 
 
