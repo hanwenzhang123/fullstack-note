@@ -22,9 +22,9 @@ https://github.com/hanwenzhang123/frontend-note/blob/main/06-note/README.md
 - [HTML](#html)
 - [CSS](#css)
 - [Sass](#sass)
+- [2023](#2023)
 - [JS Mechanism](#JS-Mechanism)
 - [JavaScript](#javascript)
-- [2023](#2023)
 - [ES6](#ES6)
 - [Promise](#Promise)
 - [Funtion](#Function)
@@ -438,6 +438,66 @@ A structured data in a hierarchical way and not just a bunch of variables, helps
 [[↑] Back to top](#table-of-contents)
 
 
+## 2023
+#### Object.groupBy()
+- object organized into groups
+- Object.groupBy(items, callbackFn)
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy
+```js
+const people = [
+  {name: "John", age: 2},
+  {name: "Jane", age: 19},
+  {name: "Jeff", age: 69}
+]
+
+function adultsOnly({age}){
+  if (age >= 21) {
+	return 'adult';
+  } else {
+	return 'minor';
+  }
+}
+const organized = Object.groupBy(people, adultOnly);
+console.log(organized) //{minor: Array(2), adult: Array(1)}
+```
+#### Array.toSorted
+- with `.sort()`, it mutates the original array which can be confusing as `.map()` or `.filter()` do not do it
+- with `.toSorted()`, it copies the original but does not mutate the original array
+- `Array.toSpliced`, `Array.toReversed`, and more
+
+#### new HTML 
+- `<search />` - search box in the website, replace the form tag
+- `<dialog />` - create a modal dialog which can be controlled by javascript with `id.showModal()` to open dialog
+
+#### iOS Web Push
+- Apple allows to push notifications from the web app
+
+#### NextJS
+- allow to fetch data directly from code using SQL
+```js
+import {sql} from '@vercel/postgres';
+async function MyComponent({data}: any){
+  const {row} = await sql`
+    INSERT INTO products (name)
+    VALUES (${data.name})
+  `;
+}
+```
+
+#### NodeJS
+- module-based permission: control which file or URLs are available to other module
+- process-based permission: control the nodeJS process access to resource
+- new WebSocket client: `const sock = new WebSocket('ws://someurl')`
+
+#### Bun Runtime
+- a new javascript runtime with improved performance
+- `Bun.serve()`
+- `WebSocket`
+- `bun:sqlit`
+
+[[↑] Back to top](#table-of-contents)
+
+
 ## JS Mechanism
 JavaScript is an interpreted language, it needs an interpreter in the environment to read the source code and execute it, whereas languages like Java and C are compiled languages, that statically analyze all your code in advance, and compile it down to binary which you can run in the machine.
 
@@ -630,55 +690,6 @@ It gives you less tolerate to errors, put on top of your program
 - `catch` lets you handle the error.
 - `throw` lets you create custom errors. (execution of the current function will stop, the statements after throw won't be executed, and control will be passed to the first catch block in the call stack. If no catch block exists, the program will terminate.)
 - `finally` lets you execute code, after try and catch, regardless of the result.
-
-[[↑] Back to top](#table-of-contents)
-
-
-## 2023
-#### Object.groupBy()
-- object organized into groups
-- Object.groupBy(items, callbackFn)
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy
-```js
-const people = [
-  {name: "John", age: 2},
-  {name: "Jane", age: 19},
-  {name: "Jeff", age: 69}
-]
-
-function adultsOnly({age}){
-  if (age >= 21) {
-	return 'adult';
-  } else {
-	return 'minor';
-  }
-}
-const organized = Object.groupBy(people, adultOnly);
-console.log(organized) //{minor: Array(2), adult: Array(1)}
-```
-#### Array.toSorted
-- with `.sort()`, it mutates the original array which can be confusing as `.map()` or `.filter()` do not do it
-- with `.toSorted()`, it copies the original but does not mutate the original array
-- `Array.toSpliced`, `Array.toReversed`, and more
-
-#### new HTML 
-- `<search />` - search box in the website, replace the form tag
-- `<dialog />` - create a modal dialog which can be controlled by javascript with `id.showModal()` to open dialog
-
-#### iOS Web Push
-- Apple allows to push notifications from the web app
-
-#### NextJS
-- allow to fetch data directly from code using SQL
-```js
-import {sql} from '@vercel/postgres';
-async function MyComponent({data}: any){
-  const {row} = await sql`
-    INSERT INTO products (name)
-    VALUES (${data.name})
-  `;
-}
-```
 
 [[↑] Back to top](#table-of-contents)
 
