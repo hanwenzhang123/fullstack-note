@@ -495,6 +495,29 @@ async function MyComponent({data}: any){
 - `WebSocket`
 - `bun:sqlit`
 
+#### Array.from()
+- static method creates a new, shallow-copied Array instance
+```js
+console.log(Array.from('foo'));  //["f", "o", "o"]
+console.log(Array.from([1, 2, 3], (x) => x + x));  //[2, 4, 6]
+```
+
+#### Array.fromAsync()
+- creates a new, shallow-copied Array instance
+```js
+const asyncIterable = (async function* () {
+  for (let i = 0; i < 5; i++) {
+    await new Promise((resolve) => setTimeout(resolve, 10 * i));
+    yield i;
+  }
+})();
+Array.fromAsync(asyncIterable).then((array) => console.log(array));  // [0, 1, 2, 3, 4]
+
+Array.fromAsync(
+  new Set([Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)]),
+).then((array) => console.log(array));  // [1, 2, 3]
+```
+
 [[↑] Back to top](#table-of-contents)
 
 
